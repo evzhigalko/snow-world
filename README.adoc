@@ -32,13 +32,13 @@
 
 ==== Аналогичные приложения
 
-* link:https://www.blueriversports.com/[Colorado, USA] +
+* link:https://www.blueriversports.com/[blueriversports.com, Colorado, USA] +
 предлагают только комплекты экипировки, но реализовано онлайн-бронирование и предоплата
 
-* link:https://mountaincreek.snowcloud.store/date/65243842-42b5-4bb2-8197-f0dcec0cb0d9[New Jersey, USA] +
+* link:https://mountaincreek.snowcloud.store/date/65243842-42b5-4bb2-8197-f0dcec0cb0d9[mountaincreek, New Jersey, USA] +
 реализован подбор по параметрам, онлайн-бронирование и предоплата, но ассортимента нет
 
-* link:https://www.val-spirit-rentals.com/rent-equipment/select/ski-male[Ле Лаваше, Франция] +
+* link:https://www.val-spirit-rentals.com/rent-equipment/select/ski-male[val-spirit-rentals.com, Ле Лаваше, Франция] +
 реализовано онлайн-бронирование, предоплата, подбор по параметрам, добавлен весь ассортимент, нет возможности выбора
 и не видишь полный комплект бронируемой экипировки.
 
