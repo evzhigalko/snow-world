@@ -1,7 +1,5 @@
 = Snow-World.by
 
-Rent service equipment for winter sport (equipment, clothes)
-
 == Description
 
 *Snow-World.by* - аренда сноубордов, горных лыж и необходимой экипировки. В нашем салоне проката можно
@@ -69,3 +67,7 @@ Rent service equipment for winter sport (equipment, clothes)
 ===== User stories
 
 * link:https://miro.com/app/board/uXjVOYKGYS8=/?invite_link_id=755760560023[mind map]
+
+==== UML class diagram
+
+* link:https://github.com/JD2-86/pet-project-zhigalko/blob/master/Snow_World-uml_diagram.drawio[UML diagramm with drawio]
