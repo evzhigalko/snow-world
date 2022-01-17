@@ -1,4 +1,6 @@
-= ${Snow-World.by}
+= Snow-World.by
+
+Rent service equipment for winter sport (equipment, clothes)
 
 == Description
 
