@@ -64,7 +64,9 @@
 * онлайн-бронирование
 * бесплатная отмена не позднее чем за 1 сутки до предполагаемого дня сдачи в аренду
 
-===== User stories
+=== Business analysis
+
+==== User stories
 
 * link:https://miro.com/app/board/uXjVOYKGYS8=/?invite_link_id=755760560023[mind map]
 
