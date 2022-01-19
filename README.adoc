@@ -72,3 +72,5 @@
 ==== UML class diagram
 
 * link:https://github.com/JD2-86/pet-project-zhigalko/blob/master/Snow_World-uml_diagram.drawio[UML diagramm with drawio]
+
+* link:https://github.com/JD2-86/pet-project-zhigalko/blob/master/snow-world-uml-diagram.png[UML diagram .png]
