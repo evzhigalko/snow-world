@@ -1,5 +1,7 @@
 = Snow-World.by
 
+* link:http://ec2-54-165-213-86.compute-1.amazonaws.com:8080/snow-world/[snow-world]
+
 == Description
 
 *Snow-World.by* - аренда сноубордов, горных лыж и необходимой экипировки. В нашем салоне проката можно
