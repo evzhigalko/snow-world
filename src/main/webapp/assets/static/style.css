@@ -1,0 +1,7 @@
+.navbar-collapse {
+    font-size: 1.15rem;
+}
+.nav-link:hover {
+    transform: scale(1.15);
+    color: #5db6ff;
+}

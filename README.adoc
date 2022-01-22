@@ -1,6 +1,6 @@
 = Snow-World.by
 
-* link:http://ec2-54-165-213-86.compute-1.amazonaws.com:8080/snow-world/[snow-world, window=_blank]
+* link:http://ec2-54-165-213-86.compute-1.amazonaws.com:8080/snow-world/[Snow-World]
 
 == Description
 
