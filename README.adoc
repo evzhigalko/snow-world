@@ -1,69 +1,69 @@
-= Snow-World.by
+= Snow-World
 
 * link:http://ec2-54-165-213-86.compute-1.amazonaws.com:8080/snow-world/[Snow-World]
 
 == Description
 
-*Snow-World.by* - аренда сноубордов, горных лыж и необходимой экипировки. В нашем салоне проката можно
-найти оборудование и экипировку (далее *экипировка*) для катаний на сноуборде/горных лыж ведущих мировых брендов
-по хорошим ценам. Благодаря нашей *уникальной системе* подбор экипировки и оборудования можно осуществить прямо
-на сайте, для этого необходимо ввести данные (рост, размеры одежды, обуви, стиль катания и опыт катания).
-Также только у нас вы сможете посмотреть весь актуальный ассортимент, в том числе по наличию на текущий момент.
-Также *Snow-World.by* предлагает оформить онлайн-бронирование, и бесплатную отмену не позднее чем
-за 1 сутки до предполагаемого дня сдачи в аренду.
+*Snow-World* - rental of snowboards, alpine skis, clothes and all necessary equipment.
+In our rental shop you can find equipment and clothes for snowboarding / alpine skiing of the world's leading brands
+at good prices. Thanks to our *unique system*, the selection of equipment and clothes can be carried out directly on
+the website, for this you need to enter data (height, clothing sizes, shoes, riding style and riding experience).
+Also, only here you will be able to view the entire current assortment, including by availability at the moment.
+*Snow-World* offers to make an online booking, and free cancellation no later than 1 day before the expected day
+of rental.
 
-==== Какую проблему данный проект решает или что нового приносит для пользователей?
+==== What problem does this project solve or what new does it bring to users?
 
-* онлайн-подбор, в соответствии с данными пользователя, т.к. часто новички не знают что необходимо для комфортного катания
-* просмотр актуального ассортимента, без посещения салон-проката, т.е. на сайте пользователь
-может ознакомиться с актуальным ассортиментом, в том числе по наличию на определенную дату (календарь бронирований),
-и в случае отсутствия необходимого - может обойтись без посещения салона-проката *Snow-World.by*.
-* избежание очередей и траты времени на оформление, благодаря уникальной системе онлайн-бронирования.
-Например, лояльные пользователи, которые уже пользовались услугами *Snow-World.by*, могут посмотреть историю заказов,
-создать новый заказ на основании прошлого заказа, приходя в *Snow-World.by* по предъявлению кода заказа
-подписывают заранее подготовленные документы, получают забронированную экипировку.
+* online selection all equipment, according to the user's data, because often beginners do not know what is necessary
+for comfortable riding;
+* search for the current assortment, without visiting the rental salon, so the user
+can get acquainted with the current assortment directly on the website using the booking calendar,
+and in the absence of the necessary - can do without visiting the rental salon *Snow-World*;
+* avoiding queues and wasting time on registration, thanks to a unique online booking system.
+Registered users who have experience using the services of *Snow-World* can view the order history,
+create a new order based on the previous order
 
-==== Потенциальные пользователи
+==== Potential users
 
-* новички, которые ни разу не катались на сноуборде/горных лыжах, желающие попробовать
-* любители, которые имеют небольшой опыт катания и понимают какая экипировка им нужна
-* профессионалы, у которых нет своей экипировки/части экипировки
+* beginners who have never been snowboarding/alpine skiing, who want to try
+* amateurs who have little riding experience and understand what kind of equipment they need
+* professionals who do not have their own equipment/pieces of equipment
 
-*Возрастная категория от 3 лет
+*Age category from 3 years
 
-==== Аналогичные приложения
+==== Similar Applications
 
 * link:https://www.blueriversports.com/[blueriversports.com, Colorado, USA] +
-предлагают только комплекты экипировки, но реализовано онлайн-бронирование и предоплата
+It offers only sets of equipment, but online booking and prepayment are implemented
 
 * link:https://mountaincreek.snowcloud.store/date/65243842-42b5-4bb2-8197-f0dcec0cb0d9[mountaincreek, New Jersey, USA] +
-реализован подбор по параметрам, онлайн-бронирование и предоплата, но ассортимента нет
+There is a selection of parameters, online booking and prepayment, but there is no assortment on the website
 
-* link:https://www.val-spirit-rentals.com/rent-equipment/select/ski-male[val-spirit-rentals.com, Ле Лаваше, Франция] +
-реализовано онлайн-бронирование, предоплата, подбор по параметрам, добавлен весь ассортимент, нет возможности выбора
-и не видишь полный комплект бронируемой экипировки.
+* link:https://www.val-spirit-rentals.com/rent-equipment/select/ski-male[val-spirit-rentals.com, Les Almes, France] +
+Online booking, prepayment, selection by parameters has been implemented, the entire assortment has been added,
+users can not see the full set of reserved equipment.
 
-====== Прокаты без системы онлайн-бронирования экипировки в Беларуси
+====== Rentals without an online equipment booking system in Belarus
 
 * link:http://www.snowcat.by[SnowCat]
 * link:https://afs.by/[Affecta Sport]
 * link:https://silichy.by/gornolizhnoe-snaryazhenie-27403[Silichy]
 
-====== Прокат с системой онлайн-бронирования экипировки при условии бронирования жилья (пакетный тур)
+====== Rental with an online booking system of equipment, subject to booking accommodation (package tour)
 
-* link:https://www.ski-planet.com/ru/[Ski-Planet, Альпы, Франция]
+* link:https://www.ski-planet.com/ru/[Ski-Planet, Alps, France]
 
-====== Прокат с ассортиментом на сайте, но без онлайн-бронирования и подбора по данным пользователя
+====== Rental with an assortment on the website, but without online booking and selection according to user data
 
-* link:https://snowbuddy.by/[SnowBuddy, Минск, Беларусь]
-* link:https://sochiskiline.ru/[SkiLine, Сочи, Россия]
+* link:https://snowbuddy.by/[SnowBuddy, Minsk, Belarus]
+* link:https://sochiskiline.ru/[SkiLine, Sochi, Russia]
 
-==== Конкурентное преимущества
+==== Competitive advantages
 
-* просмотр актуального ассортимента прямо на сайте и возможность выбрать понравившуюся экипировку самостоятельно;
-* онлайн-подбор в соответствии с заданными данными пользователя;
-* онлайн-бронирование
-* бесплатная отмена не позднее чем за 1 сутки до предполагаемого дня сдачи в аренду
+* view the current assortment directly on the website and the opportunity to choose the equipment you like yourself;
+* online selection according to the user's specified data;
+* online booking
+* free cancellation no later than 1 day before the expected date of rental
 
 === Business analysis
 
