@@ -42,35 +42,37 @@ public class CatalogServlet extends HttpServlet {
         String pageStr = split[split.length - 1];
         int page = (Integer.parseInt(pageStr) - 1) * PAGE_SIZE;
         BaseDaoEquipmentImpl dao = null;
+        String forwardPath = null;
         try {
             if (requestURI.contains("/snowboard/catalog/")) {
                 dao = new SnowboardDaoImpl();
                 paginate(request, page, dao);
-                getServletContext().getRequestDispatcher(SNOWBOARD_LIST).forward(request, response);
+                forwardPath = SNOWBOARD_LIST;
             } else if (requestURI.contains("/snowboard/boot/catalog/")) {
                 dao = new SnowboardBootDaoImpl();
                 paginate(request, page, dao);
-                getServletContext().getRequestDispatcher(SNOWBOARD_BOOT_LIST).forward(request, response);
+                forwardPath = SNOWBOARD_BOOT_LIST;
             } else if(requestURI.contains("/snowboard/helmet/catalog/")){
                 dao = new SnowboardHelmetDaoImpl();
                 paginate(request, page, dao);
-                getServletContext().getRequestDispatcher(SNOWBOARD_HELMET_LIST).forward(request, response);
+                forwardPath = SNOWBOARD_HELMET_LIST;
             } else if(requestURI.contains("/ski/catalog/")) {
                 dao = new SkiDaoImpl();
                 paginate(request,page, dao);
                 SkiPoleDaoImpl skiPoleDao = new SkiPoleDaoImpl();
                 List<SkiPole> poleList = skiPoleDao.findAll(0, 9999);
                 request.setAttribute("poleList", poleList);
-                getServletContext().getRequestDispatcher(SKI_LIST).forward(request, response);
+                forwardPath = SKI_LIST;
             } else if(requestURI.contains("/ski/boot/catalog/")) {
                 dao = new SkiBootDaoImpl();
                 paginate(request, page, dao);
-                getServletContext().getRequestDispatcher(SKI_BOOT_LIST).forward(request, response);
+                forwardPath = SKI_BOOT_LIST;
             } else if(requestURI.contains("/ski/helmet/catalog/")) {
                 dao = new SkiHelmetDaoImpl();
                 paginate(request, page, dao);
-                getServletContext().getRequestDispatcher(SKI_HELMET_LIST).forward(request, response);
+                forwardPath = SKI_HELMET_LIST;
             }
+            getServletContext().getRequestDispatcher(forwardPath).forward(request, response);
         } catch (Exception e) {
             getServletContext().getRequestDispatcher(ERROR_PAGE).forward(request, response);
         }

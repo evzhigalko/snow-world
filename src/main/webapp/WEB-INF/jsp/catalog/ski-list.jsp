@@ -31,7 +31,7 @@
                                         <select class="form-select" aria-label="Пример выбора по умолчанию">
                                             <option selected>Лыжные палки</option>
                                             <c:forEach var="ski_pole" items="${requestScope.poleList}">
-                                                <option> ${ski_pole.equipmentSizeId.userMinHeight}
+                                                <option>Рост: ${ski_pole.equipmentSizeId.userMinHeight}
                                                     - ${ski_pole.equipmentSizeId.userMaxHeight}</option>
                                             </c:forEach>
                                         </select>
