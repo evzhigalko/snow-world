@@ -5,3 +5,15 @@
     transform: scale(1.15);
     color: #5db6ff;
 }
+.navbar {
+    width: 100%;
+    height: 111px;
+    background: linear-gradient(180deg, rgba(18, 202, 242, 0.3483) 0%, rgba(90, 205, 231, 0) 90.45%);
+}
+.card-info {
+    margin-bottom: 9px;
+}
+li {
+    list-style-type: none;
+    padding-left: 8px;
+}

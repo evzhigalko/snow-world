@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://evzdatabase.cn9aacorevcs.us-east-1.rds.amazonaws.com:5432/snow_world_database?currentSchema=rent</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">1234</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="by.zhigalko.snow.world.dal.entity.BaseEntity"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.Item"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.Equipment"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.EquipmentSize"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.Image"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.snowboard.Snowboard"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.snowboard.SnowboardBoot"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.snowboard.SnowboardHelmet"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.ski.Ski"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.ski.SkiPole"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.ski.SkiBoot"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.ski.SkiHelmet"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.Cap"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.ClothesWithMembrane"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.Glove"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.Mask"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.Mitten"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.Jacket"/>
+        <mapping class="by.zhigalko.snow.world.dal.entity.clothes.Pants"/>
+    </session-factory>
+</hibernate-configuration>

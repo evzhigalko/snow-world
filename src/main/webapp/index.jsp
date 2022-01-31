@@ -10,7 +10,5 @@
     <%@ include file="/WEB-INF/static/navbar.jsp"%>
   </header>
 
-  <h1 align="center"> Добро пожаловать на snow-world.by</h1>
-
   </body>
 </html>
