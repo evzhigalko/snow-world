@@ -6,7 +6,7 @@ import jakarta.persistence.Query;
 import org.hibernate.Session;
 import java.util.List;
 
-public class BaseDaoEquipmentImpl<T extends Item> implements BaseDao<T>, BaseDaoCountEntity<T>,BaseDaoUpdateEntity<T>{
+public abstract class BaseDaoEquipmentImpl<T extends Item> implements BaseDao<T>, BaseDaoCountEntity<T>,BaseDaoUpdateEntity<T>{
     private final Class<T> iClass;
 
     public BaseDaoEquipmentImpl(Class<T> iClass) {

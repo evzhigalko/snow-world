@@ -45,30 +45,30 @@ public class CatalogServlet extends HttpServlet {
         String forwardPath = null;
         try {
             if (requestURI.contains("/snowboard/catalog/")) {
-                dao = new SnowboardDaoImpl();
+                dao = SnowboardDaoImpl.getInstance();
                 paginate(request, page, dao);
                 forwardPath = SNOWBOARD_LIST;
             } else if (requestURI.contains("/snowboard/boot/catalog/")) {
-                dao = new SnowboardBootDaoImpl();
+                dao = SnowboardBootDaoImpl.getInstance();
                 paginate(request, page, dao);
                 forwardPath = SNOWBOARD_BOOT_LIST;
             } else if(requestURI.contains("/snowboard/helmet/catalog/")){
-                dao = new SnowboardHelmetDaoImpl();
+                dao = SnowboardHelmetDaoImpl.getInstance();
                 paginate(request, page, dao);
                 forwardPath = SNOWBOARD_HELMET_LIST;
             } else if(requestURI.contains("/ski/catalog/")) {
-                dao = new SkiDaoImpl();
+                dao = SkiDaoImpl.getInstance();
                 paginate(request,page, dao);
-                SkiPoleDaoImpl skiPoleDao = new SkiPoleDaoImpl();
+                SkiPoleDaoImpl skiPoleDao = SkiPoleDaoImpl.getInstance();
                 List<SkiPole> poleList = skiPoleDao.findAll(0, 9999);
                 request.setAttribute("poleList", poleList);
                 forwardPath = SKI_LIST;
             } else if(requestURI.contains("/ski/boot/catalog/")) {
-                dao = new SkiBootDaoImpl();
+                dao = SkiBootDaoImpl.getInstance();
                 paginate(request, page, dao);
                 forwardPath = SKI_BOOT_LIST;
             } else if(requestURI.contains("/ski/helmet/catalog/")) {
-                dao = new SkiHelmetDaoImpl();
+                dao = SkiHelmetDaoImpl.getInstance();
                 paginate(request, page, dao);
                 forwardPath = SKI_HELMET_LIST;
             }

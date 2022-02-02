@@ -20,7 +20,7 @@ class MittenDaoImplTest {
     private static MittenDaoImpl mittenDao;
     @BeforeAll
     static void init() {
-        mittenDao = new MittenDaoImpl();
+        mittenDao = MittenDaoImpl.getInstance();
     }
 
     @BeforeEach

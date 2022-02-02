@@ -23,7 +23,7 @@ class SnowboardHelmetDaoImplTest {
     private static SnowboardHelmetDaoImpl snowboardHelmetDao;
     @BeforeAll
     static void init() {
-        snowboardHelmetDao = new SnowboardHelmetDaoImpl();
+        snowboardHelmetDao = SnowboardHelmetDaoImpl.getInstance();
     }
 
     @BeforeEach

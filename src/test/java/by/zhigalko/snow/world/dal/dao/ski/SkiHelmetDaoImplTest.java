@@ -21,7 +21,7 @@ class SkiHelmetDaoImplTest {
     private static SkiHelmetDaoImpl skiHelmetDao;
     @BeforeAll
     static void init() {
-        skiHelmetDao = new SkiHelmetDaoImpl();
+        skiHelmetDao = SkiHelmetDaoImpl.getInstance();
     }
 
     @BeforeEach

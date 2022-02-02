@@ -20,7 +20,7 @@ class CapDaoImplTest {
     private static CapDaoImpl capDao;
     @BeforeAll
     static void init() {
-        capDao = new CapDaoImpl();
+        capDao = CapDaoImpl.getInstance();
     }
 
     @BeforeEach

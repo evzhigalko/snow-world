@@ -13,17 +13,15 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class JacketDaoImplTest {
     private static JacketDaoImpl jacketDao;
     @BeforeAll
     static void init() {
-        jacketDao = new JacketDaoImpl();
+        jacketDao = JacketDaoImpl.getInstance();
     }
 
     @BeforeEach

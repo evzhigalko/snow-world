@@ -21,7 +21,7 @@ class GloveDaoImplTest {
     private static GloveDaoImpl gloveDao;
     @BeforeAll
     static void init() {
-        gloveDao = new GloveDaoImpl();
+        gloveDao = GloveDaoImpl.getInstance();
     }
 
     @BeforeEach

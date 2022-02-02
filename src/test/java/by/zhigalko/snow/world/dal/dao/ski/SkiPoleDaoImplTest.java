@@ -22,7 +22,7 @@ class SkiPoleDaoImplTest {
 
     @BeforeAll
     static void init() {
-        skiPoleDao = new SkiPoleDaoImpl();
+        skiPoleDao = SkiPoleDaoImpl.getInstance();
     }
 
     @BeforeEach

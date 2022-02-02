@@ -18,7 +18,7 @@ class EquipmentSizeDaoImplTest {
 
     @BeforeAll
     static void init() {
-        equipmentSizeDao = new EquipmentSizeDaoImpl();
+        equipmentSizeDao = EquipmentSizeDaoImpl.getInstance();
     }
 
     @BeforeEach
