@@ -11,6 +11,7 @@ import by.zhigalko.snow.world.dal.dao.snowboard.SnowboardBootDaoImpl;
 import by.zhigalko.snow.world.dal.dao.snowboard.SnowboardDaoImpl;
 import by.zhigalko.snow.world.dal.dao.snowboard.SnowboardHelmetDaoImpl;
 import by.zhigalko.snow.world.dal.entity.Item;
+import by.zhigalko.snow.world.dal.entity.enums.Page;
 import by.zhigalko.snow.world.dal.entity.ski.SkiPole;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -32,20 +33,8 @@ import java.util.List;
         "/clothes/mittens/catalog/*",
         "/clothes/gloves/catalog/*"
 })
-public class CatalogServlet extends HttpServlet {
+public class FrontController extends HttpServlet {
     public static final int PAGE_SIZE = 6;
-    private static final String SNOWBOARD_LIST = "/WEB-INF/jsp/catalog/snowboard-list.jsp";
-    private static final String SNOWBOARD_BOOT_LIST = "/WEB-INF/jsp/catalog/snowboard-boot-list.jsp";
-    private static final String SNOWBOARD_HELMET_LIST = "/WEB-INF/jsp/catalog/snowboard-helmet-list.jsp";
-    private static final String SKI_LIST = "/WEB-INF/jsp/catalog/ski-list.jsp";
-    private static final String SKI_BOOT_LIST = "/WEB-INF/jsp/catalog/ski-boot-list.jsp";
-    private static final String SKI_HELMET_LIST = "/WEB-INF/jsp/catalog/ski-helmet-list.jsp";
-    private static final String JACKET_LIST = "/WEB-INF/jsp/catalog/jacket-list.jsp";
-    private static final String PANTS_LIST = "/WEB-INF/jsp/catalog/pants-list.jsp";
-    private static final String CAP_LIST = "/WEB-INF/jsp/catalog/cap-list.jsp";
-    private static final String MASK_LIST = "/WEB-INF/jsp/catalog/mask-list.jsp";
-    private static final String MITTENS_LIST = "/WEB-INF/jsp/catalog/mittens-list.jsp";
-    private static final String GLOVES_LIST = "/WEB-INF/jsp/catalog/gloves-list.jsp";
     private static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
 
     @Override
@@ -57,57 +46,63 @@ public class CatalogServlet extends HttpServlet {
         BaseDaoEquipmentImpl dao = null;
         String forwardPath = null;
         try {
-            if (requestURI.contains("/snowboard/catalog/")) {
+            Page enumClass = Page.getEnumClass(requestURI);
+            dao = SnowboardDaoImpl.getInstance();
+            paginate(request, page, dao);
+            forwardPath = enumClass.getForwardPage();
+
+
+            if (requestURI.contains(Page.SNOWBOARD_LIST.getUrl())) {
                 dao = SnowboardDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = SNOWBOARD_LIST;
-            } else if (requestURI.contains("/snowboard/boot/catalog/")) {
+                forwardPath = Page.SNOWBOARD_LIST.getForwardPage();
+            } else if (requestURI.contains(Page.SNOWBOARD_BOOT_LIST.getUrl())) {
                 dao = SnowboardBootDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = SNOWBOARD_BOOT_LIST;
-            } else if(requestURI.contains("/snowboard/helmet/catalog/")){
+                forwardPath = Page.SNOWBOARD_BOOT_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.SNOWBOARD_HELMET_LIST.getUrl())) {
                 dao = SnowboardHelmetDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = SNOWBOARD_HELMET_LIST;
-            } else if(requestURI.contains("/ski/catalog/")) {
+                forwardPath = Page.SNOWBOARD_HELMET_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.SKI_LIST.getUrl())) {
                 dao = SkiDaoImpl.getInstance();
                 paginate(request,page, dao);
                 SkiPoleDaoImpl skiPoleDao = SkiPoleDaoImpl.getInstance();
                 List<SkiPole> poleList = skiPoleDao.findAll(0, 9999);
                 request.setAttribute("poleList", poleList);
-                forwardPath = SKI_LIST;
-            } else if(requestURI.contains("/ski/boot/catalog/")) {
+                forwardPath = Page.SKI_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.SKI_BOOT_LIST.getUrl())) {
                 dao = SkiBootDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = SKI_BOOT_LIST;
-            } else if(requestURI.contains("/ski/helmet/catalog/")) {
+                forwardPath = Page.SKI_BOOT_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.SKI_HELMET_LIST.getUrl())) {
                 dao = SkiHelmetDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = SKI_HELMET_LIST;
-            } else if(requestURI.contains("/clothes/jacket/catalog/")) {
+                forwardPath = Page.SKI_HELMET_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.JACKET_LIST.getUrl())) {
                 dao = JacketDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = JACKET_LIST;
-            } else if(requestURI.contains("/clothes/pants/catalog/")) {
+                forwardPath = Page.JACKET_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.PANTS_LIST.getUrl())) {
                 dao = PantsDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = PANTS_LIST;
-            } else if(requestURI.contains("/clothes/cap/catalog/")) {
+                forwardPath = Page.PANTS_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.CAP_LIST.getUrl())) {
                 dao = CapDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = CAP_LIST;
-            } else if(requestURI.contains("/clothes/mask/catalog/")) {
+                forwardPath = Page.CAP_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.MASK_LIST.getUrl())) {
                 dao = MaskDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = MASK_LIST;
-            } else if(requestURI.contains("/clothes/mittens/catalog/")) {
+                forwardPath = Page.MASK_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.MITTENS_LIST.getUrl())) {
                 dao = MittenDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = MITTENS_LIST;
-            } else if(requestURI.contains("/clothes/gloves/catalog/")) {
+                forwardPath = Page.MITTENS_LIST.getForwardPage();
+            } else if(requestURI.contains(Page.GLOVES_LIST.getUrl())) {
                 dao = GloveDaoImpl.getInstance();
                 paginate(request, page, dao);
-                forwardPath = GLOVES_LIST;
+                forwardPath = Page.GLOVES_LIST.getForwardPage();
             }
             getServletContext().getRequestDispatcher(forwardPath).forward(request, response);
         } catch (Exception e) {
