@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Выбрать куртку</a>
+                        <a href="<c:url value="/clothes/jacket/catalog/1"/>" class="btn btn-primary">Выбрать куртку</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Выбрать штаны</a>
+                        <a href="<c:url value="/clothes/pants/catalog/1"/>" class="btn btn-primary">Выбрать штаны</a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Выбрать шапку</a>
+                        <a href="<c:url value="/clothes/cap/catalog/1"/>" class="btn btn-primary">Выбрать шапку</a>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Выбрать маску</a>
+                        <a href="<c:url value="/clothes/mask/catalog/1"/>" class="btn btn-primary">Выбрать маску</a>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Выбрать варежки</a>
+                        <a href="<c:url value="/clothes/mittens/catalog/1"/>" class="btn btn-primary">Выбрать варежки</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="#" class="btn btn-primary">Выбрать перчатки</a>
+                        <a href="<c:url value="/clothes/gloves/catalog/1"/>" class="btn btn-primary">Выбрать перчатки</a>
                     </div>
                 </div>
             </div>

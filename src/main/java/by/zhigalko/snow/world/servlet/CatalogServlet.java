@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.servlet;
 
 import by.zhigalko.snow.world.dal.dao.BaseDaoCountEntity;
 import by.zhigalko.snow.world.dal.dao.BaseDaoEquipmentImpl;
+import by.zhigalko.snow.world.dal.dao.clothes.*;
 import by.zhigalko.snow.world.dal.dao.ski.SkiBootDaoImpl;
 import by.zhigalko.snow.world.dal.dao.ski.SkiDaoImpl;
 import by.zhigalko.snow.world.dal.dao.ski.SkiHelmetDaoImpl;
@@ -23,7 +24,13 @@ import java.util.List;
         "/snowboard/helmet/catalog/*",
         "/ski/catalog/*",
         "/ski/boot/catalog/*",
-        "/ski/helmet/catalog/*"
+        "/ski/helmet/catalog/*",
+        "/clothes/jacket/catalog/*",
+        "/clothes/pants/catalog/*",
+        "/clothes/cap/catalog/*",
+        "/clothes/mask/catalog/*",
+        "/clothes/mittens/catalog/*",
+        "/clothes/gloves/catalog/*"
 })
 public class CatalogServlet extends HttpServlet {
     public static final int PAGE_SIZE = 6;
@@ -33,6 +40,12 @@ public class CatalogServlet extends HttpServlet {
     private static final String SKI_LIST = "/WEB-INF/jsp/catalog/ski-list.jsp";
     private static final String SKI_BOOT_LIST = "/WEB-INF/jsp/catalog/ski-boot-list.jsp";
     private static final String SKI_HELMET_LIST = "/WEB-INF/jsp/catalog/ski-helmet-list.jsp";
+    private static final String JACKET_LIST = "/WEB-INF/jsp/catalog/jacket-list.jsp";
+    private static final String PANTS_LIST = "/WEB-INF/jsp/catalog/pants-list.jsp";
+    private static final String CAP_LIST = "/WEB-INF/jsp/catalog/cap-list.jsp";
+    private static final String MASK_LIST = "/WEB-INF/jsp/catalog/mask-list.jsp";
+    private static final String MITTENS_LIST = "/WEB-INF/jsp/catalog/mittens-list.jsp";
+    private static final String GLOVES_LIST = "/WEB-INF/jsp/catalog/gloves-list.jsp";
     private static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
 
     @Override
@@ -71,6 +84,30 @@ public class CatalogServlet extends HttpServlet {
                 dao = SkiHelmetDaoImpl.getInstance();
                 paginate(request, page, dao);
                 forwardPath = SKI_HELMET_LIST;
+            } else if(requestURI.contains("/clothes/jacket/catalog/")) {
+                dao = JacketDaoImpl.getInstance();
+                paginate(request, page, dao);
+                forwardPath = JACKET_LIST;
+            } else if(requestURI.contains("/clothes/pants/catalog/")) {
+                dao = PantsDaoImpl.getInstance();
+                paginate(request, page, dao);
+                forwardPath = PANTS_LIST;
+            } else if(requestURI.contains("/clothes/cap/catalog/")) {
+                dao = CapDaoImpl.getInstance();
+                paginate(request, page, dao);
+                forwardPath = CAP_LIST;
+            } else if(requestURI.contains("/clothes/mask/catalog/")) {
+                dao = MaskDaoImpl.getInstance();
+                paginate(request, page, dao);
+                forwardPath = MASK_LIST;
+            } else if(requestURI.contains("/clothes/mittens/catalog/")) {
+                dao = MittenDaoImpl.getInstance();
+                paginate(request, page, dao);
+                forwardPath = MITTENS_LIST;
+            } else if(requestURI.contains("/clothes/gloves/catalog/")) {
+                dao = GloveDaoImpl.getInstance();
+                paginate(request, page, dao);
+                forwardPath = GLOVES_LIST;
             }
             getServletContext().getRequestDispatcher(forwardPath).forward(request, response);
         } catch (Exception e) {
