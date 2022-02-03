@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.dal.entity.enums;
 
 import lombok.Getter;
-
 import java.util.Arrays;
 
 @Getter
@@ -19,18 +18,18 @@ public enum Page {
     MITTENS_LIST( "/clothes/mittens/catalog/","/WEB-INF/jsp/catalog/mittens-list.jsp"),
     GLOVES_LIST("/clothes/gloves/catalog/","/WEB-INF/jsp/catalog/gloves-list.jsp");
 
-    private String url;
-    private String forwardPage;
+    private final String url;
+    private final String forwardPage;
 
     Page(String url, String forwardPage) {
         this.url = url;
         this.forwardPage = forwardPage;
     }
 
-    public static Page getEnumClass(String url) {
-        return Arrays.stream(Page.class.getEnumConstants())
-//                .filter(e->e.)
-//                .filter(e -> e.name.equals(value))
-                .findFirst().orElse(null);
+    public static Page getEnum(String urlPath) {
+        return Arrays.stream(values())
+                .filter(p -> urlPath.contains(p.url))
+                .findFirst()
+                .orElse(null);
     }
 }
