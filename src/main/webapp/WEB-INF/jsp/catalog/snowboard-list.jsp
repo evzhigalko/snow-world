@@ -13,24 +13,24 @@
     <div class="container">
         <div class="container-fluid">
             <div class="card-group justify-content-start">
-                <c:forEach var="ski" items="${requestScope.list}">
+                <c:forEach var="snowboard" items="${requestScope.list}">
                     <li>
                         <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="${pageContext.request.contextPath}/assets/static/snb.jpg"
+                                    <img src="${snowboard.image.imageName}"
                                          class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
-                                        <h5 class="card-title">${ski.maker}</h5>
-                                        <p class="card-info">Рост: ${ski.equipmentSizeId.userMinHeight}
-                                            - ${ski.equipmentSizeId.userMaxHeight}</p>
-                                        <p class="card-info">Вес: ${ski.equipmentSizeId.userMinWeight}
-                                            - ${ski.equipmentSizeId.userMaxWeight}</p>
-                                        <p class="card-info">Уровень катания: ${ski.ridingLevel.name}</p>
-                                        <p class="card-info">Уровень жесткости: ${ski.hardnessLevel.name}</p>
-                                        <p class="card-info">Цена проката: ${ski.cost}</p>
+                                        <h5 class="card-title">${snowboard.maker}</h5>
+                                        <p class="card-info">Рост: ${snowboard.equipmentSizeId.userMinHeight}
+                                            - ${snowboard.equipmentSizeId.userMaxHeight}</p>
+                                        <p class="card-info">Вес: ${snowboard.equipmentSizeId.userMinWeight}
+                                            - ${snowboard.equipmentSizeId.userMaxWeight}</p>
+                                        <p class="card-info">Уровень катания: ${snowboard.ridingLevel.name}</p>
+                                        <p class="card-info">Уровень жесткости: ${snowboard.hardnessLevel.name}</p>
+                                        <p class="card-info">Цена проката: ${snowboard.cost}</p>
                                         <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                     </div>
                                 </div>

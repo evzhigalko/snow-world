@@ -120,7 +120,6 @@ class SnowboardDaoImplTest {
 
         //WHEN
         List<Snowboard> actual = snowboardDao.findAll(0,3);
-
         //THEN
         assertNotNull(actual);
         assertEquals(expected.size(), actual.size());

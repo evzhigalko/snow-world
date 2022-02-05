@@ -18,7 +18,7 @@
                         <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="${pageContext.request.contextPath}/assets/static/mask_.png"
+                                    <img src="${mask.image.imageName}"
                                          class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-6" style="padding-left: 30px">
@@ -27,7 +27,7 @@
                                         <p class="card-info">Размер:  ${mask.equipmentSizeId.equipmentSizeId}</p>
                                         <p class="card-info">Пол: ${mask.gender.name}</p>
                                         <p class="card-info">Цена проката: ${mask.cost}</p>
-                                        <div style="padding-top: 5rem">
+                                        <div style="padding-top: 4rem">
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>

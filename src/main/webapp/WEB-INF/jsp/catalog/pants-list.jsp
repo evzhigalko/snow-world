@@ -15,10 +15,10 @@
             <div class="card-group justify-content-start">
                 <c:forEach var="pants" items="${requestScope.list}">
                     <li>
-                        <div class="card mb-3 d-flex align-items-stretch" style="max-width: 55rem;">
+                        <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
                             <div class="row">
-                                <div class="col-md-6" style="padding-left: 35px">
-                                    <img src="${pageContext.request.contextPath}/assets/static/pants.png"
+                                <div class="col-md-6" style="padding-left: 12px">
+                                    <img src="${pants.image.imageName}"
                                          class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-6">
@@ -28,7 +28,7 @@
                                         <p class="card-info">Пол: ${pants.gender.name}</p>
                                         <p class="card-info">Мембрана: ${pants.membrane}</p>
                                         <p class="card-info">Цена проката: ${pants.cost}</p>
-                                        <div style="padding-top: 6rem">
+                                        <div style="padding-top: 2rem">
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>

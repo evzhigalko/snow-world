@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.dal.entity.enums;
 
 import lombok.Getter;
-
 import java.util.Arrays;
 
 @Getter

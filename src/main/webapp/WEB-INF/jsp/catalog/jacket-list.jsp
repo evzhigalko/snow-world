@@ -18,7 +18,7 @@
                         <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="${pageContext.request.contextPath}/assets/static/jacket.jpg"
+                                    <img src="${jacket.image.imageName}"
                                          class="img-fluid rounded-start" alt="img" height="400" width="260">
                                 </div>
                                 <div class="col-md-6" style="padding-left: 30px">
@@ -28,7 +28,7 @@
                                         <p class="card-info">Пол: ${jacket.gender.name}</p>
                                         <p class="card-info">Мембрана: ${jacket.membrane}</p>
                                         <p class="card-info">Цена проката: ${jacket.cost}</p>
-                                        <div style="padding-top: 5rem">
+                                        <div style="padding-top: 9px">
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>

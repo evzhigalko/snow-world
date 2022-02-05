@@ -15,10 +15,10 @@
             <div class="card-group justify-content-start">
                 <c:forEach var="boot" items="${requestScope.list}">
                     <li>
-                        <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
+                        <div class="card mb-3 d-flex align-items-stretch" style="max-width: 560px; height: 269px">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="${pageContext.request.contextPath}/assets/static/sn_boot.jpg"
+                                    <img src="${boot.image.imageName}"
                                          class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-6" style="padding-left: 30px">
@@ -28,7 +28,7 @@
                                         <p class="card-info">Пол: ${boot.gender.name}</p>
                                         <p class="card-info">Пол: ${boot.lacingSystem.mechanism}</p>
                                         <p class="card-info">Цена проката: ${boot.cost}</p>
-                                        <div style="padding-top: 5rem">
+                                        <div style="padding-top: 2rem">
                                         <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>

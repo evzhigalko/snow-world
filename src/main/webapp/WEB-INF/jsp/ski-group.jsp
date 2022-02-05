@@ -14,7 +14,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/ski.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-ski.png"
                          alt="ski" style="height: 200px; width: 200px;"/>
                 </div>
                 <div class="card-body">
@@ -27,7 +27,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/ski-boot.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-ski-boot.png"
                          alt="boots" style="height: 200px; width: 220px;"/>
                 </div>
                 <div class="card-body">
@@ -40,7 +40,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/ski-helmet.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-ski-helmet.png"
                          alt="helmet" style="height: 200px; width: 200px;"/>
                 </div>
                 <div class="card-body">

@@ -35,7 +35,7 @@ public abstract class BaseDaoEquipmentImpl<T extends Item> implements BaseDao<T>
     public List<T> findAll(int page, int pageSize) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery(String.format("select s from %s AS s", iClass.getSimpleName()));
+        Query query = session.createQuery(String.format("select s from %s as s", iClass.getSimpleName()));
         query.setFirstResult(page);
         query.setMaxResults(pageSize);
         List<T> entityList = query.getResultList();

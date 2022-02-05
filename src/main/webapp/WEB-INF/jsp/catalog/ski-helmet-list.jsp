@@ -18,7 +18,7 @@
                         <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="${pageContext.request.contextPath}/assets/static/ski_helmet.jpg"
+                                    <img src="${helmet.image.imageName}"
                                          class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-6" style="padding-left: 30px">

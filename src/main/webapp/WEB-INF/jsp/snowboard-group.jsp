@@ -14,7 +14,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/snowboard.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-snowboard.png"
                          alt="snowboard" style="height: 200px; width: 200px;"/>
                 </div>
                 <div class="card-body">
@@ -27,7 +27,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/snowboard-boot.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-snowboard-boot.png"
                          alt="boots" style="height: 200px; width: 190px;"/>
                 </div>
                 <div class="card-body">
@@ -40,7 +40,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                        <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/snowboard-helmet.png"
+                        <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-snowboard-helmet.png"
                              alt="helmet" style="height: 200px; width: 200px;"/>
                 </div>
                     <div class="card-body">

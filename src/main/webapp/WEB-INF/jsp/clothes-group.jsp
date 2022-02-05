@@ -14,7 +14,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/jacket.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-jacket.png"
                          alt="ski" style="height: 200px; width: 180px;"/>
                 </div>
                 <div class="card-body">
@@ -27,7 +27,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/pants.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-pants.png"
                          alt="pants" style="height: 200px; width: 100px;"/>
                 </div>
                 <div class="card-body">
@@ -40,7 +40,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/cap.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-cap.png"
                          alt="cap" style="height: 200px; width: 180px;"/>
                 </div>
                 <div class="card-body">
@@ -57,7 +57,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding-top: 4rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/mask.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-mask.png"
                          alt="mask" style="height: 90px; width: 200px;"/>
                 </div>
                 <div class="card-body">
@@ -70,7 +70,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/mittens.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-mittens.png"
                          alt="mittens" style="height: 190px; width: 200px;"/>
                 </div>
                 <div class="card-body">
@@ -83,7 +83,7 @@
         <div class="col-md-4 d-flex align-items-stretch">
             <div class="shadow-sm">
                 <div class="text-center" style="padding: 1rem; width: 18rem; height: 15rem;">
-                    <img class="rounded" src="${pageContext.request.contextPath}/assets/static/img/gloves.png"
+                    <img class="rounded" src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/nav-gloves.png"
                          alt="gloves" style="height: 190px; width: 200px;"/>
                 </div>
                 <div class="card-body">
