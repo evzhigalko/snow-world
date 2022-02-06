@@ -27,9 +27,10 @@ class CapDaoImplTest {
     void setUp() {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Cap WHERE TRUE");
+        Query query = session.createQuery("delete from Cap where true");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -186,6 +187,7 @@ class CapDaoImplTest {
         query.setParameter("cap_id", id);
         Cap actual = (Cap) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

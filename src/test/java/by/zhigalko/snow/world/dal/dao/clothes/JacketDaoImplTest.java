@@ -28,9 +28,10 @@ class JacketDaoImplTest {
     void setUp() {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Jacket WHERE TRUE");
+        Query query = session.createQuery("delete from Jacket where true");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -189,6 +190,7 @@ class JacketDaoImplTest {
         query.setParameter("jacket_id", id);
         Jacket actual = (Jacket) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

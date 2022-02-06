@@ -29,9 +29,10 @@ class SnowboardBootDaoImplTest {
     void setUp() {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM SnowboardBoot WHERE TRUE");
+        Query query = session.createQuery("delete from SnowboardBoot where true");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -191,6 +192,7 @@ class SnowboardBootDaoImplTest {
         query.setParameter("snowboard_boot_id", id);
         SnowboardBoot actual = (SnowboardBoot) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

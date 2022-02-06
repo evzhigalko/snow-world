@@ -28,9 +28,10 @@ class GloveDaoImplTest {
     void setUp() {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Glove WHERE TRUE");
+        Query query = session.createQuery("delete from Glove where true");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -186,10 +187,11 @@ class GloveDaoImplTest {
     private Glove findGlove(Long id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("select gl from Glove AS gl where id = :glove_id ");
+        Query query = session.createQuery("select gl from Glove as gl where id = :glove_id ");
         query.setParameter("glove_id", id);
         Glove actual = (Glove) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

@@ -27,9 +27,10 @@ class MittenDaoImplTest {
     void setUp() {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Mitten WHERE TRUE");
+        Query query = session.createQuery("delete from Mitten where true");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -188,6 +189,7 @@ class MittenDaoImplTest {
         query.setParameter("mitten_id", id);
         Mitten actual = (Mitten) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

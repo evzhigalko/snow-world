@@ -282,10 +282,11 @@ class SnowboardDaoImplTest {
     private Snowboard findSnowboard(Long id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("select snb from Snowboard AS snb where id = :snowboard_id ");
+        Query query = session.createQuery("select snb from Snowboard as snb where id = :snowboard_id ");
         query.setParameter("snowboard_id", id);
         Snowboard actual = (Snowboard) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 }

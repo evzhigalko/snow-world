@@ -32,6 +32,7 @@ class SkiDaoImplTest {
         Query query = session.createQuery("DELETE FROM Ski WHERE TRUE");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -196,6 +197,7 @@ class SkiDaoImplTest {
         query.setParameter("ski_id", id);
         Ski actual = (Ski) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

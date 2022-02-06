@@ -28,9 +28,10 @@ class SkiHelmetDaoImplTest {
     void setUp() {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM SkiHelmet WHERE TRUE");
+        Query query = session.createQuery("delete from SkiHelmet where true");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -188,6 +189,7 @@ class SkiHelmetDaoImplTest {
         query.setParameter("ski_helmet_id", id);
         SkiHelmet actual = (SkiHelmet) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 

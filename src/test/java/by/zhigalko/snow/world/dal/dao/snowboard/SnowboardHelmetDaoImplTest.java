@@ -33,6 +33,7 @@ class SnowboardHelmetDaoImplTest {
         Query query = session.createQuery("DELETE FROM SnowboardHelmet WHERE TRUE");
         query.executeUpdate();
         session.getTransaction().commit();
+        session.close();
     }
 
     @AfterAll
@@ -191,6 +192,7 @@ class SnowboardHelmetDaoImplTest {
         query.setParameter("snowboard_helmet_id", id);
         SnowboardHelmet actual = (SnowboardHelmet) query.getSingleResult();
         session.getTransaction().commit();
+        session.close();
         return actual;
     }
 
