@@ -22,10 +22,7 @@
                     <a class="nav-link" aria-current="page" href="<c:url value="/clothes"/>">Прокат экипировки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Подбор снаряжения</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Контакты</a>
+                    <a class="nav-link" aria-current="page" href="<c:url value="/contacts"/>">Контакты</a>
                 </li>
             </ul>
         </div>

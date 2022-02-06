@@ -9,7 +9,8 @@ import java.io.IOException;
 @WebServlet({
         "/snowboard",
         "/ski",
-        "/clothes"})
+        "/clothes",
+        "/contacts"})
 public class NavbarController extends HttpServlet {
     private static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
 

@@ -7,7 +7,8 @@ import java.util.Arrays;
 public enum Navbar {
     SNOWBOARD_GROUP("/snowboard","/WEB-INF/jsp/snowboard-group.jsp"),
     SKI_GROUP("/ski","/WEB-INF/jsp/ski-group.jsp"),
-    CLOTHES_GROUP("/clothes","/WEB-INF/jsp/clothes-group.jsp");
+    CLOTHES_GROUP("/clothes","/WEB-INF/jsp/clothes-group.jsp"),
+    CONTACTS("/contacts","/WEB-INF/static/contacts.jsp");
 
     private final String url;
     private final String forwardPage;

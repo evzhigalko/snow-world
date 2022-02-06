@@ -17,3 +17,6 @@ li {
     list-style-type: none;
     padding-left: 8px;
 }
+.contact-elem {
+    padding: 15px 10px 10px 10rem;
+}
