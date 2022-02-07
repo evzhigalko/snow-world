@@ -3,6 +3,7 @@ package by.zhigalko.snow.world.dal.dao;
 import by.zhigalko.snow.world.dal.entity.Item;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface BaseDao <T extends Item> {
     /**
@@ -11,7 +12,7 @@ public interface BaseDao <T extends Item> {
      */
     void save(T entity);
 
-    T findById(Long id);
+    T findById(UUID id);
 
     List<T> findAll(int page, int pageSize);
 

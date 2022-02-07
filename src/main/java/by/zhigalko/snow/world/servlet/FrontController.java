@@ -5,6 +5,7 @@ import by.zhigalko.snow.world.dal.dao.BaseDaoEquipmentImpl;
 import by.zhigalko.snow.world.dal.dao.factory.DaoEquipmentFactory;
 import by.zhigalko.snow.world.dal.dao.factory.DaoEquipmentFactoryImpl;
 import by.zhigalko.snow.world.dal.dao.ski.SkiPoleDaoImpl;
+import by.zhigalko.snow.world.dal.entity.EquipmentSize;
 import by.zhigalko.snow.world.dal.entity.Item;
 import by.zhigalko.snow.world.dal.entity.enums.Page;
 import by.zhigalko.snow.world.dal.entity.ski.SkiPole;
@@ -45,8 +46,8 @@ public class FrontController extends HttpServlet {
             paginate(request, page, dao);
             if (pageEnum.equals(Page.SKI_LIST)) {
                 SkiPoleDaoImpl skiPoleDao = SkiPoleDaoImpl.getInstance();
-                List<SkiPole> poleList = skiPoleDao.findAll(0, 9999);
-                request.setAttribute("poleList", poleList);
+                List<EquipmentSize> skiPoleSizeList = skiPoleDao.findAllSizes();
+                request.setAttribute("skiPoleSizeList", skiPoleSizeList);
             }
             String forwardPath = pageEnum.getForwardPage();
             getServletContext().getRequestDispatcher(forwardPath).forward(request, response);

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -180,7 +181,7 @@ class CapDaoImplTest {
         return cap;
     }
 
-    private Cap findCap(Long id) {
+    private Cap findCap(UUID id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select cap from Cap AS cap where id = :cap_id ");

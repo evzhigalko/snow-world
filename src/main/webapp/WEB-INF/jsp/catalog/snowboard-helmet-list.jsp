@@ -27,7 +27,7 @@
                                         <p class="card-info">Размер:  ${helmet.equipmentSizeId.equipmentSizeId}</p>
                                         <p class="card-info">Пол: ${helmet.gender.name}</p>
                                         <p class="card-info">Цена проката: ${helmet.cost}</p>
-                                        <div style="padding-top: 5rem">
+                                        <div style="padding-top: 4rem">
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>

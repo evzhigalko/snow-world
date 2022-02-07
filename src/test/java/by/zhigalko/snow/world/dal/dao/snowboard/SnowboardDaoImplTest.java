@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -279,7 +280,7 @@ class SnowboardDaoImplTest {
         return expected;
     }
 
-    private Snowboard findSnowboard(Long id) {
+    private Snowboard findSnowboard(UUID id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select snb from Snowboard as snb where id = :snowboard_id ");

@@ -30,9 +30,9 @@
                                         <p class="card-info">Цена проката: ${ski.cost}</p>
                                         <select class="form-select" aria-label="Пример выбора по умолчанию">
                                             <option selected>Лыжные палки</option>
-                                            <c:forEach var="ski_pole" items="${requestScope.poleList}">
-                                                <option>Рост: ${ski_pole.equipmentSizeId.userMinHeight}
-                                                    - ${ski_pole.equipmentSizeId.userMaxHeight}</option>
+                                            <c:forEach var="ski_pole_size" items="${requestScope.skiPoleSizeList}">
+                                                <option>Рост: ${ski_pole_size.userMinHeight}
+                                                    - ${ski_pole_size.userMaxHeight}</option>
                                             </c:forEach>
                                         </select>
                                         <div style="padding-top: 2.5rem">

@@ -3,6 +3,8 @@ package by.zhigalko.snow.world.dal.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @MappedSuperclass
 @Getter
 @Setter
@@ -11,7 +13,7 @@ import lombok.*;
 @ToString
 public abstract class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
     @Column(name = "id")
-    private Long id;
+    private UUID id;
 }

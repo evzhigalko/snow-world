@@ -6,6 +6,7 @@ import jakarta.persistence.Query;
 import jakarta.persistence.RollbackException;
 import org.hibernate.Session;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class BaseDaoEquipmentImpl<T extends Item> implements BaseDao<T>, BaseDaoCountEntity<T>,BaseDaoUpdateEntity<T>{
     private final Class<T> iClass;
@@ -26,7 +27,7 @@ public abstract class BaseDaoEquipmentImpl<T extends Item> implements BaseDao<T>
     }
 
     @Override
-    public T findById(Long id) {
+    public T findById(UUID id) {
         Session session = SessionManager.getSession();
         T entity = null;
         try {

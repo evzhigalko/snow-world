@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -182,7 +183,7 @@ class SkiHelmetDaoImplTest {
         return skiHelmet;
     }
 
-    private SkiHelmet findSkiHelmet(Long id) {
+    private SkiHelmet findSkiHelmet(UUID id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select skh from SkiHelmet AS skh where id = :ski_helmet_id ");

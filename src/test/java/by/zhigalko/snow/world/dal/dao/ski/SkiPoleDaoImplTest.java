@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.dal.dao.ski;
 
+import by.zhigalko.snow.world.dal.entity.Equipment;
 import by.zhigalko.snow.world.dal.entity.EquipmentSize;
 import by.zhigalko.snow.world.dal.entity.Image;
 import by.zhigalko.snow.world.dal.entity.enums.Gender;
@@ -12,8 +13,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -169,6 +171,32 @@ class SkiPoleDaoImplTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void findAllSizesTest() {
+        //GIVEN
+        SkiPole skiPole1 = getSkiPole();
+        SkiPole skiPole2 = getSkiPole();
+        EquipmentSize equipmentSize = new EquipmentSize();
+        equipmentSize.setEquipmentSizeId("SP125");
+        equipmentSize.setUserMinHeight(174);
+        equipmentSize.setUserMaxHeight(181);
+        equipmentSize.addEquipment(skiPole2);
+        saveSkiPole(skiPole1);
+        saveSkiPole(skiPole2);
+        List<SkiPole> list = List.of(skiPole1, skiPole2);
+        List<EquipmentSize> expected = list.stream()
+                .map(Equipment::getEquipmentSizeId)
+                .collect(Collectors.toList());
+        //WHEN
+        List<EquipmentSize> actual = skiPoleDao.findAllSizes();
+        //THEN
+        assertNotNull(actual);
+        assertEquals(expected.get(1).getEquipmentSizeId(), actual.get(1).getEquipmentSizeId());
+        assertEquals(expected.size(), actual.size());
+        assertEquals(expected, actual);
+    }
+
+
     private SkiPole getSkiPole() {
         SkiPole skiPole = new SkiPole();
         skiPole.setProductName(ProductGroup.SKI_POLE);
@@ -187,7 +215,7 @@ class SkiPoleDaoImplTest {
         return skiPole;
     }
 
-    private SkiPole findSkiPole(Long id) {
+    private SkiPole findSkiPole(UUID id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select s from SkiPole AS s where id = :ski_pole_id ");

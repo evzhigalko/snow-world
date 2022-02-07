@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -185,7 +186,7 @@ class SnowboardBootDaoImplTest {
         return snowboardBoot;
     }
 
-    private SnowboardBoot findSnowboardBoot(Long id) {
+    private SnowboardBoot findSnowboardBoot(UUID id) {
         Session session = SessionManager.getSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select snb from SnowboardBoot AS snb where id = :snowboard_boot_id ");
