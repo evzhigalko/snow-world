@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/WEB-INF/connect/jstl-connect.jsp"%>
+<%@ include file="/WEB-INF/connect/jstl-connect.jsp" %>
 <html>
 <head>
     <title>Контакты</title>
@@ -7,43 +7,35 @@
 </head>
 <body>
 <header>
-    <%@ include file="/WEB-INF/static/navbar.jsp"%>
+    <%@ include file="/WEB-INF/static/navbar.jsp" %>
 </header>
 <div class="container">
     <div class="contacts">
         <h3 style="text-align:center;">Наши Контакты</h3>
         <ul>
             <li>
-                <div class="contact-elem">
-                    <h4 class="email">Наш адрес:</h4>
-                    <div class="aio-icon-description">
-                        Республика Беларусь, г. Минск
-                    </div>
+                <h4 class="description-title">Адрес:</h4>
+                <div class="description">
+                    Республика Беларусь, г. Минск
                 </div>
             </li>
             <li>
-                <div class="contact-elem">
-                    <h4 class="email">График работы:</h4>
-                    <div class="address-description">
-                        пн.-вс. с 10:00 до 21:00
-                        <br>Без выходных
-                    </div>
+                <h4 class="description-title">График работы:</h4>
+                <div class="description">
+                    пн.-вс. с 10:00 до 21:00
+                    <br>Без выходных
                 </div>
             </li>
             <li>
-                <div class="contact-elem">
-                    <h4 class="email">Электронная почта:</h4>
-                    <div class="aio-icon-description">
-                        <a href="email:evgeniy.zhigalko@gmail.com"> evgeniy.zhigalko@gmail.com</a>
-                    </div>
+                <h4 class="description-title">Электронная почта:</h4>
+                <div class="description">
+                    <a href="email:evgeniy.zhigalko@gmail.com"> evgeniy.zhigalko@gmail.com</a>
                 </div>
             </li>
             <li>
-                <div class="contact-elem">
-                    <h4 class="email">Связь по телефону:</h4>
-                    <div class="aio-icon-description">
-                        <a href="tel:375291271633"> +375291271633</a>
-                    </div>
+                <h4 class="description-title">Связь по телефону:</h4>
+                <div class="description">
+                    <a href="tel:375291271633"> +375291271633</a>
                 </div>
             </li>
         </ul>
