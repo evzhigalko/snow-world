@@ -11,9 +11,12 @@ import by.zhigalko.snow.world.entity.enums.Page;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.util.List;
 
+@Log4j2
 @WebServlet({
         "/snowboard/catalog/*",
         "/snowboard/boot/catalog/*",
@@ -51,6 +54,7 @@ public class CatalogController extends HttpServlet {
             String forwardPath = pageEnum.getForwardPage();
             getServletContext().getRequestDispatcher(forwardPath).forward(request, response);
         } catch (Exception e) {
+            log.info(e.getMessage());
             getServletContext().getRequestDispatcher(ERROR_PAGE).forward(request, response);
         }
     }

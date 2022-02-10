@@ -4,8 +4,10 @@ import by.zhigalko.snow.world.entity.enums.Navbar;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 
+@Log4j2
 @WebServlet({
         "/snowboard",
         "/ski",
@@ -24,6 +26,7 @@ public class NavbarController extends HttpServlet {
             String forwardPath = navbarEnum.getForwardPage();
             request.getRequestDispatcher(forwardPath).forward(request, response);
         } catch (Exception e) {
+            log.info(e.getMessage());
             request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
         }
     }

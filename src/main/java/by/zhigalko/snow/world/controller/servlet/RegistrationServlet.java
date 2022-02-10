@@ -11,8 +11,10 @@ import by.zhigalko.snow.world.service.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 
+@Log4j2
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
     @Override
@@ -42,6 +44,7 @@ public class RegistrationServlet extends HttpServlet {
                 request.getRequestDispatcher(Navbar.REGISTRATION_FORM.getForwardPage()).forward(request, response);
             }
         } catch (ValidationException e) {
+            log.info(e.getMessage());
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher(Navbar.REGISTRATION_FORM.getForwardPage()).forward(request, response);
         }
