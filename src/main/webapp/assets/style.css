@@ -25,23 +25,53 @@ li {
 .description-title {
     padding-left: 10rem;
 }
-
-.sign_in_block {
+.sign_in_block .sign_out_block{
     font-size: 1.15rem;
     padding-left: 8px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1081px) {
     .sign_in_block {
         position: absolute;
         bottom: 7px;
         left: 60rem;
     }
 }
-
+@media screen and (max-width: 1080px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
 .sign_in_block:hover {
     transform: scale(1.15);
     color: #5db6ff;
@@ -52,10 +82,29 @@ li {
 a {
     text-decoration: none;
 }
-
 .navbar-expand-md .navbar-collapse {
     position: relative;
 }
 .container {
     text-decoration: none;
+}
+@media only screen and (min-width: 400px) {
+    .sign_out_block {
+        position: absolute;
+        bottom: 7px;
+        left: 25rem;
+    }
+    .first-last-name {
+        padding-left: 0;
+    }
+}
+@media only screen and (min-width: 1081px) {
+    .first-last-name {
+        padding-left: 6rem;
+    }
+    .sign_out_block {
+        position: absolute;
+        bottom: 7px;
+        left: 60rem;
+    }
 }

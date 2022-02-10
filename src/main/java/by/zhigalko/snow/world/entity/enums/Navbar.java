@@ -9,8 +9,8 @@ public enum Navbar {
     SKI_GROUP("/ski","/WEB-INF/jsp/ski-group.jsp"),
     CLOTHES_GROUP("/clothes","/WEB-INF/jsp/clothes-group.jsp"),
     CONTACTS("/contacts","/WEB-INF/static/contacts.jsp"),
-    LOGIN("/form/login","/WEB-INF/jsp/login.jsp"),
-    REGISTRATION("/form/registration", "/WEB-INF/jsp/registration.jsp");
+    LOGIN_FORM("/form/login","/WEB-INF/jsp/login.jsp"),
+    REGISTRATION_FORM("/form/registration", "/WEB-INF/jsp/registration.jsp");
 
     private final String url;
     private final String forwardPage;

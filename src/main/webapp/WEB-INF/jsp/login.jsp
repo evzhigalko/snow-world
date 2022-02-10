@@ -13,7 +13,7 @@
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-5">
             <div class="card px-5 py-5"><span class="circle"><i class="fa fa-check"></i></span>
-                <form action="#" method="post">
+                <form action="<c:url value="/login"/>" method="post">
                     <div class="form-input">
                         <label for="label-username" class="form-label"> </label>
                         <input id="label-username" type="text" class="form-control" placeholder="Имя пользователя"
