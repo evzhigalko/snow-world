@@ -27,15 +27,53 @@
                                         <p class="card-info">Рост: ${ski.equipmentSizeId.userMinHeight}
                                             - ${ski.equipmentSizeId.userMaxHeight}</p>
                                         <p class="card-info">Уровень катания: ${ski.ridingLevel.name}</p>
-                                        <p class="card-info">Цена проката: ${ski.cost}</p>
+                                        <p class="card-info">Цена проката: ${ski.cost} руб./сутки</p>
+                                        <p class="card-info">Доступен к прокату:
+                                            <c:choose>
+                                                <c:when test="${ski.availableToRental eq 'true'}">
+                                                    <c:out value="${'Да'}"/>
+                                                </c:when>
+                                                <c:when test="${ski.availableToRental eq 'false'}">
+                                                    <c:out value="${'Нет'}"/>
+                                                </c:when>
+                                            </c:choose></p>
                                         <select class="form-select" aria-label="Пример выбора по умолчанию">
                                             <option selected>Лыжные палки</option>
                                             <c:forEach var="ski_pole_size" items="${requestScope.skiPoleSizeList}">
-                                                <option>Рост: ${ski_pole_size.userMinHeight}
+                                                <option value="pole_size">Рост: ${ski_pole_size.userMinHeight}
                                                     - ${ski_pole_size.userMaxHeight}</option>
                                             </c:forEach>
                                         </select>
-                                        <div style="padding-top: 2.5rem">
+                                        <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
+                                            <form action="<c:url value="/admin/ski/catalog/item?id=${ski.id}"/>"
+                                                  method="post">
+                                                <div class="form-input">
+                                                    <label for="label-update-cost"
+                                                           class="form-label"> </label>
+                                                    <input id="label-update-cost" type="text" class="form-control"
+                                                           placeholder="Новая цена"
+                                                           name="cost">
+                                                </div>
+                                                <fieldset class="form-group"> Доступность
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input"
+                                                                   name="availability" id="availability1"
+                                                                   value="true" checked> Да
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input"
+                                                                   name="availability" id="availability2"
+                                                                   value="false"> Нет
+                                                        </label>
+                                                    </div>
+                                                </fieldset>
+                                                <button class="btn btn btn-warning btn-sm">Изменить</button>
+                                            </form>
+                                        </c:if>
+                                        <div style="padding-top: 15px">
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>

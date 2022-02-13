@@ -12,6 +12,20 @@ import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Page;
 
 public class DaoEquipmentFactoryImpl implements DaoEquipmentFactory<Item>{
+    private static volatile DaoEquipmentFactoryImpl instance = null;
+
+    private DaoEquipmentFactoryImpl() {}
+
+    public static DaoEquipmentFactoryImpl getInstance() {
+        if (instance == null) {
+            synchronized (DaoEquipmentFactoryImpl.class) {
+                if (instance == null) {
+                    instance = new DaoEquipmentFactoryImpl();
+                }
+            }
+        }
+        return instance;
+    }
     @Override
     public BaseDaoItemImpl<Item> getDao(Page page) {
         BaseDaoItemImpl dao = null;

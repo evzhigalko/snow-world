@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="/WEB-INF/connect/jstl-connect.jsp"%>
+<%@ include file="/WEB-INF/connect/jstl-connect.jsp" %>
 <html>
 <head>
     <title>Каталог сноубордов</title>
@@ -7,7 +7,7 @@
 </head>
 <body>
 <header>
-    <%@ include file="/WEB-INF/static/navbar.jsp"%>
+    <%@ include file="/WEB-INF/static/navbar.jsp" %>
 </header>
 <ul class="list-group" style="padding-top: 7rem">
     <div class="container">
@@ -15,7 +15,7 @@
             <div class="card-group justify-content-start">
                 <c:forEach var="snowboard" items="${requestScope.list}">
                     <li>
-                        <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
+                        <div class="card mb-3 d-flex align-items-stretch" style="max-width: 38rem;">
                             <div class="row">
                                 <div class="col-md-6">
                                     <img src="${snowboard.image.imageName}"
@@ -25,13 +25,53 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${snowboard.maker}</h5>
                                         <p class="card-info">Рост: ${snowboard.equipmentSizeId.userMinHeight}
-                                            - ${snowboard.equipmentSizeId.userMaxHeight}</p>
+                                            - ${snowboard.equipmentSizeId.userMaxHeight} см </p>
                                         <p class="card-info">Вес: ${snowboard.equipmentSizeId.userMinWeight}
-                                            - ${snowboard.equipmentSizeId.userMaxWeight}</p>
+                                            - ${snowboard.equipmentSizeId.userMaxWeight} кг</p>
                                         <p class="card-info">Уровень катания: ${snowboard.ridingLevel.name}</p>
                                         <p class="card-info">Уровень жесткости: ${snowboard.hardnessLevel.name}</p>
-                                        <p class="card-info">Цена проката: ${snowboard.cost}</p>
-                                        <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                        <p class="card-info">Цена проката: ${snowboard.cost} руб./сутки</p>
+                                        <p class="card-info">Доступен к прокату:
+                                            <c:choose>
+                                                <c:when test="${snowboard.availableToRental eq 'true'}">
+                                                    <c:out value="${'Да'}"/>
+                                                </c:when>
+                                                <c:when test="${snowboard.availableToRental eq 'false'}">
+                                                    <c:out value="${'Нет'}"/>
+                                                </c:when>
+                                            </c:choose></p>
+                                        <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
+                                            <form action="<c:url value="/admin/snowboard/catalog/item?id=${snowboard.id}"/>"
+                                                  method="post">
+                                                <div class="form-input">
+                                                    <label for="label-update-cost"
+                                                           class="form-label"> </label>
+                                                    <input id="label-update-cost" type="text" class="form-control"
+                                                           placeholder="Новая цена"
+                                                           name="cost">
+                                                </div>
+                                                <fieldset class="form-group"> Доступность
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input"
+                                                                   name="availability" id="availability1"
+                                                                   value="true" checked> Да
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input"
+                                                                   name="availability" id="availability2"
+                                                                   value="false"> Нет
+                                                        </label>
+                                                    </div>
+                                                </fieldset>
+                                                <button class="btn btn btn-warning btn-sm">Изменить</button>
+                                            </form>
+                                        </c:if>
+                                        <div style="padding-top: 7px">
+                                            <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +85,9 @@
 <nav>
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/snowboard/catalog/${i}">${i}</a></li>
+            <li class="page-item"><a class="page-link"
+                                     href="${pageContext.request.contextPath}/snowboard/catalog/${i}">${i}</a></li>
+            <input type="hidden" name="page_number" value="${i}"/>
         </c:forEach>
     </ul>
 </nav>

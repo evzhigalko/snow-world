@@ -108,3 +108,6 @@ a {
         left: 60rem;
     }
 }
+.card-body {
+    padding: 7px 7px;
+}

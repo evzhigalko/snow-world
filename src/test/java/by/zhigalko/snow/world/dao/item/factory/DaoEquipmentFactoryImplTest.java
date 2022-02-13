@@ -13,7 +13,7 @@ class DaoEquipmentFactoryImplTest {
 
     @BeforeAll
     static void init() {
-        daoFactory = new DaoEquipmentFactoryImpl();
+        daoFactory = DaoEquipmentFactoryImpl.getInstance();
     }
 
     @Test

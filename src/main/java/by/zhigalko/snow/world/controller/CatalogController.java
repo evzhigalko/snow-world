@@ -1,6 +1,5 @@
 package by.zhigalko.snow.world.controller;
 
-import by.zhigalko.snow.world.dao.item.BaseDaoCountItem;
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
@@ -12,7 +11,6 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import lombok.extern.log4j.Log4j2;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -40,10 +38,11 @@ public class CatalogController extends HttpServlet {
         String requestURI = request.getRequestURI();
         String[] split = requestURI.split("[^0-9]*");
         String pageStr = split[split.length - 1];
+        request.getSession().setAttribute("pageStr", pageStr);
         int page = (Integer.parseInt(pageStr) - 1) * PAGE_SIZE;
         try {
             Page pageEnum = Page.getEnum(requestURI);
-            DaoEquipmentFactory<Item> daoFactory = new DaoEquipmentFactoryImpl();
+            DaoEquipmentFactory<Item> daoFactory = DaoEquipmentFactoryImpl.getInstance();
             BaseDaoItemImpl dao = daoFactory.getDao(pageEnum);
             paginate(request, page, dao);
             if (pageEnum.equals(Page.SKI_LIST)) {
@@ -59,7 +58,7 @@ public class CatalogController extends HttpServlet {
         }
     }
 
-    private void paginate(HttpServletRequest request, int page, BaseDaoCountItem dao) throws ServletException, IOException {
+    private void paginate(HttpServletRequest request, int page, BaseDaoItemImpl dao) throws ServletException, IOException {
         List<Item> list = dao.findAll(page, PAGE_SIZE);
         long entityNumber = dao.count();
         long pagesNumber = (long) Math.ceil(entityNumber * 1.0 / PAGE_SIZE);

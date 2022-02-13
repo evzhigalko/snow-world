@@ -4,6 +4,7 @@ import by.zhigalko.snow.world.dao.user.UserDaoImpl;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.AuthPath;
 import by.zhigalko.snow.world.entity.enums.Navbar;
+import by.zhigalko.snow.world.entity.enums.RoleName;
 import jakarta.persistence.NoResultException;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.*;
@@ -20,6 +21,7 @@ import java.io.IOException;
 public class AuthentificationFilter implements Filter {
     private final UserDaoImpl userDao = UserDaoImpl.getInstance();
     private static final String MAIN_PAGE = "/index.jsp";
+    private static final String ADMIN_PAGE = "/admin.jsp";
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
@@ -42,7 +44,11 @@ public class AuthentificationFilter implements Filter {
             req.getSession().isNew();
             req.getSession().setAttribute("user", user);
             req.getSession().setAttribute("ROLE", user.getRole().getRoleName());
-            resp.sendRedirect(req.getContextPath() + MAIN_PAGE);
+            if (user.getRole().getRoleName().equals(RoleName.ADMIN)) {
+                resp.sendRedirect(req.getContextPath() + ADMIN_PAGE);
+            } else {
+                resp.sendRedirect(req.getContextPath() + MAIN_PAGE);
+            }
         } catch (NoResultException e) {
             log.info(e.getMessage());
             req.getSession().invalidate();
