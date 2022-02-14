@@ -14,6 +14,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoImplTest {
@@ -94,10 +97,34 @@ class UserDaoImplTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void findAll() {
+        //GIVEN
+        User user1 = getUser();
+        User user2 = getUser();
+        User user3 = getUser();
+        Role role = new Role();
+        role.setRoleName(RoleName.ADMIN);
+        role.addUser(user3);
+        saveUser(user1);
+        saveUser(user2);
+        saveUser(user3);
+        List<User> expected = List.of(user1, user2, user3);
+        //WHEN
+        List<User> actual = userDao.findAllUsers();
+        //THEN
+        assertNotNull(actual);
+        assertEquals(2, actual.size());
+        assertEquals(RoleName.USER, actual.get(0).getRole().getRoleName());
+        assertEquals(RoleName.USER, actual.get(1).getRole().getRoleName());
+        assertEquals(expected.get(2).getRole().getRoleName(), RoleName.ADMIN);
+        assertDoesNotThrow(()-> userDao.findAllUsers());
+    }
+
     @NotNull
     private User getUser() {
         Role role = new Role();
-        role.setRoleName(RoleName.ADMIN);
+        role.setRoleName(RoleName.USER);
         User expected = new User();
         expected.setUsername("admin");
         expected.setPassword("qwerty");

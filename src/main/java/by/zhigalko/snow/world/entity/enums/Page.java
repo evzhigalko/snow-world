@@ -16,7 +16,14 @@ public enum Page {
     CAP_LIST("/clothes/cap/catalog/","/WEB-INF/jsp/catalog/cap-list.jsp"),
     MASK_LIST("/clothes/mask/catalog/","/WEB-INF/jsp/catalog/mask-list.jsp"),
     MITTENS_LIST( "/clothes/mittens/catalog/","/WEB-INF/jsp/catalog/mittens-list.jsp"),
-    GLOVES_LIST("/clothes/gloves/catalog/","/WEB-INF/jsp/catalog/gloves-list.jsp");
+    GLOVES_LIST("/clothes/gloves/catalog/","/WEB-INF/jsp/catalog/gloves-list.jsp"),
+    SNOWBOARD_GROUP("/snowboard","/WEB-INF/jsp/snowboard-group.jsp"),
+    SKI_GROUP("/ski","/WEB-INF/jsp/ski-group.jsp"),
+    CLOTHES_GROUP("/clothes","/WEB-INF/jsp/clothes-group.jsp"),
+    CONTACTS("/contacts","/WEB-INF/static/contacts.jsp"),
+    LOGIN_FORM("/form/login","/WEB-INF/jsp/login.jsp"),
+    REGISTRATION_FORM("/form/registration", "/WEB-INF/jsp/registration.jsp"),
+    ADMIN_PAGE("/admin/", "/WEB-INF/jsp/admin.jsp");;
 
     private final String url;
     private final String forwardPage;

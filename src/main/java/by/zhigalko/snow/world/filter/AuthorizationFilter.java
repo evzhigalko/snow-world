@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.filter;
 
+import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.*;
@@ -18,13 +19,12 @@ public class AuthorizationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         if (isPrivatePage(request)) {
             RoleName roleName = (RoleName) request.getSession().getAttribute("ROLE");
-           if(roleName != null && roleName.equals(RoleName.ADMIN)) {
-               chain.doFilter(request, response);
+            if (roleName != null && roleName.equals(RoleName.ADMIN)) {
+                chain.doFilter(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/form/login");
+                response.sendRedirect(request.getContextPath() + Page.LOGIN_FORM.getUrl());
             }
-        }
-        else {
+        } else {
             chain.doFilter(request, response);
         }
     }

@@ -3,6 +3,7 @@ package by.zhigalko.snow.world.dao.user;
 import by.zhigalko.snow.world.dao.BaseDaoSaveEntity;
 import by.zhigalko.snow.world.entity.User;
 import jakarta.persistence.NoResultException;
+import java.util.List;
 
 /**
  * Data Access Object for User.
@@ -27,4 +28,10 @@ public interface UserDao extends BaseDaoSaveEntity<User> {
      * </ul>
      */
    boolean findByUsernameAndEmail(String username, String email);
+
+    /**
+     * Find all users
+     * @return List of users {@link List<User>}
+     */
+   List<User> findAllUsers();
 }

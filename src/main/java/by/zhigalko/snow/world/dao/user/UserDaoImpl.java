@@ -1,14 +1,16 @@
 package by.zhigalko.snow.world.dao.user;
 
 import by.zhigalko.snow.world.dao.BaseDaoSaveEntityImpl;
+import by.zhigalko.snow.world.entity.Role;
 import by.zhigalko.snow.world.entity.User;
+import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.service.SessionManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.RollbackException;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
+
+import java.util.List;
 import java.util.Objects;
 
 public class UserDaoImpl extends BaseDaoSaveEntityImpl<User> implements UserDao{
@@ -71,5 +73,26 @@ public class UserDaoImpl extends BaseDaoSaveEntityImpl<User> implements UserDao{
             session.getTransaction().rollback();
         }
         return userExists;
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        Session session = SessionManager.getSession();
+        List<User> userList = null;
+        try {
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<User> criteria = cb.createQuery(User.class);
+            Root<User> userRoot = criteria.from(User.class);
+            Join<User, Role> userRole = userRoot.join("role");
+            Path<Role> userRoleName = userRole.get("roleName");
+            criteria.select(userRoot)
+                    .where(cb.equal(userRoleName, RoleName.USER));
+            session.getTransaction().begin();
+            userList = session.createQuery(criteria).getResultList();
+            session.getTransaction().commit();
+        } catch (RollbackException e) {
+            session.getTransaction().rollback();
+        }
+        return userList;
     }
 }

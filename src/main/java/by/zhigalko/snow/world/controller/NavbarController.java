@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.controller;
 
-import by.zhigalko.snow.world.entity.enums.Navbar;
+import by.zhigalko.snow.world.entity.enums.Page;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -22,7 +22,7 @@ public class NavbarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Navbar navbarEnum = Navbar.getEnum(request.getRequestURI());
+            Page navbarEnum = Page.getEnum(request.getRequestURI());
             String forwardPath = navbarEnum.getForwardPage();
             request.getRequestDispatcher(forwardPath).forward(request, response);
         } catch (Exception e) {
