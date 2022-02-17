@@ -151,6 +151,7 @@
                     <version>${cargo.version}</version>
                     <executions>
                         <execution>
+                            <id>maven-deploy</id>
                             <phase>install</phase>
                             <goals>
                                 <goal>deploy</goal>
@@ -160,16 +161,30 @@
                     <configuration>
                         <container>
                             <containerId>tomcat10x</containerId>
-                            <type>installed</type>
-                            <home>/opt/apache-tomcat/10.0.14</home>
+                            <type>remote</type>
                         </container>
                         <configuration>
-                            <type>existing</type>
-                            <home>/opt/apache-tomcat/10.0.14</home>
+                            <type>runtime</type>
+                            <properties>
+                                <cargo.hostname>${hostname}</cargo.hostname>
+                                <cargo.servlet.port>${port}</cargo.servlet.port>
+                                <cargo.tomcat.manager.url>${manager.url}</cargo.tomcat.manager.url>
+                                <cargo.remote.username>${username}</cargo.remote.username>
+                                <cargo.remote.password>${password}</cargo.remote.password>
+                                <cargo.tomcat.deploy.update>true</cargo.tomcat.deploy.update>
+                            </properties>
                         </configuration>
                     </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>env-dev</id>
+        </profile>
+        <profile>
+            <id>env-prod</id>
+        </profile>
+    </profiles>
 </project>

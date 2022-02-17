@@ -25,31 +25,12 @@
     </dependencies>
 
     <build>
-        <finalName>web</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-clean-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-war-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-install-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <finalName>snow-world</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven3-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 </project>
