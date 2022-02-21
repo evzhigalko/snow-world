@@ -1,6 +1,8 @@
 package by.zhigalko.snow.world.dao.item.ski;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
+import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
+import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.ski.SkiPole;
 import by.zhigalko.snow.world.util.SessionManager;
@@ -9,7 +11,7 @@ import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
 import java.util.List;
 
-public class SkiPoleDaoImpl extends BaseDaoItemImpl<SkiPole> {
+public class SkiPoleDaoImpl extends BaseDaoItemImpl<SkiPole> implements EquipmentAllSizesDao {
     private static volatile SkiPoleDaoImpl instance = null;
 
     private SkiPoleDaoImpl() {
@@ -27,6 +29,7 @@ public class SkiPoleDaoImpl extends BaseDaoItemImpl<SkiPole> {
         return instance;
     }
 
+    @Override
     public List<EquipmentSize> findAllSizes() {
         Session session = SessionManager.getSession();
         List<EquipmentSize> entityList = null;

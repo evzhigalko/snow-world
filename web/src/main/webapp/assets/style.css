@@ -155,3 +155,10 @@ a {
 .card-body {
     padding: 7px 7px;
 }
+
+.admin_settings_list {
+    margin-bottom: 0;
+}
+.add-image {
+    width: 20rem;
+}

@@ -1,7 +1,9 @@
 package by.zhigalko.snow.world.dao.item.factory;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
+import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
+import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.enums.Page;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,17 @@ class DaoEquipmentFactoryImplTest {
         //WHEN
         BaseDaoItemImpl actual = daoFactory.getDao(page);
         //THEN
+        assertNotNull(actual);
+        assertEquals(SnowboardDaoImpl.getInstance().hashCode(),actual.hashCode());
+        assertEquals(SnowboardDaoImpl.getInstance(),actual);
+    }
+    @Test
+    void getAllSizesDaoTest() {
+        //GIVEN
+        String item = "snowboard";
+        //WHEN
+        EquipmentAllSizesDao actual = daoFactory.getAllSizesDao(item);
+        //GIVEN
         assertNotNull(actual);
         assertEquals(SnowboardDaoImpl.getInstance().hashCode(),actual.hashCode());
         assertEquals(SnowboardDaoImpl.getInstance(),actual);

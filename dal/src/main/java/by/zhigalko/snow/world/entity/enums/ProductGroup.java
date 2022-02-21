@@ -1,7 +1,5 @@
 package by.zhigalko.snow.world.entity.enums;
 
-import java.util.Arrays;
-
 public enum ProductGroup {
     SNOWBOARD("Сноуборд"),
     SNOWBOARD_BOOT("Ботинки сноубордные"),

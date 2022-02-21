@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.dao.item.snowboard;
 
+import by.zhigalko.snow.world.entity.Equipment;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
@@ -15,9 +16,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -247,6 +248,38 @@ class SnowboardDaoImplTest {
 
         //THEN
         assertEquals(2L, actual);
+    }
+    @Test
+    void findAllSizesTest() {
+        //GIVEN
+        EquipmentSize equipmentSize1 = new EquipmentSize();
+        equipmentSize1.setEquipmentSizeId("SN148");
+        equipmentSize1.setUserMinHeight(165);
+        equipmentSize1.setUserMaxHeight(175);
+        equipmentSize1.setUserMinWeight(55);
+        equipmentSize1.setUserMaxWeight(75);
+        EquipmentSize equipmentSize2 = new EquipmentSize();
+        equipmentSize2.setEquipmentSizeId("SN160");
+        equipmentSize2.setUserMinHeight(175);
+        equipmentSize2.setUserMaxHeight(195);
+        equipmentSize2.setUserMinWeight(80);
+        equipmentSize2.setUserMaxWeight(110);
+        Session session = SessionManager.getSession();
+        session.getTransaction().begin();
+        session.save(equipmentSize1);
+        session.save(equipmentSize2);
+        session.getTransaction().commit();
+        session.close();
+        List<EquipmentSize> expected = List.of(equipmentSize1, equipmentSize2);
+
+        //WHEN
+        List<EquipmentSize> actual = snowboardDao.findAllSizes();
+        //THEN
+        assertNotNull(actual);
+        assertEquals(expected.get(0),actual.get(0));
+        assertEquals(expected.get(0).getUserMinHeight(),actual.get(0).getUserMinHeight());
+        assertEquals(expected.hashCode(), actual.hashCode());
+        assertEquals(expected, actual);
     }
 
     private void saveSnowboard(Snowboard expected) {

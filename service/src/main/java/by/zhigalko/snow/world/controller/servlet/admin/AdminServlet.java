@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.controller.servlet;
+package by.zhigalko.snow.world.controller.servlet.admin;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;

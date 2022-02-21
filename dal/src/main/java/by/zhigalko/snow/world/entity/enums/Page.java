@@ -23,7 +23,7 @@ public enum Page {
     CONTACTS("/contacts","/WEB-INF/static/contacts.jsp"),
     LOGIN_FORM("/form/login","/WEB-INF/jsp/login.jsp"),
     REGISTRATION_FORM("/form/registration", "/WEB-INF/jsp/registration.jsp"),
-    ADMIN_PAGE("/admin/", "/WEB-INF/jsp/admin.jsp");;
+    ADMIN_PAGE("/admin/", "/WEB-INF/jsp/admin/admin.jsp");
 
     private final String url;
     private final String forwardPage;

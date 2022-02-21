@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.dao.item.factory;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.clothes.*;
+import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.dao.item.ski.SkiBootDaoImpl;
 import by.zhigalko.snow.world.dao.item.ski.SkiDaoImpl;
 import by.zhigalko.snow.world.dao.item.ski.SkiHelmetDaoImpl;
@@ -68,5 +69,16 @@ public class DaoEquipmentFactoryImpl implements DaoEquipmentFactory<Item>{
                 break;
         }
         return dao;
+    }
+
+    @Override
+    public EquipmentAllSizesDao getAllSizesDao(String itemName) {
+        EquipmentAllSizesDao allSizesDao = null;
+        switch (itemName) {
+            case "snowboard":
+                allSizesDao = SnowboardDaoImpl.getInstance();
+                break;
+        }
+        return allSizesDao;
     }
 }
