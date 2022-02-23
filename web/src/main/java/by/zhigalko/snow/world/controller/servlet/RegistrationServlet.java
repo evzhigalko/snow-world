@@ -12,11 +12,20 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.ApplicationContext;
 import java.io.IOException;
 
 @Log4j2
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
+    private ApplicationContext context;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        context = (ApplicationContext) getServletContext().getAttribute("context");
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(Page.REGISTRATION_FORM.getForwardPage()).forward(request, response);
@@ -24,12 +33,12 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDaoImpl userDao = UserDaoImpl.getInstance();
+        UserDaoImpl userDao = context.getBean("userDao", UserDaoImpl.class);
         User user;
         UserServiceImpl userService = UserServiceImpl.getInstance();
         try {
             user = userService.createUser(request);
-            RoleDaoImpl roleDao = RoleDaoImpl.getInstance();
+            RoleDaoImpl roleDao = context.getBean("roleDao", RoleDaoImpl.class);
             Role role = roleDao.find(RoleName.USER);
             user.setRole(role);
             boolean userExists = userDao.findByUsernameAndEmail(user.getUsername(), user.getEmail());

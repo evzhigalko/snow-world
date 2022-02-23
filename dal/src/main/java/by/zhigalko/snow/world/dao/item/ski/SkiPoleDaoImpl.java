@@ -9,24 +9,14 @@ import by.zhigalko.snow.world.util.SessionManager;
 import jakarta.persistence.RollbackException;
 import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository("skiPoleDao")
 public class SkiPoleDaoImpl extends BaseDaoItemImpl<SkiPole> implements EquipmentAllSizesDao {
-    private static volatile SkiPoleDaoImpl instance = null;
-
-    private SkiPoleDaoImpl() {
+    public SkiPoleDaoImpl() {
         super(SkiPole.class);
-    }
-
-    public static SkiPoleDaoImpl getInstance() {
-        if (instance == null) {
-            synchronized (SkiPoleDaoImpl.class) {
-                if (instance == null) {
-                    instance = new SkiPoleDaoImpl();
-                }
-            }
-        }
-        return instance;
     }
 
     @Override

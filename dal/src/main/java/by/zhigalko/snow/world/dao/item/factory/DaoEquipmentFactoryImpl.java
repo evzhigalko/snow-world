@@ -11,61 +11,58 @@ import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
 import by.zhigalko.snow.world.dao.item.snowboard.SnowboardHelmetDaoImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Repository;
 
+@Repository("daoEquipmentFactory")
 public class DaoEquipmentFactoryImpl implements DaoEquipmentFactory<Item>{
-    private static volatile DaoEquipmentFactoryImpl instance = null;
+    private final ApplicationContext context;
 
-    private DaoEquipmentFactoryImpl() {}
-
-    public static DaoEquipmentFactoryImpl getInstance() {
-        if (instance == null) {
-            synchronized (DaoEquipmentFactoryImpl.class) {
-                if (instance == null) {
-                    instance = new DaoEquipmentFactoryImpl();
-                }
-            }
-        }
-        return instance;
+    @Autowired
+    public DaoEquipmentFactoryImpl(ApplicationContext context) {
+        this.context = context;
     }
+
     @Override
     public BaseDaoItemImpl<Item> getDao(Page page) {
         BaseDaoItemImpl dao = null;
         switch (page) {
             case SNOWBOARD_LIST:
-                dao = SnowboardDaoImpl.getInstance();
+                dao = context.getBean("snowboardDao", SnowboardDaoImpl.class);
                 break;
             case SNOWBOARD_BOOT_LIST:
-                dao = SnowboardBootDaoImpl.getInstance();
+                dao = context.getBean("snowboardBootDao", SnowboardBootDaoImpl.class);
                 break;
             case SNOWBOARD_HELMET_LIST:
-                dao = SnowboardHelmetDaoImpl.getInstance();
+                dao = context.getBean("snowboardHelmetDao", SnowboardHelmetDaoImpl.class);
                 break;
             case SKI_LIST:
-                dao = SkiDaoImpl.getInstance();
+                dao = context.getBean("skiDao", SkiDaoImpl.class);
                 break;
             case SKI_BOOT_LIST:
-                dao = SkiBootDaoImpl.getInstance();
+                dao = context.getBean("skiBootDao", SkiBootDaoImpl.class);
                 break;
             case SKI_HELMET_LIST:
-                dao = SkiHelmetDaoImpl.getInstance();
+                dao = context.getBean("skiHelmetDao", SkiHelmetDaoImpl.class);
                 break;
             case JACKET_LIST:
-                dao = JacketDaoImpl.getInstance();
+                dao = context.getBean("jacketDao", JacketDaoImpl.class);
                 break;
             case PANTS_LIST:
-                dao = PantsDaoImpl.getInstance();
+                dao = context.getBean("pantsDao", PantsDaoImpl.class);
                 break;
             case MASK_LIST:
-                dao = MaskDaoImpl.getInstance();
+                dao = context.getBean("maskDao", MaskDaoImpl.class);
                 break;
             case CAP_LIST:
-                dao = CapDaoImpl.getInstance();
+                dao = context.getBean("capDao", CapDaoImpl.class);
                 break;
             case MITTENS_LIST:
-                dao = MittenDaoImpl.getInstance();
+                dao = context.getBean("mittenDao", MittenDaoImpl.class);
                 break;
             case GLOVES_LIST:
-                dao = GloveDaoImpl.getInstance();
+                dao = context.getBean("gloveDao", GloveDaoImpl.class);
                 break;
         }
         return dao;
@@ -76,7 +73,7 @@ public class DaoEquipmentFactoryImpl implements DaoEquipmentFactory<Item>{
         EquipmentAllSizesDao allSizesDao = null;
         switch (itemName) {
             case "snowboard":
-                allSizesDao = SnowboardDaoImpl.getInstance();
+                allSizesDao = context.getBean("snowboardDao", SnowboardDaoImpl.class);
                 break;
         }
         return allSizesDao;

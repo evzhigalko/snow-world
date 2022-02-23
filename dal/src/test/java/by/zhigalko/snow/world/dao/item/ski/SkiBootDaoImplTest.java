@@ -6,6 +6,7 @@ import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.ski.SkiBoot;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import by.zhigalko.snow.world.util.SessionManager;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -20,10 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SkiBootDaoImplTest {
     private static SkiBootDaoImpl skiBootDao;
+    private static ApplicationContext context;
 
     @BeforeAll
     static void init() {
-        skiBootDao = SkiBootDaoImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        skiBootDao = context.getBean("skiBootDao", SkiBootDaoImpl.class);
     }
 
     @BeforeEach

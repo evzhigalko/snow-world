@@ -1,6 +1,5 @@
 package by.zhigalko.snow.world.dao.item.snowboard;
 
-import by.zhigalko.snow.world.entity.Equipment;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
@@ -8,6 +7,7 @@ import by.zhigalko.snow.world.entity.enums.HardnessLevel;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import by.zhigalko.snow.world.util.SessionManager;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -16,18 +16,20 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SnowboardDaoImplTest {
     private static SnowboardDaoImpl snowboardDao;
+    private static ApplicationContext context;
 
     @BeforeAll
     static void init() {
-        snowboardDao = SnowboardDaoImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        snowboardDao = context.getBean("snowboardDao", SnowboardDaoImpl.class);
     }
 
     @BeforeEach

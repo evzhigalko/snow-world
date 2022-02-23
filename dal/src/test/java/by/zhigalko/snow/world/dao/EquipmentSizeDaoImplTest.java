@@ -3,6 +3,7 @@ package by.zhigalko.snow.world.dao;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDao;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDaoImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import by.zhigalko.snow.world.util.SessionManager;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -10,15 +11,18 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EquipmentSizeDaoImplTest {
     private static EquipmentSizeDao equipmentSizeDao;
+    private static ApplicationContext context;
 
     @BeforeAll
     static void init() {
-        equipmentSizeDao = EquipmentSizeDaoImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        equipmentSizeDao = context.getBean("equipmentSizeDao", EquipmentSizeDaoImpl.class);
     }
 
     @BeforeEach

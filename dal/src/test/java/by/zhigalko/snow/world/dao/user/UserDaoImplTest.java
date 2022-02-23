@@ -4,6 +4,7 @@ import by.zhigalko.snow.world.entity.Role;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import by.zhigalko.snow.world.util.SessionManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
@@ -11,17 +12,19 @@ import jakarta.persistence.RollbackException;
 import org.hibernate.Session;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.*;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoImplTest {
     private static UserDaoImpl userDao;
+    private static ApplicationContext context;
 
     @BeforeAll
     static void init() {
-        userDao = UserDaoImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        userDao = context.getBean("userDao", UserDaoImpl.class);
     }
 
     @BeforeEach
@@ -74,7 +77,7 @@ class UserDaoImplTest {
         //THEN
         assertNotNull(actual);
         assertNotNull(actual.getId());
-        assertEquals(RoleName.ADMIN, actual.getRole().getRoleName());
+        assertEquals(RoleName.USER, actual.getRole().getRoleName());
         assertEquals(expected.getRole().hashCode(), actual.getRole().hashCode());
         assertThrows(NoResultException.class, ()-> userDao.findByUsernameAndPassword("test", "test"));
         assertEquals(expected.hashCode(), actual.hashCode());

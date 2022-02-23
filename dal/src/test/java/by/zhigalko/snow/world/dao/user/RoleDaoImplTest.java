@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.dao.user;
 
 import by.zhigalko.snow.world.entity.Role;
 import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import by.zhigalko.snow.world.util.SessionManager;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
@@ -9,14 +10,18 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RoleDaoImplTest {
     private static RoleDaoImpl roleDao;
+    private static ApplicationContext context;
 
     @BeforeAll
     static void init() {
-        roleDao = RoleDaoImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        roleDao = context.getBean("roleDao", RoleDaoImpl.class);
     }
 
     @BeforeEach

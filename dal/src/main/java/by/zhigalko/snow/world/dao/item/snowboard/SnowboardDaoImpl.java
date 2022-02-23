@@ -10,25 +10,15 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository("snowboardDao")
 public class SnowboardDaoImpl extends BaseDaoItemImpl<Snowboard> implements EquipmentAllSizesDao {
-    private static volatile SnowboardDaoImpl instance = null;
-
-    private SnowboardDaoImpl() {
+    public SnowboardDaoImpl() {
         super(Snowboard.class);
     }
 
-    public static SnowboardDaoImpl getInstance() {
-        if (instance == null) {
-            synchronized (SnowboardDaoImpl.class) {
-                if (instance == null) {
-                    instance = new SnowboardDaoImpl();
-                }
-            }
-        }
-        return instance;
-    }
     @Override
     public List<EquipmentSize> findAllSizes() {
         Session session = SessionManager.getSession();

@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.ApplicationContext;
 import java.io.IOException;
 
 @Log4j2
@@ -19,8 +20,16 @@ import java.io.IOException;
         "/logout"
 })
 public class AuthentificationFilter implements Filter {
-    private final UserDaoImpl userDao = UserDaoImpl.getInstance();
+    private ApplicationContext context;
+    private UserDaoImpl userDao;
     private static final String MAIN_PAGE = "/index.jsp";
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig);
+        context = (ApplicationContext) filterConfig.getServletContext().getAttribute("context");
+        userDao = context.getBean("userDao", UserDaoImpl.class);
+    }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {

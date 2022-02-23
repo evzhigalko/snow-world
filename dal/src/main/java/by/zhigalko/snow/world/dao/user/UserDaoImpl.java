@@ -9,26 +9,12 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.RollbackException;
 import jakarta.persistence.criteria.*;
 import org.hibernate.Session;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Objects;
 
+@Repository("userDao")
 public class UserDaoImpl extends BaseDaoSaveEntityImpl<User> implements UserDao{
-    private static volatile UserDaoImpl instance = null;
-
-    private UserDaoImpl() {}
-
-    public static UserDaoImpl getInstance() {
-        if (instance == null) {
-            synchronized (UserDaoImpl.class) {
-                if (instance == null) {
-                    instance = new UserDaoImpl();
-                }
-            }
-        }
-        return instance;
-    }
-
     @Override
     public User findByUsernameAndPassword(String username, String password) throws NoResultException {
         Session session = SessionManager.getSession();

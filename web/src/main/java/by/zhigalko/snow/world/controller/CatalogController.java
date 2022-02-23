@@ -11,6 +11,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.ApplicationContext;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,6 +33,13 @@ import java.util.List;
 public class CatalogController extends HttpServlet {
     public static final int PAGE_SIZE = 6;
     private static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
+    private ApplicationContext context;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        this.context = (ApplicationContext) getServletContext().getAttribute("context");
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,11 +50,11 @@ public class CatalogController extends HttpServlet {
         int page = (Integer.parseInt(pageStr) - 1) * PAGE_SIZE;
         try {
             Page pageEnum = Page.getEnum(requestURI);
-            DaoEquipmentFactory<Item> daoFactory = DaoEquipmentFactoryImpl.getInstance();
+            DaoEquipmentFactory<Item> daoFactory = context.getBean("daoEquipmentFactory", DaoEquipmentFactoryImpl.class);
             BaseDaoItemImpl dao = daoFactory.getDao(pageEnum);
             paginate(request, page, dao);
             if (pageEnum.equals(Page.SKI_LIST)) {
-                SkiPoleDaoImpl skiPoleDao = SkiPoleDaoImpl.getInstance();
+                SkiPoleDaoImpl skiPoleDao = context.getBean("skiPoleDao", SkiPoleDaoImpl.class);
                 List<EquipmentSize> skiPoleSizeList = skiPoleDao.findAllSizes();
                 request.setAttribute("skiPoleSizeList", skiPoleSizeList);
             }

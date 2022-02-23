@@ -3,19 +3,24 @@ package by.zhigalko.snow.world.dao.item.factory;
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
-import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DaoEquipmentFactoryImplTest {
     private static DaoEquipmentFactory daoFactory;
+    private static ApplicationContext context;
+    private static SnowboardDaoImpl snowboardDao;
 
     @BeforeAll
     static void init() {
-        daoFactory = DaoEquipmentFactoryImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        snowboardDao = context.getBean("snowboardDao", SnowboardDaoImpl.class);
+        daoFactory = context.getBean("daoEquipmentFactory", DaoEquipmentFactoryImpl.class);
     }
 
     @Test
@@ -26,8 +31,8 @@ class DaoEquipmentFactoryImplTest {
         BaseDaoItemImpl actual = daoFactory.getDao(page);
         //THEN
         assertNotNull(actual);
-        assertEquals(SnowboardDaoImpl.getInstance().hashCode(),actual.hashCode());
-        assertEquals(SnowboardDaoImpl.getInstance(),actual);
+        assertEquals(snowboardDao.hashCode(),actual.hashCode());
+        assertEquals(snowboardDao,actual);
     }
     @Test
     void getAllSizesDaoTest() {
@@ -37,7 +42,7 @@ class DaoEquipmentFactoryImplTest {
         EquipmentAllSizesDao actual = daoFactory.getAllSizesDao(item);
         //GIVEN
         assertNotNull(actual);
-        assertEquals(SnowboardDaoImpl.getInstance().hashCode(),actual.hashCode());
-        assertEquals(SnowboardDaoImpl.getInstance(),actual);
+        assertEquals(snowboardDao.hashCode(),actual.hashCode());
+        assertEquals(snowboardDao,actual);
     }
 }

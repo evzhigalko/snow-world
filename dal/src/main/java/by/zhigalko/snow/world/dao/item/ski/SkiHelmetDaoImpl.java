@@ -2,22 +2,11 @@ package by.zhigalko.snow.world.dao.item.ski;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.ski.SkiHelmet;
+import org.springframework.stereotype.Repository;
 
+@Repository("skiHelmetDao")
 public class SkiHelmetDaoImpl extends BaseDaoItemImpl<SkiHelmet> {
-    private static volatile SkiHelmetDaoImpl instance = null;
-
-    private SkiHelmetDaoImpl() {
+    public SkiHelmetDaoImpl() {
         super(SkiHelmet.class);
-    }
-
-    public static SkiHelmetDaoImpl getInstance() {
-        if (instance == null) {
-            synchronized (SkiHelmetDaoImpl.class) {
-                if (instance == null) {
-                    instance = new SkiHelmetDaoImpl();
-                }
-            }
-        }
-        return instance;
     }
 }

@@ -9,23 +9,10 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
+@Repository("roleDao")
 public class RoleDaoImpl extends BaseDaoSaveEntityImpl<Role> implements RoleDao{
-    private static volatile RoleDaoImpl instance = null;
-
-    private RoleDaoImpl() {}
-
-    public static RoleDaoImpl getInstance() {
-        if (instance == null) {
-            synchronized (RoleDaoImpl.class) {
-                if (instance == null) {
-                    instance = new RoleDaoImpl();
-                }
-            }
-        }
-        return instance;
-    }
-
     @Override
     public Role find(RoleName roleName) {
         Session session = SessionManager.getSession();

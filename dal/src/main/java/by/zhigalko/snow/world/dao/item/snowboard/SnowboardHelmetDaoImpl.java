@@ -2,22 +2,11 @@ package by.zhigalko.snow.world.dao.item.snowboard;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardHelmet;
+import org.springframework.stereotype.Repository;
 
+@Repository("snowboardHelmetDao")
 public class SnowboardHelmetDaoImpl extends BaseDaoItemImpl<SnowboardHelmet> {
-    private static volatile SnowboardHelmetDaoImpl instance = null;
-
-    private SnowboardHelmetDaoImpl() {
+    public SnowboardHelmetDaoImpl() {
         super(SnowboardHelmet.class);
-    }
-
-    public static SnowboardHelmetDaoImpl getInstance() {
-        if (instance == null) {
-            synchronized (SnowboardHelmetDaoImpl.class) {
-                if (instance == null) {
-                    instance = new SnowboardHelmetDaoImpl();
-                }
-            }
-        }
-        return instance;
     }
 }
