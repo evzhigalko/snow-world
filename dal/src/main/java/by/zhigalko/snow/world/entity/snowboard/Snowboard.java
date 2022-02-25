@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.entity.snowboard;
 
 import by.zhigalko.snow.world.entity.enums.HardnessLevel;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

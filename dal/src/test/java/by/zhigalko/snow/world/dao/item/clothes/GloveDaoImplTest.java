@@ -7,16 +7,15 @@ import by.zhigalko.snow.world.entity.clothes.Glove;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -25,18 +24,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class GloveDaoImplTest {
     private static GloveDaoImpl gloveDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         gloveDao = context.getBean("gloveDao", GloveDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from Glove where true");
+        Query query = session.createQuery("delete from Glove");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -44,7 +45,7 @@ class GloveDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -151,9 +152,9 @@ class GloveDaoImplTest {
         //WHEN
         gloveDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        List<Cap> actual = session.createQuery("select gl from Glove as gl ").list();
+        List<Cap> actual = session.createQuery("select gl from Glove as gl").list();
         session.getTransaction().commit();
         session.close();
         assertEquals(0, actual.size());
@@ -193,7 +194,7 @@ class GloveDaoImplTest {
     }
 
     private Glove findGlove(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select gl from Glove as gl where id = :glove_id ");
         query.setParameter("glove_id", id);
@@ -204,7 +205,7 @@ class GloveDaoImplTest {
     }
 
     private void saveGlove(Glove expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

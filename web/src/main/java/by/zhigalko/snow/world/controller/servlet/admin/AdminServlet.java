@@ -3,6 +3,7 @@ package by.zhigalko.snow.world.controller.servlet.admin;
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
+import by.zhigalko.snow.world.dao.user.UserDao;
 import by.zhigalko.snow.world.dao.user.UserDaoImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
@@ -31,7 +32,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             log.info("doGet from AdminServlet");
-            UserDaoImpl userDao = context.getBean("userDao", UserDaoImpl.class);
+            UserDao userDao = context.getBean("userDao", UserDaoImpl.class);
             List<User> usersList = userDao.findAllUsers();
             request.setAttribute("usersList", usersList);
             request.getRequestDispatcher(Page.ADMIN_PAGE.getForwardPage()).forward(request, response);

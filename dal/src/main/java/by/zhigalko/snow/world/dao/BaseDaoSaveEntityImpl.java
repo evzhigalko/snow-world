@@ -1,22 +1,22 @@
 package by.zhigalko.snow.world.dao;
 
 import by.zhigalko.snow.world.entity.BaseEntity;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.RollbackException;
+import lombok.Getter;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+@Getter
+@Transactional
 public abstract class BaseDaoSaveEntityImpl<T extends BaseEntity> implements BaseDaoSaveEntity<T>{
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public boolean save(T entity) {
-        Session session = SessionManager.getSession();
-        try {
-            session.getTransaction().begin();
-            session.save(entity);
-            session.getTransaction().commit();
-        } catch (RollbackException e) {
-            session.getTransaction().rollback();
-            return false;
-        }
+        Session session = sessionFactory.getCurrentSession();
+        session.save(entity);
         return true;
     }
 }

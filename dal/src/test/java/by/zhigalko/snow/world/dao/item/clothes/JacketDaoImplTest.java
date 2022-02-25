@@ -7,9 +7,9 @@ import by.zhigalko.snow.world.entity.clothes.Mitten;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,18 +24,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class JacketDaoImplTest {
     private static JacketDaoImpl jacketDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         jacketDao = context.getBean("jacketDao", JacketDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from Jacket where true");
+        Query query = session.createQuery("delete from Jacket");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -43,7 +45,7 @@ class JacketDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -150,7 +152,7 @@ class JacketDaoImplTest {
         //WHEN
         jacketDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Mitten> actual = session.createQuery("select j from Jacket as j ").list();
         session.getTransaction().commit();
@@ -191,7 +193,7 @@ class JacketDaoImplTest {
     }
 
     private Jacket findJacket(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select j from Jacket as j where id = :jacket_id ");
         query.setParameter("jacket_id", id);
@@ -202,7 +204,7 @@ class JacketDaoImplTest {
     }
 
     private void saveJacket(Jacket expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

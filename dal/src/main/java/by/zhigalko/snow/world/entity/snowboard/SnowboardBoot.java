@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.entity.snowboard;
 
 import by.zhigalko.snow.world.entity.enums.LacingSystem;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

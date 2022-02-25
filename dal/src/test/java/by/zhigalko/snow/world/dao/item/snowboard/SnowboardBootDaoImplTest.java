@@ -8,9 +8,9 @@ import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,18 +25,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class SnowboardBootDaoImplTest {
     private static SnowboardBootDaoImpl snowboardBootDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         snowboardBootDao = context.getBean("snowboardBootDao", SnowboardBootDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from SnowboardBoot where true");
+        Query query = session.createQuery("delete from SnowboardBoot");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -44,7 +46,7 @@ class SnowboardBootDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -151,7 +153,7 @@ class SnowboardBootDaoImplTest {
         //WHEN
         snowboardBootDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Snowboard> actual = session.createQuery("select snb from SnowboardBoot as snb ").list();
         session.getTransaction().commit();
@@ -193,7 +195,7 @@ class SnowboardBootDaoImplTest {
     }
 
     private SnowboardBoot findSnowboardBoot(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select snb from SnowboardBoot AS snb where id = :snowboard_boot_id ");
         query.setParameter("snowboard_boot_id", id);
@@ -204,7 +206,7 @@ class SnowboardBootDaoImplTest {
     }
 
     private void saveSnowboardBoot(SnowboardBoot expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.dao.user;
 
 import by.zhigalko.snow.world.dao.BaseDaoSaveEntity;
 import by.zhigalko.snow.world.entity.User;
-import jakarta.persistence.NoResultException;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**

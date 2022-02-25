@@ -38,7 +38,7 @@ public class CatalogController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        this.context = (ApplicationContext) getServletContext().getAttribute("context");
+        context = (ApplicationContext) getServletContext().getAttribute("context");
     }
 
     @Override

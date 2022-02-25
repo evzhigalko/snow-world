@@ -1,8 +1,7 @@
 package by.zhigalko.snow.world.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
-
 import java.util.UUID;
 
 @MappedSuperclass

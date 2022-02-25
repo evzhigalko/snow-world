@@ -7,9 +7,9 @@ import by.zhigalko.snow.world.entity.clothes.Mask;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,18 +24,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class MaskDaoImplTest {
     private static MaskDaoImpl maskDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         maskDao = context.getBean("maskDao", MaskDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from Mask where true");
+        Query query = session.createQuery("delete from Mask");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -43,7 +45,7 @@ class MaskDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -150,7 +152,7 @@ class MaskDaoImplTest {
         //WHEN
         maskDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Cap> actual = session.createQuery("select m from Mask as m ").list();
         session.getTransaction().commit();
@@ -190,7 +192,7 @@ class MaskDaoImplTest {
     }
 
     private Mask findMask(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select m from Mask as m where id = :mask_id ");
         query.setParameter("mask_id", id);
@@ -201,7 +203,7 @@ class MaskDaoImplTest {
     }
 
     private void saveMask(Mask expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

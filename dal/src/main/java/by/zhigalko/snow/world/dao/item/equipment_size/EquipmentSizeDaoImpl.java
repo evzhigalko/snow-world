@@ -1,27 +1,35 @@
 package by.zhigalko.snow.world.dao.item.equipment_size;
 
 import by.zhigalko.snow.world.entity.EquipmentSize;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
-import jakarta.persistence.RollbackException;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Repository("equipmentSizeDao")
 public class EquipmentSizeDaoImpl implements EquipmentSizeDao{
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public EquipmentSizeDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+//    @Autowired
+//    public void setSessionFactory(SessionFactory sessionFactory) {
+//        this.sessionFactory = sessionFactory;
+//    }
+
     @Override
     public EquipmentSize findById(String id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.getCurrentSession();
         EquipmentSize equipmentSize = null;
-        try {
-            session.getTransaction().begin();
-            Query query = session.createQuery("select eqs from EquipmentSize as eqs where id = :id");
-            query.setParameter("id", id);
-            equipmentSize = (EquipmentSize) query.getSingleResult();
-            session.getTransaction().commit();
-        } catch (RollbackException e) {
-            session.getTransaction().rollback();
-        }
+        Query query = session.createQuery("select eqs from EquipmentSize as eqs where id = :id");
+        query.setParameter("id", id);
+        equipmentSize = (EquipmentSize) query.getSingleResult();
         return equipmentSize;
     }
 }

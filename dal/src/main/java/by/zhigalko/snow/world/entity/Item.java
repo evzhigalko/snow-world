@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.entity;
 
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -20,7 +20,7 @@ public class Item extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private ProductGroup productName;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id", nullable = false)
     private Image image;
 

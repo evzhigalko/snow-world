@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.filter;
 
+import by.zhigalko.snow.world.dao.user.UserDao;
 import by.zhigalko.snow.world.dao.user.UserDaoImpl;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.AuthPath;
@@ -21,14 +22,13 @@ import java.io.IOException;
 })
 public class AuthentificationFilter implements Filter {
     private ApplicationContext context;
-    private UserDaoImpl userDao;
+    private UserDao userDao;
     private static final String MAIN_PAGE = "/index.jsp";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
         context = (ApplicationContext) filterConfig.getServletContext().getAttribute("context");
-        userDao = context.getBean("userDao", UserDaoImpl.class);
     }
 
     @Override
@@ -48,6 +48,7 @@ public class AuthentificationFilter implements Filter {
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         try {
+            userDao = context.getBean("userDao", UserDaoImpl.class);
             User user = userDao.findByUsernameAndPassword(req.getParameter("username"), req.getParameter("password"));
             req.getSession().isNew();
             req.getSession().setAttribute("user", user);

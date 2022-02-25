@@ -8,9 +8,9 @@ import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -25,25 +25,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class SnowboardDaoImplTest {
     private static SnowboardDaoImpl snowboardDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         snowboardDao = context.getBean("snowboardDao", SnowboardDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Snowboard WHERE TRUE");
+        Query query = session.createQuery("delete Snowboard");
         query.executeUpdate();
         session.getTransaction().commit();
     }
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -194,11 +196,11 @@ class SnowboardDaoImplTest {
         //WHEN
         snowboardDao.delete(expected);
         //THEN
-        Session session2 = SessionManager.getSession();
-        session2.getTransaction().begin();
-        List<Snowboard> actual = session2.createQuery("select snb from Snowboard as snb ").list();
-        session2.getTransaction().commit();
-        session2.close();
+        Session session = sessionFactory.openSession();
+        session.getTransaction().begin();
+        List<Snowboard> actual = session.createQuery("select snb from Snowboard as snb ").list();
+        session.getTransaction().commit();
+        session.close();
         assertEquals(0, actual.size());
     }
 
@@ -266,7 +268,7 @@ class SnowboardDaoImplTest {
         equipmentSize2.setUserMaxHeight(195);
         equipmentSize2.setUserMinWeight(80);
         equipmentSize2.setUserMaxWeight(110);
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(equipmentSize1);
         session.save(equipmentSize2);
@@ -285,7 +287,7 @@ class SnowboardDaoImplTest {
     }
 
     private void saveSnowboard(Snowboard expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();
@@ -316,7 +318,7 @@ class SnowboardDaoImplTest {
     }
 
     private Snowboard findSnowboard(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select snb from Snowboard as snb where id = :snowboard_id ");
         query.setParameter("snowboard_id", id);

@@ -7,9 +7,9 @@ import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.ski.Ski;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,18 +24,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class SkiDaoImplTest {
     private static SkiDaoImpl skiDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         skiDao = context.getBean("skiDao", SkiDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM Ski WHERE TRUE");
+        Query query = session.createQuery("delete from Ski");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -43,7 +45,7 @@ class SkiDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -121,7 +123,7 @@ class SkiDaoImplTest {
         //WHEN
         skiDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Ski> actual = session.createQuery("select snb from Ski as snb ").list();
         session.getTransaction().commit();
@@ -197,7 +199,7 @@ class SkiDaoImplTest {
     }
 
     private Ski findSki(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select s from Ski AS s where id = :ski_id ");
         query.setParameter("ski_id", id);
@@ -208,7 +210,7 @@ class SkiDaoImplTest {
     }
 
     private void saveSki(Ski expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

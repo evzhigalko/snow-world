@@ -7,9 +7,9 @@ import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.ski.SkiBoot;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,18 +24,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class SkiBootDaoImplTest {
     private static SkiBootDaoImpl skiBootDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         skiBootDao = context.getBean("skiBootDao", SkiBootDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from SkiBoot where true");
+        Query query = session.createQuery("delete from SkiBoot");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -43,7 +45,7 @@ class SkiBootDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -120,7 +122,7 @@ class SkiBootDaoImplTest {
         //WHEN
         skiBootDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Snowboard> actual = session.createQuery("select skb from SkiBoot as skb ").list();
         session.getTransaction().commit();
@@ -191,7 +193,7 @@ class SkiBootDaoImplTest {
     }
 
     private SkiBoot findSkiBoot(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select skb from SkiBoot AS skb where id = :ski_boot_id ");
         query.setParameter("ski_boot_id", id);
@@ -202,7 +204,7 @@ class SkiBootDaoImplTest {
     }
 
     private void saveSkiBoot(SkiBoot expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

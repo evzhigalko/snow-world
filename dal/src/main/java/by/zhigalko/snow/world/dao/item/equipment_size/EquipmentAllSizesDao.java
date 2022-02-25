@@ -1,6 +1,5 @@
 package by.zhigalko.snow.world.dao.item.equipment_size;
 
-import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import java.util.List;
 

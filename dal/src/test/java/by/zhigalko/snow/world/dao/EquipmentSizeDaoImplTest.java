@@ -4,9 +4,9 @@ import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDao;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDaoImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,18 +18,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class EquipmentSizeDaoImplTest {
     private static EquipmentSizeDao equipmentSizeDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         equipmentSizeDao = context.getBean("equipmentSizeDao", EquipmentSizeDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("DELETE FROM EquipmentSize WHERE TRUE");
+        Query query = session.createQuery("delete from EquipmentSize");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -37,8 +39,7 @@ class EquipmentSizeDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSession();
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -50,7 +51,7 @@ class EquipmentSizeDaoImplTest {
         expected.setUserMaxHeight(195);
         expected.setUserMinWeight(80);
         expected.setUserMaxWeight(110);
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

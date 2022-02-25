@@ -7,9 +7,9 @@ import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.ski.SkiHelmet;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,18 +24,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class SkiHelmetDaoImplTest {
     private static SkiHelmetDaoImpl skiHelmetDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         skiHelmetDao = context.getBean("skiHelmetDao", SkiHelmetDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from SkiHelmet where true");
+        Query query = session.createQuery("delete from SkiHelmet");
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
@@ -43,7 +45,7 @@ class SkiHelmetDaoImplTest {
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
     @Test
     void saveTest() {
@@ -149,7 +151,7 @@ class SkiHelmetDaoImplTest {
         //WHEN
         skiHelmetDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Snowboard> actual = session.createQuery("select skh from SkiHelmet as skh ").list();
         session.getTransaction().commit();
@@ -190,7 +192,7 @@ class SkiHelmetDaoImplTest {
     }
 
     private SkiHelmet findSkiHelmet(UUID id) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select skh from SkiHelmet AS skh where id = :ski_helmet_id ");
         query.setParameter("ski_helmet_id", id);
@@ -201,7 +203,7 @@ class SkiHelmetDaoImplTest {
     }
 
     private void saveSkiHelmet(SkiHelmet expected) {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

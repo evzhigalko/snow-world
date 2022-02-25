@@ -9,5 +9,4 @@ import lombok.*;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
 public abstract class ClothesGroup extends Equipment {
-
 }

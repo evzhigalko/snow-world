@@ -6,15 +6,17 @@ import by.zhigalko.snow.world.entity.clothes.Cap;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.util.ApplicationConfig;
-import by.zhigalko.snow.world.util.SessionManager;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -23,26 +25,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class CapDaoImplTest {
     private static CapDaoImpl capDao;
     private static ApplicationContext context;
+    private static SessionFactory sessionFactory;
 
     @BeforeAll
     static void init() {
         context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         capDao = context.getBean("capDao", CapDaoImpl.class);
+        sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
     }
 
     @BeforeEach
     void setUp() {
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
-        Query query = session.createQuery("delete from Cap where true");
+        Query query = session.createQuery("delete from Cap");
         query.executeUpdate();
         session.getTransaction().commit();
-        session.close();
     }
 
     @AfterAll
     static void closeSession() {
-        SessionManager.closeSessionFactory();
+        sessionFactory.close();
     }
 
     @Test
@@ -149,7 +152,7 @@ class CapDaoImplTest {
         //WHEN
         capDao.delete(expected);
         //THEN
-        Session session = SessionManager.getSession();
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         List<Cap> actual = session.createQuery("select cap from Cap as cap ").list();
         session.getTransaction().commit();
@@ -171,6 +174,7 @@ class CapDaoImplTest {
         //THEN
         assertEquals(3L, actual);
     }
+
     private Cap getCap() {
         AtomicLong counter = new AtomicLong(0);
         Cap cap = new Cap();
@@ -188,8 +192,8 @@ class CapDaoImplTest {
         return cap;
     }
 
-    private Cap findCap(UUID id) {
-        Session session = SessionManager.getSession();
+    public Cap findCap(UUID id) {
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         Query query = session.createQuery("select cap from Cap AS cap where id = :cap_id ");
         query.setParameter("cap_id", id);
@@ -199,8 +203,8 @@ class CapDaoImplTest {
         return actual;
     }
 
-    private void saveCap(Cap expected) {
-        Session session = SessionManager.getSession();
+    public void saveCap(Cap expected) {
+        Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         session.save(expected);
         session.getTransaction().commit();

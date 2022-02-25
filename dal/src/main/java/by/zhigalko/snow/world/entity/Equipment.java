@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -11,7 +11,7 @@ import lombok.*;
 @ToString(callSuper = true)
 @EqualsAndHashCode(exclude = "equipmentSizeId",callSuper = false)
 public abstract class Equipment extends Item {
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "equipment_size_id", nullable = false)
     private EquipmentSize equipmentSizeId;
 }

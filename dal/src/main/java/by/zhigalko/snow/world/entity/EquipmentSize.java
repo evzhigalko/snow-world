@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import java.util.HashSet;
 import java.util.Set;

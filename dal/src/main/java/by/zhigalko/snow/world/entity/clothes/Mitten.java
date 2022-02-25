@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.entity.clothes;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import lombok.*;
 
 @Entity
@@ -12,5 +12,4 @@ import lombok.*;
 @Getter
 @Setter
 public class Mitten extends ClothesWithMembrane {
-
 }

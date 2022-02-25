@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.entity;
 
 import by.zhigalko.snow.world.entity.enums.Gender;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -41,7 +41,7 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 }

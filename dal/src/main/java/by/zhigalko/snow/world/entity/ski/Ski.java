@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.entity.ski;
 
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
