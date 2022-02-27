@@ -15,6 +15,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>by.zhigalko.snow.world</groupId>
             <artifactId>service</artifactId>
         </dependency>

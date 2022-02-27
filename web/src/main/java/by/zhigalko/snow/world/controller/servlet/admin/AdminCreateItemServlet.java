@@ -5,18 +5,22 @@ import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
+import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.util.ImageUploader;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.context.ApplicationContext;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
+@MultipartConfig
 @Log4j2
 @WebServlet("/admin/create/new/*")
 public class AdminCreateItemServlet extends HttpServlet {
@@ -49,12 +53,20 @@ public class AdminCreateItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String product = (String)request.getSession().getAttribute("product");
-        String image = request.getParameter("image");
-        System.out.println(image);
-        ImageUploader uploader = ImageUploader.getInstance();
-        boolean b = uploader.uploadImage(product, "test.png", image);
-        System.out.println(b);
-        request.getRequestDispatcher("/admin/").forward(request, response);
+        try {
+            String bucketName = (String) request.getSession().getAttribute("product");
+            final Part filePart = request.getPart("file");
+            String fileName = filePart.getSubmittedFileName();
+            ImageUploader uploader = context.getBean("imageUploader", ImageUploader.class);
+            boolean isUploaded = uploader.uploadImage(filePart, bucketName, fileName);
+            if (isUploaded) {
+                request.getRequestDispatcher(String.valueOf(Page.ADMIN_PAGE.getForwardPage())).forward(request, response);
+            } else {
+                request.getRequestDispatcher(request.getRequestURI()).forward(request, response);
+            }
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            request.getRequestDispatcher(ERROR_PAGE).forward(request, response);
+        }
     }
 }

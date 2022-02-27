@@ -13,7 +13,7 @@
 <div class="container">
     <c:choose>
     <c:when test="${sessionScope.product eq 'snowboard'}">
-        <form action="<c:url value="/admin/create/new/"/>" method="post" style="width: 60%">
+        <form action="<c:url value="/admin/create/new/"/>" method="post" enctype="multipart/form-data" style="width: 60%">
             <div class="form-input">
                 <label for="label-maker" class="form-label"> </label>
                 <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"
@@ -88,8 +88,8 @@
             </div>
             <div class="mb-3 add-image">
                     <p style="padding-top: 1rem">
-                    <label for="image" class="form-label">Добавить фото квадратного размера, например: 250х250 400х400:</label>
-                    <input class="form-control" type="file" id="image" name="image" multiple>
+                    <label for="file" class="form-label">Добавить фото квадратного размера, например: 250х250 400х400:</label>
+                    <input class="form-control" type="file" id="file" name="file" accept="image/png, image/jpeg, image/jpg">
                     </p>
             </div>
             <div class="d-grid gap-2" style="width: 15rem; padding-top: 1rem">

@@ -11,17 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Repository("equipmentSizeDao")
 public class EquipmentSizeDaoImpl implements EquipmentSizeDao{
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     @Autowired
     public EquipmentSizeDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
-//    @Autowired
-//    public void setSessionFactory(SessionFactory sessionFactory) {
-//        this.sessionFactory = sessionFactory;
-//    }
 
     @Override
     public EquipmentSize findById(String id) {

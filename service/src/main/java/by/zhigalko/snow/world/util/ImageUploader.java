@@ -1,60 +1,53 @@
 package by.zhigalko.snow.world.util;
 
-import io.minio.BucketExistsArgs;
-import io.minio.MinioClient;
-import io.minio.UploadObjectArgs;
+import io.minio.*;
+import jakarta.servlet.http.Part;
 import lombok.extern.log4j.Log4j2;
-import javax.naming.*;
-import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Log4j2
+@Service
 public class ImageUploader {
-    private static volatile ImageUploader instance = null;
+    private final MinioClient minioClient;
 
-    private ImageUploader() {}
-
-    public static ImageUploader getInstance() {
-        if (instance == null) {
-            synchronized (ImageUploader.class) {
-                if (instance == null) {
-                    instance = new ImageUploader();
-                }
-            }
-        }
-        return instance;
+    @Autowired
+    public ImageUploader(MinioClient minioClient) {
+        this.minioClient = minioClient;
     }
-    private MinioClient getMinioClient() {
-        InitialContext initialContext = null;
-        try {
-            initialContext = new InitialContext();
-            Context context = (Context) initialContext.lookup("java:comp/env");
-            DataSource dataSource = (DataSource) context.lookup("minio");
-            //todo
 
-        } catch (NamingException e) {
-            throw new RuntimeException(e);
+    public boolean uploadImage(Part partFile, String bucketName, String imageName) throws IOException {
+        String filename = partFile.getSubmittedFileName();
+        boolean isUploaded = false;
+        if (filename!=null) {
+            String contentType = partFile.getContentType();
+            InputStream inputStream = partFile.getInputStream();
+            Long length = (long) inputStream.available();
+            isUploaded= minioUpload(bucketName, imageName, inputStream, length, contentType);
+            log.info("Image is uploaded >>> " + isUploaded);
         }
-        return MinioClient.builder()
-                //todo add endpoint and credentials
-                .build();
+        return isUploaded;
     }
-    public boolean uploadImage(String bucketName, String objectName, String fileName) {
-        MinioClient minioClient = getMinioClient();
+
+    private boolean minioUpload(String bucketName, String objectName, InputStream inputStream, Long length, String contentType) {
         try {
             boolean bucketExists = minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
-            if(bucketExists) {
-                minioClient.uploadObject(
-                        UploadObjectArgs.builder()
-                                .bucket(bucketName)
-                                .object(objectName)
-                                .filename(fileName)
-//                                .bucket("img")
-//                                .object("test.png")
-//                                .filename("/home/evgeniy/Pictures/img-project/test.png")
-                                .build());
+            if (!bucketExists) {
+                minioClient.makeBucket(MakeBucketArgs.builder()
+                        .bucket(bucketName)
+                        .build());
             }
+            minioClient.putObject(
+                    PutObjectArgs.builder()
+                            .bucket(bucketName)
+                            .object(objectName).stream(
+                                    inputStream, length, -1)
+                            .contentType(contentType)
+                            .build());
         } catch (Exception e) {
-            log.info(e.getMessage());
+            log.info(">>> Error: " + e.getMessage());
             return false;
         }
         return true;

@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.util;
 
+import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -49,6 +50,15 @@ public class ApplicationConfig {
                 = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
+    }
+
+    @Bean
+    public MinioClient minioClient() {
+        return MinioClient.builder()
+                .endpoint(Objects.requireNonNull(env.getProperty("minio.url")))
+                .credentials(Objects.requireNonNull(env.getProperty("minio.username")),
+                        Objects.requireNonNull(env.getProperty("minio.password")))
+                .build();
     }
 
     private Properties hibernateProperties() {
