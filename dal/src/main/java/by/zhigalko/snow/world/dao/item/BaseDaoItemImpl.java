@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,9 +24,9 @@ public abstract class BaseDaoItemImpl<T extends Item> implements BaseDaoItem<T>,
     }
 
     @Override
-    public void save(T entity) {
+    public boolean save(T entity) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(entity);
+        return session.save(entity) != null;
     }
 
     @Override

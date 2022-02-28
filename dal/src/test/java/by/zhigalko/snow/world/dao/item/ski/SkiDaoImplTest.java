@@ -189,7 +189,7 @@ class SkiDaoImplTest {
         ski.setCost(10.0);
         Image image = new Image();
         image.setImageName("imgSnbBoot" + counter.incrementAndGet() + ".png");
-        image.addImage(ski);
+        image.addItem(ski);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("SK155");
         equipmentSize.setUserMinHeight(165);

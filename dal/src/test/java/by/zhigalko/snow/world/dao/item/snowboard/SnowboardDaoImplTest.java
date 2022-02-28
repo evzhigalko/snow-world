@@ -99,7 +99,7 @@ class SnowboardDaoImplTest {
         equipmentSize1.setUserMaxWeight(110);
         Image image1 = new Image();
         image1.setImageName("imgSNB1.png");
-        image1.addImage(snowboard1);
+        image1.addItem(snowboard1);
         equipmentSize1.addEquipment(snowboard1);
 
         Snowboard snowboard2 = new Snowboard();
@@ -118,7 +118,7 @@ class SnowboardDaoImplTest {
         equipmentSize2.setUserMaxWeight(110);
         Image image2 = new Image();
         image2.setImageName("imgSNB2.png");
-        image2.addImage(snowboard2);
+        image2.addItem(snowboard2);
         equipmentSize2.addEquipment(snowboard2);
         saveSnowboard(snowboard1);
         saveSnowboard(snowboard2);
@@ -223,7 +223,7 @@ class SnowboardDaoImplTest {
         equipmentSize1.setUserMaxWeight(110);
         Image image1 = new Image();
         image1.setImageName("imgSNB1.png");
-        image1.addImage(snowboard1);
+        image1.addItem(snowboard1);
         equipmentSize1.addEquipment(snowboard1);
 
         Snowboard snowboard2 = new Snowboard();
@@ -242,7 +242,7 @@ class SnowboardDaoImplTest {
         equipmentSize2.setUserMaxWeight(110);
         Image image2 = new Image();
         image2.setImageName("imgSNB2.png");
-        image2.addImage(snowboard2);
+        image2.addItem(snowboard2);
         equipmentSize2.addEquipment(snowboard2);
         saveSnowboard(snowboard1);
         saveSnowboard(snowboard2);
@@ -312,7 +312,7 @@ class SnowboardDaoImplTest {
         equipmentSize.setUserMaxWeight(110);
         Image image = new Image();
         image.setImageName("imgSNB1.png");
-        image.addImage(expected);
+        image.addItem(expected);
         equipmentSize.addEquipment(expected);
         return expected;
     }

@@ -9,7 +9,7 @@ public interface BaseDaoItem<T extends Item> {
      * Allow to process data: save, find by id, find all, update, delete entities
      * @param entity
      */
-    void save(T entity);
+    boolean save(T entity);
 
     T findById(UUID id);
 

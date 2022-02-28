@@ -21,11 +21,11 @@ public class Image extends BaseEntity {
     @OneToMany(mappedBy = "image")
     private Set<Item> items = new HashSet<>();
 
-    public void addImage(Item item) {
+    public void addItem(Item item) {
         this.items.add(item);
         item.setImage(this);
     }
-    public void removeImage(Item item) {
+    public void removeItem(Item item) {
         this.items.remove(item);
     }
 }

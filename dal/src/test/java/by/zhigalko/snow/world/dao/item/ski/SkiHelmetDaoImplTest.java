@@ -184,7 +184,7 @@ class SkiHelmetDaoImplTest {
         skiHelmet.setCost(3.0);
         Image image = new Image();
         image.setImageName("imgSkiHelmet" + counter.incrementAndGet() + ".png");
-        image.addImage(skiHelmet);
+        image.addItem(skiHelmet);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("XS");
         equipmentSize.addEquipment(skiHelmet);

@@ -22,10 +22,8 @@ public class EquipmentSizeDaoImpl implements EquipmentSizeDao{
     @Override
     public EquipmentSize findById(String id) {
         Session session = sessionFactory.getCurrentSession();
-        EquipmentSize equipmentSize = null;
         Query query = session.createQuery("select eqs from EquipmentSize as eqs where id = :id");
         query.setParameter("id", id);
-        equipmentSize = (EquipmentSize) query.getSingleResult();
-        return equipmentSize;
+        return (EquipmentSize) query.getSingleResult();
     }
 }

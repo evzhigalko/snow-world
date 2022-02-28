@@ -108,18 +108,77 @@
                                             </li>
                                             <li>
                                                 <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#change-snowboard-boot-menu"
+                                                   href="#add-new-snowboard-boot"
                                                    aria-expanded="false">
                                                     Ботинки сноубордические
                                                 </a>
+                                                <div class="collapse" id="add-new-snowboard-boot">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="<c:url value="/admin/create/new/snowboard_boot"/>" aria-expanded="false">
+                                                                        Добавить новый
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Изменить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Удалить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#change-snowboard-helmet-menu"
+                                                   href="#add-new-snowboard-helmet"
                                                    aria-expanded="false">
                                                     Шлемы сноубордические
                                                 </a>
-
+                                                <div class="collapse" id="add-new-snowboard-helmet">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="<c:url value="/admin/create/new/snowboard_helmet"/>" aria-expanded="false">
+                                                                        Добавить новый
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Изменить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Удалить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>

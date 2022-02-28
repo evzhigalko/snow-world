@@ -185,7 +185,7 @@ class PantsDaoImplTest {
         pants.setCost(7.0);
         Image image = new Image();
         image.setImageName("imgPants" + counter.incrementAndGet() + ".png");
-        image.addImage(pants);
+        image.addItem(pants);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("M");
         equipmentSize.addEquipment(pants);

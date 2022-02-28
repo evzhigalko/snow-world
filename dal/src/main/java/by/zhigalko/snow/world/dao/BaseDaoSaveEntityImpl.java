@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
 @Getter
@@ -12,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class BaseDaoSaveEntityImpl<T extends BaseEntity> implements BaseDaoSaveEntity<T>{
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Override
     public boolean save(T entity) {

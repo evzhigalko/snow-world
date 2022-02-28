@@ -187,7 +187,7 @@ class SnowboardBootDaoImplTest {
         snowboardBoot.setCost(7.0);
         Image image = new Image();
         image.setImageName("imgSnbBoot" + counter.incrementAndGet() + ".png");
-        image.addImage(snowboardBoot);
+        image.addItem(snowboardBoot);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("43");
         equipmentSize.addEquipment(snowboardBoot);

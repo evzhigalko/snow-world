@@ -185,7 +185,7 @@ class JacketDaoImplTest {
         jacket.setCost(7.0);
         Image image = new Image();
         image.setImageName("imgJacket" + counter.incrementAndGet() + ".png");
-        image.addImage(jacket);
+        image.addItem(jacket);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("M");
         equipmentSize.addEquipment(jacket);

@@ -185,7 +185,7 @@ class SkiBootDaoImplTest {
         skiBoot.setCost(7.0);
         Image image = new Image();
         image.setImageName("imgSkiBoot" + counter.incrementAndGet() + ".png");
-        image.addImage(skiBoot);
+        image.addItem(skiBoot);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("43");
         equipmentSize.addEquipment(skiBoot);

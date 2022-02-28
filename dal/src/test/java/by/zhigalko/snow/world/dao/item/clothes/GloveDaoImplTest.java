@@ -186,7 +186,7 @@ class GloveDaoImplTest {
         glove.setCost(2.0);
         Image image = new Image();
         image.setImageName("imgGlove" + counter.incrementAndGet() + ".png");
-        image.addImage(glove);
+        image.addItem(glove);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("XS");
         equipmentSize.addEquipment(glove);

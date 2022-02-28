@@ -212,7 +212,7 @@ class SkiPoleDaoImplTest {
         skiPole.setCost(10.0);
         Image image = new Image();
         image.setImageName("imgSkiPole.png");
-        image.addImage(skiPole);
+        image.addItem(skiPole);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("SP110");
         equipmentSize.setUserMinHeight(153);

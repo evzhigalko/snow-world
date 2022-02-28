@@ -184,7 +184,7 @@ class MittenDaoImplTest {
         mitten.setCost(2.0);
         Image image = new Image();
         image.setImageName("imgMit" + counter.incrementAndGet() + ".png");
-        image.addImage(mitten);
+        image.addItem(mitten);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("M");
         equipmentSize.addEquipment(mitten);
