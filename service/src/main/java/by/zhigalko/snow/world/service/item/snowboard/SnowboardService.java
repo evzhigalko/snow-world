@@ -8,11 +8,14 @@ import by.zhigalko.snow.world.entity.enums.HardnessLevel;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
+import by.zhigalko.snow.world.service.item.BaseItemService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
-public class SnowboardService {
+public class SnowboardService implements BaseItemService<Snowboard> {
     private final SnowboardDaoImpl snowboardDao;
 
     @Autowired
@@ -20,24 +23,32 @@ public class SnowboardService {
         this.snowboardDao = snowboardDao;
     }
 
-    public Snowboard getItem(String maker, HardnessLevel hardnessLevel,
-                             RidingLevel ridingLevel, Gender gender, double cost,
-                             boolean availableToRental, EquipmentSize equipmentSize,
-                             Image image, ProductGroup productGroup) {
+    public Snowboard getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
         Snowboard snowboard = new Snowboard();
-        snowboard.setMaker(maker);
-        snowboard.setHardnessLevel(hardnessLevel);
-        snowboard.setRidingLevel(ridingLevel);
-        snowboard.setGender(gender);
-        snowboard.setCost(cost);
-        snowboard.setAvailableToRental(availableToRental);
+        snowboard.setMaker(request.getParameter("maker"));
+        snowboard.setHardnessLevel(HardnessLevel.valueOf(request.getParameter("hardness_level")));
+        snowboard.setRidingLevel(RidingLevel.valueOf(request.getParameter("riding_level")));
+        snowboard.setGender(Gender.valueOf(request.getParameter("gender")));
+        snowboard.setCost(Double.parseDouble(request.getParameter("cost")));
+        snowboard.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
         snowboard.setEquipmentSizeId(equipmentSize);
         snowboard.setImage(image);
-        snowboard.setProductName(productGroup);
+        snowboard.setProductName(ProductGroup.valueOf(request.getParameter("product_group")));
         return snowboard;
     }
 
+    @Override
     public boolean save(Snowboard snowboard) {
         return snowboardDao.save(snowboard);
+    }
+
+    @Override
+    public List<Snowboard> findAll(int page, int pageSize) {
+        return snowboardDao.findAll(page, pageSize);
+    }
+
+    @Override
+    public long count() {
+        return snowboardDao.count();
     }
 }

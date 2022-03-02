@@ -6,11 +6,14 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardHelmet;
+import by.zhigalko.snow.world.service.item.BaseItemService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
-public class SnowboardHelmetService {
+public class SnowboardHelmetService implements BaseItemService<SnowboardHelmet> {
     private final SnowboardHelmetDaoImpl snowboardHelmetDao;
 
     @Autowired
@@ -18,21 +21,30 @@ public class SnowboardHelmetService {
         this.snowboardHelmetDao = snowboardHelmetDao;
     }
 
-    public SnowboardHelmet getItem(String maker, Gender gender, double cost,
-                                 boolean availableToRental, EquipmentSize equipmentSize,
-                                 Image image, ProductGroup productGroup) {
+    public SnowboardHelmet getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
         SnowboardHelmet snowboardHelmet = new SnowboardHelmet();
-        snowboardHelmet.setMaker(maker);
-        snowboardHelmet.setGender(gender);
-        snowboardHelmet.setCost(cost);
-        snowboardHelmet.setAvailableToRental(availableToRental);
+        snowboardHelmet.setMaker(request.getParameter("maker"));
+        snowboardHelmet.setGender(Gender.valueOf(request.getParameter("gender")));
+        snowboardHelmet.setCost(Double.parseDouble(request.getParameter("cost")));
+        snowboardHelmet.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
         snowboardHelmet.setEquipmentSizeId(equipmentSize);
         snowboardHelmet.setImage(image);
-        snowboardHelmet.setProductName(productGroup);
+        snowboardHelmet.setProductName(ProductGroup.valueOf(request.getParameter("product_group")));
         return snowboardHelmet;
     }
 
+    @Override
     public boolean save(SnowboardHelmet snowboardHelmet) {
         return snowboardHelmetDao.save(snowboardHelmet);
+    }
+
+    @Override
+    public List<SnowboardHelmet> findAll(int page, int pageSize) {
+        return snowboardHelmetDao.findAll(page, pageSize);
+    }
+
+    @Override
+    public long count() {
+        return snowboardHelmetDao.count();
     }
 }

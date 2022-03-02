@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.util;
+package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.exception.ValidationException;

@@ -6,7 +6,7 @@ import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.*;
-import by.zhigalko.snow.world.service.item.ItemService;
+import by.zhigalko.snow.world.service.common.AdminItemService;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -54,7 +54,7 @@ public class AdminCreateItemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String bucketName = request.getSession().getAttribute("product").toString().toUpperCase();
-            ItemService itemService = context.getBean("itemService", ItemService.class);
+            AdminItemService itemService = context.getBean("itemService", AdminItemService.class);
             boolean isSaved = itemService.saveItem(request, bucketName.toLowerCase());
             if(isSaved) {
                 request.getRequestDispatcher(String.valueOf(Page.ADMIN_PAGE.getForwardPage())).forward(request, response);

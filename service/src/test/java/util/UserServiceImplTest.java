@@ -1,17 +1,22 @@
 package util;
 
 import by.zhigalko.snow.world.exception.ValidationException;
-import by.zhigalko.snow.world.util.UserServiceImpl;
+import by.zhigalko.snow.world.service.user.UserServiceImpl;
+import by.zhigalko.snow.world.util.ApplicationConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceImplTest {
     private static UserServiceImpl userService;
+    private static ApplicationContext context;
 
     @BeforeAll
     static void init() {
-        userService = UserServiceImpl.getInstance();
+        context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        userService = context.getBean("userService", UserServiceImpl.class);
     }
 
     @Test

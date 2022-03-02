@@ -1,13 +1,12 @@
 package by.zhigalko.snow.world.controller.servlet;
 
-import by.zhigalko.snow.world.dao.user.RoleDaoImpl;
-import by.zhigalko.snow.world.dao.user.UserDaoImpl;
 import by.zhigalko.snow.world.entity.Role;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
-import by.zhigalko.snow.world.util.UserServiceImpl;
+import by.zhigalko.snow.world.service.user.RoleService;
+import by.zhigalko.snow.world.service.user.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -33,17 +32,16 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDaoImpl userDao = context.getBean("userDao", UserDaoImpl.class);
         User user;
-        UserServiceImpl userService = UserServiceImpl.getInstance();
+        UserServiceImpl userService = context.getBean("userService", UserServiceImpl.class);
         try {
             user = userService.createUser(request);
-            RoleDaoImpl roleDao = context.getBean("roleDao", RoleDaoImpl.class);
-            Role role = roleDao.find(RoleName.USER);
+            RoleService roleService = context.getBean("roleService", RoleService.class);
+            Role role = roleService.findByRoleName(RoleName.USER);
             user.setRole(role);
-            boolean userExists = userDao.findByUsernameAndEmail(user.getUsername(), user.getEmail());
+            boolean userExists = userService.findByUsernameAndEmail(user.getUsername(), user.getEmail());
             if (!userExists) {
-                boolean isSaved = userDao.save(user); {
+                boolean isSaved = userService.save(user); {
                     if(isSaved) {
                         request.getRequestDispatcher(Page.LOGIN_FORM.getForwardPage()).forward(request, response);
                     }

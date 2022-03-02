@@ -1,12 +1,11 @@
 package by.zhigalko.snow.world.controller;
 
-import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
-import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
-import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
-import by.zhigalko.snow.world.dao.item.ski.SkiPoleDaoImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.service.item.BaseItemService;
+import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
+import by.zhigalko.snow.world.service.item.ski.SkiPoleService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -50,12 +49,12 @@ public class CatalogController extends HttpServlet {
         int page = (Integer.parseInt(pageStr) - 1) * PAGE_SIZE;
         try {
             Page pageEnum = Page.getEnum(requestURI);
-            DaoEquipmentFactory<Item> daoFactory = context.getBean("daoEquipmentFactory", DaoEquipmentFactoryImpl.class);
-            BaseDaoItemImpl dao = daoFactory.getDao(pageEnum);
-            paginate(request, page, dao);
+            ServiceEquipmentFactory serviceEquipmentFactory = context.getBean("serviceEquipmentFactory", ServiceEquipmentFactory.class);
+            BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(pageEnum);
+            paginate(request, page, service);
             if (pageEnum.equals(Page.SKI_LIST)) {
-                SkiPoleDaoImpl skiPoleDao = context.getBean("skiPoleDao", SkiPoleDaoImpl.class);
-                List<EquipmentSize> skiPoleSizeList = skiPoleDao.findAllSizes();
+                SkiPoleService skiPoleService = context.getBean("skiPoleService", SkiPoleService.class);
+                List<EquipmentSize> skiPoleSizeList = skiPoleService.findAllSizes();
                 request.setAttribute("skiPoleSizeList", skiPoleSizeList);
             }
             String forwardPath = pageEnum.getForwardPage();
@@ -66,9 +65,9 @@ public class CatalogController extends HttpServlet {
         }
     }
 
-    private void paginate(HttpServletRequest request, int page, BaseDaoItemImpl dao) throws ServletException, IOException {
-        List<Item> list = dao.findAll(page, PAGE_SIZE);
-        long entityNumber = dao.count();
+    private void paginate(HttpServletRequest request, int page, BaseItemService<? extends Item> service) throws ServletException, IOException {
+        List<? extends Item> list = service.findAll(page, PAGE_SIZE);
+        long entityNumber = service.count();
         long pagesNumber = (long) Math.ceil(entityNumber * 1.0 / PAGE_SIZE);
         request.setAttribute("pagesNumber", pagesNumber);
         request.setAttribute("list", list);

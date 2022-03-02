@@ -26,8 +26,8 @@ public class DaoEquipmentFactoryImpl implements DaoEquipmentFactory<Item>{
     }
 
     @Override
-    public BaseDaoItemImpl<Item> getDao(Page page) {
-        BaseDaoItemImpl dao = null;
+    public BaseDaoItemImpl<? extends Item> getDao(Page page) {
+        BaseDaoItemImpl<? extends Item> dao = null;
         switch (page) {
             case SNOWBOARD_LIST:
                 dao = context.getBean("snowboardDao", SnowboardDaoImpl.class);

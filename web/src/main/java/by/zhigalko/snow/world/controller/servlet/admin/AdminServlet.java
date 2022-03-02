@@ -3,11 +3,10 @@ package by.zhigalko.snow.world.controller.servlet.admin;
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
 import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
-import by.zhigalko.snow.world.dao.user.UserDao;
-import by.zhigalko.snow.world.dao.user.UserDaoImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.service.user.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -32,8 +31,8 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             log.info("doGet from AdminServlet");
-            UserDao userDao = context.getBean("userDao", UserDaoImpl.class);
-            List<User> usersList = userDao.findAllUsers();
+            UserServiceImpl userService = context.getBean("userService", UserServiceImpl.class);
+            List<User> usersList = userService.findAllUsers();
             request.setAttribute("usersList", usersList);
             request.getRequestDispatcher(Page.ADMIN_PAGE.getForwardPage()).forward(request, response);
         } catch (Exception e) {
