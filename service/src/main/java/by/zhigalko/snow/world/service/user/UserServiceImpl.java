@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.service.user;
 
-import by.zhigalko.snow.world.dao.user.UserDaoImpl;
+import by.zhigalko.snow.world.dao.user.UserDao;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.exception.ValidationException;
@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-    private final UserDaoImpl userDao;
+    private final UserDao userDao;
     private static final int NAME_MIN_LENGTH = 2;
     private static final int CREDENTIALS_MIN_LENGTH = 5;
     private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private static final Pattern PHONE_NUMBER_VALIDATION_PATTERN = Pattern.compile("^[+]{1}[0-9]{3}([\\s-]?\\d{2}|[(]?[0-9]{2}[)])?([\\s-]?[0-9]){6,7}$");
 
     @Autowired
-    public UserServiceImpl(UserDaoImpl userDao) {
+    public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -46,19 +46,22 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
-
+    @Override
     public boolean save(User user) {
         return userDao.save(user);
     }
 
+    @Override
     public User findByUsernameAndPassword(String username, String password) {
         return userDao.findByUsernameAndPassword(username, password);
     }
 
+    @Override
     public boolean findByUsernameAndEmail(String username, String email) {
         return userDao.findByUsernameAndEmail(username, email);
     }
 
+    @Override
     public List<User> findAllUsers() {
         return userDao.findAllUsers();
     }
