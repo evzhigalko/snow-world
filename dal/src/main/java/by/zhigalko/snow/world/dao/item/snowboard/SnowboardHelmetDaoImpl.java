@@ -1,13 +1,10 @@
 package by.zhigalko.snow.world.dao.item.snowboard;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.entity.EquipmentSize;
-import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardHelmet;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
@@ -15,7 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository("snowboardHelmetDao")
-public class SnowboardHelmetDaoImpl extends BaseDaoItemImpl<SnowboardHelmet> implements EquipmentAllSizesDao {
+public class SnowboardHelmetDaoImpl extends BaseDaoItemImpl<SnowboardHelmet> {
     public SnowboardHelmetDaoImpl() {
         super(SnowboardHelmet.class);
     }

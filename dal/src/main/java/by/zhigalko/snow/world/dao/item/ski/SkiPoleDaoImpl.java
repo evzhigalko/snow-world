@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("skiPoleDao")
-public class SkiPoleDaoImpl extends BaseDaoItemImpl<SkiPole> implements EquipmentAllSizesDao {
+public class SkiPoleDaoImpl extends BaseDaoItemImpl<SkiPole> {
     public SkiPoleDaoImpl() {
         super(SkiPole.class);
     }

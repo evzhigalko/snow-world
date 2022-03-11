@@ -1,23 +1,20 @@
 package by.zhigalko.snow.world.service.item.snowboard;
 
-import by.zhigalko.snow.world.dao.item.snowboard.SnowboardBootDaoImpl;
+import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
-import by.zhigalko.snow.world.service.item.BaseItemService;
+import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
-public class SnowboardBootService implements BaseItemService<SnowboardBoot> {
-    private final SnowboardBootDaoImpl snowboardBootDao;
-
+public class SnowboardBootService extends BaseItemServiceImpl<SnowboardBoot> {
     @Autowired
-    public SnowboardBootService(SnowboardBootDaoImpl snowboardBootDao) {
-        this.snowboardBootDao = snowboardBootDao;
+    public SnowboardBootService(BaseDaoItemImpl<SnowboardBoot> dao) {
+        super(dao);
     }
 
     public SnowboardBoot getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
@@ -31,19 +28,5 @@ public class SnowboardBootService implements BaseItemService<SnowboardBoot> {
         snowboardBoot.setImage(image);
         snowboardBoot.setProductName(ProductGroup.valueOf(request.getParameter("product_group")));
         return snowboardBoot;
-    }
-    @Override
-    public boolean save(SnowboardBoot snowboardBoot) {
-        return snowboardBootDao.save(snowboardBoot);
-    }
-
-    @Override
-    public List<SnowboardBoot> findAll(int page, int pageSize) {
-        return snowboardBootDao.findAll(page, pageSize);
-    }
-
-    @Override
-    public long count() {
-        return snowboardBootDao.count();
     }
 }

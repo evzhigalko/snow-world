@@ -22,8 +22,8 @@ public class ServiceEquipmentFactory {
         this.context = context;
     }
 
-    public BaseItemService<? extends Item> getService(Page page) {
-        BaseItemService<? extends Item> service = null;
+    public BaseUpdateItemService<? extends Item> getService(Page page) {
+        BaseUpdateItemService<? extends Item> service = null;
         switch (page) {
             case SNOWBOARD_LIST:
                 service = context.getBean("snowboardService", SnowboardService.class);

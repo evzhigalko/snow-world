@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.dao.item.snowboard;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository("snowboardDao")
-public class SnowboardDaoImpl extends BaseDaoItemImpl<Snowboard> implements EquipmentAllSizesDao {
+public class SnowboardDaoImpl extends BaseDaoItemImpl<Snowboard> {
     public SnowboardDaoImpl() {
         super(Snowboard.class);
     }

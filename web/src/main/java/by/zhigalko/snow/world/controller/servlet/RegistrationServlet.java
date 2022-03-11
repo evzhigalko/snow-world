@@ -6,6 +6,7 @@ import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.user.RoleService;
+import by.zhigalko.snow.world.service.user.UserService;
 import by.zhigalko.snow.world.service.user.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -33,7 +34,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user;
-        UserServiceImpl userService = context.getBean("userService", UserServiceImpl.class);
+        UserService userService = context.getBean("userService", UserServiceImpl.class);
         try {
             user = userService.createUser(request);
             RoleService roleService = context.getBean("roleService", RoleService.class);

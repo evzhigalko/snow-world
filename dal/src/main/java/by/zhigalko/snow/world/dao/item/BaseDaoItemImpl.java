@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.dao.item;
 
+import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.entity.Item;
 import javax.persistence.Query;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.UUID;
 
 @Getter
 @Transactional
-public abstract class BaseDaoItemImpl<T extends Item> implements BaseDaoItem<T>, BaseDaoCountItem<T>, BaseDaoUpdateItem<T> {
+public abstract class BaseDaoItemImpl<T extends Item> implements BaseDaoItem<T>, BaseDaoCountItem<T>, BaseDaoUpdateItem<T>, EquipmentAllSizesDao {
     @Autowired
     private SessionFactory sessionFactory;
     private final Class<T> iClass;

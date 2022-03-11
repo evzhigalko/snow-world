@@ -5,6 +5,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 public interface BaseItemService<T extends Item> {
     T getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image);
@@ -14,4 +15,6 @@ public interface BaseItemService<T extends Item> {
     List<T> findAll(int page, int pageSize);
 
     long count();
+
+    T findById(UUID id);
 }

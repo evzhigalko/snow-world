@@ -1,11 +1,11 @@
 package by.zhigalko.snow.world.controller.servlet.admin;
 
-import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
-import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
-import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.service.item.BaseUpdateItemService;
+import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
+import by.zhigalko.snow.world.service.user.UserService;
 import by.zhigalko.snow.world.service.user.UserServiceImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -31,7 +31,7 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             log.info("doGet from AdminServlet");
-            UserServiceImpl userService = context.getBean("userService", UserServiceImpl.class);
+            UserService userService = context.getBean("userService", UserServiceImpl.class);
             List<User> usersList = userService.findAllUsers();
             request.setAttribute("usersList", usersList);
             request.getRequestDispatcher(Page.ADMIN_PAGE.getForwardPage()).forward(request, response);
@@ -51,14 +51,14 @@ public class AdminServlet extends HttpServlet {
             String page_number = (String) request.getSession().getAttribute("pageStr");
             UUID id = UUID.fromString(item_id);
             Page pageEnum = Page.getEnum(request.getRequestURI());
-            DaoEquipmentFactory<Item> daoFactory = context.getBean("daoEquipmentFactory", DaoEquipmentFactoryImpl.class);
-            BaseDaoItemImpl dao = daoFactory.getDao(pageEnum);
-            Item item = dao.findById(id);
+            ServiceEquipmentFactory serviceEquipmentFactory = context.getBean("serviceEquipmentFactory", ServiceEquipmentFactory.class);
+            BaseUpdateItemService service = serviceEquipmentFactory.getService(pageEnum);
+            Item item = service.findById(id);
             if (!cost.isEmpty()) {
-                dao.updateCost(item, Double.parseDouble(cost));
+                service.updateCost(item, Double.parseDouble(cost));
             }
             if (!availableToRental.isEmpty()) {
-                dao.updateAvailable(item, Boolean.parseBoolean(availableToRental));
+                service.updateAvailable(item, Boolean.parseBoolean(availableToRental));
             }
             response.sendRedirect(request.getContextPath() + pageEnum.getUrl() + page_number);
         } catch (Exception e) {
