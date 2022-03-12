@@ -42,6 +42,7 @@
         <minio.version>8.3.6</minio.version>
         <aspectj.version>1.9.8</aspectj.version>
         <javax.persistence.version>2.2</javax.persistence.version>
+        <javax.servlet>4.0.1</javax.servlet>
     </properties>
 
     <dependencyManagement>
@@ -122,9 +123,10 @@
                 <version>${log4j2.version}</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.servlet</groupId>
-                <artifactId>jakarta.servlet-api</artifactId>
-                <version>${servlet.version}</version>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>by.zhigalko.snow.world</groupId>
@@ -132,9 +134,15 @@
                 <version>${service.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.glassfish.web</groupId>
-                <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-                <version>${jstl.version}</version>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>javax.servlet.jsp-api</artifactId>
+                <version>2.3.3</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>1.2</version>
             </dependency>
             <dependency>
                 <groupId>io.minio</groupId>

@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.exception.ValidationException;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
 

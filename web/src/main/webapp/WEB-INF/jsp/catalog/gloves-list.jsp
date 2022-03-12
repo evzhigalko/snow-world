@@ -7,7 +7,7 @@
 </head>
 <body>
 <header>
-    <%@ include file="/WEB-INF/static/navbar.jsp" %>
+    <%@ include file="/WEB-INF/jsp/static/navbar.jsp"%>
 </header>
 <ul class="list-group" style="padding-top: 7rem">
     <div class="container">

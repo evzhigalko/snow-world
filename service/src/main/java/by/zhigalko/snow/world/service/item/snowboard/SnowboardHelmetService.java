@@ -7,7 +7,7 @@ import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardHelmet;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

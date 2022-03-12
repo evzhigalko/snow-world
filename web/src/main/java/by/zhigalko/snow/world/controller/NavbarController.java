@@ -1,9 +1,9 @@
 package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.entity.enums.Page;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 

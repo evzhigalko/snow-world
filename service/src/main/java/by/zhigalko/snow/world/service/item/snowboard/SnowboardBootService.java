@@ -6,7 +6,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

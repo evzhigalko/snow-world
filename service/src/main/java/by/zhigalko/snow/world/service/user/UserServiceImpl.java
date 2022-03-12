@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.dao.user.UserDao;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.exception.ValidationException;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

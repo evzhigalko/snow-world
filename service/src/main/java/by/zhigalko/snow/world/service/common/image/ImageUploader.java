@@ -1,12 +1,11 @@
 package by.zhigalko.snow.world.service.common.image;
 
 import io.minio.*;
-import jakarta.servlet.http.Part;
+import javax.servlet.http.Part;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.io.InputStream;
 

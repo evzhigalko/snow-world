@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.service.common.image;
 
 import by.zhigalko.snow.world.dao.image.ImageDaoImpl;
 import by.zhigalko.snow.world.entity.Image;
-import jakarta.servlet.http.Part;
+import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.IOException;

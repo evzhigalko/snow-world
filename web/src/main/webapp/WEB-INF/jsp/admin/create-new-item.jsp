@@ -7,7 +7,7 @@
 </head>
 <body>
 <header>
-    <%@ include file="/WEB-INF/static/navbar.jsp" %>
+    <%@ include file="/WEB-INF/jsp/static/navbar.jsp"%>
     <h3 align="center">Привет админ!</h3>
 </header>
 <div class="container">
