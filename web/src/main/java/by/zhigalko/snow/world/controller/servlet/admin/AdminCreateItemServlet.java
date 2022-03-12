@@ -1,12 +1,10 @@
 package by.zhigalko.snow.world.controller.servlet.admin;
 
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
-import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactory;
-import by.zhigalko.snow.world.dao.item.factory.DaoEquipmentFactoryImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
-import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.service.common.AdminItemService;
+import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
+import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -38,9 +36,9 @@ public class AdminCreateItemServlet extends HttpServlet {
             String requestURI = request.getRequestURI();
             String[] split = requestURI.split("/");
             String product = split[split.length - 1];
-            DaoEquipmentFactory<Item> daoFactory = context.getBean("daoEquipmentFactory", DaoEquipmentFactoryImpl.class);
-            EquipmentAllSizesDao allSizesDao = daoFactory.getAllSizesDao(product);
-            List<EquipmentSize> allSizes = allSizesDao.findAllSizes();
+            ServiceEquipmentFactory serviceEquipmentFactory = context.getBean("serviceEquipmentFactory", ServiceEquipmentFactory.class);
+            EquipmentAllSizesService allSizesService = serviceEquipmentFactory.getAllSizesService(product);
+            List<EquipmentSize> allSizes = allSizesService.findAllSizes();
             request.setAttribute("allSizes", allSizes);
             request.getSession().setAttribute("product", product);
             request.getRequestDispatcher("/WEB-INF/jsp/admin/create-new-item.jsp").forward(request, response);

@@ -11,7 +11,6 @@ import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
 import by.zhigalko.snow.world.dao.item.snowboard.SnowboardHelmetDaoImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Page;
-import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;

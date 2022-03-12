@@ -1,7 +1,12 @@
 package by.zhigalko.snow.world.service.item;
 
+import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
+import by.zhigalko.snow.world.dao.item.snowboard.SnowboardBootDaoImpl;
+import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
+import by.zhigalko.snow.world.dao.item.snowboard.SnowboardHelmetDaoImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
 import by.zhigalko.snow.world.service.item.clothes.*;
 import by.zhigalko.snow.world.service.item.ski.SkiBootService;
 import by.zhigalko.snow.world.service.item.ski.SkiHelmetService;
@@ -63,5 +68,19 @@ public class ServiceEquipmentFactory {
                 break;
         }
         return service;
+    }
+    public EquipmentAllSizesService getAllSizesService(String itemName) {
+        EquipmentAllSizesService allSizesService = null;
+        switch (itemName) {
+            case "snowboard":
+                allSizesService = context.getBean("snowboardService", SnowboardService.class);
+                break;
+            case "snowboard_boot":
+                allSizesService = context.getBean("snowboardBootService", SnowboardBootService.class);
+                break;
+            case "snowboard_helmet":
+                allSizesService = context.getBean("snowboardHelmetService", SnowboardHelmetService.class);
+        }
+        return allSizesService;
     }
 }
