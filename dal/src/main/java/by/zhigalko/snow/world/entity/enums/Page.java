@@ -5,25 +5,25 @@ import java.util.Arrays;
 
 @Getter
 public enum Page {
-    SNOWBOARD_LIST ("/snowboard/catalog/","/WEB-INF/jsp/catalog/snowboard-list.jsp"),
-    SNOWBOARD_BOOT_LIST("/snowboard/boot/catalog/","/WEB-INF/jsp/catalog/snowboard-boot-list.jsp"),
-    SNOWBOARD_HELMET_LIST("/snowboard/helmet/catalog/", "/WEB-INF/jsp/catalog/snowboard-helmet-list.jsp"),
-    SKI_LIST("/ski/catalog/","/WEB-INF/jsp/catalog/ski-list.jsp"),
-    SKI_BOOT_LIST("/ski/boot/catalog/","/WEB-INF/jsp/catalog/ski-boot-list.jsp"),
-    SKI_HELMET_LIST("/ski/helmet/catalog/", "/WEB-INF/jsp/catalog/ski-helmet-list.jsp"),
-    JACKET_LIST("/clothes/jacket/catalog/","/WEB-INF/jsp/catalog/jacket-list.jsp"),
-    PANTS_LIST("/clothes/pants/catalog/","/WEB-INF/jsp/catalog/pants-list.jsp"),
-    CAP_LIST("/clothes/cap/catalog/","/WEB-INF/jsp/catalog/cap-list.jsp"),
-    MASK_LIST("/clothes/mask/catalog/","/WEB-INF/jsp/catalog/mask-list.jsp"),
-    MITTENS_LIST( "/clothes/mittens/catalog/","/WEB-INF/jsp/catalog/mittens-list.jsp"),
-    GLOVES_LIST("/clothes/gloves/catalog/","/WEB-INF/jsp/catalog/gloves-list.jsp"),
-    SNOWBOARD_GROUP("/snowboard","/WEB-INF/jsp/snowboard-group.jsp"),
-    SKI_GROUP("/ski","/WEB-INF/jsp/ski-group.jsp"),
-    CLOTHES_GROUP("/clothes","/WEB-INF/jsp/clothes-group.jsp"),
-    CONTACTS("/contacts","/WEB-INF/static/contacts.jsp"),
-    LOGIN_FORM("/form/login","/WEB-INF/jsp/login.jsp"),
-    REGISTRATION_FORM("/form/registration", "/WEB-INF/jsp/registration.jsp"),
-    ADMIN_PAGE("/admin/", "/WEB-INF/jsp/admin/admin.jsp");
+    SNOWBOARD_LIST ("/snowboard/catalog/","catalog/snowboard-list"),
+    SNOWBOARD_BOOT_LIST("/snowboard/boot/catalog/","catalog/snowboard-boot-list"),
+    SNOWBOARD_HELMET_LIST("/snowboard/helmet/catalog/", "catalog/snowboard-helmet-list"),
+    SKI_LIST("/ski/catalog/","catalog/ski-list"),
+    SKI_BOOT_LIST("/ski/boot/catalog/","catalog/ski-boot-list"),
+    SKI_HELMET_LIST("/ski/helmet/catalog/", "catalog/ski-helmet-list"),
+    JACKET_LIST("/clothes/jacket/catalog/","catalog/jacket-list"),
+    PANTS_LIST("/clothes/pants/catalog/","catalog/pants-list"),
+    CAP_LIST("/clothes/cap/catalog/","catalog/cap-list"),
+    MASK_LIST("/clothes/mask/catalog/","catalog/mask-list"),
+    MITTENS_LIST( "/clothes/mittens/catalog/","catalog/mittens-list"),
+    GLOVES_LIST("/clothes/gloves/catalog/","catalog/gloves-list"),
+    SNOWBOARD_GROUP("/snowboard","snowboard-group"),
+    SKI_GROUP("/ski","ski-group"),
+    CLOTHES_GROUP("/clothes","clothes-group"),
+    CONTACTS("/contacts","static/contacts"),
+    LOGIN_FORM("/form/login","login"),
+    REGISTRATION_FORM("/form/registration", "registration"),
+    ADMIN_PAGE("/admin/", "administration/admin");
 
     private final String url;
     private final String forwardPage;
