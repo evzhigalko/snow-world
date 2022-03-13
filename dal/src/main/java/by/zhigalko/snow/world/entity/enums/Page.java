@@ -9,6 +9,7 @@ public enum Page {
     SNOWBOARD_BOOT_LIST("/snowboard/boot/catalog/","catalog/snowboard-boot-list"),
     SNOWBOARD_HELMET_LIST("/snowboard/helmet/catalog/", "catalog/snowboard-helmet-list"),
     SKI_LIST("/ski/catalog/","catalog/ski-list"),
+    SKI_POLE_LIST("", ""),
     SKI_BOOT_LIST("/ski/boot/catalog/","catalog/ski-boot-list"),
     SKI_HELMET_LIST("/ski/helmet/catalog/", "catalog/ski-helmet-list"),
     JACKET_LIST("/clothes/jacket/catalog/","catalog/jacket-list"),

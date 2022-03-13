@@ -1,15 +1,12 @@
 package by.zhigalko.snow.world.service.item;
 
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
-import by.zhigalko.snow.world.dao.item.snowboard.SnowboardBootDaoImpl;
-import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
-import by.zhigalko.snow.world.dao.item.snowboard.SnowboardHelmetDaoImpl;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
 import by.zhigalko.snow.world.service.item.clothes.*;
 import by.zhigalko.snow.world.service.item.ski.SkiBootService;
 import by.zhigalko.snow.world.service.item.ski.SkiHelmetService;
+import by.zhigalko.snow.world.service.item.ski.SkiPoleService;
 import by.zhigalko.snow.world.service.item.ski.SkiService;
 import by.zhigalko.snow.world.service.item.snowboard.SnowboardBootService;
 import by.zhigalko.snow.world.service.item.snowboard.SnowboardHelmetService;
@@ -27,8 +24,8 @@ public class ServiceEquipmentFactory {
         this.context = context;
     }
 
-    public BaseUpdateItemService<? extends Item> getService(Page page) {
-        BaseUpdateItemService<? extends Item> service = null;
+    public BaseItemServiceImpl<? extends Item> getService(Page page) {
+        BaseItemServiceImpl<? extends Item> service = null;
         switch (page) {
             case SNOWBOARD_LIST:
                 service = context.getBean("snowboardService", SnowboardService.class);
@@ -41,6 +38,9 @@ public class ServiceEquipmentFactory {
                 break;
             case SKI_LIST:
                 service = context.getBean("skiService", SkiService.class);
+                break;
+            case SKI_POLE_LIST:
+                service = context.getBean("skiPoleService", SkiPoleService.class);
                 break;
             case SKI_BOOT_LIST:
                 service = context.getBean("skiBootService", SkiBootService.class);
