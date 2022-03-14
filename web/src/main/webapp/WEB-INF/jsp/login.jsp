@@ -30,8 +30,8 @@
                                name="password" required oninvalid="this.setCustomValidity('Введите пароль')" oninput="setCustomValidity('')">
                     </div>
                     <div class="text-center mt-4" style="color: red">
-                        <c:if test="${requestScope.error != null}">
-                            <c:out value="${requestScope.error}"/>
+                        <c:if test="${error != null}">
+                            <c:out value="${error}"/>
                         </c:if>
                     </div>
                     <div class="d-grid gap-2">

@@ -20,14 +20,14 @@ public class LoggingFilter implements Filter {
             try {
                 chain.doFilter(request, response);
             } finally {
-                auditHttpRequest((HttpServletRequest) request, (HttpServletResponse) response);
+                auditHttpRequest((HttpServletRequest) request);
             }
         } else {
             chain.doFilter(request, response);
         }
     }
 
-    private void auditHttpRequest(HttpServletRequest req, HttpServletResponse resp) {
+    private void auditHttpRequest(HttpServletRequest req) {
         log.info("URL: " + req.getRequestURL());
         HttpSession session = req.getSession();
         if (session != null && session.getAttribute("user") != null) {
