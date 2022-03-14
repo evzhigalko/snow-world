@@ -13,6 +13,11 @@
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md-5">
             <div class="card px-5 py-5"><span class="circle"><i class="fa fa-check"></i></span>
+                <div class="text-center mt-4" style="color: green; padding-bottom: 2rem">
+                    <c:if test="${requestScope.message != null}">
+                        <c:out value="${requestScope.message}"/>
+                    </c:if>
+                </div>
                 <form action="<c:url value="/login"/>" method="post">
                     <div class="form-input">
                         <label for="label-username" class="form-label"> </label>

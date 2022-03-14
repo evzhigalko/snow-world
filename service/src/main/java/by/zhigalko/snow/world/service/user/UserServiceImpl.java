@@ -3,6 +3,7 @@ package by.zhigalko.snow.world.service.user;
 import by.zhigalko.snow.world.dao.user.UserDao;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Gender;
+import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,16 @@ public class UserServiceImpl implements UserService {
     private static final int CREDENTIALS_MIN_LENGTH = 5;
     private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private static final Pattern PHONE_NUMBER_VALIDATION_PATTERN = Pattern.compile("^[+]{1}[0-9]{3}([\\s-]?\\d{2}|[(]?[0-9]{2}[)])?([\\s-]?[0-9]){6,7}$");
+    private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao) {
+    public UserServiceImpl(UserDao userDao, RoleService roleService) {
         this.userDao = userDao;
+        this.roleService = roleService;
     }
 
     @Override
-    public User createUser(HttpServletRequest request) throws ValidationException {
-        User user = new User();
+    public User createUser(HttpServletRequest request, User user) throws ValidationException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
@@ -43,9 +45,11 @@ public class UserServiceImpl implements UserService {
             String genderName = request.getParameter("gender");
             Gender gender = Gender.valueOf(genderName);
             user.setGender(gender);
+            user.setRole(roleService.findByRoleName(RoleName.USER));
         }
         return user;
     }
+
     @Override
     public boolean save(User user) {
         return userDao.save(user);
