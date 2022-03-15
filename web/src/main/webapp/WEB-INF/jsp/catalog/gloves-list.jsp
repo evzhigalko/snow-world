@@ -38,7 +38,7 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/admin/clothes/gloves/catalog/item?id=${gloves.id}"/>"
+                                            <form action="<c:url value="/admin/clothes/gloves/catalog/${gloves.id}"/>"
                                                   method="post">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"

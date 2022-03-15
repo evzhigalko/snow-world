@@ -21,6 +21,7 @@ import java.util.List;
 
 @Log4j2
 @Controller
+@SessionAttributes("pageNumber")
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
@@ -72,8 +73,7 @@ public class MainController {
                 }
             }
             request.getSession().setAttribute("user", user);
-        }
-        catch (NoResultException e) {
+        } catch (NoResultException e) {
             request.getSession().invalidate();
             mav.setViewName("login");
             mav.addObject("error", "Имя пользователя или пароль не корректны");
@@ -122,13 +122,6 @@ public class MainController {
             return mav;
         }
         return mav;
-    }
-
-    @GetMapping("/admin")
-    public String showAdminPage(Model model) {
-        List<User> userList = userService.findAllUsers();
-        model.addAttribute("usersList", userList);
-        return "administration/admin";
     }
 
     @GetMapping("/snowboard/catalog/{page}")

@@ -41,7 +41,7 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/admin/snowboard/catalog/item?id=${snowboard.id}"/>"
+                                            <form action="<c:url value="/admin/snowboard/catalog/${snowboard.id}"/>"
                                                   method="post">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
