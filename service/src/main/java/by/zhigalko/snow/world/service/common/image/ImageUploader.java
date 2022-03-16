@@ -1,11 +1,11 @@
 package by.zhigalko.snow.world.service.common.image;
 
 import io.minio.*;
-import javax.servlet.http.Part;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -23,7 +23,7 @@ public class ImageUploader {
         minioServiceUrl = env.getProperty("minio.url");
     }
 
-    public String uploadImage(Part partFile, String bucketName, String imageName) throws IOException {
+    public String uploadImage(MultipartFile partFile, String bucketName, String imageName) throws IOException {
         String objectName = "";
         if (bucketName.contains("snowboard")) {
             bucketName = "snowboard";

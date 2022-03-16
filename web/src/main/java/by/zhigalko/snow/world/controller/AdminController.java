@@ -1,8 +1,11 @@
 package by.zhigalko.snow.world.controller;
 
+import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.service.common.AdminItemService;
+import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import by.zhigalko.snow.world.service.user.UserService;
@@ -11,19 +14,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 @Log4j2
 @Controller
+@SessionAttributes("item")
 public class AdminController {
     private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final UserService userService;
+    private final AdminItemService adminItemService;
 
     @Autowired
-    public AdminController(ServiceEquipmentFactory serviceEquipmentFactory, UserService userService) {
+    public AdminController(ServiceEquipmentFactory serviceEquipmentFactory, UserService userService, AdminItemService adminItemService) {
         this.serviceEquipmentFactory = serviceEquipmentFactory;
         this.userService = userService;
+        this.adminItemService = adminItemService;
     }
 
     @GetMapping("/admin")
@@ -75,9 +86,9 @@ public class AdminController {
 
     @PostMapping("/admin/ski/helmet/catalog/{id}")
     public String changeSkiHelmetOnAdminPage(@RequestParam("cost") String cost,
-                                       @RequestParam("availability") String availableToRental,
-                                       @PathVariable("id") UUID id,
-                                       @SessionAttribute("pageNumber") int pageNumber) {
+                                             @RequestParam("availability") String availableToRental,
+                                             @PathVariable("id") UUID id,
+                                             @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/ski/helmet/catalog/" + pageNumber;
@@ -85,9 +96,9 @@ public class AdminController {
 
     @PostMapping("/admin/ski/boot/catalog/{id}")
     public String changeSkiBootOnAdminPage(@RequestParam("cost") String cost,
-                                       @RequestParam("availability") String availableToRental,
-                                       @PathVariable("id") UUID id,
-                                       @SessionAttribute("pageNumber") int pageNumber) {
+                                           @RequestParam("availability") String availableToRental,
+                                           @PathVariable("id") UUID id,
+                                           @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/ski/boot/catalog/" + pageNumber;
@@ -95,9 +106,9 @@ public class AdminController {
 
     @PostMapping("/admin/clothes/cap/catalog/{id}")
     public String changeCapOnAdminPage(@RequestParam("cost") String cost,
-                                           @RequestParam("availability") String availableToRental,
-                                           @PathVariable("id") UUID id,
-                                           @SessionAttribute("pageNumber") int pageNumber) {
+                                       @RequestParam("availability") String availableToRental,
+                                       @PathVariable("id") UUID id,
+                                       @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.CAP_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/clothes/cap/catalog/" + pageNumber;
@@ -105,9 +116,9 @@ public class AdminController {
 
     @PostMapping("/admin/clothes/gloves/catalog/{id}")
     public String changeGlovesOnAdminPage(@RequestParam("cost") String cost,
-                                       @RequestParam("availability") String availableToRental,
-                                       @PathVariable("id") UUID id,
-                                       @SessionAttribute("pageNumber") int pageNumber) {
+                                          @RequestParam("availability") String availableToRental,
+                                          @PathVariable("id") UUID id,
+                                          @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/clothes/gloves/catalog/" + pageNumber;
@@ -115,9 +126,9 @@ public class AdminController {
 
     @PostMapping("/admin/clothes/jacket/catalog/{id}")
     public String changeJacketOnAdminPage(@RequestParam("cost") String cost,
-                                         @RequestParam("availability") String availableToRental,
-                                         @PathVariable("id") UUID id,
-                                         @SessionAttribute("pageNumber") int pageNumber) {
+                                          @RequestParam("availability") String availableToRental,
+                                          @PathVariable("id") UUID id,
+                                          @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/clothes/jacket/catalog/" + pageNumber;
@@ -125,9 +136,9 @@ public class AdminController {
 
     @PostMapping("/admin/clothes/mask/catalog/{id}")
     public String changeMaskOnAdminPage(@RequestParam("cost") String cost,
-                                          @RequestParam("availability") String availableToRental,
-                                          @PathVariable("id") UUID id,
-                                          @SessionAttribute("pageNumber") int pageNumber) {
+                                        @RequestParam("availability") String availableToRental,
+                                        @PathVariable("id") UUID id,
+                                        @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MASK_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/clothes/mask/catalog/" + pageNumber;
@@ -135,9 +146,9 @@ public class AdminController {
 
     @PostMapping("/admin/clothes/mittens/catalog/{id}")
     public String changeMittensOnAdminPage(@RequestParam("cost") String cost,
-                                        @RequestParam("availability") String availableToRental,
-                                        @PathVariable("id") UUID id,
-                                        @SessionAttribute("pageNumber") int pageNumber) {
+                                           @RequestParam("availability") String availableToRental,
+                                           @PathVariable("id") UUID id,
+                                           @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/clothes/mittens/catalog/" + pageNumber;
@@ -145,15 +156,81 @@ public class AdminController {
 
     @PostMapping("/admin/clothes/pants/catalog/{id}")
     public String changePantsOnAdminPage(@RequestParam("cost") String cost,
-                                           @RequestParam("availability") String availableToRental,
-                                           @PathVariable("id") UUID id,
-                                           @SessionAttribute("pageNumber") int pageNumber) {
+                                         @RequestParam("availability") String availableToRental,
+                                         @PathVariable("id") UUID id,
+                                         @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
         changeItem(cost, availableToRental, id, service);
         return "redirect:/clothes/pants/catalog/" + pageNumber;
     }
 
-    private void changeItem(@RequestParam("cost") String cost, @RequestParam("availability") String availableToRental, @PathVariable("id") UUID id, BaseItemServiceImpl service) {
+    @GetMapping("/admin/create/new/{item}")
+    public String showAdminCreateItemPage(Model model, @PathVariable("item") String item) {
+        EquipmentAllSizesService allSizesService = serviceEquipmentFactory.getAllSizesService(item);
+        List<EquipmentSize> allSizes = allSizesService.findAllSizes();
+        model.addAttribute("allSizes", allSizes);
+        model.addAttribute("item", item);
+        return "administration/create-new-item";
+    }
+
+    @PostMapping(value = "/admin/create/new/snowboard")
+    public ModelAndView createNewSnowboard(@RequestParam("file") MultipartFile filePart,
+                                           HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.saveItem(request, filePart, "snowboard");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/snowboard");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/create/new/snowboard-boot")
+    public ModelAndView createNewSnowboardBoot(@RequestParam("file") MultipartFile filePart,
+                                           HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.saveItem(request, filePart, "snowboard_boot");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/snowboard-boot");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/create/new/snowboard-helmet")
+    public ModelAndView createNewSnowboardHelmet(@RequestParam("file") MultipartFile filePart,
+                                               HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.saveItem(request, filePart, "snowboard_helmet");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/snowboard-helmet");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    private void changeItem(@RequestParam("cost") String cost,
+                            @RequestParam("availability") String availableToRental,
+                            @PathVariable("id") UUID id,
+                            BaseItemServiceImpl service) {
         Item item = service.findById(id);
         if (!cost.isEmpty()) {
             service.updateCost(item, Double.parseDouble(cost));

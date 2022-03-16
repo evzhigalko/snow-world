@@ -13,10 +13,11 @@ import by.zhigalko.snow.world.service.item.snowboard.SnowboardHelmetService;
 import by.zhigalko.snow.world.service.item.snowboard.SnowboardService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 
 @Service("itemService")
@@ -28,11 +29,10 @@ public class AdminItemService {
         this.context=context;
     }
 
-    public boolean saveItem(HttpServletRequest request, String product) throws ServletException, IOException {
+    public boolean saveItem(HttpServletRequest request, MultipartFile filePart, String product) throws ServletException, IOException {
         boolean isSaved = false;
         String equipmentSizeId = request.getParameter("equipment_size");
-        Part filePart = request.getPart("file");
-        String fileName = filePart.getSubmittedFileName();
+        String fileName = filePart.getOriginalFilename();
         ImageService imageService = context.getBean("imageService", ImageService.class);
         String imageName = imageService.uploadImage(filePart, product, fileName);
         Image image = imageService.getImage(imageName);

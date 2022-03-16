@@ -12,9 +12,9 @@
 </header>
 <div class="container">
     <c:choose>
-    <c:when test="${sessionScope.product eq 'snowboard'}">
+    <c:when test="${item eq 'snowboard'}">
         <p>Сноуборд</p>
-        <form action="<c:url value="/admin/create/new/"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/admin/create/new/snowboard"/>" method="post" enctype="multipart/form-data" style="width: 60%">
             <div class="form-input">
                 <label for="label-maker" class="form-label"> </label>
                 <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"
@@ -99,9 +99,9 @@
             </div>
         </form>
         </c:when>
-        <c:when test="${sessionScope.product eq 'snowboard_boot'}">
+        <c:when test="${sessionScope.item eq 'snowboard_boot'}">
             <p>Ботинки сноубордические</p>
-            <form action="<c:url value="/admin/create/new/"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+            <form action="<c:url value="/admin/create/new/snowboard-boot"/>" method="post" enctype="multipart/form-data" style="width: 60%">
                 <input type="hidden" name="product_group" value="SNOWBOARD_BOOT">
                 <div class="form-input">
                     <label for="label-maker" class="form-label"> </label>
@@ -164,9 +164,9 @@
                 </div>
             </form>
         </c:when>
-        <c:when test="${sessionScope.product eq 'snowboard_helmet'}">
+        <c:when test="${sessionScope.item eq 'snowboard_helmet'}">
             <p>Шлем сноубордический</p>
-            <form action="<c:url value="/admin/create/new/"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+            <form action="<c:url value="/admin/create/new/snowboard-helmet"/>" method="post" enctype="multipart/form-data" style="width: 60%">
                 <div class="form-input">
                     <label for="label-maker" class="form-label"> </label>
                     <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"
