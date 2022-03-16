@@ -178,7 +178,7 @@ public class AdminController {
                                            HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.saveItem(request, filePart, "snowboard");
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard");
             if (isSaved) {
                 mav.setViewName("administration/admin");
             } else {
@@ -196,7 +196,7 @@ public class AdminController {
                                            HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.saveItem(request, filePart, "snowboard_boot");
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard_boot");
             if (isSaved) {
                 mav.setViewName("administration/admin");
             } else {
@@ -214,7 +214,7 @@ public class AdminController {
                                                HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.saveItem(request, filePart, "snowboard_helmet");
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard_helmet");
             if (isSaved) {
                 mav.setViewName("administration/admin");
             } else {
