@@ -3,6 +3,8 @@ package by.zhigalko.snow.world.service.item.ski;
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
+import by.zhigalko.snow.world.entity.enums.Gender;
+import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.ski.SkiPole;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,14 @@ public class SkiPoleService extends BaseItemServiceImpl<SkiPole> {
 
     @Override
     public SkiPole getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
-        return null;
+        SkiPole skiPole = new SkiPole();
+        skiPole.setMaker(request.getParameter("maker"));
+        skiPole.setGender(Gender.valueOf(request.getParameter("gender")));
+        skiPole.setCost(Double.parseDouble(request.getParameter("cost")));
+        skiPole.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
+        skiPole.setEquipmentSizeId(equipmentSize);
+        skiPole.setImage(image);
+        skiPole.setProductName(ProductGroup.valueOf(request.getParameter("product_group")));
+        return skiPole;
     }
 }

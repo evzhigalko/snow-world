@@ -71,11 +71,11 @@
                                         <ul>
                                             <li class="nav-item">
                                                     <a class="nav-link" aria-current="page" data-bs-toggle="collapse"
-                                                       href="#add-new-snowboard"
+                                                       href="#snowboard"
                                                        aria-expanded="false" >
                                                         Сноуборд
                                                     </a>
-                                                <div class="collapse" id="add-new-snowboard">
+                                                <div class="collapse" id="snowboard">
                                                     <div class="card card-body">
                                                         <ul>
                                                             <li>
@@ -108,18 +108,18 @@
                                             </li>
                                             <li>
                                                 <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#add-new-snowboard-boot"
+                                                   href="#snowboard-boot"
                                                    aria-expanded="false">
                                                     Ботинки сноубордические
                                                 </a>
-                                                <div class="collapse" id="add-new-snowboard-boot">
+                                                <div class="collapse" id="snowboard-boot">
                                                     <div class="card card-body">
                                                         <ul>
                                                             <li>
                                                                 <p class="admin_settings_list">
                                                                     <a class="nav-link"
                                                                        href="<c:url value="/admin/create/new/snowboard_boot"/>" aria-expanded="false">
-                                                                        Добавить новый
+                                                                        Добавить новые
                                                                     </a>
                                                                 </p>
                                                             </li>
@@ -145,11 +145,11 @@
                                             </li>
                                             <li>
                                                 <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#add-new-snowboard-helmet"
+                                                   href="#snowboard-helmet"
                                                    aria-expanded="false">
                                                     Шлемы сноубордические
                                                 </a>
-                                                <div class="collapse" id="add-new-snowboard-helmet">
+                                                <div class="collapse" id="snowboard-helmet">
                                                     <div class="card card-body">
                                                         <ul>
                                                             <li>
@@ -187,40 +187,158 @@
                             <li>
                                 <a class="nav-link" data-bs-toggle="collapse" href="#change-ski"
                                    aria-expanded="false">
-                                    <p class="admin_settings_list">
                                         Лыжи
-                                    </p>
                                 </a>
                                 <div class="collapse" id="change-ski">
                                     <div class="card card-body">
                                         <ul>
-                                            <li>
-                                                <a class="nav-link" data-bs-toggle="collapse" href="#change-ski-menu"
-                                                   aria-expanded="false">
+                                            <li class="nav-item">
+                                                <a class="nav-link" aria-current="page" data-bs-toggle="collapse"
+                                                   href="#ski"
+                                                   aria-expanded="false" >
                                                     Лыжи
                                                 </a>
+                                                <div class="collapse" id="ski">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="<c:url value="/admin/create/new/ski"/>" aria-expanded="false">
+                                                                        Добавить новые
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Изменить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Удалить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#change-ski-pole-menu"
-                                                   aria-expanded="false">
-                                                    Палки лыжные
-                                                </a>
-
-                                            </li>
-                                            <li>
-                                                <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#change-ski-boot-menu"
+                                                   href="#ski-boot"
                                                    aria-expanded="false">
                                                     Ботинки лыжные
                                                 </a>
+                                                <div class="collapse" id="ski-boot">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="<c:url value="/admin/create/new/ski_boot"/>" aria-expanded="false">
+                                                                        Добавить новые
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Изменить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Удалить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </li>
                                             <li>
                                                 <a class="nav-link" data-bs-toggle="collapse"
-                                                   href="#change-ski-helmet-menu"
+                                                   href="#ski-helmet"
                                                    aria-expanded="false">
                                                     Шлемы лыжные
                                                 </a>
+                                                <div class="collapse" id="ski-helmet">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="<c:url value="/admin/create/new/ski_helmet"/>" aria-expanded="false">
+                                                                        Добавить новый
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Изменить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Удалить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link" data-bs-toggle="collapse"
+                                                   href="#ski-pole"
+                                                   aria-expanded="false">
+                                                    Палки лыжные
+                                                </a>
+                                                <div class="collapse" id="ski-pole">
+                                                    <div class="card card-body">
+                                                        <ul>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="<c:url value="/admin/create/new/ski_pole"/>" aria-expanded="false">
+                                                                        Добавить новые
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Изменить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                            <li>
+                                                                <p class="admin_settings_list">
+                                                                    <a class="nav-link"
+                                                                       href="#" aria-expanded="false">
+                                                                        Удалить
+                                                                    </a>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>

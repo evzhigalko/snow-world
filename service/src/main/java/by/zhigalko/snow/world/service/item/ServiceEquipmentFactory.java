@@ -69,6 +69,7 @@ public class ServiceEquipmentFactory {
         }
         return service;
     }
+
     public EquipmentAllSizesService getAllSizesService(String itemName) {
         EquipmentAllSizesService allSizesService = null;
         switch (itemName) {
@@ -80,6 +81,19 @@ public class ServiceEquipmentFactory {
                 break;
             case "snowboard_helmet":
                 allSizesService = context.getBean("snowboardHelmetService", SnowboardHelmetService.class);
+                break;
+            case "ski":
+                allSizesService = context.getBean("skiService", SkiService.class);
+                break;
+            case "ski_boot":
+                allSizesService = context.getBean("skiBootService", SkiBootService.class);
+                break;
+            case "ski_helmet":
+                allSizesService = context.getBean("skiHelmetService", SkiHelmetService.class);
+                break;
+            case "ski_pole":
+                allSizesService = context.getBean("skiPoleService", SkiPoleService.class);
+                break;
         }
         return allSizesService;
     }

@@ -21,6 +21,18 @@
         <c:when test="${item eq 'snowboard_helmet'}">
             <%@ include file="/WEB-INF/jsp/administration/new-snowboard-helmet.jsp" %>
         </c:when>
+        <c:when test="${item eq 'ski'}">
+            <%@ include file="/WEB-INF/jsp/administration/new-ski.jsp" %>
+        </c:when>
+        <c:when test="${item eq 'ski_boot'}">
+            <%@ include file="/WEB-INF/jsp/administration/new-ski-boot.jsp" %>
+        </c:when>
+        <c:when test="${item eq 'ski_helmet'}">
+            <%@ include file="/WEB-INF/jsp/administration/new-ski-helmet.jsp" %>
+        </c:when>
+        <c:when test="${item eq 'ski_pole'}">
+            <%@ include file="/WEB-INF/jsp/administration/new-ski-pole.jsp" %>
+        </c:when>
     </c:choose>
 </div>
 </body>

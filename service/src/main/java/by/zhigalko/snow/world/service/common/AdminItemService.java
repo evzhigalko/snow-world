@@ -48,6 +48,23 @@ public class AdminItemService {
             case SNOWBOARD_HELMET:
                 service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
                 isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case SKI:
+                service = serviceEquipmentFactory.getService(Page.SKI_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case SKI_BOOT:
+                service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case SKI_HELMET:
+                service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case SKI_POLE:
+                service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
         }
         return isSaved;
     }
