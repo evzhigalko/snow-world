@@ -10,25 +10,25 @@
         <p>Перчатки</p>
         <form action="<c:url value="/admin/create/new/clothes/glove"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="product_group" value="GLOVE">
-<%--            <div class="form-input">--%>
-<%--                <label for="label-membrane" class="form-label"> </label>--%>
-<%--                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"--%>
-<%--                       placeholder="Мембрана"--%>
-<%--                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"--%>
-<%--                       oninput="setCustomValidity('')">--%>
-<%--            </div>--%>
+            <div class="form-input">
+                <label for="label-membrane" class="form-label"> </label>
+                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
+                       placeholder="Мембрана"
+                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"
+                       oninput="setCustomValidity('')">
+            </div>
         </c:when>
         <c:when test="${item eq 'jacket'}">
         <p>Куртка</p>
         <form action="<c:url value="/admin/create/new/clothes/jacket"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="product_group" value="JACKET">
-<%--            <div class="form-input">--%>
-<%--                <label for="label-membrane" class="form-label"> </label>--%>
-<%--                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"--%>
-<%--                       placeholder="Мембрана"--%>
-<%--                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"--%>
-<%--                       oninput="setCustomValidity('')">--%>
-<%--            </div>--%>
+            <div class="form-input">
+                <label for="label-membrane" class="form-label"> </label>
+                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
+                       placeholder="Мембрана"
+                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"
+                       oninput="setCustomValidity('')">
+            </div>
         </c:when>
         <c:when test="${item eq 'mask'}">
         <p>Маска</p>
@@ -39,25 +39,25 @@
         <p>Варежки</p>
         <form action="<c:url value="/admin/create/new/clothes/mitten"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="product_group" value="MITTEN">
-<%--            <div class="form-input">--%>
-<%--                <label for="label-membrane" class="form-label"> </label>--%>
-<%--                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"--%>
-<%--                       placeholder="Мембрана"--%>
-<%--                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"--%>
-<%--                       oninput="setCustomValidity('')">--%>
-<%--            </div>--%>
+            <div class="form-input">
+                <label for="label-membrane" class="form-label"> </label>
+                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
+                       placeholder="Мембрана"
+                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"
+                       oninput="setCustomValidity('')">
+            </div>
         </c:when>
         <c:when test="${item eq 'pants'}">
         <p>Штаны</p>
         <form action="<c:url value="/admin/create/new/clothes/pants"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="product_group" value="PANTS">
-<%--            <div class="form-input">--%>
-<%--                <label for="label-membrane" class="form-label"> </label>--%>
-<%--                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"--%>
-<%--                       placeholder="Мембрана"--%>
-<%--                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"--%>
-<%--                       oninput="setCustomValidity('')">--%>
-<%--            </div>--%>
+            <div class="form-input">
+                <label for="label-membrane" class="form-label"> </label>
+                <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
+                       placeholder="Мембрана"
+                       name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"
+                       oninput="setCustomValidity('')">
+            </div>
         </c:when>
             </c:choose>
         <div class="form-input">
@@ -107,15 +107,6 @@
                 </select>
             </label>
         </div>
-    <c:if test="${(item ne 'cap') or (item ne 'mask')}">
-        <div class="form-input">
-        <label for="label-membrane" class="form-label"> </label>
-        <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
-        placeholder="Мембрана"
-        name="membrane" required oninvalid="this.setCustomValidity('Введите количество мм')"
-        oninput="setCustomValidity('')">
-        </div>
-    </c:if>
         <div class="d-grid gap-2" style="width: 15rem; padding-top: 1rem">
             <button class="btn btn-primary">Сохранить</button>
         </div>
