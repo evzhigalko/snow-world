@@ -283,7 +283,7 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/ski-pole")
     public ModelAndView createNewSkiPole(@RequestParam("file") MultipartFile filePart,
-                                           HttpServletRequest request) {
+                                         HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_pole");
@@ -291,6 +291,122 @@ public class AdminController {
                 mav.setViewName("administration/admin");
             } else {
                 mav.setViewName("redirect:/admin/create/new/ski-pole");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @GetMapping("/admin/create/new/clothes/{item}")
+    public String showAdminCreateClothesItemPage(Model model, @PathVariable("item") String item) {
+        EquipmentAllSizesService allSizesService = serviceEquipmentFactory.getAllSizesService(item);
+        List<EquipmentSize> allSizes = allSizesService.findAllSizes();
+        model.addAttribute("allSizes", allSizes);
+        model.addAttribute("item", item);
+        return "administration/create-new-item";
+    }
+
+    @PostMapping(value = "/admin/create/new/clothes/jacket")
+    public ModelAndView createNewJacket(@RequestParam("file") MultipartFile filePart,
+                                        HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "jacket");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/clothes/jacket");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/create/new/clothes/cap")
+    public ModelAndView createNewCap(@RequestParam("file") MultipartFile filePart,
+                                        HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "cap");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/clothes/cap");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/create/new/clothes/glove")
+    public ModelAndView createNewGlove(@RequestParam("file") MultipartFile filePart,
+                                     HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "glove");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/clothes/glove");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+    @PostMapping(value = "/admin/create/new/clothes/mitten")
+    public ModelAndView createNewMitten(@RequestParam("file") MultipartFile filePart,
+                                       HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "mitten");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/clothes/mitten");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/create/new/clothes/mask")
+    public ModelAndView createNewMask(@RequestParam("file") MultipartFile filePart,
+                                        HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "mask");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/clothes/mask");
+            }
+        } catch (ServletException | IOException e) {
+            log.error(e.getMessage());
+            mav.setViewName("error");
+        }
+        return mav;
+    }
+
+    @PostMapping(value = "/admin/create/new/clothes/pants")
+    public ModelAndView createNewPants(@RequestParam("file") MultipartFile filePart,
+                                      HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            boolean isSaved = adminItemService.addNewItem(request, filePart, "pants");
+            if (isSaved) {
+                mav.setViewName("administration/admin");
+            } else {
+                mav.setViewName("redirect:/admin/create/new/clothes/pants");
             }
         } catch (ServletException | IOException e) {
             log.error(e.getMessage());

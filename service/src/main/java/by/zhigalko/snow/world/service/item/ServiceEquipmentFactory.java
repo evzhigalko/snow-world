@@ -94,6 +94,24 @@ public class ServiceEquipmentFactory {
             case "ski_pole":
                 allSizesService = context.getBean("skiPoleService", SkiPoleService.class);
                 break;
+            case "jacket":
+                allSizesService = context.getBean("jacketService", JacketService.class);
+                break;
+            case "pants":
+                allSizesService = context.getBean("pantsService", PantsService.class);
+                break;
+            case "glove":
+                allSizesService = context.getBean("gloveService", GloveService.class);
+                break;
+            case "mitten":
+                allSizesService = context.getBean("mittenService", MittenService.class);
+                break;
+            case "mask":
+                allSizesService = context.getBean("maskService", MaskService.class);
+                break;
+            case "cap":
+                allSizesService = context.getBean("capService", CapService.class);
+                break;
         }
         return allSizesService;
     }

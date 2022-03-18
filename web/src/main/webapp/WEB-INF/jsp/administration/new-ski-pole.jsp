@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div>
-    <p>Лыжи</p>
+    <p>Палки лыжные</p>
     <form action="<c:url value="/admin/create/new/ski-pole"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <div class="form-input">
             <label for="label-maker" class="form-label"> </label>

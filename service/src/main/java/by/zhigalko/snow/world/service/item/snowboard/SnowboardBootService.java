@@ -3,30 +3,28 @@ package by.zhigalko.snow.world.service.item.snowboard;
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
+import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import javax.servlet.http.HttpServletRequest;
+import by.zhigalko.snow.world.service.item.util.ItemGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SnowboardBootService extends BaseItemServiceImpl<SnowboardBoot> {
+    private final ItemGenerator itemGenerator;
+
     @Autowired
-    public SnowboardBootService(BaseDaoItemImpl<SnowboardBoot> dao) {
+    public SnowboardBootService(BaseDaoItemImpl<SnowboardBoot> dao, ItemGenerator itemGenerator) {
         super(dao);
+        this.itemGenerator = itemGenerator;
     }
 
-    public SnowboardBoot getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
+    public Item getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
         SnowboardBoot snowboardBoot = new SnowboardBoot();
-        snowboardBoot.setMaker(request.getParameter("maker"));
-        snowboardBoot.setGender(Gender.valueOf(request.getParameter("gender")));
-        snowboardBoot.setCost(Double.parseDouble(request.getParameter("cost")));
-        snowboardBoot.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
         snowboardBoot.setLacingSystem(LacingSystem.valueOf(request.getParameter("lacing_system")));
-        snowboardBoot.setEquipmentSizeId(equipmentSize);
-        snowboardBoot.setImage(image);
-        snowboardBoot.setProductName(ProductGroup.valueOf(request.getParameter("product_group")));
-        return snowboardBoot;
+        return itemGenerator.setEquipmentData(request, snowboardBoot, equipmentSize, image);
     }
 }

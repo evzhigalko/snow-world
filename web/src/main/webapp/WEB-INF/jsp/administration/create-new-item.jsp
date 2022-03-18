@@ -8,7 +8,6 @@
 <body>
 <header>
     <%@ include file="/WEB-INF/jsp/static/navbar.jsp"%>
-    <h3 align="center">Привет админ!</h3>
 </header>
 <div class="container">
     <c:choose>
@@ -33,6 +32,9 @@
         <c:when test="${item eq 'ski_pole'}">
             <%@ include file="/WEB-INF/jsp/administration/new-ski-pole.jsp" %>
         </c:when>
+        <c:otherwise>
+            <%@ include file="/WEB-INF/jsp/administration/new-clothes-item.jsp" %>
+        </c:otherwise>
     </c:choose>
 </div>
 </body>

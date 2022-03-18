@@ -29,7 +29,7 @@ public class ImageUploader {
             bucketName = "snowboard";
         } else if (bucketName.contains("ski")) {
             bucketName = "ski";
-        } else if (bucketName.contains("clothes")) {
+        } else {
             bucketName = "clothes";
         }
         if (imageName != null) {

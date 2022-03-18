@@ -65,6 +65,30 @@ public class AdminItemService {
                 service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
                 isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
+            case JACKET:
+                service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case PANTS:
+                service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case GLOVE:
+                service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case MITTEN:
+                service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case MASK:
+                service = serviceEquipmentFactory.getService(Page.MASK_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
+            case CAP:
+                service = serviceEquipmentFactory.getService(Page.CAP_LIST);
+                isSaved = saveItem(request, imageService, image, equipmentSize, service);
+                break;
         }
         return isSaved;
     }

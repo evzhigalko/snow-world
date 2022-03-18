@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface BaseItemService<T extends Item> {
-    T getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image);
+    Item getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image);
 
     boolean save(T item);
 

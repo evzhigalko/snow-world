@@ -42,7 +42,7 @@
             </label>
         </div>
         <input type="hidden" name="product_group" value="SKI">
-            <div class="form-input">
+        <div class="form-input">
             Уровень катания:
             <label>
                 <select class="form-select" name="riding_level">

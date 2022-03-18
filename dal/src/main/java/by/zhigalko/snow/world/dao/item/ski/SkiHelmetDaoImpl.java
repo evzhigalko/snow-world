@@ -22,9 +22,9 @@ public class SkiHelmetDaoImpl extends BaseDaoItemImpl<SkiHelmet> {
         Session session = getSessionFactory().getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<EquipmentSize> criteria = cb.createQuery(EquipmentSize.class);
-        Root<SkiHelmet> snowboardBootRoot = criteria.from(SkiHelmet.class);
-        Join<SkiHelmet, EquipmentSize> equipmentSizeId = snowboardBootRoot.join("equipmentSizeId");
-        criteria.select(snowboardBootRoot.get("equipmentSizeId"))
+        Root<SkiHelmet> snowboardHelmetRoot = criteria.from(SkiHelmet.class);
+        Join<SkiHelmet, EquipmentSize> equipmentSizeId = snowboardHelmetRoot.join("equipmentSizeId");
+        criteria.select(snowboardHelmetRoot.get("equipmentSizeId"))
                 .groupBy(equipmentSizeId, equipmentSizeId.get("equipmentSizeId"))
                 .orderBy(cb.asc(equipmentSizeId.get("equipmentSizeId")));
         return session.createQuery(criteria).getResultList();
