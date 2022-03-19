@@ -68,6 +68,10 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
+                                            <form action="<c:url value="/admin/delete/snowboard/${snowboard.id}"/>"
+                                                  method="post">
+                                                <button class="btn btn btn-warning btn-sm">Удалить</button>
+                                            </form>
                                         </c:if>
                                         <div style="padding-top: 7px">
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>

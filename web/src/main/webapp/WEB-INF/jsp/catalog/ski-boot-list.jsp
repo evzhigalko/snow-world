@@ -64,6 +64,10 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
+                                            <form action="<c:url value="/admin/delete/ski/boot/${boot.id}"/>"
+                                                  method="post">
+                                                <button class="btn btn btn-warning btn-sm">Удалить</button>
+                                            </form>
                                         </c:if>
                                         <c:choose>
                                         <c:when test="${sessionScope.ROLE ne 'ADMIN'}">

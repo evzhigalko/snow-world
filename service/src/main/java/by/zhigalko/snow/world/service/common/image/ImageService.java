@@ -5,7 +5,6 @@ import by.zhigalko.snow.world.entity.Image;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 
 @Service
@@ -26,7 +25,11 @@ public class ImageService {
     }
 
     public void save(Image image) {
-        imageDao.save(image);
+        imageDao.saveImage(image);
+    }
+
+    public void delete(Image image) {
+        imageDao.deleteImage(image);
     }
 
     public String uploadImage(MultipartFile partFile, String bucketName, String imageName) throws IOException {

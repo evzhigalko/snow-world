@@ -415,6 +415,78 @@ public class AdminController {
         return mav;
     }
 
+    @PostMapping("/admin/delete/snowboard/{id}")
+    public String deleteSnowboard(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("snowboard", id);
+        return "redirect:/snowboard/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/snowboard/helmet/{id}")
+    public String deleteSnowboardHelmet(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("snowboard_helmet", id);
+        return "redirect:/snowboard/helmet/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/snowboard/boot/{id}")
+    public String deleteSnowboardBoot(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("snowboard_boot", id);
+        return "redirect:/snowboard/boot/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/ski/{id}")
+    public String deleteSki(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("ski", id);
+        return "redirect:/ski/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/ski/boot/{id}")
+    public String deleteSkiBoot(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("ski_boot", id);
+        return "redirect:/ski/boot/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/ski/helmet/{id}")
+    public String deleteSkiHelmet(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("ski_helmet", id);
+        return "redirect:/ski/helmet/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/clothes/cap/{id}")
+    public String deleteCap(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("cap", id);
+        return "redirect:/clothes/cap/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/clothes/gloves/{id}")
+    public String deleteGlove(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("glove", id);
+        return "redirect:/clothes/gloves/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/clothes/mask/{id}")
+    public String deleteMask(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("mask", id);
+        return "redirect:/clothes/mask/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/clothes/mittens/{id}")
+    public String deleteMitten(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("mitten", id);
+        return "redirect:/clothes/mittens/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/clothes/jacket/{id}")
+    public String deleteJacket(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("jacket", id);
+        return "redirect:/clothes/jacket/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/clothes/pants/{id}")
+    public String deletePants(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("pants", id);
+        return "redirect:/clothes/pants/catalog/1";
+    }
+
     private void changeItem(@RequestParam("cost") String cost,
                             @RequestParam("availability") String availableToRental,
                             @PathVariable("id") UUID id,

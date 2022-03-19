@@ -12,8 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
+import java.util.UUID;
 
 @Service("itemService")
 public class AdminItemService {
@@ -29,68 +31,72 @@ public class AdminItemService {
     }
 
     public boolean addNewItem(HttpServletRequest request, MultipartFile filePart, String product) throws ServletException, IOException {
-        boolean isSaved = false;
         String equipmentSizeId = request.getParameter("equipment_size");
         String fileName = filePart.getOriginalFilename();
         String imageName = imageService.uploadImage(filePart, product, fileName);
         Image image = imageService.getImage(imageName);
         EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById(equipmentSizeId);
-        BaseItemServiceImpl<? extends Item> service;
+        return save(request, product, image, equipmentSize);
+    }
+
+    private boolean save(HttpServletRequest request, String product, Image image, EquipmentSize equipmentSize) {
+        return saveItem(request, imageService, image, equipmentSize, getService(product));
+    }
+
+    @Transactional
+    public void deleteItem(String product, UUID id) {
+        BaseItemServiceImpl service = getService(product);
+        Item item = service.findById(id);
+        Image image = item.getImage();
+        image.removeItem(item);
+        service.delete(item);
+        imageService.delete(item.getImage());
+    }
+
+    private BaseItemServiceImpl<? extends Item> getService(String product) {
+        BaseItemServiceImpl<? extends Item> service = null;
         switch (ProductGroup.valueOf(product.toUpperCase())) {
             case SNOWBOARD:
                 service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case SNOWBOARD_BOOT:
                 service = serviceEquipmentFactory.getService(Page.SNOWBOARD_BOOT_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case SNOWBOARD_HELMET:
                 service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case SKI:
                 service = serviceEquipmentFactory.getService(Page.SKI_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case SKI_BOOT:
                 service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case SKI_HELMET:
                 service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case SKI_POLE:
                 service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case JACKET:
                 service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case PANTS:
                 service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case GLOVE:
                 service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case MITTEN:
                 service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case MASK:
                 service = serviceEquipmentFactory.getService(Page.MASK_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
             case CAP:
                 service = serviceEquipmentFactory.getService(Page.CAP_LIST);
-                isSaved = saveItem(request, imageService, image, equipmentSize, service);
                 break;
         }
-        return isSaved;
+        return service;
     }
 
     private boolean saveItem(HttpServletRequest request, ImageService imageService, Image image, EquipmentSize equipmentSize, BaseItemServiceImpl service) {

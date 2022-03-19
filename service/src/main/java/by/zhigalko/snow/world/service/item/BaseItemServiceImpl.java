@@ -39,6 +39,11 @@ public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemSer
     }
 
     @Override
+    public void delete(T item) {
+        dao.delete(item);
+    }
+
+    @Override
     public T updateAvailable(T entity, boolean isAvailable) {
         return dao.updateAvailable(entity, isAvailable);
     }

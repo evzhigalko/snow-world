@@ -17,4 +17,6 @@ public interface BaseItemService<T extends Item> {
     long count();
 
     T findById(UUID id);
+
+    void delete(T item);
 }

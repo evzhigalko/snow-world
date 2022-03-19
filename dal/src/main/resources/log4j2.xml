@@ -4,7 +4,7 @@
         <Console name="STDOUT">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1.} - %msg%n"/>
         </Console>
-        <RollingFile name="File" filePattern="/opt/apache-tomcat/10.0.17/logs/${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
+        <RollingFile name="File" filePattern="/opt/apache-tomcat/9.0.59/logs/${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
                      immediateFlush="true">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1.} - %msg%n"/>
             <Policies>

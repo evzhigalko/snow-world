@@ -14,9 +14,6 @@ public abstract class BaseDaoSaveEntityImpl<T extends BaseEntity> implements Bas
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    private ApplicationContext applicationContext;
-
     @Override
     public boolean save(T entity) {
         Session session = sessionFactory.getCurrentSession();

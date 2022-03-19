@@ -69,6 +69,12 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>by.zhigalko.snow.world</groupId>
                 <artifactId>dal</artifactId>
                 <version>${dal.version}</version>

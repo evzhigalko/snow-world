@@ -65,12 +65,16 @@
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
                                         </c:if>
-                                        <c:choose>
-                                        <c:when test="${sessionScope.ROLE ne 'ADMIN'}">
-                                        <div style="padding-top: 45px">
-                                            </c:when>
-                                            <c:when test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <div style="padding-top: 10px">
+                                            <c:choose>
+                                                <c:when test="${sessionScope.ROLE ne 'ADMIN'}">
+                                                    <div style="padding-top: 45px">
+                                                </c:when>
+                                                <c:when test="${sessionScope.ROLE eq 'ADMIN'}">
+                                                    <div style="padding-top: 10px">
+                                                        <form action="<c:url value="/admin/delete/snowboard/helmet/${helmet.id}"/>"
+                                                              method="post">
+                                                            <button class="btn btn btn-warning btn-sm">Удалить</button>
+                                                        </form>
                                                 </c:when>
                                                 </c:choose>
                                                 <a href="#" class="btn btn-primary">Добавить в корзину</a>

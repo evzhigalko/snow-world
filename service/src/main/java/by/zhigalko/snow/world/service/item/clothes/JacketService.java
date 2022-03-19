@@ -24,6 +24,6 @@ public class JacketService extends BaseItemServiceImpl<Jacket> {
 
     @Override
     public Item getItem(HttpServletRequest request, EquipmentSize equipmentSize, Image image) {
-        return itemGenerator.setEquipmentData(request, new Pants(), equipmentSize, image);
+        return itemGenerator.setEquipmentData(request, new Jacket(), equipmentSize, image);
     }
 }
