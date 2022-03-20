@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/connect/jstl-connect.jsp" %>
 <html>
 <head>
-    <title>Каталог лыж</title>
+    <title>Выбрать лыжные палки</title>
     <%@ include file="/WEB-INF/connect/css-connect.jsp" %>
 </head>
 <body>
@@ -11,49 +11,38 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski"/>" role="button">Добавить лыжи</a>
-<%--        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski_pole"/>" role="button">Добавить лыжные палки</a>--%>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski_pole"/>" role="button">Добавить лыжные палки</a>
     </c:if>
 </div>
 <ul class="list-group">
     <div class="container">
         <div class="container-fluid">
             <div class="card-group justify-content-start">
-                <c:forEach var="ski" items="${requestScope.list}">
+                <c:forEach var="ski_pole" items="${requestScope.list}">
                     <li>
                         <div class="card mb-3 d-flex align-items-stretch" style="max-width: 35rem;">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="${ski.image.imageName}"
+                                    <img src="${ski_pole.image.imageName}"
                                          class="img-fluid rounded-start" alt="img">
                                 </div>
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
-                                        <h5 class="card-title">${ski.maker}</h5>
-                                        <p class="card-info">Рост: ${ski.equipmentSizeId.userMinHeight}
-                                            - ${ski.equipmentSizeId.userMaxHeight}</p>
-                                        <p class="card-info">Уровень катания: ${ski.ridingLevel.name}</p>
-                                        <p class="card-info">Цена проката: ${ski.cost} руб./сутки</p>
+                                        <h5 class="card-title">${ski_pole.maker}</h5>
+                                        <p class="card-info">Рост: ${ski_pole.equipmentSizeId.userMinHeight}
+                                            - ${ski_pole.equipmentSizeId.userMaxHeight}</p>
+                                        <p class="card-info">Цена проката: ${ski_pole.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:
                                             <c:choose>
-                                                <c:when test="${ski.availableToRental eq 'true'}">
+                                                <c:when test="${ski_pole.availableToRental eq 'true'}">
                                                     <c:out value="${'Да'}"/>
                                                 </c:when>
-                                                <c:when test="${ski.availableToRental eq 'false'}">
+                                                <c:when test="${ski_pole.availableToRental eq 'false'}">
                                                     <c:out value="${'Нет'}"/>
                                                 </c:when>
                                             </c:choose></p>
-                                        <a class="btn btn btn-primary btn-sm" href="<c:url value="/ski/pole/catalog/1"/>"
-                                           role="button">Выбрать лыжные палки</a>
-<%--                                        <select class="form-select" aria-label="Лыжные палки">--%>
-<%--                                            <option selected>Лыжные палки</option>--%>
-<%--                                            <c:forEach var="ski_pole_size" items="${requestScope.skiPoleSizeList}">--%>
-<%--                                                <option value="pole_size">Рост: ${ski_pole_size.userMinHeight}--%>
-<%--                                                    - ${ski_pole_size.userMaxHeight}</option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </select>--%>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/admin/ski/catalog/${ski.id}"/>"
+                                            <form action="<c:url value="/admin/ski/pole/catalog/${ski_pole.id}"/>"
                                                   method="post">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
@@ -80,12 +69,19 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/admin/delete/ski/${ski.id}"/>"
+                                            <form action="<c:url value="/admin/delete/ski/pole/${ski_pole.id}"/>"
                                                   method="post">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
                                         </c:if>
-                                        <div style="padding-top: 15px">
+                                        <c:choose>
+                                            <c:when test="${sessionScope.ROLE ne 'ADMIN'}">
+                                            <div style="padding-top: 4rem">
+                                            </c:when>
+                                            <c:when test="${sessionScope.ROLE eq 'ADMIN'}">
+                                            <div style="padding-top: 10px">
+                                            </c:when>
+                                        </c:choose>
                                             <a href="#" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>
@@ -102,9 +98,10 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/ski/catalog/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/ski/pole/catalog/${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>
 </body>
 </html>
+

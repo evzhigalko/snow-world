@@ -21,6 +21,7 @@ import java.util.List;
 
 @Log4j2
 @Controller
+@SessionAttributes("pageNumber")
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
@@ -152,9 +153,6 @@ public class MainController {
         model.addAttribute("pageNumber", pageNumber);
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_LIST);
         paginate(model, pageNumber, service);
-        BaseItemServiceImpl<? extends Item> skiPoleService = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
-        List<EquipmentSize> skiPoleSizeList = skiPoleService.findAllSizes();
-        model.addAttribute("skiPoleSizeList", skiPoleSizeList);
         return "catalog/ski-list";
     }
 
@@ -172,6 +170,16 @@ public class MainController {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
         paginate(model, pageNumber, service);
         return "catalog/ski-helmet-list";
+    }
+
+    @GetMapping("/ski/pole/catalog/{page}")
+    public String handleSkiPoleCatalog(Model model, @PathVariable("page") int pageNumber) {
+        model.addAttribute("pageNumber", pageNumber);
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
+        paginate(model, pageNumber, service);
+        List<EquipmentSize> skiPoleSizeList = service.findAllSizes();
+        model.addAttribute("skiPoleSizeList", skiPoleSizeList);
+        return "catalog/ski-pole-list";
     }
 
     @GetMapping("/clothes/jacket/catalog/{page}")

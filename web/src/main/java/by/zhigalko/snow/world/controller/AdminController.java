@@ -103,6 +103,16 @@ public class AdminController {
         return "redirect:/ski/boot/catalog/" + pageNumber;
     }
 
+    @PostMapping("/admin/ski/pole/catalog/{id}")
+    public String changeSkiPoleOnAdminPage(@RequestParam("cost") String cost,
+                                           @RequestParam("availability") String availableToRental,
+                                           @PathVariable("id") UUID id,
+                                           @SessionAttribute("pageNumber") int pageNumber) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
+        changeItem(cost, availableToRental, id, service);
+        return "redirect:/ski/pole/catalog/" + pageNumber;
+    }
+
     @PostMapping("/admin/clothes/cap/catalog/{id}")
     public String changeCapOnAdminPage(@RequestParam("cost") String cost,
                                        @RequestParam("availability") String availableToRental,
@@ -448,6 +458,12 @@ public class AdminController {
     public String deleteSkiHelmet(@PathVariable("id") UUID id) {
         adminItemService.deleteItem("ski_helmet", id);
         return "redirect:/ski/helmet/catalog/1";
+    }
+
+    @PostMapping("/admin/delete/ski/pole/{id}")
+    public String deleteSkiPole(@PathVariable("id") UUID id) {
+        adminItemService.deleteItem("ski_pole", id);
+        return "redirect:/ski/pole/catalog/1";
     }
 
     @PostMapping("/admin/delete/clothes/cap/{id}")

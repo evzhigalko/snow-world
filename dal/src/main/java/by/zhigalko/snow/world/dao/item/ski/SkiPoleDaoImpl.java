@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.dao.item.ski;
 
 import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.ski.SkiPole;
 import javax.persistence.criteria.*;
