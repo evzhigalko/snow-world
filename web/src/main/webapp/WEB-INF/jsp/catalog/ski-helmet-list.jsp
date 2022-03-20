@@ -9,7 +9,12 @@
 <header>
     <%@ include file="/WEB-INF/jsp/static/navbar.jsp"%>
 </header>
-<ul class="list-group" style="padding-top: 7rem">
+<div class="container" style="height: 7rem">
+    <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski_helmet"/>" role="button">Добавить шлем</a>
+    </c:if>
+</div>
+<ul class="list-group">
     <div class="container">
         <div class="container-fluid">
             <div class="card-group justify-content-start">

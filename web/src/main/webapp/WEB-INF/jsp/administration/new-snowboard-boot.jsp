@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>
+<div style="padding-top: 3rem">
     <p>Ботинки сноубордические</p>
     <form action="<c:url value="/admin/create/new/snowboard-boot"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="product_group" value="SNOWBOARD_BOOT">

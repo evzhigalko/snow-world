@@ -21,7 +21,6 @@ import java.util.List;
 
 @Log4j2
 @Controller
-@SessionAttributes("pageNumber")
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;

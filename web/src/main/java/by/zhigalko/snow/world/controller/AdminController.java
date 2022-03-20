@@ -24,7 +24,6 @@ import java.util.UUID;
 
 @Log4j2
 @Controller
-@SessionAttributes("item")
 public class AdminController {
     private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final UserService userService;
@@ -180,7 +179,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/snowboard/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/snowboard");
             }
@@ -198,7 +197,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard_boot");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/snowboard/boot/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/snowboard-boot");
             }
@@ -216,7 +215,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard_helmet");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/snowboard/helmet/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/snowboard-helmet");
             }
@@ -234,7 +233,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "ski");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/ski/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/ski");
             }
@@ -252,7 +251,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_boot");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/ski/boot/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/ski-boot");
             }
@@ -270,7 +269,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_helmet");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/ski/helmet/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/ski-helmet");
             }
@@ -288,7 +287,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_pole");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/ski/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/ski-pole");
             }
@@ -315,7 +314,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "jacket");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/clothes/jacket/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/clothes/jacket");
             }
@@ -333,7 +332,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "cap");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/clothes/cap/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/clothes/cap");
             }
@@ -351,7 +350,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "glove");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/clothes/gloves/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/clothes/glove");
             }
@@ -368,7 +367,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "mitten");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/clothes/mittens/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/clothes/mitten");
             }
@@ -386,7 +385,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "mask");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/clothes/mask/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/clothes/mask");
             }
@@ -404,7 +403,7 @@ public class AdminController {
         try {
             boolean isSaved = adminItemService.addNewItem(request, filePart, "pants");
             if (isSaved) {
-                mav.setViewName("administration/admin");
+                mav.setViewName("redirect:/clothes/pants/catalog/1");
             } else {
                 mav.setViewName("redirect:/admin/create/new/clothes/pants");
             }

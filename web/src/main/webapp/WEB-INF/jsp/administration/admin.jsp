@@ -48,49 +48,6 @@
                 </div>
             </div>
         </li>
-        <li>
-            <div class="users-list">
-                <p class="admin_settings_list">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#change-assortment" aria-expanded="false"
-                       aria-controls="users-list">
-                        Изменить ассортимент снаряжения
-                    </a>
-                </p>
-                <div class="collapse" id="change-assortment">
-                    <div class="card card-body">
-                        <ul>
-                            <li>
-                                <a class="nav-link" data-bs-toggle="collapse" href="#change-snowboard"
-                                   aria-expanded="false">
-                                    <p class="admin_settings_list">
-                                        Сноуборд
-                                    </p>
-                                </a>
-                                <%@ include file="/WEB-INF/jsp/administration/change/change-snowboard-items.jsp" %>
-                            </li>
-                            <li>
-                                <a class="nav-link" data-bs-toggle="collapse" href="#change-ski"
-                                   aria-expanded="false">
-                                    Лыжи
-                                </a>
-                                <%@ include file="/WEB-INF/jsp/administration/change/change-ski-items.jsp" %>
-                            </li>
-                            <li>
-                            <li>
-                                <a class="nav-link" data-bs-toggle="collapse" href="#change-equipment"
-                                   aria-expanded="false">
-                                    <p class="admin_settings_list">
-                                        Экипировка
-                                    </p>
-                                </a>
-                                <%@ include file="/WEB-INF/jsp/administration/change/change-equipment-items.jsp" %>
-                            </li>
-                            <li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </li>
     </ul>
 </div>
 </body>

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>
+<div style="padding-top: 3rem">
     <p>Лыжи</p>
     <form action="<c:url value="/admin/create/new/ski"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <div class="form-input">

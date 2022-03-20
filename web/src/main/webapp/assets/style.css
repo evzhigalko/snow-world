@@ -162,3 +162,8 @@ a {
 .add-image {
     width: 20rem;
 }
+
+.add-new-item {
+    width: 13rem;
+    margin-top: 4rem;
+}
