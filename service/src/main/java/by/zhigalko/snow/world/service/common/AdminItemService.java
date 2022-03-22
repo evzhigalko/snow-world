@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.UUID;
@@ -30,6 +32,7 @@ public class AdminItemService {
         this.equipmentSizeService = equipmentSizeService;
     }
 
+    @Transactional
     public boolean addNewItem(HttpServletRequest request, MultipartFile filePart, String product) throws ServletException, IOException {
         String equipmentSizeId = request.getParameter("equipment_size");
         String fileName = filePart.getOriginalFilename();
@@ -53,9 +56,25 @@ public class AdminItemService {
         imageService.delete(item.getImage());
     }
 
+    @Transactional
+    public boolean updateItem(@RequestParam(value = "cost") String cost,
+                              @RequestParam(value = "availability") String availableToRental,
+                              @PathVariable("id") UUID id,
+                              BaseItemServiceImpl service) {
+        Item item = service.findById(id);
+        if(!cost.isEmpty()) {
+            item.setCost(Double.parseDouble(cost));
+        }
+        if (!availableToRental.isEmpty()) {
+            item.setAvailableToRental(Boolean.parseBoolean(availableToRental));
+        }
+        Item savedItem = service.save(item);
+        return savedItem != null;
+    }
+
     private BaseItemServiceImpl<? extends Item> getService(String product) {
         BaseItemServiceImpl<? extends Item> service = null;
-        switch (ProductGroup.valueOf(product.toUpperCase())) {
+        switch (Product.valueOf(product.toUpperCase())) {
             case SNOWBOARD:
                 service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
                 break;
@@ -100,11 +119,10 @@ public class AdminItemService {
     }
 
     private boolean saveItem(HttpServletRequest request, ImageService imageService, Image image, EquipmentSize equipmentSize, BaseItemServiceImpl service) {
-        boolean isSaved;
         Item item = service.getItem(request, equipmentSize, image);
         image.addItem(item);
         imageService.save(image);
-        isSaved = service.save(item);
-        return isSaved;
+        Item savedItem = service.save(item);
+        return savedItem != null;
     }
 }

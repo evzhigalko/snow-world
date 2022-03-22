@@ -4,6 +4,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.service.common.AdminItemService;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
@@ -44,12 +45,12 @@ public class AdminController {
     }
 
     @PostMapping("/admin/snowboard/catalog/{id}")
-    public String changeSnowboardOnAdminPage(@RequestParam("cost") String cost,
+    public String changeSnowboardOnAdminPage(@RequestParam(value = "cost") String cost,
                                              @RequestParam("availability") String availableToRental,
                                              @PathVariable("id") UUID id,
                                              @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/snowboard/catalog/" + pageNumber;
     }
 
@@ -59,7 +60,7 @@ public class AdminController {
                                                  @PathVariable("id") UUID id,
                                                  @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_BOOT_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/snowboard/boot/catalog/" + pageNumber;
     }
 
@@ -69,7 +70,7 @@ public class AdminController {
                                                    @PathVariable("id") UUID id,
                                                    @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/snowboard/helmet/catalog/" + pageNumber;
     }
 
@@ -79,7 +80,7 @@ public class AdminController {
                                        @PathVariable("id") UUID id,
                                        @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/ski/catalog/" + pageNumber;
     }
 
@@ -89,7 +90,7 @@ public class AdminController {
                                              @PathVariable("id") UUID id,
                                              @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/ski/helmet/catalog/" + pageNumber;
     }
 
@@ -99,7 +100,7 @@ public class AdminController {
                                            @PathVariable("id") UUID id,
                                            @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/ski/boot/catalog/" + pageNumber;
     }
 
@@ -109,7 +110,7 @@ public class AdminController {
                                            @PathVariable("id") UUID id,
                                            @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/ski/pole/catalog/" + pageNumber;
     }
 
@@ -119,7 +120,7 @@ public class AdminController {
                                        @PathVariable("id") UUID id,
                                        @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.CAP_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/clothes/cap/catalog/" + pageNumber;
     }
 
@@ -129,7 +130,7 @@ public class AdminController {
                                           @PathVariable("id") UUID id,
                                           @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/clothes/gloves/catalog/" + pageNumber;
     }
 
@@ -139,7 +140,7 @@ public class AdminController {
                                           @PathVariable("id") UUID id,
                                           @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/clothes/jacket/catalog/" + pageNumber;
     }
 
@@ -149,7 +150,7 @@ public class AdminController {
                                         @PathVariable("id") UUID id,
                                         @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MASK_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/clothes/mask/catalog/" + pageNumber;
     }
 
@@ -159,7 +160,7 @@ public class AdminController {
                                            @PathVariable("id") UUID id,
                                            @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/clothes/mittens/catalog/" + pageNumber;
     }
 
@@ -169,14 +170,14 @@ public class AdminController {
                                          @PathVariable("id") UUID id,
                                          @SessionAttribute("pageNumber") int pageNumber) {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
-        changeItem(cost, availableToRental, id, service);
+        adminItemService.updateItem(cost, availableToRental, id, service);
         return "redirect:/clothes/pants/catalog/" + pageNumber;
     }
 
     @GetMapping("/admin/create/new/{item}")
     public String showAdminCreateItemPage(Model model, @PathVariable("item") String item) {
         EquipmentAllSizesService allSizesService = serviceEquipmentFactory.getAllSizesService(item);
-        List<EquipmentSize> allSizes = allSizesService.findAllSizes();
+        List<EquipmentSize> allSizes = allSizesService.findAllByProductGroup(ProductGroup.getProduct(item));
         model.addAttribute("allSizes", allSizes);
         model.addAttribute("item", item);
         return "administration/create-new-item";
@@ -311,7 +312,7 @@ public class AdminController {
     @GetMapping("/admin/create/new/clothes/{item}")
     public String showAdminCreateClothesItemPage(Model model, @PathVariable("item") String item) {
         EquipmentAllSizesService allSizesService = serviceEquipmentFactory.getAllSizesService(item);
-        List<EquipmentSize> allSizes = allSizesService.findAllSizes();
+        List<EquipmentSize> allSizes = allSizesService.findAllByProductGroup(ProductGroup.EQUIPMENT);
         model.addAttribute("allSizes", allSizes);
         model.addAttribute("item", item);
         return "administration/create-new-item";
@@ -500,20 +501,5 @@ public class AdminController {
     public String deletePants(@PathVariable("id") UUID id) {
         adminItemService.deleteItem("pants", id);
         return "redirect:/clothes/pants/catalog/1";
-    }
-
-    private void changeItem(@RequestParam("cost") String cost,
-                            @RequestParam("availability") String availableToRental,
-                            @PathVariable("id") UUID id,
-                            BaseItemServiceImpl service) {
-        Item item = service.findById(id);
-        if (!cost.isEmpty()) {
-            service.updateCost(item, Double.parseDouble(cost));
-            log.info(">>> Changed item" + item + " : " + "cost " + cost);
-        }
-        if (!availableToRental.isEmpty()) {
-            service.updateAvailable(item, Boolean.parseBoolean(availableToRental));
-            log.info(">>> Changed item" + item + " : " + "available " + availableToRental);
-        }
     }
 }

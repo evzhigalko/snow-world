@@ -3,7 +3,7 @@ package by.zhigalko.snow.world.dao.item.ski;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.ski.Ski;
 import by.zhigalko.snow.world.util.ApplicationConfig;
@@ -181,7 +181,7 @@ class SkiDaoImplTest {
     private Ski getSki() {
         AtomicLong counter = new AtomicLong(0);
         Ski ski = new Ski();
-        ski.setProductName(ProductGroup.SKI);
+        ski.setProductName(Product.SKI);
         ski.setRidingLevel(RidingLevel.BEGINNER);
         ski.setMaker("ROSSIGNOL");
         ski.setGender(Gender.UNISEX);

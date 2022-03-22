@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.HardnessLevel;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.util.ApplicationConfig;
@@ -84,7 +84,7 @@ class SnowboardDaoImplTest {
     void findAllTest() {
         //THEN
         Snowboard snowboard1 = new Snowboard();
-        snowboard1.setProductName(ProductGroup.SNOWBOARD);
+        snowboard1.setProductName(Product.SNOWBOARD);
         snowboard1.setMaker("NIDECKER");
         snowboard1.setGender(Gender.UNISEX);
         snowboard1.setRidingLevel(RidingLevel.MEDIUM);
@@ -103,7 +103,7 @@ class SnowboardDaoImplTest {
         equipmentSize1.addEquipment(snowboard1);
 
         Snowboard snowboard2 = new Snowboard();
-        snowboard2.setProductName(ProductGroup.SNOWBOARD);
+        snowboard2.setProductName(Product.SNOWBOARD);
         snowboard2.setMaker("NITRO");
         snowboard2.setGender(Gender.UNISEX);
         snowboard2.setRidingLevel(RidingLevel.BEGINNER);
@@ -208,7 +208,7 @@ class SnowboardDaoImplTest {
     void countTest() {
         //THEN
         Snowboard snowboard1 = new Snowboard();
-        snowboard1.setProductName(ProductGroup.SNOWBOARD);
+        snowboard1.setProductName(Product.SNOWBOARD);
         snowboard1.setMaker("NIDECKER");
         snowboard1.setGender(Gender.UNISEX);
         snowboard1.setRidingLevel(RidingLevel.MEDIUM);
@@ -227,7 +227,7 @@ class SnowboardDaoImplTest {
         equipmentSize1.addEquipment(snowboard1);
 
         Snowboard snowboard2 = new Snowboard();
-        snowboard2.setProductName(ProductGroup.SNOWBOARD);
+        snowboard2.setProductName(Product.SNOWBOARD);
         snowboard2.setMaker("NITRO");
         snowboard2.setGender(Gender.UNISEX);
         snowboard2.setRidingLevel(RidingLevel.BEGINNER);
@@ -297,7 +297,7 @@ class SnowboardDaoImplTest {
     @NotNull
     private Snowboard getSnowboard() {
         Snowboard expected = new Snowboard();
-        expected.setProductName(ProductGroup.SNOWBOARD);
+        expected.setProductName(Product.SNOWBOARD);
         expected.setMaker("NIDECKER");
         expected.setGender(Gender.UNISEX);
         expected.setRidingLevel(RidingLevel.MEDIUM);

@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.LacingSystem;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
 import by.zhigalko.snow.world.util.ApplicationConfig;
@@ -179,7 +179,7 @@ class SnowboardBootDaoImplTest {
     private SnowboardBoot getSnowboardBoot() {
         AtomicLong counter = new AtomicLong(0);
         SnowboardBoot snowboardBoot = new SnowboardBoot();
-        snowboardBoot.setProductName(ProductGroup.SNOWBOARD_BOOT);
+        snowboardBoot.setProductName(Product.SNOWBOARD_BOOT);
         snowboardBoot.setMaker("NITRO");
         snowboardBoot.setGender(Gender.MALE);
         snowboardBoot.setLacingSystem(LacingSystem.BOA);

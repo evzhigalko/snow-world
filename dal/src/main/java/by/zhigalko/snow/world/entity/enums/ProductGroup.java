@@ -1,27 +1,33 @@
 package by.zhigalko.snow.world.entity.enums;
 
 public enum ProductGroup {
-    SNOWBOARD("Сноуборд"),
-    SNOWBOARD_BOOT("Ботинки сноубордные"),
-    SNOWBOARD_HELMET("Шлем сноубордный"),
-    SKI("Лыжи"),
-    SKI_BOOT("Ботинки лыжные"),
-    SKI_POLE("Палки лыжные"),
-    SKI_HELMET("Шлем лыжный"),
-    JACKET("Куртка"),
-    PANTS("Штаны"),
-    CAP("Шапка"),
-    MASK("Маска"),
-    MITTEN("Варежки"),
-    GLOVE("Перчатки");
+    EQUIPMENT,
+    BOOTS,
+    SKI,
+    SKI_POLE,
+    SNOWBOARD;
 
-    private final String name;
-
-    ProductGroup(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
+    public static ProductGroup getProduct(String item) {
+        switch (item) {
+            case "jacket":
+            case "pants":
+            case "mask":
+            case "cap":
+            case "mitten":
+            case "glove":
+            case "ski_helmet":
+            case "snowboard_helmet":
+                return EQUIPMENT;
+            case "ski_boot":
+            case "snowboard_boot":
+                return BOOTS;
+            case "ski":
+                return SKI;
+            case "ski_pole":
+                return SKI_POLE;
+            case "snowboard":
+                return SNOWBOARD;
+        }
+        return null;
     }
 }

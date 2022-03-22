@@ -5,7 +5,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.clothes.ClothesWithMembrane;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +29,6 @@ public class ItemGenerator {
         equipment.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
         equipment.setEquipmentSizeId(equipmentSize);
         equipment.setImage(image);
-        equipment.setProductName(ProductGroup.valueOf(request.getParameter("product_group")));
+        equipment.setProductName(Product.valueOf(request.getParameter("product_group")));
     }
 }

@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.entity.Equipment;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.ski.SkiPole;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import javax.persistence.Query;
@@ -205,7 +205,7 @@ class SkiPoleDaoImplTest {
 
     private SkiPole getSkiPole() {
         SkiPole skiPole = new SkiPole();
-        skiPole.setProductName(ProductGroup.SKI_POLE);
+        skiPole.setProductName(Product.SKI_POLE);
         skiPole.setMaker("FISCHER");
         skiPole.setGender(Gender.UNISEX);
         skiPole.setAvailableToRental(true);

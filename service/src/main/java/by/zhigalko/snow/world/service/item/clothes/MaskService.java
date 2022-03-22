@@ -1,10 +1,11 @@
 package by.zhigalko.snow.world.service.item.clothes;
 
-import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.clothes.Mask;
+import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
+import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import by.zhigalko.snow.world.service.item.util.ItemGenerator;
@@ -16,8 +17,8 @@ public class MaskService extends BaseItemServiceImpl<Mask> {
     private final ItemGenerator itemGenerator;
 
     @Autowired
-    public MaskService(BaseDaoItemImpl<Mask> dao, ItemGenerator itemGenerator) {
-        super(dao);
+    public MaskService(ItemRepository<Mask> itemRepository, EquipmentSizeRepository equipmentSizeRepository, ItemGenerator itemGenerator) {
+        super(itemRepository, equipmentSizeRepository);
         this.itemGenerator = itemGenerator;
     }
 

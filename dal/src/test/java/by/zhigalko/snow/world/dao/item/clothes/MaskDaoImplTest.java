@@ -5,7 +5,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.clothes.Cap;
 import by.zhigalko.snow.world.entity.clothes.Mask;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -177,7 +177,7 @@ class MaskDaoImplTest {
     private Mask getMask() {
         AtomicLong counter = new AtomicLong(0);
         Mask mask = new Mask();
-        mask.setProductName(ProductGroup.MASK);
+        mask.setProductName(Product.MASK);
         mask.setMaker("PRIME");
         mask.setGender(Gender.UNISEX);
         mask.setAvailableToRental(true);

@@ -1,11 +1,12 @@
 package by.zhigalko.snow.world.service.item.snowboard;
 
-import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
+import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
+import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import by.zhigalko.snow.world.service.item.util.ItemGenerator;
@@ -17,8 +18,8 @@ public class SnowboardBootService extends BaseItemServiceImpl<SnowboardBoot> {
     private final ItemGenerator itemGenerator;
 
     @Autowired
-    public SnowboardBootService(BaseDaoItemImpl<SnowboardBoot> dao, ItemGenerator itemGenerator) {
-        super(dao);
+    public SnowboardBootService(ItemRepository<SnowboardBoot> itemRepository, EquipmentSizeRepository equipmentSizeRepository, ItemGenerator itemGenerator) {
+        super(itemRepository, equipmentSizeRepository);
         this.itemGenerator = itemGenerator;
     }
 

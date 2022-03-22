@@ -1,20 +1,20 @@
 package by.zhigalko.snow.world.service.common.equipment_size;
 
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDao;
 import by.zhigalko.snow.world.entity.EquipmentSize;
+import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EquipmentSizeService {
-    private final EquipmentSizeDao equipmentSizeDao;
+    private final EquipmentSizeRepository equipmentSizeRepository;
 
     @Autowired
-    public EquipmentSizeService(EquipmentSizeDao equipmentSizeDao) {
-        this.equipmentSizeDao = equipmentSizeDao;
+    public EquipmentSizeService(EquipmentSizeRepository equipmentSizeRepository) {
+        this.equipmentSizeRepository = equipmentSizeRepository;
     }
 
     public EquipmentSize findEquipmentSizeById(String id) {
-        return equipmentSizeDao.findById(id);
+        return equipmentSizeRepository.getById(id);
     }
 }

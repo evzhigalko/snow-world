@@ -1,60 +1,51 @@
 package by.zhigalko.snow.world.service.item;
 
-import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
+import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
+import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemService<T>, BaseUpdateItemService<T>, EquipmentAllSizesService {
-    private final BaseDaoItemImpl<T> dao;
+    private final ItemRepository<T> itemRepository;
+    private final EquipmentSizeRepository equipmentSizeRepository;
 
     @Autowired
-    public BaseItemServiceImpl(BaseDaoItemImpl<T> dao) {
-        this.dao = dao;
+    public BaseItemServiceImpl(ItemRepository<T> itemRepository, EquipmentSizeRepository equipmentSizeRepository) {
+        this.itemRepository = itemRepository;
+        this.equipmentSizeRepository = equipmentSizeRepository;
     }
 
     @Override
-    public boolean save(T item) {
-        return dao.save(item);
+    public T save(T item) {
+        return itemRepository.save(item);
     }
 
     @Override
-    public List<T> findAll(int page, int pageSize) {
-        return dao.findAll(page, pageSize);
-    }
-
-    @Override
-    public long count() {
-        return dao.count();
+    public Page<T> findAll(int page, int pageSize) {
+        return itemRepository.findAll(PageRequest.of(page, pageSize));
     }
 
     @Override
     public T findById(UUID id) {
-        return dao.findById(id);
+        return itemRepository.getById(id);
     }
 
     @Override
     public void delete(T item) {
-        dao.delete(item);
+        itemRepository.deleteById(item.getId());
     }
 
     @Override
-    public T updateAvailable(T entity, boolean isAvailable) {
-        return dao.updateAvailable(entity, isAvailable);
-    }
-
-    @Override
-    public T updateCost(T entity, double newCost) {
-        return dao.updateCost(entity, newCost);
-    }
-
-    @Override
-    public List<EquipmentSize> findAllSizes() {
-        return dao.findAllSizes();
+    public List<EquipmentSize> findAllByProductGroup(ProductGroup productGroup) {
+        return equipmentSizeRepository.findAllByProductGroupOrderByEquipmentSizeId(productGroup);
     }
 }

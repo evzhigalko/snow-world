@@ -3,7 +3,7 @@ package by.zhigalko.snow.world.dao.item.ski;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.ski.SkiBoot;
 import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.util.ApplicationConfig;
@@ -178,7 +178,7 @@ class SkiBootDaoImplTest {
     private SkiBoot getSkiBoot() {
         AtomicLong counter = new AtomicLong(0);
         SkiBoot skiBoot = new SkiBoot();
-        skiBoot.setProductName(ProductGroup.SKI_BOOT);
+        skiBoot.setProductName(Product.SKI_BOOT);
         skiBoot.setMaker("Atomic");
         skiBoot.setGender(Gender.MALE);
         skiBoot.setAvailableToRental(true);

@@ -5,7 +5,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.clothes.Mitten;
 import by.zhigalko.snow.world.entity.clothes.Pants;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -177,7 +177,7 @@ class PantsDaoImplTest {
     private Pants getPants() {
         AtomicLong counter = new AtomicLong(0);
         Pants pants = new Pants();
-        pants.setProductName(ProductGroup.PANTS);
+        pants.setProductName(Product.PANTS);
         pants.setMaker("QUIKSILVER");
         pants.setMembrane(15000);
         pants.setGender(Gender.FEMALE);

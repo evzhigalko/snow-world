@@ -4,6 +4,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Log4j2
 @Controller
@@ -177,7 +179,7 @@ public class MainController {
         model.addAttribute("pageNumber", pageNumber);
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
         paginate(model, pageNumber, service);
-        List<EquipmentSize> skiPoleSizeList = service.findAllSizes();
+        List<EquipmentSize> skiPoleSizeList = service.findAllByProductGroup(ProductGroup.SKI_POLE);
         model.addAttribute("skiPoleSizeList", skiPoleSizeList);
         return "catalog/ski-pole-list";
     }
@@ -231,10 +233,9 @@ public class MainController {
     }
 
     private void paginate(Model model, int pageNumber, BaseItemServiceImpl<? extends Item> service) {
-        int page = (pageNumber - 1) * PAGE_SIZE;
-        List<? extends Item> list = service.findAll(page, PAGE_SIZE);
-        long entityNumber = service.count();
-        long pagesNumber = (long) Math.ceil(entityNumber * 1.0 / PAGE_SIZE);
+        org.springframework.data.domain.Page<? extends Item> pageList = service.findAll(pageNumber - 1, PAGE_SIZE);
+        int pagesNumber = pageList.getTotalPages();
+        List<? extends Item> list = pageList.stream().collect(Collectors.toList());
         model.addAttribute("pagesNumber", pagesNumber);
         model.addAttribute("list", list);
     }

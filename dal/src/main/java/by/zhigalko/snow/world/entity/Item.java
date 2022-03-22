@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.entity;
 
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import javax.persistence.*;
 import lombok.*;
 
@@ -18,7 +18,7 @@ import lombok.*;
 public class Item extends BaseEntity{
     @Column(name = "product_name")
     @Enumerated(EnumType.STRING)
-    private ProductGroup productName;
+    private Product productName;
 
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     @JoinColumn(name = "image_id", nullable = false)

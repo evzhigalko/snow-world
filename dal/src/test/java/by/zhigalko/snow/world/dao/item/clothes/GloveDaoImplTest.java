@@ -5,7 +5,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.clothes.Cap;
 import by.zhigalko.snow.world.entity.clothes.Glove;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -178,7 +178,7 @@ class GloveDaoImplTest {
     private Glove getGlove() {
         AtomicLong counter = new AtomicLong(0);
         Glove glove = new Glove();
-        glove.setProductName(ProductGroup.GLOVE);
+        glove.setProductName(Product.GLOVE);
         glove.setMaker("POW");
         glove.setMembrane(15000);
         glove.setGender(Gender.UNISEX);

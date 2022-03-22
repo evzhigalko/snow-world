@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.clothes.Cap;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -176,7 +176,7 @@ class CapDaoImplTest {
     private Cap getCap() {
         AtomicLong counter = new AtomicLong(0);
         Cap cap = new Cap();
-        cap.setProductName(ProductGroup.CAP);
+        cap.setProductName(Product.CAP);
         cap.setMaker("DC SHOES");
         cap.setGender(Gender.UNISEX);
         cap.setAvailableToRental(true);

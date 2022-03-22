@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.clothes.Mitten;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -176,7 +176,7 @@ class MittenDaoImplTest {
     private Mitten getMitten() {
         AtomicLong counter = new AtomicLong(0);
         Mitten mitten = new Mitten();
-        mitten.setProductName(ProductGroup.MITTEN);
+        mitten.setProductName(Product.MITTEN);
         mitten.setMaker("BURTON");
         mitten.setMembrane(15000);
         mitten.setGender(Gender.UNISEX);

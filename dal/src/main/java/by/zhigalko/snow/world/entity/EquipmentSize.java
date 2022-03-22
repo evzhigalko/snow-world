@@ -1,6 +1,8 @@
 package by.zhigalko.snow.world.entity;
 
 import javax.persistence.*;
+
+import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +34,10 @@ public class EquipmentSize {
 
     @Column(name = "user_max_weight")
     private Integer userMaxWeight;
+
+    @Column(name = "product_group")
+    @Enumerated(EnumType.STRING)
+    private ProductGroup productGroup;
 
     public void addEquipment(Equipment equipment) {
         this.equipmentSet.add(equipment);
