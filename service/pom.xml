@@ -18,6 +18,10 @@
             <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>by.zhigalko.snow.world</groupId>
             <artifactId>dal</artifactId>
         </dependency>
