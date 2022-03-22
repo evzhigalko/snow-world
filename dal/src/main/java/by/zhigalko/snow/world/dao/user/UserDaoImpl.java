@@ -30,7 +30,7 @@ public class UserDaoImpl extends BaseDaoSaveEntityImpl<User> implements UserDao 
     }
 
     @Override
-    public boolean findByUsernameAndEmail(String username, String email) {
+    public User findByUsernameAndEmail(String username, String email) {
         Session session = getSessionFactory().getCurrentSession();
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<User> criteria = cb.createQuery(User.class);
@@ -40,9 +40,7 @@ public class UserDaoImpl extends BaseDaoSaveEntityImpl<User> implements UserDao 
                         cb.equal(userRoot.get("username"), username),
                         cb.equal(userRoot.get("email"), email)
                 ));
-        return session.createQuery(criteria)
-                .getResultStream()
-                .anyMatch(Objects::nonNull);
+        return session.createQuery(criteria).getSingleResult();
     }
 
     @Override

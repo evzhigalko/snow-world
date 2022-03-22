@@ -104,10 +104,10 @@ public class MainController {
         ModelAndView mav = new ModelAndView();
         try {
             User userFromService = userService.createUser(request, user);
-            boolean userExists = userService.findByUsernameAndEmail(userFromService.getUsername(), userFromService.getEmail());
-            if (!userExists) {
-                boolean isSaved = userService.save(userFromService);
-                if(isSaved) {
+            User userExists = userService.findByUsernameAndEmail(userFromService.getUsername(), userFromService.getEmail());
+            if (userExists!=null) {
+                User savedUser = userService.save(userFromService);
+                if(savedUser!=null) {
                     mav.setViewName("login");
                     mav.addObject("message", "Вы успешно зарегистрировались");
                     log.info("Пользователь " + userFromService.getUsername() + " успешно зарегистрирован");

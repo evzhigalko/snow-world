@@ -1,11 +1,11 @@
 package by.zhigalko.snow.world.service.user;
 
-import by.zhigalko.snow.world.dao.user.UserDao;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
 import javax.servlet.http.HttpServletRequest;
+import by.zhigalko.snow.world.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-    private final UserDao userDao;
+    private final UserRepository userRepository;
     private static final int NAME_MIN_LENGTH = 2;
     private static final int CREDENTIALS_MIN_LENGTH = 5;
     private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     private final RoleService roleService;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, RoleService roleService) {
-        this.userDao = userDao;
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
+        this.userRepository = userRepository;
         this.roleService = roleService;
     }
 
@@ -51,23 +51,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean save(User user) {
-        return userDao.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     @Override
     public User findByUsernameAndPassword(String username, String password) {
-        return userDao.findByUsernameAndPassword(username, password);
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     @Override
-    public boolean findByUsernameAndEmail(String username, String email) {
-        return userDao.findByUsernameAndEmail(username, email);
+    public User findByUsernameAndEmail(String username, String email) {
+        return userRepository.findByUsernameAndEmail(username, email);
     }
 
     @Override
     public List<User> findAllUsers() {
-        return userDao.findAllUsers();
+        return userRepository.findByRoleRoleName(RoleName.USER);
     }
 
     public boolean validate(String username, String password, String email, String firstname, String lastname, String phoneNumber) throws ValidationException {

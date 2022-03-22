@@ -27,7 +27,7 @@ public interface UserDao extends BaseDaoSaveEntity<User> {
      *     <li>{@code false} if wasn't found</li>
      * </ul>
      */
-   boolean findByUsernameAndEmail(String username, String email);
+   User findByUsernameAndEmail(String username, String email);
 
     /**
      * Find all users
