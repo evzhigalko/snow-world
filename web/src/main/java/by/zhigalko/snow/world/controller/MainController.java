@@ -2,22 +2,15 @@ package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
-import by.zhigalko.snow.world.entity.enums.RoleName;
-import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
-import by.zhigalko.snow.world.service.user.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import javax.persistence.NoResultException;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,12 +20,10 @@ import java.util.stream.Collectors;
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
-    private final UserService userService;
 
     @Autowired
-    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, UserService userService) {
+    public MainController(ServiceEquipmentFactory serviceEquipmentFactory) {
         this.serviceEquipmentFactory = serviceEquipmentFactory;
-        this.userService = userService;
     }
 
     @GetMapping("/snowboard")
@@ -53,77 +44,6 @@ public class MainController {
     @GetMapping("/contacts")
     public String handleContacts() {
         return "static/contacts";
-    }
-
-    @GetMapping("/form/login")
-    public String handleLogin() {
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public ModelAndView login(HttpServletRequest request, @RequestParam("username") String username,
-                              @RequestParam("password") String password) {
-        ModelAndView mav = new ModelAndView();
-        try {
-            User user = userService.findByUsernameAndPassword(username, password);
-            if (user!=null) {
-                if (user.getRole().getRoleName().equals(RoleName.ADMIN)) {
-                    request.getSession().setAttribute("ROLE", user.getRole().getRoleName());
-                    mav.setViewName("redirect:admin");
-                } else {
-                    mav.setViewName("redirect:welcome");
-                }
-            }
-            request.getSession().setAttribute("user", user);
-        } catch (NoResultException e) {
-            request.getSession().invalidate();
-            mav.setViewName("login");
-            mav.addObject("error", "Имя пользователя или пароль не корректны");
-        }
-        return mav;
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        request.getSession().invalidate();
-        return "login";
-    }
-
-    @GetMapping("/welcome")
-    public String showWelcomePage() {
-        return "welcome";
-    }
-
-    @GetMapping("/form/registration")
-    public ModelAndView handleRegistration() {
-        ModelAndView mav = new ModelAndView("registration");
-        mav.addObject("user", new User());
-        return mav;
-    }
-
-    @PostMapping("/registration")
-    public ModelAndView registerUser(HttpServletRequest request, @ModelAttribute("user") User user) {
-        ModelAndView mav = new ModelAndView();
-        try {
-            User userFromService = userService.createUser(request, user);
-            User userExists = userService.findByUsernameAndEmail(userFromService.getUsername(), userFromService.getEmail());
-            if (userExists!=null) {
-                User savedUser = userService.save(userFromService);
-                if(savedUser!=null) {
-                    mav.setViewName("login");
-                    mav.addObject("message", "Вы успешно зарегистрировались");
-                    log.info("Пользователь " + userFromService.getUsername() + " успешно зарегистрирован");
-                }
-            } else {
-                throw new ValidationException("Пользователь с таким именем или электронной почтой уже существует");
-            }
-        } catch (ValidationException e) {
-            mav.setViewName("registration");
-            mav.addObject("error", e.getMessage());
-            log.info(e.getMessage());
-            return mav;
-        }
-        return mav;
     }
 
     @GetMapping("/snowboard/catalog/{page}")

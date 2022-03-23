@@ -39,7 +39,7 @@
                     </div>
                 </form>
                 <div class="text-center mt-4"><span>Ещё не зарегистрированы?</span> <a
-                        href="<c:url value="/form/registration"/>"
+                        href="<c:url value="/registration"/>"
                         class="text-decoration-none">Зарегистрироваться</a>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import by.zhigalko.snow.world.service.user.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ import java.util.UUID;
 
 @Log4j2
 @Controller
+@SessionAttributes({"user", "ROLE"})
 public class AdminController {
     private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final UserService userService;
@@ -38,9 +40,11 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
-    public String showAdminPage(Model model) {
+    public String showAdminPage(Authentication authentication, Model model) {
         List<User> userList = userService.findAllUsers();
         model.addAttribute("usersList", userList);
+        model.addAttribute("user", userService.findByUsername(authentication.getName()));
+        model.addAttribute("ROLE", authentication.getAuthorities().stream().findFirst().orElseThrow());
         return "administration/admin";
     }
 

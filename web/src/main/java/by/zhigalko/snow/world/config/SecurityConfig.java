@@ -8,8 +8,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -23,20 +24,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
+//        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new AuthSuccessHandler();
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin").hasAuthority(RoleName.ADMIN.name())
-//                .antMatchers("/user").hasAuthority(RoleName.USER.name())
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/welcome")
-//                .and()
-//                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
+                .antMatchers("/admin/**").hasAuthority(RoleName.ADMIN.name())
+                .and()
+                .formLogin()
+                .loginPage("/login").loginProcessingUrl("/login").successHandler(successHandler())
+                .and()
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()
                 .csrf().disable();
         http.userDetailsService(userDetailsService);

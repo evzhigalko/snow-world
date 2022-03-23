@@ -39,7 +39,7 @@
                 </ul>
                 <c:choose>
                     <c:when test="${sessionScope.user == null}">
-                        <a class="sign_in_link" href="<c:url value="/form/login"/>">
+                        <a class="sign_in_link" href="<c:url value="/login"/>">
                             <div class="sign_in_block">
                                 Войти
                             </div>

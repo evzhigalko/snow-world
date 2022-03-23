@@ -7,12 +7,24 @@ import by.zhigalko.snow.world.exception.ValidationException;
 import javax.servlet.http.HttpServletRequest;
 import by.zhigalko.snow.world.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 @Service("userService")
-public class UserServiceImpl implements UserService {
+@Transactional
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private static final int NAME_MIN_LENGTH = 2;
     private static final int CREDENTIALS_MIN_LENGTH = 5;
@@ -24,6 +36,21 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User foundUser = userRepository.findByUsername(username);
+        if (foundUser == null) {
+            throw new UsernameNotFoundException("Пользователь не существует!");
+        }
+        return new org.springframework.security.core.userdetails.User(foundUser.getUsername(), foundUser.getPassword(), getUserAuthorities(foundUser));
+    }
+
+    private Set<GrantedAuthority> getUserAuthorities(User user) {
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getRoleName().name()));
+        return grantedAuthorities;
     }
 
     @Override
@@ -48,6 +75,11 @@ public class UserServiceImpl implements UserService {
             user.setRole(roleService.findByRoleName(RoleName.USER));
         }
         return user;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
