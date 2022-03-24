@@ -1,3 +1,2 @@
 user_id,email,first_name,gender,last_name,password,phone_number,username,role_id
-eb6dc339-33f0-462e-ab67-c08f84835ef1,evgeniy.zhigalko@gmail.com,Evgeniy,MALE,Zhigalko,qwerty,+375291271633,admin,84ca2cf2-e6c7-4e14-afda-101784a3e42a
-2ccfd14f-2014-438e-abb7-eb29debed033,test@test.com,Test1,MALE,Test1,qwerty,+375291271633,test123,ed337b43-dbb3-4d41-8357-ba04a73c54cf
+8145e734-f745-4dd4-b8f5-47350f061a1f,evgeniy.zhigalko@gmail.com,Evgeniy,MALE,Zhigalko,$2a$10$cIvjPFracYMMQUNvDTYMLuI9gwFfKjywiX1aSWVB9jxaNBPZ3U1Zu,+375291271633,admin,84ca2cf2-e6c7-4e14-afda-101784a3e42a

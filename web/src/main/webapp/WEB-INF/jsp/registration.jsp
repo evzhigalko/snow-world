@@ -32,17 +32,17 @@
                     <div class="form-input">
                         <label for="label-first-name" class="form-label"> </label>
                         <input id="label-first-name" type="text" class="form-control" placeholder="Имя"
-                               name="firstname" required oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')">
+                               name="firstName" required oninvalid="this.setCustomValidity('Введите имя')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-input">
                         <label for="label-last-name" class="form-label"> </label>
                         <input id="label-last-name" type="text" class="form-control" placeholder="Фамилия"
-                               name="lastname" required oninvalid="this.setCustomValidity('Введите фамилию')" oninput="setCustomValidity('')">
+                               name="lastName" required oninvalid="this.setCustomValidity('Введите фамилию')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-input">
                         <label for="label-phone_number" class="form-label"> </label>
                         <input id="label-phone_number" type="text" class="form-control" placeholder="Телефонный номер в международном формате"
-                               name="phone_number" required oninvalid="this.setCustomValidity('Введите телефонный номер')" oninput="setCustomValidity('')">
+                               name="phoneNumber" required oninvalid="this.setCustomValidity('Введите телефонный номер')" oninput="setCustomValidity('')">
                     </div>
                     <fieldset class="form-group"> Пол:
                         <div class="form-check form-check-inline">
@@ -70,7 +70,7 @@
                         <button class="btn btn-primary mt-4 signup">Зарегистрироваться</button>
                     </div>
                 </form>
-                <div class="text-center mt-4"><span>Уже зарегистрированы?</span> <a href="<c:url value="/form/login"/>"
+                <div class="text-center mt-4"><span>Уже зарегистрированы?</span> <a href="<c:url value="/login"/>"
                                                                                 class="text-decoration-none">Войти</a>
                 </div>
             </div>
