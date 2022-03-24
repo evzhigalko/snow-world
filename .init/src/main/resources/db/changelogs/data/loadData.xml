@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    <changeSet id="1648110250" author="zhigalko">
+        <loadData file="src/main/resources/db/data/snow_world_database_rental_role.csv"
+                  separator=","
+                  schemaName="rental"
+                  tableName="role"/>
+        <rollback>
+            <delete schemaName="rental" tableName="role">
+                <where>true</where>
+            </delete>
+        </rollback>
+    </changeSet>
+    <changeSet id="1648110251" author="zhigalko">
+        <loadData file="src/main/resources/db/data/snow_world_database_rental_user.csv"
+                  separator=","
+                  schemaName="rental"
+                  tableName="user"/>
+        <rollback>
+            <delete schemaName="rental" tableName="user">
+                <where>true</where>
+            </delete>
+        </rollback>
+    </changeSet>
+    <changeSet id="1648110252" author="zhigalko">
+        <loadData file="src/main/resources/db/data/snow_world_database_rental_equipment_size.csv"
+                  separator=","
+                  schemaName="rental"
+                  tableName="equipment_size"/>
+        <rollback>
+            <delete schemaName="rental" tableName="equipment_size">
+                <where>true</where>
+            </delete>
+        </rollback>
+    </changeSet>
+    <changeSet id="1648110253" author="zhigalko">
+        <loadData file="src/main/resources/db/data/snow_world_database_rental_image.csv"
+                  separator=","
+                  schemaName="rental"
+                  tableName="image"/>
+        <rollback>
+            <delete schemaName="rental" tableName="image">
+                <where>true</where>
+            </delete>
+        </rollback>
+    </changeSet>
+    <changeSet id="1648110254" author="zhigalko">
+        <loadData file="src/main/resources/db/data/snow_world_database_rental_item.csv"
+                  separator=","
+                  schemaName="rental"
+                  tableName="item"/>
+        <rollback>
+            <delete schemaName="rental" tableName="item">
+                <where>true</where>
+            </delete>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

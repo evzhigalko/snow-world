@@ -1,0 +1,110 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet context="legacy" author="zhigalko" id="1648110245">
+        <createTable tableName="role" schemaName="rental">
+            <column autoIncrement="${autoIncrement}" name="role_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_name" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="role"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1648110246">
+        <createTable tableName="user" schemaName="rental">
+            <column autoIncrement="${autoIncrement}" name="user_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="role_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_role"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="role"
+                             referencedColumnNames="role_id"
+                             nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="user"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1648110247">
+        <createTable tableName="equipment_size" schemaName="rental">
+            <column name="equipment_size_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_max_height" type="INTEGER"/>
+            <column name="user_max_weight" type="INTEGER"/>
+            <column name="user_min_height" type="INTEGER"/>
+            <column name="user_min_weight" type="INTEGER"/>
+            <column name="product_group" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="equipment_size"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1648110248">
+        <createTable tableName="image" schemaName="rental">
+            <column autoIncrement="${autoIncrement}" name="image_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="image_name" type="VARCHAR(255)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="image"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1648110249">
+        <createTable tableName="item" schemaName="rental">
+            <column name="product_type" type="VARCHAR(31)"/>
+            <column autoIncrement="${autoIncrement}" name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="available_to_rental" type="BOOLEAN"/>
+            <column name="cost" type="DOUBLE"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="maker" type="VARCHAR(255)"/>
+            <column name="product_name" type="VARCHAR(255)"/>
+            <column name="hardness_level" type="VARCHAR(255)"/>
+            <column name="riding_level" type="VARCHAR(255)"/>
+            <column name="lacing_system" type="VARCHAR(255)"/>
+            <column name="membrane" type="INTEGER"/>
+            <column name="image_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_image"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="image"
+                             referencedColumnNames="image_id"
+                             nullable="false"/>
+            </column>
+            <column name="equipment_size_id" type="VARCHAR(255)">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_equipment_size"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="equipment_size"
+                             referencedColumnNames="equipment_size_id"
+                             nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="item"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
