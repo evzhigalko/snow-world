@@ -24,7 +24,7 @@ public class Cart extends BaseEntity {
     @Column(name = "total_sum")
     private double totalSum;
 
-    @OneToOne(mappedBy = "cart")
+    @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
     private User user;

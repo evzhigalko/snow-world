@@ -1,6 +1,7 @@
 package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.dto.UserDTO;
+import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
@@ -29,7 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(UserDTO userDTO) throws ValidationException {
-        return save(accountService.createUser(userDTO));
+        User user = accountService.createUser(userDTO);
+        user.setNewCart(new Cart());
+        return userRepository.save(user);
     }
 
     @Override

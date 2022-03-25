@@ -45,7 +45,19 @@ public class User extends BaseEntity{
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn
     private Cart cart;
+
+    public void setNewCart(Cart cart) {
+        if (cart == null) {
+            if (this.cart != null) {
+                this.cart.setUser(null);
+            }
+        }
+        else {
+            cart.setUser(this);
+        }
+        this.cart = cart;
+    }
 }
