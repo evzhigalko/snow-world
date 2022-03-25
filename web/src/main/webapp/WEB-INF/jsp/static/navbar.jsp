@@ -58,6 +58,15 @@
                                 <a class="nav-link disabled" tabindex="-1" aria-disabled="true"><c:out
                                         value="${sessionScope.user.firstName} ${sessionScope.user.lastName}"/></a>
                             </li>
+                                <c:if test="${sessionScope.ROLE eq 'USER'}">
+                                    <li class="cart">
+                                        <a href="#">
+                                            <img src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/shopping-cart.png"
+                                                 alt="cart"
+                                                 height="35" width="35"/>
+                                        </a>
+                                    </li>
+                                </c:if>
                             <li class="nav-item">
                                 <a href="<c:url value="/logout"/>"
                                    class="sign_out_block">Выйти</a>

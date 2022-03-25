@@ -45,7 +45,7 @@ li {
     .sign_in_block {
         position: absolute;
         bottom: 7px;
-        left: 60rem;
+        right: -10rem;
     }
 }
 
@@ -118,9 +118,8 @@ a {
 
 @media only screen and (max-width: 1080px) {
     .sign_out_block {
-        position: absolute;
-        top: 18rem;
-        left: 9px;
+        bottom: 0;
+        left: 0;
     }
 
     .first-last-name {
@@ -134,21 +133,35 @@ a {
     .nav-link {
         padding-left: 8px;
     }
+
+    .cart {
+        padding-left: 3rem;
+    }
 }
 
 @media only screen and (min-width: 1081px) {
     .first-last-name {
-        padding-left: 6rem;
+        position: absolute;
+        bottom: 0;
+        right: -5rem;
     }
 
     .sign_out_block {
         position: absolute;
         bottom: 7px;
-        left: 60rem;
+        right: -10rem;
     }
 
     .admin-first-last-name {
-        padding-left: 30px;
+        position: absolute;
+        right: -6rem;
+        bottom: 0;
+    }
+
+    .cart {
+        position: absolute;
+        right: 62px;
+        bottom: 6px;
     }
 }
 
