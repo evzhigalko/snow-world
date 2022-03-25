@@ -4,6 +4,8 @@ import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
 import javax.persistence.*;
 import lombok.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -36,4 +38,20 @@ public class Item extends BaseEntity{
 
     @Column(name = "cost")
     private double cost;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "item_cart",
+            joinColumns = { @JoinColumn(name = "item_id") },
+            inverseJoinColumns = { @JoinColumn(name = "cart_id")})
+    private Set<Cart> carts = new HashSet<>();
+
+    public void addItem(Cart cart) {
+        this.carts.add(cart);
+        cart.getItems().add(this);
+    }
+
+    public void removeItem(Cart cart) {
+        this.carts.remove(cart);
+        cart.getItems().add(this);
+    }
 }
