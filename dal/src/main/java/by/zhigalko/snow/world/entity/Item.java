@@ -10,8 +10,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString(callSuper = true)
-@EqualsAndHashCode(exclude = "image", callSuper = false)
+@ToString(exclude = "carts", callSuper = true)
+@EqualsAndHashCode(exclude = {"image"}, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

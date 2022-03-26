@@ -1,6 +1,9 @@
 package by.zhigalko.snow.world.service.cart;
 
+import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
+import by.zhigalko.snow.world.entity.User;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -25,4 +28,18 @@ public interface CartService {
      * </ul>
      */
      boolean removeFromCart(UUID cartId, Item item);
+
+    /**
+     * Find cart by user
+     * @param user {@link User}
+     * @return {@link Cart}
+     */
+     Cart findCartByUser(User user);
+
+    /**
+     * Get {@link Set<Item>}
+     * @param cartId {@link UUID} cartId
+     * @return {@link Set<Item>}
+     */
+     Set<Item> getItems(UUID cartId);
 }

@@ -60,7 +60,7 @@
                             </li>
                                 <c:if test="${sessionScope.ROLE eq 'USER'}">
                                     <li class="cart">
-                                        <a href="#">
+                                        <a href="<c:url value="/cart"/>">
                                             <img src="http://ec2-54-165-213-86.compute-1.amazonaws.com:9000/img/shopping-cart.png"
                                                  alt="cart"
                                                  height="35" width="35"/>

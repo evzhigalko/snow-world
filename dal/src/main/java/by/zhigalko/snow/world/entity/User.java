@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Getter
 @Setter
-@ToString(callSuper = true)
+@ToString(exclude = "cart", callSuper = true)
 @EqualsAndHashCode(exclude = "role", callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor

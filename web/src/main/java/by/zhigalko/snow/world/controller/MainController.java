@@ -1,9 +1,12 @@
 package by.zhigalko.snow.world.controller;
 
+import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
+import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.service.cart.CartService;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import lombok.extern.log4j.Log4j2;
@@ -16,14 +19,16 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @Controller
-@SessionAttributes("pageNumber")
+@SessionAttributes({"pageNumber", "cart", "user", "cartItems"})
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
+    private final CartService cartService;
 
     @Autowired
-    public MainController(ServiceEquipmentFactory serviceEquipmentFactory) {
+    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, CartService cartService) {
         this.serviceEquipmentFactory = serviceEquipmentFactory;
+        this.cartService = cartService;
     }
 
     @GetMapping("/snowboard")
@@ -150,6 +155,14 @@ public class MainController {
         BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
         paginate(model, pageNumber, service);
         return "catalog/gloves-list";
+    }
+
+    @GetMapping("/cart")
+    public String showCart(@SessionAttribute("user") User user, Model model) {
+        Cart cart = cartService.findCartByUser(user);
+        model.addAttribute("cart", cart);
+        model.addAttribute("cartItems", cartService.getItems(cart.getId()));
+        return "cart";
     }
 
     private void paginate(Model model, int pageNumber, BaseItemServiceImpl<? extends Item> service) {

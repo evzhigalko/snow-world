@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "items")
 @Table(name = "cart")
 @AttributeOverride(name = "id", column = @Column(name = "cart_id"))
 public class Cart extends BaseEntity {
