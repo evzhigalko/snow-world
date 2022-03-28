@@ -83,7 +83,7 @@
                                                 </form>
                                             </c:if>
                                             <div style="padding-top: 9px">
-                                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                                <a href="<c:url value="/cart/add/snowboard/boot/${boot.id}"/>" class="btn btn-primary">Добавить в корзину</a>
                                             </div>
                                         </div>
                                     </div>

@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("Палки лыжные")
 public class SkiPole extends SkiGroup {
 }

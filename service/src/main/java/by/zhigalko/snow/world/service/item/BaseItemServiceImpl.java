@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemService<T>, BaseUpdateItemService<T>, EquipmentAllSizesService {
     private final ItemRepository<T> itemRepository;
     private final EquipmentSizeRepository equipmentSizeRepository;
@@ -34,9 +37,10 @@ public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemSer
         return itemRepository.findAll(PageRequest.of(page, pageSize));
     }
 
+    @Transactional
     @Override
     public T findById(UUID id) {
-        return itemRepository.getById(id);
+        return itemRepository.findById(id).orElseThrow(NoResultException::new);
     }
 
     @Override

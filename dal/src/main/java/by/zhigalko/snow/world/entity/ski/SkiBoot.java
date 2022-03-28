@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 @Setter
 @NoArgsConstructor
 @ToString (callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("Ботинки лыжные")
 public class SkiBoot extends SkiGroup {
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("Маска")
 public class Mask extends ClothesGroup {
 }

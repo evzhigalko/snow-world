@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(exclude = "equipmentSizeId",callSuper = false)
+@EqualsAndHashCode(exclude = "equipmentSizeId", callSuper = true)
 public abstract class Equipment extends Item {
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "equipment_size_id", nullable = false)

@@ -7,6 +7,6 @@ import lombok.*;
 @Getter
 @Setter
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public abstract class ClothesGroup extends Equipment {
 }

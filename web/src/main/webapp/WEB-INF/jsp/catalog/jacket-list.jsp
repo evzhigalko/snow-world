@@ -76,7 +76,7 @@
                                             </form>
                                         </c:if>
                                         <div>
-                                            <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                            <a href="<c:url value="/cart/add/clothes/jacket/${jacket.id}"/>" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>
                                 </div>

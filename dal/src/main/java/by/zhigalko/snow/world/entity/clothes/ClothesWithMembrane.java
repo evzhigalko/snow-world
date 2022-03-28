@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString (callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 public abstract class ClothesWithMembrane extends ClothesGroup {
     @Column(name = "membrane")
     private int membrane;

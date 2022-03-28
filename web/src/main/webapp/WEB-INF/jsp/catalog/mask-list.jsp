@@ -82,7 +82,7 @@
                                             <div style="padding-top: 0">
                                                 </c:when>
                                                 </c:choose>
-                                                <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                                <a href="<c:url value="/cart/add/clothes/mask/${mask.id}"/>" class="btn btn-primary">Добавить в корзину</a>
                                             </div>
                                         </div>
                                     </div>

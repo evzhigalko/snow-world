@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString (callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @DiscriminatorValue("Сноуборд")

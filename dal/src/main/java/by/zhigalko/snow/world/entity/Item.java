@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString(exclude = "carts", callSuper = true)
-@EqualsAndHashCode(exclude = {"image"}, callSuper = false)
+@EqualsAndHashCode(exclude = {"image"}, callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -39,19 +39,6 @@ public class Item extends BaseEntity{
     @Column(name = "cost")
     private double cost;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "item_cart",
-            joinColumns = { @JoinColumn(name = "item_id") },
-            inverseJoinColumns = { @JoinColumn(name = "cart_id")})
+    @ManyToMany(mappedBy = "items")
     private Set<Cart> carts = new HashSet<>();
-
-    public void addItem(Cart cart) {
-        this.carts.add(cart);
-        cart.getItems().add(this);
-    }
-
-    public void removeItem(Cart cart) {
-        this.carts.remove(cart);
-        cart.getItems().add(this);
-    }
 }

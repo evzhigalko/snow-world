@@ -12,7 +12,7 @@
 <c:choose>
     <c:when test="${cartItems!=null and !cartItems.isEmpty()}">
         <c:forEach items="${cartItems}" var="cartItem">
-
+           <p>Id ${cartItem.id}</p>
         </c:forEach>
     </c:when>
     <c:otherwise>

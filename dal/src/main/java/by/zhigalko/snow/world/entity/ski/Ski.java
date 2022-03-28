@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString (callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("Лыжи")
 public class Ski extends SkiGroup {
     @Column(name = "riding_level")

@@ -29,16 +29,9 @@ public class Cart extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(mappedBy = "carts")
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "cart_item",
+            joinColumns = {@JoinColumn(name = "cart_id")},
+            inverseJoinColumns = {@JoinColumn(name = "item_id")})
     private Set<Item> items = new HashSet<>();
-
-    public void addItem(Item item) {
-        this.items.add(item);
-        item.getCarts().add(this);
-    }
-
-    public void removeItem(Item item) {
-        this.items.remove(item);
-        item.getCarts().remove(this);
-    }
 }

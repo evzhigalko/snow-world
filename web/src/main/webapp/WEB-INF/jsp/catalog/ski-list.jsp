@@ -45,13 +45,6 @@
                                             </c:choose></p>
                                         <a class="btn btn btn-primary btn-sm" href="<c:url value="/ski/pole/catalog/1"/>"
                                            role="button">Выбрать лыжные палки</a>
-<%--                                        <select class="form-select" aria-label="Лыжные палки">--%>
-<%--                                            <option selected>Лыжные палки</option>--%>
-<%--                                            <c:forEach var="ski_pole_size" items="${requestScope.skiPoleSizeList}">--%>
-<%--                                                <option value="pole_size">Рост: ${ski_pole_size.userMinHeight}--%>
-<%--                                                    - ${ski_pole_size.userMaxHeight}</option>--%>
-<%--                                            </c:forEach>--%>
-<%--                                        </select>--%>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
                                             <form action="<c:url value="/admin/ski/catalog/${ski.id}"/>"
                                                   method="post">
@@ -86,7 +79,7 @@
                                             </form>
                                         </c:if>
                                         <div style="padding-top: 15px">
-                                            <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                                            <a href="<c:url value="/cart/add/ski/${ski.id}"/>" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>
                                 </div>

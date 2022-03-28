@@ -3,7 +3,6 @@ package by.zhigalko.snow.world.controller;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Page;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.service.cart.CartService;
@@ -15,11 +14,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Log4j2
 @Controller
-@SessionAttributes({"pageNumber", "cart", "user", "cartItems"})
+@SessionAttributes({"pageNumber"})
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
@@ -158,11 +159,148 @@ public class MainController {
     }
 
     @GetMapping("/cart")
-    public String showCart(@SessionAttribute("user") User user, Model model) {
-        Cart cart = cartService.findCartByUser(user);
+    public String showCart(@SessionAttribute("cart") Cart cart,
+                           Model model) {
         model.addAttribute("cart", cart);
         model.addAttribute("cartItems", cartService.getItems(cart.getId()));
         return "cart";
+    }
+
+    @GetMapping("/cart/add/snowboard/{id}")
+    public String addSnowboardToCart(@SessionAttribute("cart") Cart cart,
+                                     @PathVariable("id") UUID itemId,
+                                     @SessionAttribute("pageNumber") int pageNumber,
+                                     Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/snowboard/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/snowboard/boot/{id}")
+    public String addSnowboardBootToCart(@SessionAttribute("cart") Cart cart,
+                                         @PathVariable("id") UUID itemId,
+                                         @SessionAttribute("pageNumber") int pageNumber,
+                                         Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_BOOT_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/snowboard/boot/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/snowboard/helmet/{id}")
+    public String addSnowboardHelmetToCart(@SessionAttribute("cart") Cart cart,
+                                           @PathVariable("id") UUID itemId,
+                                           @SessionAttribute("pageNumber") int pageNumber,
+                                           Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/snowboard/helmet/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/ski/{id}")
+    public String addSkiToCart(@SessionAttribute("cart") Cart cart,
+                               @PathVariable("id") UUID itemId,
+                               @SessionAttribute("pageNumber") int pageNumber,
+                               Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/ski/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/ski/pole/{id}")
+    public String addSkiPoleToCart(@SessionAttribute("cart") Cart cart,
+                                   @PathVariable("id") UUID itemId,
+                                   @SessionAttribute("pageNumber") int pageNumber,
+                                   Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/ski/pole/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/ski/boot/{id}")
+    public String addSkiBootToCart(@SessionAttribute("cart") Cart cart,
+                                   @PathVariable("id") UUID itemId,
+                                   @SessionAttribute("pageNumber") int pageNumber,
+                                   Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/ski/boot/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/ski/helmet/{id}")
+    public String addSkiHelmetToCart(@SessionAttribute("cart") Cart cart,
+                                     @PathVariable("id") UUID itemId,
+                                     @SessionAttribute("pageNumber") int pageNumber,
+                                     Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/ski/helmet/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/clothes/cap/{id}")
+    public String addCapToCart(@SessionAttribute("cart") Cart cart,
+                               @PathVariable("id") UUID itemId,
+                               @SessionAttribute("pageNumber") int pageNumber,
+                               Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.CAP_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/clothes/cap/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/clothes/gloves/{id}")
+    public String addGlovesToCart(@SessionAttribute("cart") Cart cart,
+                                  @PathVariable("id") UUID itemId,
+                                  @SessionAttribute("pageNumber") int pageNumber,
+                                  Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/clothes/gloves/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/clothes/jacket/{id}")
+    public String addJacketToCart(@SessionAttribute("cart") Cart cart,
+                                  @PathVariable("id") UUID itemId,
+                                  @SessionAttribute("pageNumber") int pageNumber,
+                                  Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/clothes/jacket/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/clothes/mask/{id}")
+    public String addMaskToCart(@SessionAttribute("cart") Cart cart,
+                                @PathVariable("id") UUID itemId,
+                                @SessionAttribute("pageNumber") int pageNumber,
+                                Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MASK_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/clothes/mask/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/clothes/mittens/{id}")
+    public String addMittensToCart(@SessionAttribute("cart") Cart cart,
+                                   @PathVariable("id") UUID itemId,
+                                   @SessionAttribute("pageNumber") int pageNumber,
+                                   Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/clothes/mittens/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/add/clothes/pants/{id}")
+    public String addPantsToCart(@SessionAttribute("cart") Cart cart,
+                                 @PathVariable("id") UUID itemId,
+                                 @SessionAttribute("pageNumber") int pageNumber,
+                                 Model model) {
+        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
+        addToCart(cart, itemId, model, service);
+        return "redirect:/clothes/pants/catalog/" + pageNumber;
+    }
+
+    private void addToCart(Cart cart, UUID itemId, Model model, BaseItemServiceImpl<? extends Item> service) {
+        Cart cartWithItem = cartService.addToCart(service, cart, service.findById(itemId));
+        model.addAttribute("cart", cartWithItem);
+        Set<Item> items = cartService.getItems(cartWithItem.getId());
+        model.addAttribute("cartItems", items);
     }
 
     private void paginate(Model model, int pageNumber, BaseItemServiceImpl<? extends Item> service) {

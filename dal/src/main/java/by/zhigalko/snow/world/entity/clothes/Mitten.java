@@ -7,7 +7,7 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("Варежки")
 @Getter
 @Setter
