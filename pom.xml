@@ -242,7 +242,7 @@
                     </executions>
                     <configuration>
                         <container>
-                            <containerId>tomcat10x</containerId>
+                            <containerId>tomcat9x</containerId>
                             <type>remote</type>
                         </container>
                         <configuration>

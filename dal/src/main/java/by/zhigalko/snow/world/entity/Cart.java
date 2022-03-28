@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.entity;
 
 import lombok.*;
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +16,7 @@ import java.util.Set;
 @AttributeOverride(name = "id", column = @Column(name = "cart_id"))
 public class Cart extends BaseEntity {
     @Column(name = "start_reservation_date")
-    private LocalDateTime startReservationDate;
+    private LocalDate startReservationDate;
 
     @Column(name = "day_number")
     private int reservationDayNumber;

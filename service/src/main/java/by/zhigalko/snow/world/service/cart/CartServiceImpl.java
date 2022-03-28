@@ -9,6 +9,7 @@ import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -31,6 +32,11 @@ public class CartServiceImpl<T extends Item> implements CartService {
         Set<Item> items = cartRepository.getItems(cart.getId());
         items.add(savedItem);
         cart.setItems(items);
+        cart.setStartReservationDate(LocalDate.now());
+        cart.setReservationDayNumber(1);
+        cart.setTotalSum(items.stream()
+                .map(Item::getCost)
+                .reduce(0.0, Double::sum));
         Set<Cart> carts = itemRepository.getCarts(cart.getId());
         carts.add(cart);
         return cartRepository.save(cart);

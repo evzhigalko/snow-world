@@ -180,3 +180,12 @@ a {
     width: 13rem;
     margin-top: 4rem;
 }
+
+.cart-table {
+    width: 100%;
+    text-align: center;
+    margin-top: 4rem;
+}
+.cart-total-sum {
+    text-align: right;
+}

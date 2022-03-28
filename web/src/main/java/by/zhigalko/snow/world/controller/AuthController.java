@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.dto.UserDTO;
 import by.zhigalko.snow.world.entity.Cart;
+import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.cart.CartService;
@@ -12,10 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.Set;
 
 @Log4j2
 @Controller
-@SessionAttributes({"user", "ROLE", "cart", "cartItems"})
+@SessionAttributes({"user", "ROLE", "cart", "cartItems", "totalSum"})
 public class AuthController {
     private final UserService userService;
     private final CartService cartService;
@@ -38,7 +40,9 @@ public class AuthController {
         Cart foundCart = cartService.findCartByUser(user);
         model.addAttribute("cart", foundCart);
         if(foundCart!=null) {
-            model.addAttribute("cartItems", cartService.getItems(foundCart.getId()));
+            Set<Item> cartItems = cartService.getItems(foundCart.getId());
+            model.addAttribute("cartItems", cartItems);
+            model.addAttribute("totalSum", foundCart.getTotalSum());
         }
         model.addAttribute("ROLE", authentication.getAuthorities().stream().findFirst().orElseThrow());
         return "welcome";
