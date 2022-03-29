@@ -37,14 +37,26 @@ public class CartServiceImpl<T extends Item> implements CartService {
         cart.setTotalSum(items.stream()
                 .map(Item::getCost)
                 .reduce(0.0, Double::sum));
-        Set<Cart> carts = itemRepository.getCarts(cart.getId());
+        Set<Cart> carts = itemRepository.getCarts(savedItem.getId());
         carts.add(cart);
         return cartRepository.save(cart);
     }
 
+    @Transactional
     @Override
-    public boolean removeFromCart(Cart cart, Item item) {
-        return cart.getItems().remove(item);
+    public Cart removeFromCart(BaseItemService service, Cart cart, UUID id) {
+        Item item = service.findById(id);
+        Set<Item> items = cartRepository.getItems(cart.getId());
+        items.remove(item);
+        cart.setItems(items);
+        cart.setTotalSum(cart.getTotalSum() - item.getCost());
+        if (items.size() == 0) {
+            cart.setReservationDayNumber(0);
+            cart.setStartReservationDate(null);
+        }
+        Set<Cart> carts = itemRepository.getCarts(item.getId());
+        carts.remove(cart);
+        return cartRepository.save(cart);
     }
 
     @Override

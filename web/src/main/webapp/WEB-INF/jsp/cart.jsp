@@ -21,6 +21,7 @@
                     <th>Дата начала бронирования</th>
                     <th>Количество дней бронирования</th>
                     <th>Стоимость</th>
+                    <th></th>
                 </tr>
                 <c:forEach items="${cartItems}" var="cartItem">
                     <tr>
@@ -35,6 +36,9 @@
                             <input type="number" min="1" max="100" value="1" style="width: 30%"/>
                         </label></td>
                         <td><c:out value="${cartItem.cost}"/></td>
+                        <td><div>
+                            <a href="<c:url value="/cart/delete/item/${cartItem.id}"/>" class="btn btn btn-danger btn-sm">Удалить</a>
+                        </div></td>
                     </tr>
                 </c:forEach>
             </table>

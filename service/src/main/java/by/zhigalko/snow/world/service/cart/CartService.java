@@ -11,23 +11,28 @@ import java.util.UUID;
  * Service for Cart
  */
 public interface CartService {
-    /**
-     Add item to cart.
-     * @param cart cart  {@link Cart} get from session
-     * @param item adding item to cart {@link Item}
+     /**
+     * Add item to cart.
+     * @param service {@link BaseItemService} is required for find and save new item
+     * @param cart {@link Cart} is received from session
+     * @param item {@link Item}  is received from service by id
+     * @return cart {@link Cart}
      */
     Cart addToCart(BaseItemService service, Cart cart, Item item);
 
     /**
      * Remove item from cart.
-     * @param cart cart  {@link Cart} get from session
+     * @param cart cart  {@link Cart} is received from session
      * @param item removing item from cart
      * @return <ul>
-     *     <li>{@code true} if removed</li>
-     *     <li>{@code false} if didn't remove</li>
-     * </ul>
      */
-     boolean removeFromCart(Cart cart, Item item);
+    /**
+     * Remove item from cart.
+     * @param service {@link BaseItemService} is required for find and save new item
+     * @param cart {@link Cart} is received from session
+     * @param id {@link UUID}  is received from query path
+     */
+     Cart removeFromCart(BaseItemService service, Cart cart, UUID id);
 
     /**
      * Find cart by user

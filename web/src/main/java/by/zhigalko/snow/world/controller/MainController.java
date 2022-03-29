@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @Controller
-@SessionAttributes({"pageNumber"})
+@SessionAttributes({"pageNumber", "cart", "cartItems"})
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
@@ -294,6 +294,23 @@ public class MainController {
         BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.PANTS);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/pants/catalog/" + pageNumber;
+    }
+
+    @GetMapping("/cart/delete/item/{id}")
+    public String deleteFromCart(@PathVariable("id") UUID id,
+                                 @SessionAttribute("cart") Cart cart,
+                                 @SessionAttribute("cartItems") Set<Item> cartItems,
+                                 Model model) {
+        Product product = cartItems.stream()
+                .filter(item -> id.equals(item.getId()))
+                .map(Item::getProductName)
+                .findAny()
+                .orElseThrow();
+        BaseItemService<? extends Item> service =  serviceEquipmentFactory.getService(product);
+        Cart removeFromCart = cartService.removeFromCart(service, cart, id);
+        model.addAttribute("cart", removeFromCart);
+        model.addAttribute("cartItems", cartService.getItems(removeFromCart.getId()));
+        return "redirect:/cart";
     }
 
     private void addToCart(Cart cart, UUID itemId, Model model, BaseItemService<? extends Item> service) {
