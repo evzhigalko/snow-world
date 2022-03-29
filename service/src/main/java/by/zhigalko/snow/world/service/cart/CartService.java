@@ -3,7 +3,7 @@ package by.zhigalko.snow.world.service.cart;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
-import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import by.zhigalko.snow.world.service.item.BaseItemService;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,7 +16,7 @@ public interface CartService {
      * @param cart cart  {@link Cart} get from session
      * @param item adding item to cart {@link Item}
      */
-    Cart addToCart(BaseItemServiceImpl service, Cart cart, Item item);
+    Cart addToCart(BaseItemService service, Cart cart, Item item);
 
     /**
      * Remove item from cart.

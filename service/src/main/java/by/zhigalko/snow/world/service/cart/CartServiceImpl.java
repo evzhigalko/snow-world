@@ -5,7 +5,7 @@ import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.repository.CartRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
-import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import by.zhigalko.snow.world.service.item.BaseItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +27,7 @@ public class CartServiceImpl<T extends Item> implements CartService {
 
     @Transactional
     @Override
-    public Cart addToCart(BaseItemServiceImpl service, Cart cart, Item item) {
+    public Cart addToCart(BaseItemService service, Cart cart, Item item) {
         Item savedItem = service.save(item);
         Set<Item> items = cartRepository.getItems(cart.getId());
         items.add(savedItem);

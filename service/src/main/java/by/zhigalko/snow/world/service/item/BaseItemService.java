@@ -3,8 +3,10 @@ package by.zhigalko.snow.world.service.item;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
+import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import org.springframework.data.domain.Page;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 public interface BaseItemService<T extends Item> {
@@ -17,4 +19,6 @@ public interface BaseItemService<T extends Item> {
     T findById(UUID id);
 
     void delete(T item);
+
+    List<EquipmentSize> findAllByProductGroup(ProductGroup productGroup);
 }

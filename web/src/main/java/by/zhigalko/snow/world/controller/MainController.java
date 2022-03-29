@@ -3,10 +3,10 @@ package by.zhigalko.snow.world.controller;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.enums.Page;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.service.cart.CartService;
-import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import by.zhigalko.snow.world.service.item.BaseItemService;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +55,7 @@ public class MainController {
     @GetMapping("/snowboard/catalog/{page}")
     public String handleSnowboardCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD);
         paginate(model, pageNumber, service);
         return "catalog/snowboard-list";
     }
@@ -63,7 +63,7 @@ public class MainController {
     @GetMapping("/snowboard/boot/catalog/{page}")
     public String handleSnowboardBootCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_BOOT_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_BOOT);
         paginate(model, pageNumber, service);
         return "catalog/snowboard-boot-list";
     }
@@ -71,7 +71,7 @@ public class MainController {
     @GetMapping("/snowboard/helmet/catalog/{page}")
     public String handleSnowboardHelmetCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_HELMET);
         paginate(model, pageNumber, service);
         return "catalog/snowboard-helmet-list";
     }
@@ -79,7 +79,7 @@ public class MainController {
     @GetMapping("/ski/catalog/{page}")
     public String handleSkiCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI);
         paginate(model, pageNumber, service);
         return "catalog/ski-list";
     }
@@ -87,7 +87,7 @@ public class MainController {
     @GetMapping("/ski/boot/catalog/{page}")
     public String handleSkiBootCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_BOOT);
         paginate(model, pageNumber, service);
         return "catalog/ski-boot-list";
     }
@@ -95,7 +95,7 @@ public class MainController {
     @GetMapping("/ski/helmet/catalog/{page}")
     public String handleSkiHelmetCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_HELMET);
         paginate(model, pageNumber, service);
         return "catalog/ski-helmet-list";
     }
@@ -103,7 +103,7 @@ public class MainController {
     @GetMapping("/ski/pole/catalog/{page}")
     public String handleSkiPoleCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_POLE);
         paginate(model, pageNumber, service);
         List<EquipmentSize> skiPoleSizeList = service.findAllByProductGroup(ProductGroup.SKI_POLE);
         model.addAttribute("skiPoleSizeList", skiPoleSizeList);
@@ -113,7 +113,7 @@ public class MainController {
     @GetMapping("/clothes/jacket/catalog/{page}")
     public String handleJacketCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.JACKET);
         paginate(model, pageNumber, service);
         return "catalog/jacket-list";
     }
@@ -121,7 +121,7 @@ public class MainController {
     @GetMapping("/clothes/pants/catalog/{page}")
     public String handlePantsCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.PANTS);
         paginate(model, pageNumber, service);
         return "catalog/pants-list";
     }
@@ -129,7 +129,7 @@ public class MainController {
     @GetMapping("/clothes/cap/catalog/{page}")
     public String handleCapCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.CAP_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.CAP);
         paginate(model, pageNumber, service);
         return "catalog/cap-list";
     }
@@ -137,7 +137,7 @@ public class MainController {
     @GetMapping("/clothes/mask/catalog/{page}")
     public String handleMaskCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MASK_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MASK);
         paginate(model, pageNumber, service);
         return "catalog/mask-list";
     }
@@ -145,7 +145,7 @@ public class MainController {
     @GetMapping("/clothes/mittens/catalog/{page}")
     public String handleMittensCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MITTEN);
         paginate(model, pageNumber, service);
         return "catalog/mittens-list";
     }
@@ -153,7 +153,7 @@ public class MainController {
     @GetMapping("/clothes/gloves/catalog/{page}")
     public String handleGlovesCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.GLOVE);
         paginate(model, pageNumber, service);
         return "catalog/gloves-list";
     }
@@ -171,7 +171,7 @@ public class MainController {
                                      @PathVariable("id") UUID itemId,
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD);
         addToCart(cart, itemId, model, service);
         return "redirect:/snowboard/catalog/" + pageNumber;
     }
@@ -181,7 +181,7 @@ public class MainController {
                                          @PathVariable("id") UUID itemId,
                                          @SessionAttribute("pageNumber") int pageNumber,
                                          Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_BOOT_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_BOOT);
         addToCart(cart, itemId, model, service);
         return "redirect:/snowboard/boot/catalog/" + pageNumber;
     }
@@ -191,7 +191,7 @@ public class MainController {
                                            @PathVariable("id") UUID itemId,
                                            @SessionAttribute("pageNumber") int pageNumber,
                                            Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_HELMET);
         addToCart(cart, itemId, model, service);
         return "redirect:/snowboard/helmet/catalog/" + pageNumber;
     }
@@ -201,7 +201,7 @@ public class MainController {
                                @PathVariable("id") UUID itemId,
                                @SessionAttribute("pageNumber") int pageNumber,
                                Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI);
         addToCart(cart, itemId, model, service);
         return "redirect:/ski/catalog/" + pageNumber;
     }
@@ -211,7 +211,7 @@ public class MainController {
                                    @PathVariable("id") UUID itemId,
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_POLE);
         addToCart(cart, itemId, model, service);
         return "redirect:/ski/pole/catalog/" + pageNumber;
     }
@@ -221,7 +221,7 @@ public class MainController {
                                    @PathVariable("id") UUID itemId,
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_BOOT);
         addToCart(cart, itemId, model, service);
         return "redirect:/ski/boot/catalog/" + pageNumber;
     }
@@ -231,7 +231,7 @@ public class MainController {
                                      @PathVariable("id") UUID itemId,
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_HELMET);
         addToCart(cart, itemId, model, service);
         return "redirect:/ski/helmet/catalog/" + pageNumber;
     }
@@ -241,7 +241,7 @@ public class MainController {
                                @PathVariable("id") UUID itemId,
                                @SessionAttribute("pageNumber") int pageNumber,
                                Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.CAP_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.CAP);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/cap/catalog/" + pageNumber;
     }
@@ -251,7 +251,7 @@ public class MainController {
                                   @PathVariable("id") UUID itemId,
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.GLOVE);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/gloves/catalog/" + pageNumber;
     }
@@ -261,7 +261,7 @@ public class MainController {
                                   @PathVariable("id") UUID itemId,
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.JACKET);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/jacket/catalog/" + pageNumber;
     }
@@ -271,7 +271,7 @@ public class MainController {
                                 @PathVariable("id") UUID itemId,
                                 @SessionAttribute("pageNumber") int pageNumber,
                                 Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MASK_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MASK);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/mask/catalog/" + pageNumber;
     }
@@ -281,7 +281,7 @@ public class MainController {
                                    @PathVariable("id") UUID itemId,
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MITTEN);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/mittens/catalog/" + pageNumber;
     }
@@ -291,19 +291,19 @@ public class MainController {
                                  @PathVariable("id") UUID itemId,
                                  @SessionAttribute("pageNumber") int pageNumber,
                                  Model model) {
-        BaseItemServiceImpl<? extends Item> service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
+        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.PANTS);
         addToCart(cart, itemId, model, service);
         return "redirect:/clothes/pants/catalog/" + pageNumber;
     }
 
-    private void addToCart(Cart cart, UUID itemId, Model model, BaseItemServiceImpl<? extends Item> service) {
+    private void addToCart(Cart cart, UUID itemId, Model model, BaseItemService<? extends Item> service) {
         Cart cartWithItem = cartService.addToCart(service, cart, service.findById(itemId));
         model.addAttribute("cart", cartWithItem);
         Set<Item> items = cartService.getItems(cartWithItem.getId());
         model.addAttribute("cartItems", items);
     }
 
-    private void paginate(Model model, int pageNumber, BaseItemServiceImpl<? extends Item> service) {
+    private void paginate(Model model, int pageNumber, BaseItemService<? extends Item> service) {
         org.springframework.data.domain.Page<? extends Item> pageList = service.findAll(pageNumber - 1, PAGE_SIZE);
         int pagesNumber = pageList.getTotalPages();
         List<? extends Item> list = pageList.stream().collect(Collectors.toList());

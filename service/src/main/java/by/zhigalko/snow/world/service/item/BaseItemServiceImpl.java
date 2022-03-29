@@ -5,7 +5,6 @@ import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
-import by.zhigalko.snow.world.service.common.equipment_size.EquipmentAllSizesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,7 +16,7 @@ import java.util.UUID;
 
 @Service
 @Transactional
-public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemService<T>, BaseUpdateItemService<T>, EquipmentAllSizesService {
+public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemService<T> {
     private final ItemRepository<T> itemRepository;
     private final EquipmentSizeRepository equipmentSizeRepository;
 

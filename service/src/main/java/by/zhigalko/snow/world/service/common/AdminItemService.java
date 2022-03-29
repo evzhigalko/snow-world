@@ -6,7 +6,7 @@ import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
 import by.zhigalko.snow.world.service.common.image.ImageService;
-import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import by.zhigalko.snow.world.service.item.BaseItemService;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -43,12 +43,12 @@ public class AdminItemService {
     }
 
     private boolean save(HttpServletRequest request, String product, Image image, EquipmentSize equipmentSize) {
-        return saveItem(request, imageService, image, equipmentSize, getService(product));
+        return saveItem(request, imageService, image, equipmentSize, serviceEquipmentFactory.getService(Product.valueOf(product.toUpperCase())));
     }
 
     @Transactional
     public void deleteItem(String product, UUID id) {
-        BaseItemServiceImpl service = getService(product);
+        BaseItemService service = serviceEquipmentFactory.getService(Product.valueOf(product.toUpperCase()));
         Item item = service.findById(id);
         Image image = item.getImage();
         image.removeItem(item);
@@ -60,7 +60,7 @@ public class AdminItemService {
     public boolean updateItem(@RequestParam(value = "cost") String cost,
                               @RequestParam(value = "availability") String availableToRental,
                               @PathVariable("id") UUID id,
-                              BaseItemServiceImpl service) {
+                              BaseItemService service) {
         Item item = service.findById(id);
         if(!cost.isEmpty()) {
             item.setCost(Double.parseDouble(cost));
@@ -72,53 +72,7 @@ public class AdminItemService {
         return savedItem != null;
     }
 
-    private BaseItemServiceImpl<? extends Item> getService(String product) {
-        BaseItemServiceImpl<? extends Item> service = null;
-        switch (Product.valueOf(product.toUpperCase())) {
-            case SNOWBOARD:
-                service = serviceEquipmentFactory.getService(Page.SNOWBOARD_LIST);
-                break;
-            case SNOWBOARD_BOOT:
-                service = serviceEquipmentFactory.getService(Page.SNOWBOARD_BOOT_LIST);
-                break;
-            case SNOWBOARD_HELMET:
-                service = serviceEquipmentFactory.getService(Page.SNOWBOARD_HELMET_LIST);
-                break;
-            case SKI:
-                service = serviceEquipmentFactory.getService(Page.SKI_LIST);
-                break;
-            case SKI_BOOT:
-                service = serviceEquipmentFactory.getService(Page.SKI_BOOT_LIST);
-                break;
-            case SKI_HELMET:
-                service = serviceEquipmentFactory.getService(Page.SKI_HELMET_LIST);
-                break;
-            case SKI_POLE:
-                service = serviceEquipmentFactory.getService(Page.SKI_POLE_LIST);
-                break;
-            case JACKET:
-                service = serviceEquipmentFactory.getService(Page.JACKET_LIST);
-                break;
-            case PANTS:
-                service = serviceEquipmentFactory.getService(Page.PANTS_LIST);
-                break;
-            case GLOVE:
-                service = serviceEquipmentFactory.getService(Page.GLOVES_LIST);
-                break;
-            case MITTEN:
-                service = serviceEquipmentFactory.getService(Page.MITTENS_LIST);
-                break;
-            case MASK:
-                service = serviceEquipmentFactory.getService(Page.MASK_LIST);
-                break;
-            case CAP:
-                service = serviceEquipmentFactory.getService(Page.CAP_LIST);
-                break;
-        }
-        return service;
-    }
-
-    private boolean saveItem(HttpServletRequest request, ImageService imageService, Image image, EquipmentSize equipmentSize, BaseItemServiceImpl service) {
+    private boolean saveItem(HttpServletRequest request, ImageService imageService, Image image, EquipmentSize equipmentSize, BaseItemService service) {
         Item item = service.getItem(request, equipmentSize, image);
         image.addItem(item);
         imageService.save(image);
