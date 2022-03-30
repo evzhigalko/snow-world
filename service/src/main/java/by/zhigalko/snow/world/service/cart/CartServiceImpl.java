@@ -3,9 +3,11 @@ package by.zhigalko.snow.world.service.cart;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
+import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.repository.CartRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.service.item.BaseItemService;
+import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +20,13 @@ import java.util.UUID;
 public class CartServiceImpl<T extends Item> implements CartService {
     private final CartRepository cartRepository;
     private final ItemRepository<T> itemRepository;
+    private final ServiceEquipmentFactory serviceEquipmentFactory;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository) {
+    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository, ServiceEquipmentFactory serviceEquipmentFactory) {
         this.cartRepository = cartRepository;
         this.itemRepository = itemRepository;
+        this.serviceEquipmentFactory = serviceEquipmentFactory;
     }
 
     @Transactional
@@ -44,7 +48,13 @@ public class CartServiceImpl<T extends Item> implements CartService {
 
     @Transactional
     @Override
-    public Cart removeFromCart(BaseItemService service, Cart cart, UUID id) {
+    public Cart removeFromCart(Cart cart, UUID id, Set<Item> cartItems) {
+        Product product = cartItems.stream()
+                .filter(item -> id.equals(item.getId()))
+                .map(Item::getProductName)
+                .findAny()
+                .orElseThrow();
+        BaseItemService<? extends Item> service =  serviceEquipmentFactory.getService(product);
         Item item = service.findById(id);
         Set<Item> items = cartRepository.getItems(cart.getId());
         items.remove(item);

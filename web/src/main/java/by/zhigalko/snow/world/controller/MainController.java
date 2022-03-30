@@ -301,15 +301,9 @@ public class MainController {
                                  @SessionAttribute("cart") Cart cart,
                                  @SessionAttribute("cartItems") Set<Item> cartItems,
                                  Model model) {
-        Product product = cartItems.stream()
-                .filter(item -> id.equals(item.getId()))
-                .map(Item::getProductName)
-                .findAny()
-                .orElseThrow();
-        BaseItemService<? extends Item> service =  serviceEquipmentFactory.getService(product);
-        Cart removeFromCart = cartService.removeFromCart(service, cart, id);
-        model.addAttribute("cart", removeFromCart);
-        model.addAttribute("cartItems", cartService.getItems(removeFromCart.getId()));
+        Cart cartAfterRemoving = cartService.removeFromCart(cart, id, cartItems);
+        model.addAttribute("cart", cartAfterRemoving);
+        model.addAttribute("cartItems", cartService.getItems(cartAfterRemoving.getId()));
         return "redirect:/cart";
     }
 

@@ -32,7 +32,7 @@ public interface CartService {
      * @param cart {@link Cart} is received from session
      * @param id {@link UUID}  is received from query path
      */
-     Cart removeFromCart(BaseItemService service, Cart cart, UUID id);
+     Cart removeFromCart(Cart cart, UUID id, Set<Item> cartItems);
 
     /**
      * Find cart by user
