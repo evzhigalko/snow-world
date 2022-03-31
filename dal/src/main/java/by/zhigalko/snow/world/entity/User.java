@@ -41,7 +41,7 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 

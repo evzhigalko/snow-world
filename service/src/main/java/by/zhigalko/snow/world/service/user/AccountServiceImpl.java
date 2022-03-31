@@ -2,11 +2,9 @@ package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.dto.user.UserRequest;
 import by.zhigalko.snow.world.entity.User;
-import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
+import by.zhigalko.snow.world.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.regex.Pattern;
 
@@ -17,12 +15,12 @@ public class AccountServiceImpl implements AccountService {
     private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private static final Pattern PHONE_NUMBER_VALIDATION_PATTERN = Pattern.compile("^[+]{1}[0-9]{3}([\\s-]?\\d{2}|[(]?[0-9]{2}[)])?([\\s-]?[0-9]){6,7}$");
     private final RoleService roleService;
-    private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
     @Autowired
-    public AccountServiceImpl(RoleService roleService, PasswordEncoder passwordEncoder) {
+    public AccountServiceImpl(RoleService roleService, UserMapper userMapper) {
         this.roleService = roleService;
-        this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -30,15 +28,7 @@ public class AccountServiceImpl implements AccountService {
         boolean isValidated = validate(userRequest);
         User user = null;
         if (isValidated) {
-            user = new User();
-            user.setUsername(userRequest.getUsername());
-            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-            user.setEmail(userRequest.getEmail());
-            user.setFirstName(userRequest.getFirstName());
-            user.setLastName(userRequest.getLastName());
-            user.setPhoneNumber(userRequest.getPhoneNumber());
-            user.setGender(Gender.valueOf(userRequest.getGender()));
-            user.setRole(roleService.findByRoleName(RoleName.USER));
+            user = userMapper.userRequestToUser(userRequest);
         }
         return user;
     }

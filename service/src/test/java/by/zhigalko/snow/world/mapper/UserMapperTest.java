@@ -7,10 +7,12 @@ import by.zhigalko.snow.world.entity.Role;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.service.user.RoleService;
 import by.zhigalko.snow.world.util.ApplicationConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -21,6 +23,12 @@ class UserMapperTest {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleService roleService;
 
     @Test
     void userRequestToUserTest() {
@@ -33,13 +41,13 @@ class UserMapperTest {
         userRequest.setPassword("qwerty");
         userRequest.setGender("MALE");
         userRequest.setPhoneNumber("+375291234567");
-        userRequest.setRole("USER");
 
         User user = userMapper.userRequestToUser(userRequest);
 
         assertNotNull(user);
         assertEquals(userRequest.getId(), user.getId());
         assertEquals(userRequest.getGender(), user.getGender().toString());
+        assertTrue(passwordEncoder.matches(userRequest.getPassword(), user.getPassword()));
         System.out.println(userRequest);
         System.out.println(user);
     }
@@ -63,6 +71,7 @@ class UserMapperTest {
         user.setCart(cart);
         Role role = new Role();
         role.setRoleName(RoleName.USER);
+        role.setId(UUID.randomUUID());
         user.setRole(role);
         cart.setUser(user);
 
@@ -71,7 +80,6 @@ class UserMapperTest {
         assertNotNull(userResponse);
         assertEquals(user.getId(), userResponse.getId());
         assertEquals(user.getGender().toString(), userResponse.getGender());
-        assertEquals(user.getRole().getRoleName().toString(), userResponse.getRole());
         System.out.println(user);
         System.out.println(userResponse);
     }

@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.dto.user;
 
 import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.Cart;
+import by.zhigalko.snow.world.entity.Role;
 import lombok.*;
 
 @Getter
@@ -17,5 +18,5 @@ public class UserResponse extends BaseEntity {
     private String lastName;
     private String gender;
     private Cart cart;
-    private String role;
+    private Role role;
 }

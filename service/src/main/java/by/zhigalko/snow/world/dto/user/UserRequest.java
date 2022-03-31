@@ -16,5 +16,4 @@ public class UserRequest extends BaseEntity {
     private String firstName;
     private String lastName;
     private String gender;
-    private String role;
 }
