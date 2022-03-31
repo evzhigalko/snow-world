@@ -22,15 +22,9 @@ public interface CartService {
 
     /**
      * Remove item from cart.
-     * @param cart cart  {@link Cart} is received from session
-     * @param item removing item from cart
-     * @return <ul>
-     */
-    /**
-     * Remove item from cart.
-     * @param service {@link BaseItemService} is required for find and save new item
      * @param cart {@link Cart} is received from session
      * @param id {@link UUID}  is received from query path
+     * @param cartItems {@link Set<Item>} is received from session
      */
      Cart removeFromCart(Cart cart, UUID id, Set<Item> cartItems);
 
