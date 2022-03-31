@@ -1,9 +1,9 @@
 package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.dto.user.UserRequest;
+import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.cart.CartService;
 import by.zhigalko.snow.world.service.user.UserService;
@@ -35,9 +35,9 @@ public class AuthController {
 
     @GetMapping("/welcome")
     public String showWelcomePage(Authentication authentication, Model model) {
-        User user = userService.findByUsername(authentication.getName());
-        model.addAttribute("user", user);
-        Cart foundCart = cartService.findCartByUser(user);
+        UserResponse userResponse = userService.findByUsername(authentication.getName());
+        model.addAttribute("user", userResponse);
+        Cart foundCart = cartService.findCartById(userResponse.getId());
         model.addAttribute("cart", foundCart);
         if(foundCart!=null) {
             Set<Item> cartItems = cartService.getItems(foundCart.getId());

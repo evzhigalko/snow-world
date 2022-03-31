@@ -1,9 +1,11 @@
 package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.dto.user.UserRequest;
+import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
+import by.zhigalko.snow.world.mapper.UserMapper;
 import by.zhigalko.snow.world.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,16 +17,18 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final AccountService accountService;
+    private final UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, AccountService accountService) {
+    public UserServiceImpl(UserRepository userRepository, AccountService accountService, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.accountService = accountService;
+        this.userMapper = userMapper;
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public UserResponse findByUsername(String username) {
+        return userMapper.userToUserResponse(userRepository.findByUsername(username));
     }
 
     @Override

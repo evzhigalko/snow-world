@@ -2,7 +2,6 @@ package by.zhigalko.snow.world.service.cart;
 
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.repository.CartRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
@@ -70,8 +69,8 @@ public class CartServiceImpl<T extends Item> implements CartService {
     }
 
     @Override
-    public Cart findCartByUser(User user) {
-        return cartRepository.findByUser(user);
+    public Cart findCartById(UUID id) {
+        return cartRepository.findCartById(id);
     }
 
     @Transactional
