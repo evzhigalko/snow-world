@@ -1,22 +1,21 @@
 package by.zhigalko.snow.world.dto.user;
 
+import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.Cart;
-import by.zhigalko.snow.world.entity.enums.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
+@ToString(callSuper = true)
+public class UserResponse extends BaseEntity {
     private String username;
     private String email;
     private String phoneNumber;
     private String firstName;
     private String lastName;
-    private Gender gender;
+    private String gender;
     private Cart cart;
+    private String role;
 }

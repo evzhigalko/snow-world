@@ -1,21 +1,20 @@
 package by.zhigalko.snow.world.dto.user;
 
-import by.zhigalko.snow.world.entity.enums.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import by.zhigalko.snow.world.entity.BaseEntity;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequest {
+@ToString(callSuper = true)
+public class UserRequest extends BaseEntity {
     private String username;
     private String password;
     private String email;
     private String phoneNumber;
     private String firstName;
     private String lastName;
-    private Gender gender;
+    private String gender;
+    private String role;
 }

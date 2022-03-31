@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.dto.user.UserRequest;
 import by.zhigalko.snow.world.entity.User;
+import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class AccountServiceImpl implements AccountService {
             user.setFirstName(userRequest.getFirstName());
             user.setLastName(userRequest.getLastName());
             user.setPhoneNumber(userRequest.getPhoneNumber());
-            user.setGender(userRequest.getGender());
+            user.setGender(Gender.valueOf(userRequest.getGender()));
             user.setRole(roleService.findByRoleName(RoleName.USER));
         }
         return user;
