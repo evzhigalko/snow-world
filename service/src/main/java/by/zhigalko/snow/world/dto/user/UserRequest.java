@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.dto;
+package by.zhigalko.snow.world.dto.user;
 
 import by.zhigalko.snow.world.entity.enums.Gender;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class UserRequest {
     private String username;
     private String password;
     private String email;

@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.controller;
 
-import by.zhigalko.snow.world.dto.UserDTO;
+import by.zhigalko.snow.world.dto.user.UserRequest;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.User;
@@ -54,9 +54,9 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String registerNewUser(UserDTO userDTO, Model model){
+    public String registerNewUser(UserRequest userRequest, Model model){
         try {
-            userService.createUser(userDTO);
+            userService.createUser(userRequest);
         } catch (ValidationException e) {
             model.addAttribute("error", e.getMessage());
             log.error(e.getMessage());

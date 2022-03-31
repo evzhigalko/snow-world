@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.service.user;
 
-import by.zhigalko.snow.world.dto.UserDTO;
+import by.zhigalko.snow.world.dto.user.UserRequest;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.RoleName;
 import by.zhigalko.snow.world.exception.ValidationException;
@@ -25,37 +25,37 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public User createUser(UserDTO userDTO) throws ValidationException {
-        boolean isValidated = validate(userDTO);
+    public User createUser(UserRequest userRequest) throws ValidationException {
+        boolean isValidated = validate(userRequest);
         User user = null;
         if (isValidated) {
             user = new User();
-            user.setUsername(userDTO.getUsername());
-            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-            user.setEmail(userDTO.getEmail());
-            user.setFirstName(userDTO.getFirstName());
-            user.setLastName(userDTO.getLastName());
-            user.setPhoneNumber(userDTO.getPhoneNumber());
-            user.setGender(userDTO.getGender());
+            user.setUsername(userRequest.getUsername());
+            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+            user.setEmail(userRequest.getEmail());
+            user.setFirstName(userRequest.getFirstName());
+            user.setLastName(userRequest.getLastName());
+            user.setPhoneNumber(userRequest.getPhoneNumber());
+            user.setGender(userRequest.getGender());
             user.setRole(roleService.findByRoleName(RoleName.USER));
         }
         return user;
     }
 
     @Override
-    public boolean validate(UserDTO userDTO) throws ValidationException {
-        if (userDTO.getUsername() == null || userDTO.getUsername().length() < CREDENTIALS_MIN_LENGTH
-                || userDTO.getPassword() == null || userDTO.getPassword().length() < CREDENTIALS_MIN_LENGTH) {
+    public boolean validate(UserRequest userRequest) throws ValidationException {
+        if (userRequest.getUsername() == null || userRequest.getUsername().length() < CREDENTIALS_MIN_LENGTH
+                || userRequest.getPassword() == null || userRequest.getPassword().length() < CREDENTIALS_MIN_LENGTH) {
             throw new ValidationException("Имя пользователя и пароль должны быть не менее 5 символов");
         }
-        if (userDTO.getEmail() == null || !(EMAIL_VALIDATION_PATTERN.matcher(userDTO.getEmail()).matches())) {
+        if (userRequest.getEmail() == null || !(EMAIL_VALIDATION_PATTERN.matcher(userRequest.getEmail()).matches())) {
             throw new ValidationException("Элекронная почта не корректна");
         }
-        if (userDTO.getFirstName() == null || userDTO.getFirstName().length() < NAME_MIN_LENGTH
-                || userDTO.getLastName() == null || userDTO.getLastName().length() < NAME_MIN_LENGTH) {
+        if (userRequest.getFirstName() == null || userRequest.getFirstName().length() < NAME_MIN_LENGTH
+                || userRequest.getLastName() == null || userRequest.getLastName().length() < NAME_MIN_LENGTH) {
             throw new ValidationException("Имя и фамилия должны быть не менее 2 символов");
         }
-        if (userDTO.getPhoneNumber() == null || !(PHONE_NUMBER_VALIDATION_PATTERN.matcher(userDTO.getPhoneNumber()).matches())) {
+        if (userRequest.getPhoneNumber() == null || !(PHONE_NUMBER_VALIDATION_PATTERN.matcher(userRequest.getPhoneNumber()).matches())) {
             throw new ValidationException("Телефоный номер не корректен, введите телефонный номер в международном формате");
         } else {
             return true;
