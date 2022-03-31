@@ -11,7 +11,6 @@ import by.zhigalko.snow.world.util.ApplicationConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,9 +22,6 @@ class UserMapperTest {
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Test
     void userRequestToUserTest() {
         UserRequest userRequest = new UserRequest();
@@ -34,7 +30,7 @@ class UserMapperTest {
         userRequest.setEmail("test@gmail.com");
         userRequest.setFirstName("Alex");
         userRequest.setLastName("Smith");
-        userRequest.setPassword(passwordEncoder.encode("qwerty"));
+        userRequest.setPassword("qwerty");
         userRequest.setGender("MALE");
         userRequest.setPhoneNumber("+375291234567");
         userRequest.setRole("USER");
