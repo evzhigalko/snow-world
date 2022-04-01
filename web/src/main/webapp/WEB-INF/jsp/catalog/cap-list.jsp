@@ -29,7 +29,7 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${cap.maker}</h5>
-                                        <p class="card-info">Размер: ${cap.equipmentSizeId.equipmentSizeId}</p>
+                                        <p class="card-info">Размер: ${cap.equipmentSize.equipmentSizeId}</p>
                                         <p class="card-info">Пол: ${cap.gender.name}</p>
                                         <p class="card-info">Цена проката: ${cap.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:

@@ -5,6 +5,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
+import by.zhigalko.snow.world.service.common.image.ImageService;
 import by.zhigalko.snow.world.service.common.image.ImageServiceImpl;
 import by.zhigalko.snow.world.service.item.BaseItemService;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
@@ -22,7 +23,7 @@ import java.util.UUID;
 @Service("itemService")
 public class AdminItemService {
     private final ServiceEquipmentFactory serviceEquipmentFactory;
-    private final ImageServiceImpl imageService;
+    private final ImageService imageService;
     private final EquipmentSizeService equipmentSizeService;
 
     @Autowired
@@ -72,7 +73,7 @@ public class AdminItemService {
         return savedItem != null;
     }
 
-    private boolean saveItem(HttpServletRequest request, ImageServiceImpl imageService, Image image, EquipmentSize equipmentSize, BaseItemService service) {
+    private boolean saveItem(HttpServletRequest request, ImageService imageService, Image image, EquipmentSize equipmentSize, BaseItemService service) {
         Item item = service.getItem(request, equipmentSize, image);
         image.addItem(item);
         imageService.save(image);

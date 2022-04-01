@@ -12,7 +12,6 @@
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
         <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski"/>" role="button">Добавить лыжи</a>
-<%--        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski_pole"/>" role="button">Добавить лыжные палки</a>--%>
     </c:if>
 </div>
 <ul class="list-group">
@@ -30,8 +29,8 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${ski.maker}</h5>
-                                        <p class="card-info">Рост: ${ski.equipmentSizeId.userMinHeight}
-                                            - ${ski.equipmentSizeId.userMaxHeight}</p>
+                                        <p class="card-info">Рост: ${ski.equipmentSize.userMinHeight}
+                                            - ${ski.equipmentSize.userMaxHeight}</p>
                                         <p class="card-info">Уровень катания: ${ski.ridingLevel.name}</p>
                                         <p class="card-info">Цена проката: ${ski.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:

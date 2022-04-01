@@ -29,7 +29,7 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${mask.maker}</h5>
-                                        <p class="card-info">Размер: ${mask.equipmentSizeId.equipmentSizeId}</p>
+                                        <p class="card-info">Размер: ${mask.equipmentSize.equipmentSizeId}</p>
                                         <p class="card-info">Пол: ${mask.gender.name}</p>
                                         <p class="card-info">Цена проката: ${mask.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:

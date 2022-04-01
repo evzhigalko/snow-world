@@ -29,10 +29,10 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${snowboard.maker}</h5>
-                                        <p class="card-info">Рост: ${snowboard.equipmentSizeId.userMinHeight}
-                                            - ${snowboard.equipmentSizeId.userMaxHeight} см </p>
-                                        <p class="card-info">Вес: ${snowboard.equipmentSizeId.userMinWeight}
-                                            - ${snowboard.equipmentSizeId.userMaxWeight} кг</p>
+                                        <p class="card-info">Рост: ${snowboard.equipmentSize.userMinHeight}
+                                            - ${snowboard.equipmentSize.userMaxHeight} см </p>
+                                        <p class="card-info">Вес: ${snowboard.equipmentSize.userMinWeight}
+                                            - ${snowboard.equipmentSize.userMaxWeight} кг</p>
                                         <p class="card-info">Уровень катания: ${snowboard.ridingLevel.name}</p>
                                         <p class="card-info">Уровень жесткости: ${snowboard.hardnessLevel.name}</p>
                                         <p class="card-info">Цена проката: ${snowboard.cost} руб./сутки</p>

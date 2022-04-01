@@ -29,8 +29,8 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${ski_pole.maker}</h5>
-                                        <p class="card-info">Рост: ${ski_pole.equipmentSizeId.userMinHeight}
-                                            - ${ski_pole.equipmentSizeId.userMaxHeight}</p>
+                                        <p class="card-info">Рост: ${ski_pole.equipmentSize.userMinHeight}
+                                            - ${ski_pole.equipmentSize.userMaxHeight}</p>
                                         <p class="card-info">Цена проката: ${ski_pole.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:
                                             <c:choose>

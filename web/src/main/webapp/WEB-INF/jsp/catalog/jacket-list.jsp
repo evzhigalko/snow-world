@@ -29,7 +29,7 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${jacket.maker}</h5>
-                                        <p class="card-info">Размер: ${jacket.equipmentSizeId.equipmentSizeId}</p>
+                                        <p class="card-info">Размер: ${jacket.equipmentSize.equipmentSizeId}</p>
                                         <p class="card-info">Пол: ${jacket.gender.name}</p>
                                         <p class="card-info">Мембрана: ${jacket.membrane}</p>
                                         <p class="card-info">Цена проката: ${jacket.cost} руб./сутки</p>

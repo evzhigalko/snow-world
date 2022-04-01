@@ -29,7 +29,7 @@
                                 <div class="col-md-6" style="padding-left: 30px">
                                     <div class="card-body">
                                         <h5 class="card-title">${gloves.maker}</h5>
-                                        <p class="card-info">Размер: ${gloves.equipmentSizeId.equipmentSizeId}</p>
+                                        <p class="card-info">Размер: ${gloves.equipmentSize.equipmentSizeId}</p>
                                         <p class="card-info">Пол: ${gloves.gender.name}</p>
                                         <p class="card-info">Мембрана: ${gloves.membrane}</p>
                                         <p class="card-info">Цена проката: ${gloves.cost} руб./сутки</p>
