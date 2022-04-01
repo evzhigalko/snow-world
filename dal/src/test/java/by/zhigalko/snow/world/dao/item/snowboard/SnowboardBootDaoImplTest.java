@@ -190,7 +190,7 @@ class SnowboardBootDaoImplTest {
         image.addItem(snowboardBoot);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("43");
-        equipmentSize.addEquipment(snowboardBoot);
+        equipmentSize.addItem(snowboardBoot);
         return snowboardBoot;
     }
 

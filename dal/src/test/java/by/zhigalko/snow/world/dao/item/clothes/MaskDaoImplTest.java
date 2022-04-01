@@ -187,7 +187,7 @@ class MaskDaoImplTest {
         image.addItem(mask);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("XS");
-        equipmentSize.addEquipment(mask);
+        equipmentSize.addItem(mask);
         return mask;
     }
 

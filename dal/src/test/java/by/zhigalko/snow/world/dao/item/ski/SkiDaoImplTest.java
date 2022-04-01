@@ -194,7 +194,7 @@ class SkiDaoImplTest {
         equipmentSize.setEquipmentSizeId("SK155");
         equipmentSize.setUserMinHeight(165);
         equipmentSize.setUserMaxHeight(170);
-        equipmentSize.addEquipment(ski);
+        equipmentSize.addItem(ski);
         return ski;
     }
 

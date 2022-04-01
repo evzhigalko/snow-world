@@ -27,7 +27,7 @@ public class ItemGenerator {
         item.setGender(Gender.valueOf(request.getParameter("gender")));
         item.setCost(Double.parseDouble(request.getParameter("cost")));
         item.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
-        item.setEquipmentSizeId(equipmentSize);
+        item.setEquipmentSize(equipmentSize);
         item.setImage(image);
         item.setProductName(Product.valueOf(request.getParameter("product_group")));
     }

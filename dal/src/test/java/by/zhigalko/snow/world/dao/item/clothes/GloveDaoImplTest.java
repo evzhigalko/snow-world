@@ -189,7 +189,7 @@ class GloveDaoImplTest {
         image.addItem(glove);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("XS");
-        equipmentSize.addEquipment(glove);
+        equipmentSize.addItem(glove);
         return glove;
     }
 

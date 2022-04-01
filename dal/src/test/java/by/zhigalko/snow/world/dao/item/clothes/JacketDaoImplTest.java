@@ -188,7 +188,7 @@ class JacketDaoImplTest {
         image.addItem(jacket);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("M");
-        equipmentSize.addEquipment(jacket);
+        equipmentSize.addItem(jacket);
         return jacket;
     }
 

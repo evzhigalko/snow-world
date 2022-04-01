@@ -186,7 +186,7 @@ class CapDaoImplTest {
         image.addItem(cap);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("XS");
-        equipmentSize.addEquipment(cap);
+        equipmentSize.addItem(cap);
         return cap;
     }
 

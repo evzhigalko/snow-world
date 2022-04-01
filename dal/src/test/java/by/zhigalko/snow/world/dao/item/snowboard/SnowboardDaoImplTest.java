@@ -100,7 +100,7 @@ class SnowboardDaoImplTest {
         Image image1 = new Image();
         image1.setImageName("imgSNB1.png");
         image1.addItem(snowboard1);
-        equipmentSize1.addEquipment(snowboard1);
+        equipmentSize1.addItem(snowboard1);
 
         Snowboard snowboard2 = new Snowboard();
         snowboard2.setProductName(Product.SNOWBOARD);
@@ -119,7 +119,7 @@ class SnowboardDaoImplTest {
         Image image2 = new Image();
         image2.setImageName("imgSNB2.png");
         image2.addItem(snowboard2);
-        equipmentSize2.addEquipment(snowboard2);
+        equipmentSize2.addItem(snowboard2);
         saveSnowboard(snowboard1);
         saveSnowboard(snowboard2);
         List<Snowboard> expected = List.of(snowboard1, snowboard2);
@@ -224,7 +224,7 @@ class SnowboardDaoImplTest {
         Image image1 = new Image();
         image1.setImageName("imgSNB1.png");
         image1.addItem(snowboard1);
-        equipmentSize1.addEquipment(snowboard1);
+        equipmentSize1.addItem(snowboard1);
 
         Snowboard snowboard2 = new Snowboard();
         snowboard2.setProductName(Product.SNOWBOARD);
@@ -243,7 +243,7 @@ class SnowboardDaoImplTest {
         Image image2 = new Image();
         image2.setImageName("imgSNB2.png");
         image2.addItem(snowboard2);
-        equipmentSize2.addEquipment(snowboard2);
+        equipmentSize2.addItem(snowboard2);
         saveSnowboard(snowboard1);
         saveSnowboard(snowboard2);
 
@@ -313,7 +313,7 @@ class SnowboardDaoImplTest {
         Image image = new Image();
         image.setImageName("imgSNB1.png");
         image.addItem(expected);
-        equipmentSize.addEquipment(expected);
+        equipmentSize.addItem(expected);
         return expected;
     }
 

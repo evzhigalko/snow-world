@@ -188,7 +188,7 @@ class SnowboardHelmetDaoImplTest {
         image.addItem(snowboardHelmet);
         EquipmentSize equipmentSize = new EquipmentSize();
         equipmentSize.setEquipmentSizeId("L");
-        equipmentSize.addEquipment(snowboardHelmet);
+        equipmentSize.addItem(snowboardHelmet);
         return snowboardHelmet;
     }
 

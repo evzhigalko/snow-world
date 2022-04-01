@@ -186,12 +186,12 @@ class SkiPoleDaoImplTest {
         equipmentSize.setEquipmentSizeId("SP125");
         equipmentSize.setUserMinHeight(174);
         equipmentSize.setUserMaxHeight(181);
-        equipmentSize.addEquipment(skiPole2);
+        equipmentSize.addItem(skiPole2);
         saveSkiPole(skiPole1);
         saveSkiPole(skiPole2);
         List<SkiPole> list = List.of(skiPole1, skiPole2);
         List<EquipmentSize> expected = list.stream()
-                .map(Item::getEquipmentSizeId)
+                .map(Item::getEquipmentSize)
                 .collect(Collectors.toList());
         //WHEN
         List<EquipmentSize> actual = skiPoleDao.findAllSizes();
@@ -217,7 +217,7 @@ class SkiPoleDaoImplTest {
         equipmentSize.setEquipmentSizeId("SP110");
         equipmentSize.setUserMinHeight(153);
         equipmentSize.setUserMaxHeight(160);
-        equipmentSize.addEquipment(skiPole);
+        equipmentSize.addItem(skiPole);
         return skiPole;
     }
 

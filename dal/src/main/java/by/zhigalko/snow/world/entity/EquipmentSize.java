@@ -19,7 +19,7 @@ public class EquipmentSize {
     @Column(name = "equipment_size_id")
     private String equipmentSizeId;
 
-    @OneToMany(mappedBy = "equipmentSizeId")
+    @OneToMany(mappedBy = "equipmentSize")
     private Set<Item> itemSet = new HashSet<>();
 
     @Column(name = "user_min_height")
@@ -38,8 +38,8 @@ public class EquipmentSize {
     @Enumerated(EnumType.STRING)
     private ProductGroup productGroup;
 
-    public void addEquipment(Item item) {
+    public void addItem(Item item) {
         this.itemSet.add(item);
-        item.setEquipmentSizeId(this);
+        item.setEquipmentSize(this);
     }
 }
