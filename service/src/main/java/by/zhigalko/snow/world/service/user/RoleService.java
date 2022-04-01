@@ -9,5 +9,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface RoleService {
+    /**
+     * Find role by
+     * @param roleName {@link RoleName}
+     * @return {@link Role}
+     */
     Role findByRoleName(RoleName roleName);
 }
