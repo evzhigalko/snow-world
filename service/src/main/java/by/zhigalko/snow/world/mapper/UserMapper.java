@@ -10,6 +10,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.List;
 
 @Mapper(componentModel = "spring", imports = {Cart.class, RoleName.class})
 public abstract class UserMapper {
@@ -25,7 +26,7 @@ public abstract class UserMapper {
     @Mapping(expression = "java(roleService.findByRoleName(RoleName.USER).getRoleName())", target = "role.roleName")
     public abstract User userRequestToUser(UserRequest userRequest);
 
-    @Mapping(expression = "java(roleService.findByRoleName(RoleName.USER).getId())", target = "role.id")
-    @Mapping(expression = "java(roleService.findByRoleName(RoleName.USER).getRoleName())", target = "role.roleName")
     public abstract UserResponse userToUserResponse(User user);
+    
+    public abstract List<UserResponse> userListToUserResponseList(List<User> userList);
 }

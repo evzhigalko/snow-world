@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.filter;
 
+import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.User;
 import javax.servlet.*;
 import javax.servlet.annotation.*;
@@ -31,7 +32,7 @@ public class LoggingFilter implements Filter {
         log.info("URL: " + req.getRequestURL());
         HttpSession session = req.getSession();
         if (session != null && session.getAttribute("user") != null) {
-            User user = (User) session.getAttribute("user");
+            UserResponse user = (UserResponse) session.getAttribute("user");
             log.info(String.format("Username: %s", user.getUsername()));
         }
         Cookie[] cookies = req.getCookies();

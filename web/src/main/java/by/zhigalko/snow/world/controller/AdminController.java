@@ -1,13 +1,12 @@
 package by.zhigalko.snow.world.controller;
 
+import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import by.zhigalko.snow.world.service.common.AdminItemService;
 import by.zhigalko.snow.world.service.item.BaseItemService;
-import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
 import by.zhigalko.snow.world.service.user.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -41,7 +40,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String showAdminPage(Authentication authentication, Model model) {
-        List<User> userList = userService.findAllUsers();
+        List<UserResponse> userList = userService.findAllUsers();
         model.addAttribute("usersList", userList);
         model.addAttribute("user", userService.findByUsername(authentication.getName()));
         model.addAttribute("ROLE", authentication.getAuthorities().stream().findFirst().orElseThrow());
