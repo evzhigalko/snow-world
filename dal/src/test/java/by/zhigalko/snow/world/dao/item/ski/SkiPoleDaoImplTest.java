@@ -1,8 +1,8 @@
 package by.zhigalko.snow.world.dao.item.ski;
 
-import by.zhigalko.snow.world.entity.Equipment;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
+import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.ski.SkiPole;
@@ -191,7 +191,7 @@ class SkiPoleDaoImplTest {
         saveSkiPole(skiPole2);
         List<SkiPole> list = List.of(skiPole1, skiPole2);
         List<EquipmentSize> expected = list.stream()
-                .map(Equipment::getEquipmentSizeId)
+                .map(Item::getEquipmentSizeId)
                 .collect(Collectors.toList());
         //WHEN
         List<EquipmentSize> actual = skiPoleDao.findAllSizes();

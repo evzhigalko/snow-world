@@ -1,8 +1,8 @@
 package by.zhigalko.snow.world.service.item.util;
 
-import by.zhigalko.snow.world.entity.Equipment;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
+import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.clothes.ClothesWithMembrane;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Service
 public class ItemGenerator {
-    public Equipment setEquipmentData(HttpServletRequest request, Equipment equipment, EquipmentSize equipmentSize, Image image) {
-        setData(request, equipment, equipmentSize, image);
-        return equipment;
+    public Item setEquipmentData(HttpServletRequest request, Item item, EquipmentSize equipmentSize, Image image) {
+        setData(request, item, equipmentSize, image);
+        return item;
     }
 
     public ClothesWithMembrane setEquipmentData(HttpServletRequest request, ClothesWithMembrane clothes, EquipmentSize equipmentSize, Image image) {
@@ -22,13 +22,13 @@ public class ItemGenerator {
         return clothes;
     }
 
-    private void setData(HttpServletRequest request, Equipment equipment, EquipmentSize equipmentSize, Image image) {
-        equipment.setMaker(request.getParameter("maker"));
-        equipment.setGender(Gender.valueOf(request.getParameter("gender")));
-        equipment.setCost(Double.parseDouble(request.getParameter("cost")));
-        equipment.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
-        equipment.setEquipmentSizeId(equipmentSize);
-        equipment.setImage(image);
-        equipment.setProductName(Product.valueOf(request.getParameter("product_group")));
+    private void setData(HttpServletRequest request, Item item, EquipmentSize equipmentSize, Image image) {
+        item.setMaker(request.getParameter("maker"));
+        item.setGender(Gender.valueOf(request.getParameter("gender")));
+        item.setCost(Double.parseDouble(request.getParameter("cost")));
+        item.setAvailableToRental(Boolean.parseBoolean(request.getParameter("available_to_rental")));
+        item.setEquipmentSizeId(equipmentSize);
+        item.setImage(image);
+        item.setProductName(Product.valueOf(request.getParameter("product_group")));
     }
 }

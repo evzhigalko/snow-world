@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.entity;
 
 import javax.persistence.*;
-
 import by.zhigalko.snow.world.entity.enums.ProductGroup;
 import lombok.*;
 import java.util.HashSet;
@@ -13,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "equipmentSet")
+@ToString(exclude = "itemSet")
 @Table(name = "equipment_size")
 public class EquipmentSize {
     @Id
@@ -21,7 +20,7 @@ public class EquipmentSize {
     private String equipmentSizeId;
 
     @OneToMany(mappedBy = "equipmentSizeId")
-    private Set<Equipment> equipmentSet = new HashSet<>();
+    private Set<Item> itemSet = new HashSet<>();
 
     @Column(name = "user_min_height")
     private Integer userMinHeight;
@@ -39,8 +38,8 @@ public class EquipmentSize {
     @Enumerated(EnumType.STRING)
     private ProductGroup productGroup;
 
-    public void addEquipment(Equipment equipment) {
-        this.equipmentSet.add(equipment);
-        equipment.setEquipmentSizeId(this);
+    public void addEquipment(Item item) {
+        this.itemSet.add(item);
+        item.setEquipmentSizeId(this);
     }
 }

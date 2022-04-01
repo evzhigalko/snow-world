@@ -5,10 +5,10 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemDto {
+public abstract class ItemDto {
     private String id;
     private String maker;
     private String product;

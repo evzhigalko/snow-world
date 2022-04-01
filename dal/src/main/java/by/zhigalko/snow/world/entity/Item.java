@@ -11,7 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString(exclude = "carts", callSuper = true)
-@EqualsAndHashCode(exclude = {"image"}, callSuper = true)
+@EqualsAndHashCode(exclude = {"image", "equipmentSizeId"}, callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -38,6 +38,10 @@ public class Item extends BaseEntity{
 
     @Column(name = "cost")
     private double cost;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "equipment_size_id", nullable = false)
+    private EquipmentSize equipmentSizeId;
 
     @ManyToMany(mappedBy = "items")
     private Set<Cart> carts = new HashSet<>();

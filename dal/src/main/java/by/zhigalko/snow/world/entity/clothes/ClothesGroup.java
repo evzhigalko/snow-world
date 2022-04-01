@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.entity.clothes;
 
-import by.zhigalko.snow.world.entity.Equipment;
+import by.zhigalko.snow.world.entity.Item;
 import lombok.*;
 
 @NoArgsConstructor
@@ -8,5 +8,5 @@ import lombok.*;
 @Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public abstract class ClothesGroup extends Equipment {
+public abstract class ClothesGroup extends Item {
 }
