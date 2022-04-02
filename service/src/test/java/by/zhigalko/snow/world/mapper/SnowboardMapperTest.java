@@ -33,7 +33,6 @@ class SnowboardMapperTest {
     @Test
     void snowboardRequestToSnowboardTest() {
         SnowboardRequest snowboardRequest = new SnowboardRequest();
-        snowboardRequest.setId(UUID.randomUUID());
         snowboardRequest.setCost("15.0");
         snowboardRequest.setGender("FEMALE");
         snowboardRequest.setMaker("PRIME");
@@ -41,21 +40,19 @@ class SnowboardMapperTest {
         snowboardRequest.setRidingLevel("BEGINNER");
         snowboardRequest.setProductName("SNOWBOARD");
         snowboardRequest.setAvailableToRental("true");
-        snowboardRequest.setImageName("IMAGE_NAME_TEST.jpg");
         snowboardRequest.setEquipmentSize("SN159");
 
         Snowboard snowboard = snowboardMapper.snowboardRequestToSnowboard(snowboardRequest);
 
         assertNotNull(snowboard);
         assertEquals(snowboardRequest.getEquipmentSize(), snowboard.getEquipmentSize().getEquipmentSizeId());
-        assertEquals(snowboardRequest.getId(), snowboard.getId());
         assertEquals(snowboardRequest.getHardnessLevel(), snowboard.getHardnessLevel().toString());
         System.out.println(snowboardRequest);
         System.out.println(snowboard);
     }
 
     @Test
-    void snowboardToSnowboardDtoTest() {
+    void snowboardToSnowboardResponseTest() {
         Snowboard snowboard = new Snowboard();
         snowboard.setId(UUID.randomUUID());
         snowboard.setCost(15.0);
