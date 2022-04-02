@@ -1,16 +1,17 @@
 package by.zhigalko.snow.world.dto.item.response;
 
-import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import lombok.*;
+import java.util.UUID;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemResponse extends BaseEntity {
+public class ItemResponse {
+    private UUID id;
     private String maker;
     private String productName;
     private Image image;

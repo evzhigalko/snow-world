@@ -1,17 +1,15 @@
 package by.zhigalko.snow.world.dto.item.request;
 
-import by.zhigalko.snow.world.entity.BaseEntity;
 import lombok.*;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemRequest extends BaseEntity {
+public class ItemRequest {
     private String maker;
     private String productName;
-    private String imageName;
     private String gender;
     private String availableToRental;
     private String cost;
