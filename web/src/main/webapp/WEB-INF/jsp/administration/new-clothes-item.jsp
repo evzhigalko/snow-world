@@ -38,7 +38,7 @@
         <c:when test="${item eq 'mitten'}">
         <p>Варежки</p>
         <form action="<c:url value="/admin/create/new/clothes/mitten"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="product_group" value="MITTEN">
+        <input type="hidden" name="productName" value="MITTEN">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
                 <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
