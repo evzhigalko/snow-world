@@ -2,6 +2,7 @@
 <div style="padding-top: 3rem">
     <p>Шлем лыжный</p>
     <form action="<c:url value="/admin/create/new/ski-helmet"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <input type="hidden" name="productName" value="SKI_HELMET">
         <div class="form-input">
             <label for="label-maker" class="form-label"> </label>
             <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"
@@ -23,7 +24,7 @@
         <div class="form-input">
             Доступность к прокату:
             <label>
-                <select class="form-select" name="available_to_rental">
+                <select class="form-select" name="availableToRental">
                     <option value="true">Да</option>
                     <option value="false">Нет</option>
                 </select>
@@ -32,14 +33,13 @@
         <div class="form-input">
             Размер:
             <label>
-                <select class="form-select" name="equipment_size">
+                <select class="form-select" name="equipmentSize">
                     <c:forEach items="${requestScope.allSizes}" var="size">
                         <option value="${size.equipmentSizeId}">${size.equipmentSizeId}</option>
                     </c:forEach>
                 </select>
             </label>
         </div>
-        <input type="hidden" name="product_group" value="SKI_HELMET">
         <div class="form-input">
             Пол:
             <label>
