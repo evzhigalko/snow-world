@@ -4,12 +4,12 @@
         <c:when test="${item eq 'cap'}">
         <p>Шапка</p>
         <form action="<c:url value="/admin/create/new/clothes/cap"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="product_group" value="CAP">
+        <input type="hidden" name="productName" value="CAP">
         </c:when>
         <c:when test="${item eq 'glove'}">
         <p>Перчатки</p>
         <form action="<c:url value="/admin/create/new/clothes/glove"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="product_group" value="GLOVE">
+        <input type="hidden" name="productName" value="GLOVE">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
                 <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
@@ -21,7 +21,7 @@
         <c:when test="${item eq 'jacket'}">
         <p>Куртка</p>
         <form action="<c:url value="/admin/create/new/clothes/jacket"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="product_group" value="JACKET">
+        <input type="hidden" name="productName" value="JACKET">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
                 <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
@@ -33,7 +33,7 @@
         <c:when test="${item eq 'mask'}">
         <p>Маска</p>
         <form action="<c:url value="/admin/create/new/clothes/mask"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="product_group" value="MASK">
+        <input type="hidden" name="productName" value="MASK">
         </c:when>
         <c:when test="${item eq 'mitten'}">
         <p>Варежки</p>
@@ -50,7 +50,7 @@
         <c:when test="${item eq 'pants'}">
         <p>Штаны</p>
         <form action="<c:url value="/admin/create/new/clothes/pants"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="product_group" value="PANTS">
+        <input type="hidden" name="productName" value="PANTS">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
                 <input id="label-membrane" style="width: 15rem" type="text" class="form-control"
@@ -81,7 +81,7 @@
         <div class="form-input">
             Доступность к прокату:
             <label>
-                <select class="form-select" name="available_to_rental">
+                <select class="form-select" name="availableToRental">
                     <option value="true">Да</option>
                     <option value="false">Нет</option>
                 </select>
@@ -90,7 +90,7 @@
         <div class="form-input">
             Размер:
             <label>
-                <select class="form-select" name="equipment_size">
+                <select class="form-select" name="equipmentSize">
                     <c:forEach items="${requestScope.allSizes}" var="size">
                         <option value="${size.equipmentSizeId}">${size.equipmentSizeId}</option>
                     </c:forEach>
