@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.controller;
 
+import by.zhigalko.snow.world.dto.item.request.*;
 import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
@@ -189,10 +190,11 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/snowboard")
     public ModelAndView createNewSnowboard(@RequestParam("file") MultipartFile filePart,
-                                           HttpServletRequest request) {
+                                           SnowboardRequest snowboardRequest) {
+        System.out.println(snowboardRequest);
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard");
+            boolean isSaved = adminItemService.addNewItem(snowboardRequest, filePart, "snowboard");
             if (isSaved) {
                 mav.setViewName("redirect:/snowboard/catalog/1");
             } else {
@@ -207,10 +209,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/snowboard-boot")
     public ModelAndView createNewSnowboardBoot(@RequestParam("file") MultipartFile filePart,
-                                           HttpServletRequest request) {
+                                               SnowboardBootRequest snowboardBootRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard_boot");
+            boolean isSaved = adminItemService.addNewItem(snowboardBootRequest, filePart, "snowboard_boot");
             if (isSaved) {
                 mav.setViewName("redirect:/snowboard/boot/catalog/1");
             } else {
@@ -225,10 +227,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/snowboard-helmet")
     public ModelAndView createNewSnowboardHelmet(@RequestParam("file") MultipartFile filePart,
-                                               HttpServletRequest request) {
+                                                 SnowboardHelmetRequest snowboardHelmetRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "snowboard_helmet");
+            boolean isSaved = adminItemService.addNewItem(snowboardHelmetRequest, filePart, "snowboard_helmet");
             if (isSaved) {
                 mav.setViewName("redirect:/snowboard/helmet/catalog/1");
             } else {
@@ -243,10 +245,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/ski")
     public ModelAndView createNewSki(@RequestParam("file") MultipartFile filePart,
-                                                 HttpServletRequest request) {
+                                     SkiRequest skiRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "ski");
+            boolean isSaved = adminItemService.addNewItem(skiRequest, filePart, "ski");
             if (isSaved) {
                 mav.setViewName("redirect:/ski/catalog/1");
             } else {
@@ -261,10 +263,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/ski-boot")
     public ModelAndView createNewSkiBoot(@RequestParam("file") MultipartFile filePart,
-                                               HttpServletRequest request) {
+                                               SkiBootRequest skiBootRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_boot");
+            boolean isSaved = adminItemService.addNewItem(skiBootRequest, filePart, "ski_boot");
             if (isSaved) {
                 mav.setViewName("redirect:/ski/boot/catalog/1");
             } else {
@@ -279,10 +281,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/ski-helmet")
     public ModelAndView createNewSkiHelmet(@RequestParam("file") MultipartFile filePart,
-                                                 HttpServletRequest request) {
+                                                 SkiHelmetRequest skiHelmetRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_helmet");
+            boolean isSaved = adminItemService.addNewItem(skiHelmetRequest, filePart, "ski_helmet");
             if (isSaved) {
                 mav.setViewName("redirect:/ski/helmet/catalog/1");
             } else {
@@ -297,10 +299,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/ski-pole")
     public ModelAndView createNewSkiPole(@RequestParam("file") MultipartFile filePart,
-                                         HttpServletRequest request) {
+                                         SkiPoleRequest skiPoleRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "ski_pole");
+            boolean isSaved = adminItemService.addNewItem(skiPoleRequest, filePart, "ski_pole");
             if (isSaved) {
                 mav.setViewName("redirect:/ski/catalog/1");
             } else {
@@ -325,10 +327,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/clothes/jacket")
     public ModelAndView createNewJacket(@RequestParam("file") MultipartFile filePart,
-                                        HttpServletRequest request) {
+                                        JacketRequest jacketRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "jacket");
+            boolean isSaved = adminItemService.addNewItem(jacketRequest, filePart, "jacket");
             if (isSaved) {
                 mav.setViewName("redirect:/clothes/jacket/catalog/1");
             } else {
@@ -343,10 +345,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/clothes/cap")
     public ModelAndView createNewCap(@RequestParam("file") MultipartFile filePart,
-                                        HttpServletRequest request) {
+                                        CapRequest capRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "cap");
+            boolean isSaved = adminItemService.addNewItem(capRequest, filePart, "cap");
             if (isSaved) {
                 mav.setViewName("redirect:/clothes/cap/catalog/1");
             } else {
@@ -361,10 +363,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/clothes/glove")
     public ModelAndView createNewGlove(@RequestParam("file") MultipartFile filePart,
-                                     HttpServletRequest request) {
+                                     GloveRequest gloveRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "glove");
+            boolean isSaved = adminItemService.addNewItem(gloveRequest, filePart, "glove");
             if (isSaved) {
                 mav.setViewName("redirect:/clothes/gloves/catalog/1");
             } else {
@@ -376,12 +378,13 @@ public class AdminController {
         }
         return mav;
     }
+
     @PostMapping(value = "/admin/create/new/clothes/mitten")
     public ModelAndView createNewMitten(@RequestParam("file") MultipartFile filePart,
-                                       HttpServletRequest request) {
+                                       MittenRequest mittenRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "mitten");
+            boolean isSaved = adminItemService.addNewItem(mittenRequest, filePart, "mitten");
             if (isSaved) {
                 mav.setViewName("redirect:/clothes/mittens/catalog/1");
             } else {
@@ -396,10 +399,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/clothes/mask")
     public ModelAndView createNewMask(@RequestParam("file") MultipartFile filePart,
-                                        HttpServletRequest request) {
+                                        MaskRequest maskRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "mask");
+            boolean isSaved = adminItemService.addNewItem(maskRequest, filePart, "mask");
             if (isSaved) {
                 mav.setViewName("redirect:/clothes/mask/catalog/1");
             } else {
@@ -414,10 +417,10 @@ public class AdminController {
 
     @PostMapping(value = "/admin/create/new/clothes/pants")
     public ModelAndView createNewPants(@RequestParam("file") MultipartFile filePart,
-                                      HttpServletRequest request) {
+                                      PantsRequest pantsRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(request, filePart, "pants");
+            boolean isSaved = adminItemService.addNewItem(pantsRequest, filePart, "pants");
             if (isSaved) {
                 mav.setViewName("redirect:/clothes/pants/catalog/1");
             } else {
