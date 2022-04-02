@@ -1,6 +1,7 @@
 package by.zhigalko.snow.world.mapper;
 
-import by.zhigalko.snow.world.dto.item.ItemDto;
+import by.zhigalko.snow.world.dto.item.request.ItemRequest;
+import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
@@ -13,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringJUnitConfig(classes = {ApplicationConfig.class, BCryptPasswordEncoder.class})
@@ -29,25 +28,24 @@ class ItemMapperTest {
 
     @Test
     void itemDtoToItemTest() {
-        ItemDto itemDto = new ItemDto();
-        itemDto.setId("d5ffc460-649f-4ee0-a31b-af8e151e8351");
-        itemDto.setCost(String.valueOf(15.0));
-        itemDto.setGender("MALE");
-        itemDto.setMaker("BURTON");
-        itemDto.setAvailableToRental("true");
-        itemDto.setProductName("SNOWBOARD");
-        Image image = new Image();
-        image.setImageName("IMAGE_NAME_TEST.jpg");
-        itemDto.setImage(image);
-        EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById("SN159");
-        itemDto.setEquipmentSize(equipmentSize);
+        ItemRequest itemRequest = new ItemRequest();
+        itemRequest.setId(UUID.randomUUID());
+        itemRequest.setCost(String.valueOf(15.0));
+        itemRequest.setGender("MALE");
+        itemRequest.setMaker("BURTON");
+        itemRequest.setAvailableToRental("true");
+        itemRequest.setProductName("SNOWBOARD");
+        itemRequest.setImageName("IMAGE_NAME_TEST.jpg");
+        itemRequest.setEquipmentSize("SN159");
 
-        Item item = itemMapper.itemDtoToItem(itemDto);
+        Item item = itemMapper.itemDtoToItem(itemRequest);
 
         assertNotNull(item);
-        assertEquals(itemDto.getEquipmentSize(), item.getEquipmentSize());
-        assertEquals(UUID.fromString(itemDto.getId()), item.getId());
-        System.out.println(itemDto);
+        assertEquals(itemRequest.getEquipmentSize(), item.getEquipmentSize().getEquipmentSizeId());
+        assertEquals(itemRequest.getImageName(), item.getImage().getImageName());
+        assertEquals(itemRequest.getId(), item.getId());
+
+        System.out.println(itemRequest);
         System.out.println(item);
 
     }
@@ -62,17 +60,20 @@ class ItemMapperTest {
         item.setAvailableToRental(true);
         item.setProductName(Product.SNOWBOARD);
         Image image = new Image();
+        image.setId(UUID.randomUUID());
         image.setImageName("IMAGE_NAME_TEST.jpg");
         item.setImage(image);
         EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById("SN159");
         item.setEquipmentSize(equipmentSize);
 
-        ItemDto itemDto = itemMapper.itemToItemDto(item);
+        ItemResponse itemResponse = itemMapper.itemToItemDto(item);
 
-        assertNotNull(itemDto);
-        assertEquals(item.getEquipmentSize(), itemDto.getEquipmentSize());
-        assertEquals(item.getId(), UUID.fromString(itemDto.getId()));
+        assertNotNull(itemResponse);
+        assertEquals(item.getEquipmentSize().getEquipmentSizeId(), itemResponse.getEquipmentSize().getEquipmentSizeId());
+        assertEquals(item.getImage().getImageName(), item.getImage().getImageName());
+        assertEquals(item.getId(), itemResponse.getId());
+
         System.out.println(item);
-        System.out.println(itemDto);
+        System.out.println(itemResponse);
     }
 }

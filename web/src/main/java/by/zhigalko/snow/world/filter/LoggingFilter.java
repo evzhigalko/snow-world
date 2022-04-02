@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.filter;
 
 import by.zhigalko.snow.world.dto.user.UserResponse;
-import by.zhigalko.snow.world.entity.User;
+
 import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.Cookie;

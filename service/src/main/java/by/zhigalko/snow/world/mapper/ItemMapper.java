@@ -1,6 +1,7 @@
 package by.zhigalko.snow.world.mapper;
 
-import by.zhigalko.snow.world.dto.item.ItemDto;
+import by.zhigalko.snow.world.dto.item.request.ItemRequest;
+import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Product;
@@ -16,14 +17,15 @@ public abstract class ItemMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(UUID.fromString(itemDto.getId()))", target = "id")
-    @Mapping(expression = "java(Product.valueOf(itemDto.getProductName()))", target = "productName")
+    @Mapping(expression = "java(itemRequest.getId())", target = "item.id")
+    @Mapping(expression = "java(Product.valueOf(itemRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(new Image())", target = "image")
     @Mapping(expression = "java(UUID.randomUUID())", target = "image.id")
+    @Mapping(source = "imageName", target = "image.imageName")
+    @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(itemRequest.getEquipmentSize()))",
+            target = "equipmentSize")
     @Mapping(target = "carts", ignore = true)
-    @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(itemDto.getEquipmentSize().getEquipmentSizeId()))", target = "equipmentSize")
-    public abstract Item itemDtoToItem(ItemDto itemDto);
+    public abstract Item itemDtoToItem(ItemRequest itemRequest);
 
-    @Mapping(expression = "java(String.valueOf(item.getId()))", target = "id")
-    public abstract ItemDto itemToItemDto(Item item);
+    public abstract ItemResponse itemToItemDto(Item item);
 }

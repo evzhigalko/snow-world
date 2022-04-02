@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.dto.item;
+package by.zhigalko.snow.world.dto.item.request;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class SnowboardDto extends ItemDto {
+public class SnowboardRequest extends ItemRequest {
     private String ridingLevel;
     private String hardnessLevel;
 }

@@ -32,7 +32,7 @@
         <div class="form-input">
             Размер:
             <label>
-                <select class="form-select" name="equipmentSizeId">
+                <select class="form-select" name="equipmentSize">
                     <c:forEach items="${requestScope.allSizes}" var="size">
                         <option value="${size.equipmentSizeId}">${size.equipmentSizeId}
                             (Рост: ${size.userMinHeight}-${size.userMaxHeight},

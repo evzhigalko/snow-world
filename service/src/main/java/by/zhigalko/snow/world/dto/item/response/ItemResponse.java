@@ -1,16 +1,16 @@
-package by.zhigalko.snow.world.dto.item;
+package by.zhigalko.snow.world.dto.item.response;
 
+import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import lombok.*;
 
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemDto {
-    private String id;
+public class ItemResponse extends BaseEntity {
     private String maker;
     private String productName;
     private Image image;

@@ -1,6 +1,7 @@
 package by.zhigalko.snow.world.mapper;
 
-import by.zhigalko.snow.world.dto.item.SnowboardDto;
+import by.zhigalko.snow.world.dto.item.request.SnowboardRequest;
+import by.zhigalko.snow.world.dto.item.response.SnowboardResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
@@ -16,7 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringJUnitConfig(classes = {ApplicationConfig.class, BCryptPasswordEncoder.class})
 @Transactional
@@ -29,28 +31,26 @@ class SnowboardMapperTest {
     private EquipmentSizeService equipmentSizeService;
 
     @Test
-    void snowboardDtoToSnowboardTest() {
-        SnowboardDto snowboardDto = new SnowboardDto();
-        snowboardDto.setId(String.valueOf(UUID.randomUUID()));
-        snowboardDto.setCost("15.0");
-        snowboardDto.setGender("FEMALE");
-        snowboardDto.setMaker("PRIME");
-        snowboardDto.setHardnessLevel("TWO");
-        snowboardDto.setRidingLevel("BEGINNER");
-        snowboardDto.setProductName("SNOWBOARD");
-        snowboardDto.setAvailableToRental("true");
-        Image image = new Image();
-        image.setImageName("IMAGE_NAME_TEST.jpg");
-        snowboardDto.setImage(image);
-        EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById("SN159");
-        snowboardDto.setEquipmentSize(equipmentSize);
+    void snowboardRequestToSnowboardTest() {
+        SnowboardRequest snowboardRequest = new SnowboardRequest();
+        snowboardRequest.setId(UUID.randomUUID());
+        snowboardRequest.setCost("15.0");
+        snowboardRequest.setGender("FEMALE");
+        snowboardRequest.setMaker("PRIME");
+        snowboardRequest.setHardnessLevel("TWO");
+        snowboardRequest.setRidingLevel("BEGINNER");
+        snowboardRequest.setProductName("SNOWBOARD");
+        snowboardRequest.setAvailableToRental("true");
+        snowboardRequest.setImageName("IMAGE_NAME_TEST.jpg");
+        snowboardRequest.setEquipmentSize("SN159");
 
-        Snowboard snowboard = snowboardMapper.snowboardDtoToSnowboard(snowboardDto);
+        Snowboard snowboard = snowboardMapper.snowboardRequestToSnowboard(snowboardRequest);
 
         assertNotNull(snowboard);
-        assertEquals(snowboardDto.getEquipmentSize().getEquipmentSizeId(), snowboard.getEquipmentSize().getEquipmentSizeId());
-        assertEquals(UUID.fromString(snowboardDto.getId()), snowboard.getId());
-        System.out.println(snowboardDto);
+        assertEquals(snowboardRequest.getEquipmentSize(), snowboard.getEquipmentSize().getEquipmentSizeId());
+        assertEquals(snowboardRequest.getId(), snowboard.getId());
+        assertEquals(snowboardRequest.getHardnessLevel(), snowboard.getHardnessLevel().toString());
+        System.out.println(snowboardRequest);
         System.out.println(snowboard);
     }
 
@@ -72,12 +72,12 @@ class SnowboardMapperTest {
         EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById("SN159");
         snowboard.setEquipmentSize(equipmentSize);
 
-        SnowboardDto snowboardDto = snowboardMapper.snowboardToSnowboardDto(snowboard);
+        SnowboardResponse snowboardResponse = snowboardMapper.snowboardToSnowboardResponse(snowboard);
 
-        assertNotNull(snowboardDto);
-        assertEquals(snowboard.getEquipmentSize().getEquipmentSizeId(), snowboardDto.getEquipmentSize().getEquipmentSizeId());
-        assertEquals(String.valueOf(snowboard.getId()), snowboardDto.getId());
+        assertNotNull(snowboardResponse);
+        assertEquals(snowboard.getEquipmentSize().getEquipmentSizeId(), snowboardResponse.getEquipmentSize().getEquipmentSizeId());
+        assertEquals(snowboard.getId(), snowboardResponse.getId());
         System.out.println(snowboard);
-        System.out.println(snowboardDto);
+        System.out.println(snowboardResponse);
     }
 }
