@@ -1,6 +1,5 @@
-package by.zhigalko.snow.world.dto.item.request;
+package by.zhigalko.snow.world.dto.item.response;
 
-import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import lombok.*;
 
 @Getter

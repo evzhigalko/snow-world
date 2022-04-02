@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.mapper;
 
 import by.zhigalko.snow.world.dto.item.request.JacketRequest;
-import by.zhigalko.snow.world.dto.item.request.JacketResponse;
+import by.zhigalko.snow.world.dto.item.response.JacketResponse;
 import by.zhigalko.snow.world.entity.clothes.Jacket;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
