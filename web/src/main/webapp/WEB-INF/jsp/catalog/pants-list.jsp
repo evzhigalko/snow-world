@@ -30,7 +30,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${pants.maker}</h5>
                                         <p class="card-info">Размер: ${pants.equipmentSize.equipmentSizeId}</p>
-                                        <p class="card-info">Пол: ${pants.gender.name}</p>
+                                        <p class="card-info">Пол: ${pants.gender}</p>
                                         <p class="card-info">Мембрана: ${pants.membrane}</p>
                                         <p class="card-info">Цена проката: ${pants.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:

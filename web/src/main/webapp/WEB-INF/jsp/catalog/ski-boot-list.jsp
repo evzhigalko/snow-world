@@ -30,7 +30,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${boot.maker}</h5>
                                         <p class="card-info">Размер: ${boot.equipmentSize.equipmentSizeId}</p>
-                                        <p class="card-info">Пол: ${boot.gender.name}</p>
+                                        <p class="card-info">Пол: ${boot.gender}</p>
                                         <p class="card-info">Цена проката: ${boot.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:
                                             <c:choose>

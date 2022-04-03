@@ -30,7 +30,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${mittens.maker}</h5>
                                         <p class="card-info">Размер: ${mittens.equipmentSize.equipmentSizeId}</p>
-                                        <p class="card-info">Пол: ${mittens.gender.name}</p>
+                                        <p class="card-info">Пол: ${mittens.gender}</p>
                                         <p class="card-info">Мембрана: ${mittens.membrane}</p>
                                         <p class="card-info">Цена проката: ${mittens.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:

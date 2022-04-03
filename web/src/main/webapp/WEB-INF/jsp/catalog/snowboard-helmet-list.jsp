@@ -30,7 +30,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">${helmet.maker}</h5>
                                         <p class="card-info">Размер: ${helmet.equipmentSize.equipmentSizeId}</p>
-                                        <p class="card-info">Пол: ${helmet.gender.name}</p>
+                                        <p class="card-info">Пол: ${helmet.gender}</p>
                                         <p class="card-info">Цена проката: ${helmet.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:
                                             <c:choose>
