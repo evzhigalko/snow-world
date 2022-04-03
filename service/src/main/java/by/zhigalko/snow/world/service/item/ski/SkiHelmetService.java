@@ -2,24 +2,32 @@ package by.zhigalko.snow.world.service.item.ski;
 
 import by.zhigalko.snow.world.dto.item.request.ItemRequest;
 import by.zhigalko.snow.world.dto.item.request.SkiHelmetRequest;
+import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.ski.SkiHelmet;
 import by.zhigalko.snow.world.mapper.SkiHelmetMapper;
 import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
+import by.zhigalko.snow.world.repository.item.SkiHelmetRepository;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SkiHelmetService extends BaseItemServiceImpl<SkiHelmet> {
     private final SkiHelmetMapper skiHelmetMapper;
+    private final SkiHelmetRepository skiHelmetRepository;
 
     @Autowired
-    public SkiHelmetService(ItemRepository<SkiHelmet> itemRepository, EquipmentSizeRepository equipmentSizeRepository, SkiHelmetMapper skiHelmetMapper) {
+    public SkiHelmetService(ItemRepository<SkiHelmet> itemRepository, EquipmentSizeRepository equipmentSizeRepository, SkiHelmetMapper skiHelmetMapper, SkiHelmetRepository skiHelmetRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.skiHelmetMapper = skiHelmetMapper;
+        this.skiHelmetRepository = skiHelmetRepository;
     }
 
     @Override
@@ -27,5 +35,13 @@ public class SkiHelmetService extends BaseItemServiceImpl<SkiHelmet> {
         SkiHelmet skiHelmet = skiHelmetMapper.skiHelmetRequestToSkiHelmet((SkiHelmetRequest) itemRequest);
         skiHelmet.setImage(image);
         return skiHelmet;
+    }
+
+    @Override
+    public List<? extends ItemResponse> findAll(int page, int pageSize) {
+        Page<SkiHelmet> skiHelmetPage = skiHelmetRepository.findAll(PageRequest.of(page, pageSize));
+        totalPages = skiHelmetPage.getTotalPages();
+        List<SkiHelmet> skiHelmetList = skiHelmetPage.stream().collect(Collectors.toList());
+        return skiHelmetMapper.skiHelmetListToSkiHelmetResponseList(skiHelmetList);
     }
 }
