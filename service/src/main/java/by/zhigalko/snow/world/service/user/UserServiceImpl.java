@@ -10,7 +10,10 @@ import by.zhigalko.snow.world.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.UUID;
 
 @Service("userService")
 @Transactional
@@ -40,5 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserResponse> findAllUsers() {
         return userMapper.userListToUserResponseList(userRepository.findByRoleRoleName(RoleName.USER));
+    }
+
+    @Override
+    public User findById(UUID id) {
+        return userRepository.findById(id).orElseThrow(NoResultException::new);
     }
 }

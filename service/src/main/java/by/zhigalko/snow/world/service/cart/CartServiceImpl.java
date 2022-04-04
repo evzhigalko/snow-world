@@ -1,9 +1,11 @@
 package by.zhigalko.snow.world.service.cart;
 
+import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Product;
+import by.zhigalko.snow.world.mapper.CartMapper;
 import by.zhigalko.snow.world.mapper.ItemMapper;
 import by.zhigalko.snow.world.repository.CartRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
@@ -23,18 +25,21 @@ public class CartServiceImpl<T extends Item> implements CartService {
     private final ItemRepository<T> itemRepository;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final ItemMapper itemMapper;
+    private final CartMapper cartMapper;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository, ServiceEquipmentFactory serviceEquipmentFactory, ItemMapper itemMapper) {
+    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository, ServiceEquipmentFactory serviceEquipmentFactory, ItemMapper itemMapper, CartMapper cartMapper) {
         this.cartRepository = cartRepository;
         this.itemRepository = itemRepository;
         this.serviceEquipmentFactory = serviceEquipmentFactory;
         this.itemMapper = itemMapper;
+        this.cartMapper = cartMapper;
     }
 
     @Transactional
     @Override
-    public Cart addToCart(BaseItemService service, Cart cart, UUID itemId) {
+    public CartDto addToCart(BaseItemService service, CartDto cartDto, UUID itemId) {
+        Cart cart = cartMapper.cartDtoToCart(cartDto);
         Item item = service.findById(itemId);
         Item savedItem = service.save(item);
         Set<Item> items = cartRepository.getItems(cart.getId());
@@ -47,12 +52,14 @@ public class CartServiceImpl<T extends Item> implements CartService {
                 .reduce(0.0, Double::sum));
         Set<Cart> carts = itemRepository.getCarts(savedItem.getId());
         carts.add(cart);
-        return cartRepository.save(cart);
+        Cart savedCart = cartRepository.save(cart);
+        return cartMapper.cartToCartDto(savedCart);
     }
 
     @Transactional
     @Override
-    public Cart removeFromCart(Cart cart, UUID id, Set<ItemResponse> cartItems) {
+    public CartDto removeFromCart(CartDto cartDto, UUID id, Set<ItemResponse> cartItems) {
+        Cart cart = cartMapper.cartDtoToCart(cartDto);
         Product product = cartItems.stream()
                 .filter(item -> id.equals(item.getId()))
                 .map(ItemResponse::getProductName)
@@ -70,12 +77,14 @@ public class CartServiceImpl<T extends Item> implements CartService {
         }
         Set<Cart> carts = itemRepository.getCarts(item.getId());
         carts.remove(cart);
-        return cartRepository.save(cart);
+        Cart savedCart = cartRepository.save(cart);
+        return cartMapper.cartToCartDto(savedCart);
     }
 
     @Override
-    public Cart findCartById(UUID id) {
-        return cartRepository.findCartById(id);
+    public CartDto findCartById(UUID id) {
+        Cart cart = cartRepository.findCartById(id);
+        return cartMapper.cartToCartDto(cart);
     }
 
     @Transactional

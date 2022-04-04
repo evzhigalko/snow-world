@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.dto.user;
 
+import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.entity.BaseEntity;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Role;
@@ -17,6 +18,6 @@ public class UserResponse extends BaseEntity {
     private String firstName;
     private String lastName;
     private String gender;
-    private Cart cart;
+    private CartDto cartDto;
     private Role role;
 }

@@ -5,6 +5,7 @@ import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.exception.ValidationException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Service for user
@@ -30,4 +31,11 @@ public interface UserService {
      * @return {@link List<UserResponse>}
      */
     List<UserResponse> findAllUsers();
+
+    /**
+     * Find user by
+     * @param id {@link UUID}
+     * @return {@link User}
+     */
+    User findById(UUID id);
 }
