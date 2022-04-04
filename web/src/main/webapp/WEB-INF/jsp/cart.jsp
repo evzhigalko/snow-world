@@ -52,6 +52,9 @@
             </table>
             <br>
             <h3 class="cart-total-sum" id="total">Сумма итого: ${cart.totalSum} бел. рублей</h3>
+            <div class="create-order">
+                <a href="<c:url value="/order/create/new"/>" class="btn btn-primary">Оформить заказ</a>
+            </div>
         </c:when>
         <c:otherwise>
             <h3 align="center">Корзина пуста</h3>

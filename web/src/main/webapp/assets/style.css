@@ -189,3 +189,7 @@ a {
 .cart-total-sum {
     text-align: right;
 }
+.create-order {
+    text-align: right;
+    padding-top: 1rem;
+}
