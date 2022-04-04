@@ -6,7 +6,7 @@ import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.ski.Ski;
-import by.zhigalko.snow.world.util.ApplicationConfig;
+import by.zhigalko.snow.world.config.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

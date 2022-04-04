@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").hasAuthority(RoleName.ADMIN.name())
-                .antMatchers("/cart/**").hasAuthority(RoleName.USER.name())
+                .antMatchers("/cart/**", "/order/**").hasAuthority(RoleName.USER.name())
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login").successHandler(successHandler())

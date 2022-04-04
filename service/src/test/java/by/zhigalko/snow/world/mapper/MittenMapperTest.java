@@ -8,7 +8,7 @@ import by.zhigalko.snow.world.entity.clothes.Mitten;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
-import by.zhigalko.snow.world.util.ApplicationConfig;
+import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

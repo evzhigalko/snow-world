@@ -1,19 +1,15 @@
 package by.zhigalko.snow.world.mapper;
 
 import by.zhigalko.snow.world.dto.item.request.SkiRequest;
-import by.zhigalko.snow.world.dto.item.request.SnowboardRequest;
 import by.zhigalko.snow.world.dto.item.response.SkiResponse;
-import by.zhigalko.snow.world.dto.item.response.SnowboardResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.HardnessLevel;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.enums.RidingLevel;
 import by.zhigalko.snow.world.entity.ski.Ski;
-import by.zhigalko.snow.world.entity.snowboard.Snowboard;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
-import by.zhigalko.snow.world.util.ApplicationConfig;
+import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

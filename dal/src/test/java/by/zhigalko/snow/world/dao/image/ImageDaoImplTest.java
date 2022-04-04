@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.dao.image;
 
 import by.zhigalko.snow.world.entity.Image;
-import by.zhigalko.snow.world.util.ApplicationConfig;
+import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 

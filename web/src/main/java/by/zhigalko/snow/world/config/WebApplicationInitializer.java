@@ -1,6 +1,5 @@
 package by.zhigalko.snow.world.config;
 
-import by.zhigalko.snow.world.util.ApplicationConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

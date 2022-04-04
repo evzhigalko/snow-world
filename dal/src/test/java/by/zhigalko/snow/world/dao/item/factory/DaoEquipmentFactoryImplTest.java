@@ -4,7 +4,7 @@ import by.zhigalko.snow.world.dao.item.BaseDaoItemImpl;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentAllSizesDao;
 import by.zhigalko.snow.world.dao.item.snowboard.SnowboardDaoImpl;
 import by.zhigalko.snow.world.entity.enums.Page;
-import by.zhigalko.snow.world.util.ApplicationConfig;
+import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;

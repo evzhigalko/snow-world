@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.util;
+package by.zhigalko.snow.world.config;
 
 import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,7 +3,7 @@ package by.zhigalko.snow.world.dao;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDao;
 import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDaoImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
-import by.zhigalko.snow.world.util.ApplicationConfig;
+import by.zhigalko.snow.world.config.ApplicationConfig;
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
