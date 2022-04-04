@@ -16,7 +16,6 @@ public abstract class MittenMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(mittenRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(mittenRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract Mitten mittenRequestToMitten(MittenRequest mittenRequest);

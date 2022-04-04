@@ -16,7 +16,6 @@ public abstract class SkiHelmetMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(skiHelmetRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(skiHelmetRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract SkiHelmet skiHelmetRequestToSkiHelmet(SkiHelmetRequest skiHelmetRequest);

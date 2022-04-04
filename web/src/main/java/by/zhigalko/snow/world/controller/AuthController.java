@@ -1,9 +1,9 @@
 package by.zhigalko.snow.world.controller;
 
+import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.dto.user.UserRequest;
 import by.zhigalko.snow.world.dto.user.UserResponse;
 import by.zhigalko.snow.world.entity.Cart;
-import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.cart.CartService;
 import by.zhigalko.snow.world.service.user.UserService;
@@ -40,7 +40,7 @@ public class AuthController {
         Cart foundCart = cartService.findCartById(userResponse.getId());
         model.addAttribute("cart", foundCart);
         if(foundCart!=null) {
-            Set<Item> cartItems = cartService.getItems(foundCart.getId());
+            Set<ItemResponse> cartItems = cartService.getItems(foundCart.getId());
             model.addAttribute("cartItems", cartItems);
             model.addAttribute("totalSum", foundCart.getTotalSum());
         }

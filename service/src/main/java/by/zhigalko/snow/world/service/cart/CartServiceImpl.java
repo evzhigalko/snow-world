@@ -1,8 +1,10 @@
 package by.zhigalko.snow.world.service.cart;
 
+import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Product;
+import by.zhigalko.snow.world.mapper.ItemMapper;
 import by.zhigalko.snow.world.repository.CartRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.service.item.BaseItemService;
@@ -20,17 +22,20 @@ public class CartServiceImpl<T extends Item> implements CartService {
     private final CartRepository cartRepository;
     private final ItemRepository<T> itemRepository;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
+    private final ItemMapper itemMapper;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository, ServiceEquipmentFactory serviceEquipmentFactory) {
+    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository, ServiceEquipmentFactory serviceEquipmentFactory, ItemMapper itemMapper) {
         this.cartRepository = cartRepository;
         this.itemRepository = itemRepository;
         this.serviceEquipmentFactory = serviceEquipmentFactory;
+        this.itemMapper = itemMapper;
     }
 
     @Transactional
     @Override
-    public Cart addToCart(BaseItemService service, Cart cart, Item item) {
+    public Cart addToCart(BaseItemService service, Cart cart, UUID itemId) {
+        Item item = service.findById(itemId);
         Item savedItem = service.save(item);
         Set<Item> items = cartRepository.getItems(cart.getId());
         items.add(savedItem);
@@ -47,10 +52,10 @@ public class CartServiceImpl<T extends Item> implements CartService {
 
     @Transactional
     @Override
-    public Cart removeFromCart(Cart cart, UUID id, Set<Item> cartItems) {
+    public Cart removeFromCart(Cart cart, UUID id, Set<ItemResponse> cartItems) {
         Product product = cartItems.stream()
                 .filter(item -> id.equals(item.getId()))
-                .map(Item::getProductName)
+                .map(ItemResponse::getProductName)
                 .findAny()
                 .orElseThrow();
         BaseItemService<? extends Item> service =  serviceEquipmentFactory.getService(product);
@@ -75,7 +80,8 @@ public class CartServiceImpl<T extends Item> implements CartService {
 
     @Transactional
     @Override
-    public Set<Item> getItems(UUID cartId) {
-        return cartRepository.getItems(cartId);
+    public Set<ItemResponse> getItems(UUID cartId) {
+        Set<Item> items = cartRepository.getItems(cartId);
+        return itemMapper.itemSetToItemResponseSet(items);
     }
 }

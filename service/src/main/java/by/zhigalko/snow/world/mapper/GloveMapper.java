@@ -16,7 +16,6 @@ public abstract class GloveMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(gloveRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(gloveRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract Glove gloveRequestToGlove(GloveRequest gloveRequest);

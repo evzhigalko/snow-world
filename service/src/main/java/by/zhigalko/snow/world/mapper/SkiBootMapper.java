@@ -16,7 +16,6 @@ public abstract class SkiBootMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(skiBootRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(skiBootRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract SkiBoot skiBootRequestToSkiBoot(SkiBootRequest skiBootRequest);

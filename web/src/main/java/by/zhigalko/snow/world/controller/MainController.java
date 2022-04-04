@@ -302,7 +302,7 @@ public class MainController {
     @GetMapping("/cart/delete/item/{id}")
     public String deleteFromCart(@PathVariable("id") UUID id,
                                  @SessionAttribute("cart") Cart cart,
-                                 @SessionAttribute("cartItems") Set<Item> cartItems,
+                                 @SessionAttribute("cartItems") Set<ItemResponse> cartItems,
                                  Model model) {
         Cart cartAfterRemoving = cartService.removeFromCart(cart, id, cartItems);
         model.addAttribute("cart", cartAfterRemoving);
@@ -311,9 +311,9 @@ public class MainController {
     }
 
     private void addToCart(Cart cart, UUID itemId, Model model, BaseItemService<? extends Item> service) {
-        Cart cartWithItem = cartService.addToCart(service, cart, service.findById(itemId));
+        Cart cartWithItem = cartService.addToCart(service, cart, itemId);
         model.addAttribute("cart", cartWithItem);
-        Set<Item> items = cartService.getItems(cartWithItem.getId());
+        Set<ItemResponse> items = cartService.getItems(cartWithItem.getId());
         model.addAttribute("cartItems", items);
     }
 

@@ -16,7 +16,6 @@ public abstract class PantsMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(pantsRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(pantsRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract Pants pantsRequestToPants(PantsRequest pantsRequest);

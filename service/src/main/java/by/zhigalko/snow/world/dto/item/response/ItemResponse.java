@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.dto.item.response;
 
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
+import by.zhigalko.snow.world.entity.enums.Product;
 import lombok.*;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 public class ItemResponse {
     private UUID id;
     private String maker;
-    private String productName;
+    private Product productName;
     private Image image;
     private String gender;
     private String availableToRental;

@@ -16,7 +16,6 @@ public abstract class CapMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(capRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(capRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract Cap capRequestToCap(CapRequest capRequest);

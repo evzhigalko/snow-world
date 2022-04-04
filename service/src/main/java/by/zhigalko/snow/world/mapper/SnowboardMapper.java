@@ -17,7 +17,6 @@ public abstract class SnowboardMapper  {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(snowboardRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(snowboardRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract Snowboard snowboardRequestToSnowboard(SnowboardRequest snowboardRequest);

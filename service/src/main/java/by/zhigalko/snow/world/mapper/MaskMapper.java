@@ -16,7 +16,6 @@ public abstract class MaskMapper {
     @Autowired
     protected EquipmentSizeService equipmentSizeService;
 
-    @Mapping(expression = "java(Product.valueOf(maskRequest.getProductName()))", target = "productName")
     @Mapping(expression = "java(equipmentSizeService.findEquipmentSizeById(maskRequest.getEquipmentSize()))",
             target = "equipmentSize")
     public abstract Mask maskRequestToMask(MaskRequest maskRequest);
