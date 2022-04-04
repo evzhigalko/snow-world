@@ -45,4 +45,7 @@ public class Item extends BaseEntity{
 
     @ManyToMany(mappedBy = "items")
     private Set<Cart> carts = new HashSet<>();
+
+    @ManyToMany(mappedBy = "orderItems")
+    private Set<Order> orders = new HashSet<>();
 }

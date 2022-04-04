@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -49,6 +52,9 @@ public class User extends BaseEntity{
     @PrimaryKeyJoinColumn
     private Cart cart;
 
+    @OneToMany(mappedBy="user")
+    private Set<Order> orders = new HashSet<>();
+
     public void setNewCart(Cart cart) {
         if (cart == null) {
             if (this.cart != null) {
@@ -59,5 +65,13 @@ public class User extends BaseEntity{
             cart.setUser(this);
         }
         this.cart = cart;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+        order.setUser(this);
+    }
+    public void removeOrder(Order order) {
+        this.orders.remove(order);
     }
 }
