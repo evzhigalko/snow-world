@@ -17,7 +17,7 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "item")
 @DiscriminatorColumn(name = "product_type", discriminatorType = DiscriminatorType.STRING)
-public class Item extends BaseEntity{
+public class Item extends BaseEntity {
     @Column(name = "product_name")
     @Enumerated(EnumType.STRING)
     private Product productName;

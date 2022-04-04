@@ -8,7 +8,6 @@ import lombok.ToString;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -71,6 +70,7 @@ public class User extends BaseEntity{
         this.orders.add(order);
         order.setUser(this);
     }
+
     public void removeOrder(Order order) {
         this.orders.remove(order);
     }

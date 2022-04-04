@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -13,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "order")
+@Table(name = "\"order\"")
 @AttributeOverride(name = "id", column = @Column(name = "order_id"))
 public class Order extends BaseEntity {
     @Column(name = "start_reservation_date")
