@@ -11,6 +11,7 @@ import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.repository.item.SkiHelmetRepository;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Service
 public class SkiHelmetService extends BaseItemServiceImpl<SkiHelmet> {
     private final SkiHelmetMapper skiHelmetMapper;
@@ -34,6 +36,7 @@ public class SkiHelmetService extends BaseItemServiceImpl<SkiHelmet> {
     public Item getItem(ItemRequest itemRequest, Image image) {
         SkiHelmet skiHelmet = skiHelmetMapper.skiHelmetRequestToSkiHelmet((SkiHelmetRequest) itemRequest);
         skiHelmet.setImage(image);
+        log.info("Got skiHelmet from ItemRequest: " + skiHelmet);
         return skiHelmet;
     }
 
@@ -41,7 +44,9 @@ public class SkiHelmetService extends BaseItemServiceImpl<SkiHelmet> {
     public List<? extends ItemResponse> findAll(int page, int pageSize) {
         Page<SkiHelmet> skiHelmetPage = skiHelmetRepository.findAll(PageRequest.of(page, pageSize));
         totalPages = skiHelmetPage.getTotalPages();
+        log.info("SkiHelmet has pages: " + totalPages);
         List<SkiHelmet> skiHelmetList = skiHelmetPage.stream().collect(Collectors.toList());
+        log.info("Got " + skiHelmetList);
         return skiHelmetMapper.skiHelmetListToSkiHelmetResponseList(skiHelmetList);
     }
 }

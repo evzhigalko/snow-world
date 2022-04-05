@@ -11,6 +11,7 @@ import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.repository.item.PantsRepository;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Service
 public class PantsService extends BaseItemServiceImpl<Pants> {
     private final PantsMapper pantsMapper;
@@ -34,6 +36,7 @@ public class PantsService extends BaseItemServiceImpl<Pants> {
     public Item getItem(ItemRequest itemRequest, Image image) {
         Pants pants = pantsMapper.pantsRequestToPants((PantsRequest) itemRequest);
         pants.setImage(image);
+        log.info("Got pants from ItemRequest: " + pants);
         return pants;
     }
 
@@ -41,7 +44,9 @@ public class PantsService extends BaseItemServiceImpl<Pants> {
     public List<? extends ItemResponse> findAll(int page, int pageSize) {
         Page<Pants> pantsPage = pantsRepository.findAll(PageRequest.of(page, pageSize));
         totalPages = pantsPage.getTotalPages();
+        log.info("Pants has pages: " + totalPages);
         List<Pants> pantsList = pantsPage.stream().collect(Collectors.toList());
+        log.info("Got " + pantsList);
         return pantsMapper.pantsListToPantsResponseList(pantsList);
     }
 }

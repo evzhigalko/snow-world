@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.service.user;
 
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.repository.UserRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
+@Log4j2
 @Service("userDetailsService")
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -26,6 +28,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User foundUser = userRepository.findByUsername(username);
+        log.fatal("Found user by username: "  + foundUser);
         if (foundUser == null) {
             throw new UsernameNotFoundException("Пользователь не существует!");
         }

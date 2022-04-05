@@ -14,19 +14,27 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="org.hibernate.orm.jdbc.bind" level="TRACE" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="File"/>
-        </Logger>
-        <Logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="File"/>
-        </Logger>
-        <Logger name="org.springframework.security" level="DEBUG" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="File"/>
-        </Logger>
         <Logger name="by.zhigalko.snow.world" level="DEBUG" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="by.zhigalko.snow.world.exception" level="ERROR" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="by.zhigalko.snow.world.service" level="INFO" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="by.zhigalko.snow.world.service.cart" level="FATAL" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="by.zhigalko.snow.world.service.admin" level="FATAL" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+        <Logger name="by.zhigalko.snow.world.service.user" level="FATAL" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="File"/>
         </Logger>

@@ -11,12 +11,14 @@ import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.CapRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Service
 public class CapService extends BaseItemServiceImpl<Cap> {
     private final CapMapper capMapper;
@@ -32,6 +34,7 @@ public class CapService extends BaseItemServiceImpl<Cap> {
     public Item getItem(ItemRequest itemRequest, Image image) {
         Cap cap = capMapper.capRequestToCap((CapRequest) itemRequest);
         cap.setImage(image);
+        log.info("Got cap from ItemRequest: " + cap);
         return cap;
     }
 
@@ -39,7 +42,9 @@ public class CapService extends BaseItemServiceImpl<Cap> {
     public List<? extends ItemResponse> findAll(int page, int pageSize) {
         Page<Cap> capPage = capRepository.findAll(PageRequest.of(page, pageSize));
         totalPages = capPage.getTotalPages();
+        log.info("Cap has pages: " + totalPages);
         List<Cap> capList = capPage.stream().collect(Collectors.toList());
+        log.info("Got " + capList);
         return capMapper.capListToCapResponseList(capList);
     }
 }

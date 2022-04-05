@@ -1,6 +1,7 @@
 package by.zhigalko.snow.world.config;
 
 import io.minio.MinioClient;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.Objects;
 import java.util.Properties;
 
+@Log4j2
 @Configuration
 @ComponentScan("by.zhigalko.snow.world")
 @PropertySource("file:/opt/application.properties")
@@ -27,6 +29,7 @@ public class ApplicationConfig {
     @Autowired
     public void setEnv(Environment env) {
         this.env = env;
+        log.debug("Environment properties initialized");
     }
 
     @Bean
@@ -36,6 +39,7 @@ public class ApplicationConfig {
         dataSource.setUrl(env.getProperty("jdbc.url"));
         dataSource.setUsername(env.getProperty("jdbc.username"));
         dataSource.setPassword(env.getProperty("jdbc.password"));
+        log.debug("DriverManager initialized");
         return dataSource;
     }
 
@@ -48,6 +52,7 @@ public class ApplicationConfig {
         factory.setPackagesToScan("by.zhigalko.snow.world.entity");
         factory.setDataSource(driverManagerDataSource());
         factory.setJpaProperties(hibernateProperties());
+        log.debug("EntityManagerFactory initialized");
         return factory;
     }
 
@@ -55,16 +60,19 @@ public class ApplicationConfig {
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        log.debug("TransactionManager initialized");
         return transactionManager;
     }
 
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+        log.debug("ExceptionTranslation initialized");
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
     @Bean
     public MinioClient minioClient() {
+        log.debug("MinioClient is initializing");
         return MinioClient.builder()
                 .endpoint(Objects.requireNonNull(env.getProperty("minio.url")))
                 .credentials(Objects.requireNonNull(env.getProperty("minio.username")),
@@ -77,6 +85,7 @@ public class ApplicationConfig {
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         hibernateProperties.setProperty("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
+        log.debug("Hibernate initialized");
         return hibernateProperties;
     }
 }

@@ -4,22 +4,22 @@ import by.zhigalko.snow.world.dto.user.UserRequest;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.mapper.UserMapper;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.regex.Pattern;
 
+@Log4j2
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
     private static final int NAME_MIN_LENGTH = 2;
     private static final int CREDENTIALS_MIN_LENGTH = 5;
     private static final Pattern EMAIL_VALIDATION_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
     private static final Pattern PHONE_NUMBER_VALIDATION_PATTERN = Pattern.compile("^[+]{1}[0-9]{3}([\\s-]?\\d{2}|[(]?[0-9]{2}[)])?([\\s-]?[0-9]){6,7}$");
-    private final RoleService roleService;
     private final UserMapper userMapper;
 
     @Autowired
-    public AccountServiceImpl(RoleService roleService, UserMapper userMapper) {
-        this.roleService = roleService;
+    public AccountServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 
@@ -30,6 +30,7 @@ public class AccountServiceImpl implements AccountService {
         if (isValidated) {
             user = userMapper.userRequestToUser(userRequest);
         }
+        log.fatal("Registered new use: " + user);
         return user;
     }
 

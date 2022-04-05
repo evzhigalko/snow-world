@@ -10,10 +10,13 @@ import by.zhigalko.snow.world.service.item.ski.SkiService;
 import by.zhigalko.snow.world.service.item.snowboard.SnowboardBootService;
 import by.zhigalko.snow.world.service.item.snowboard.SnowboardHelmetService;
 import by.zhigalko.snow.world.service.item.snowboard.SnowboardService;
+import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Service
 public class ServiceEquipmentFactory {
     private final ApplicationContext context;
@@ -66,6 +69,7 @@ public class ServiceEquipmentFactory {
                 service = context.getBean("gloveService", GloveService.class);
                 break;
         }
+        log.info("Got service " + service.getClass().getName());
         return service;
     }
 }

@@ -14,15 +14,7 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="org.hibernate.orm.jdbc.bind" level="TRACE" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="File"/>
-        </Logger>
-        <Logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="File"/>
-        </Logger>
-        <Logger name="by" level="DEBUG" additivity="false">
+        <Logger name="by.zhigalko.snow.world.config" level="DEBUG" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="File"/>
         </Logger>

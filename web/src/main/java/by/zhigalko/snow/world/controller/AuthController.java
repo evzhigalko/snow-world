@@ -59,7 +59,7 @@ public class AuthController {
             userService.createUser(userRequest);
         } catch (ValidationException e) {
             model.addAttribute("error", e.getMessage());
-            log.error(e.getMessage());
+            log.error("Error with attempt to register new user" + e.getMessage());
             return "registration";
         }
         return "login";

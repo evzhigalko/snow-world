@@ -12,7 +12,6 @@
 
         <mapping class="by.zhigalko.snow.world.entity.BaseEntity"/>
         <mapping class="by.zhigalko.snow.world.entity.Item"/>
-        <mapping class="by.zhigalko.snow.world.entity.Equipment"/>
         <mapping class="by.zhigalko.snow.world.entity.EquipmentSize"/>
         <mapping class="by.zhigalko.snow.world.entity.Image"/>
         <mapping class="by.zhigalko.snow.world.entity.snowboard.Snowboard"/>

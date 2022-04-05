@@ -22,7 +22,7 @@ public class Item extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Product productName;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinColumn(name = "image_id", nullable = false)
     private Image image;
 
@@ -39,7 +39,7 @@ public class Item extends BaseEntity {
     @Column(name = "cost")
     private double cost;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinColumn(name = "equipment_size_id", nullable = false)
     private EquipmentSize equipmentSize;
 
