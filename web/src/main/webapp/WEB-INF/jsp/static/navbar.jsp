@@ -12,7 +12,7 @@
         </button>
         <c:choose>
         <c:when test="${sessionScope.ROLE ne 'ADMIN'}">
-        <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 4rem">
+        <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 8rem">
             </c:when>
             <c:when test="${sessionScope.ROLE eq 'ADMIN'}">
             <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 0">

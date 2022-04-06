@@ -10,51 +10,47 @@
 <header>
     <%@ include file="/WEB-INF/jsp/static/navbar.jsp" %>
 </header>
-<div class="container">
+<div class="container" style="width: 60%">
     <c:choose>
         <c:when test="${cartItems!=null and !cartItems.isEmpty()}">
-            <h3 align="center">Корзина</h3>
-            <table id="cart-table" class="cart-table">
-                <tr>
-                    <th>Товар</th>
-                    <th>Фото</th>
-                    <th>Производитель</th>
-                    <th>Дата начала бронирования</th>
-                    <th>Дней бронирования</th>
-                    <th>Стоимость в сутки</th>
-                    <th>Полная стоимость</th>
-                    <th></th>
-                </tr>
-                <c:forEach items="${cartItems}" var="cartItem">
-                    <tr class="cart-table-body">
-                        <td><c:out value="${cartItem.productName.name}"/></td>
-                        <td><img src="${cartItem.image.imageName}" width="150" height="150" alt="image"></td>
-                        <td><c:out value="${cartItem.maker}"/></td>
-                        <td>
-                            <label for="start"><input type="date" id="start" name="rent-start"
-                                                      value="${cart.startReservationDate}"
-                                                      min="${cart.startReservationDate}" max="2099-12-31"></label></td>
-                        <td><label>
-                            <input id="qty" type="number" class="qty" min="1" max="100" value="1" style="width: 30%"/>
-                        </label></td>
-                        <td>
-                            <div id="price" class="price"><c:out value="${cartItem.cost}"/></div>
-                        </td>
-                        <td class="text-center">
-                            <span id="subtotal" class="subtotal"><c:out value="${cartItem.cost}"/></span>
-                        </td>
-                        <td><div>
-                            <a href="<c:url value="/cart/delete/item/${cartItem.id}"/>" class="btn btn btn-danger btn-sm">Удалить</a>
-                        </div></td>
+            <form action="<c:url value="/order/create/new"/>" method="post">
+                <h3 align="center">Корзина</h3>
+                <table id="cart-table" class="cart-table">
+                    <tr>
+                        <th>Товар</th>
+                        <th>Фото</th>
+                        <th>Производитель</th>
+                        <th>Стоимость в сутки</th>
+                        <th></th>
                     </tr>
-                    <script src="<c:out value="${pageContext.request.contextPath}/assets/cart.js"/>"></script>
-                </c:forEach>
-            </table>
-            <br>
-            <h3 class="cart-total-sum" id="total">Сумма итого: ${cart.totalSum} бел. рублей</h3>
-            <div class="create-order">
-                <a href="<c:url value="/order/create/new"/>" class="btn btn-primary">Оформить заказ</a>
-            </div>
+                    <c:forEach items="${cartItems}" var="cartItem">
+                        <tr class="cart-table-body">
+                            <td><c:out value="${cartItem.productName.name}"/></td>
+                            <td><img src="${cartItem.image.imageName}" width="150" height="150" alt="image"></td>
+                            <td><c:out value="${cartItem.maker}"/></td>
+                            <td>
+                                <div id="price" class="price">${cartItem.cost}</div>
+                            </td>
+                            <td>
+                                <div>
+                                    <a href="<c:url value="/cart/delete/item/${cartItem.id}"/>"
+                                       class="btn btn btn-danger btn-sm">Удалить</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+                <div class="days-number">
+                    Количество дней для бронирования: <input id="qty" type="number" class="qty" min="1" max="100" value="1" style="width: 5%"/>
+                    <br>
+                    <h4 class="header-cart-total-sum">Сумма итого: <span class="cart-total-sum" id="total">${cart.totalSum}</span> бел. рублей.</h4>
+                    <label><input type="hidden" class="constVariable" value="${cart.totalSum}"></label>
+                </div>
+                <script src="<c:out value="${pageContext.request.contextPath}/assets/cart.js"/>"></script>
+                <div class="create-order">
+                    <button class="btn btn-primary">Оформить заказ</button>
+                </div>
+            </form>
         </c:when>
         <c:otherwise>
             <h3 align="center">Корзина пуста</h3>

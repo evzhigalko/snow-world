@@ -1,21 +1,17 @@
-$('.qty').change(function() {
-    updateQuantity(this);
-});
-function updateQuantity(qtyInput) {
-    var cartRow = $(qtyInput).closest('tr');
-    var price = parseFloat($('.price', cartRow).text());
-    var quantity = $('.qty', cartRow).val();
-    var subtotal = $('.subtotal', cartRow);
-    var linePrice = price * quantity;
-    $(subtotal).text(linePrice.toFixed(2));
-    total_calculate()
+const days = document.querySelector('.qty');
+const totalSum = document.querySelector('.cart-total-sum');
+
+var variable = totalSum.textContent;
+let inputValue = 1;
+days.addEventListener('change', updateValue);
+function updateValue(e) {
+    if(inputValue < e.target.value) {
+        inputValue = e.target.value
+        totalSum.textContent = variable * e.target.value;
+        console.log(totalSum);
+    }
+    if(inputValue > e.target.value) {
+        inputValue = e.target.value;
+        totalSum.textContent = totalSum.textContent - variable;
+    }
 }
-function total_calculate() {
-    var total = 0;
-    $(".cart-table-body .subtotal").each(function() {
-        var value = $(this).text() !== "" ? parseFloat($(this).text()) : 0;
-        total += value;
-    })
-    $("#total").text('Сумма итого: ' + total.toFixed(2) + ' бел.рублей')
-}
-total_calculate()

@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString(exclude = "items",callSuper = true)
+@ToString(exclude = "items", callSuper = true)
 @Table(name = "image")
 @AttributeOverride(name = "id", column = @Column(name = "image_id"))
 public class Image extends BaseEntity {

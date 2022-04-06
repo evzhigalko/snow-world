@@ -186,10 +186,18 @@ a {
     text-align: center;
     margin-top: 4rem;
 }
-.cart-total-sum {
-    text-align: right;
-}
+
 .create-order {
     text-align: right;
     padding-top: 1rem;
+}
+
+.days-number{
+    text-align: right;
+    padding-top: 1rem;
+}
+
+.header-cart-total-sum {
+    padding-top: 1rem;
+    text-align: right;
 }
