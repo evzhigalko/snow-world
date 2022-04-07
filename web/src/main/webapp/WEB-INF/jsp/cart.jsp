@@ -53,12 +53,13 @@
                     Количество дней для бронирования: <input id="qty" type="number" class="qty" min="1" max="100"
                                                                                       name="reservationDayNumber" value="1" style="width: 5%"/>
                     <br>
-                    <h4 class="header-cart-total-sum">Сумма итого: <span class="cart-total-sum" id="total">
-
-                         <label><input type="hidden" value="${cart.totalSum}" name="totalSum">${cart.totalSum}</label>
-                    </span> бел. рублей.</h4>
+                    <h4 class="header-cart-total-sum">Сумма итого:
+                        <span class="cart-total-sum" id="#total">${cart.totalSum}</span>
+                        бел. рублей.
+                    </h4>
                     <label><input type="hidden" class="constVariable" value="${cart.totalSum}"></label>
                 </div>
+                <label><input type="hidden" value="${cart.totalSum}" name="totalSum"></label>
                 <script src="<c:out value="${pageContext.request.contextPath}/assets/cart.js"/>"></script>
                 <div class="create-order">
                     <button class="btn btn-primary">Оформить заказ</button>

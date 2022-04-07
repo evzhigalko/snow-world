@@ -190,7 +190,6 @@ public class AdminController {
     @PostMapping(value = "/admin/create/new/snowboard")
     public ModelAndView createNewSnowboard(@RequestParam("file") MultipartFile filePart,
                                            SnowboardRequest snowboardRequest) {
-        System.out.println(snowboardRequest);
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(snowboardRequest, filePart, "snowboard");
