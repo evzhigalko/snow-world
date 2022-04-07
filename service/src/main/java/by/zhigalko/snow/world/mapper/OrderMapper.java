@@ -22,6 +22,8 @@ public abstract class OrderMapper {
     @Mapping(expression = "java(cartService.findCartById(UUID.fromString(orderRequest.getCartId())).getItems() )", target = "items")
     @Mapping(expression = "java(userService.findById(UUID.fromString(orderRequest.getCartId())))", target = "user")
     public abstract Order orderRequestToOrder(OrderRequest orderRequest);
+
+    @Mapping(source = "order.id", target = "orderId")
     public abstract OrderResponse orderToOrderResponse(Order order);
 
     public abstract List<OrderResponse> orderListToOrderResponseList(List<Order> orderList);

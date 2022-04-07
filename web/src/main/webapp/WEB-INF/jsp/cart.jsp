@@ -54,12 +54,13 @@
                                                                                       name="reservationDayNumber" value="1" style="width: 5%"/>
                     <br>
                     <h4 class="header-cart-total-sum">Сумма итого:
-                        <span class="cart-total-sum" id="#total">${cart.totalSum}</span>
+                        <span class="cart-total-sum" id="total">${cart.totalSum}</span>
                         бел. рублей.
                     </h4>
-                    <label><input type="hidden" class="constVariable" value="${cart.totalSum}"></label>
+                    <label><input type="hidden" value="${cart.totalSum}"></label>
                 </div>
-                <label><input type="hidden" value="${cart.totalSum}" name="totalSum"></label>
+                <label><input type="hidden" class="totalSum" name="totalSum" id="totalSum" value=""></label>
+                <label><input type="hidden" value="${cart.id}" name="cartId"></label>
                 <script src="<c:out value="${pageContext.request.contextPath}/assets/cart.js"/>"></script>
                 <div class="create-order">
                     <button class="btn btn-primary">Оформить заказ</button>
