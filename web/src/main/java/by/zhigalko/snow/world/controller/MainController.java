@@ -2,6 +2,8 @@ package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.dto.item.response.ItemResponse;
+import by.zhigalko.snow.world.dto.order.OrderRequest;
+import by.zhigalko.snow.world.dto.order.OrderResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Product;
@@ -10,11 +12,13 @@ import by.zhigalko.snow.world.service.cart.CartService;
 import by.zhigalko.snow.world.service.item.BaseItemService;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
+import by.zhigalko.snow.world.service.order.OrderService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -26,11 +30,13 @@ public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final CartService cartService;
+    private final OrderService orderService;
 
     @Autowired
-    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, CartService cartService) {
+    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, CartService cartService, OrderService orderService) {
         this.serviceEquipmentFactory = serviceEquipmentFactory;
         this.cartService = cartService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/snowboard")
@@ -172,7 +178,6 @@ public class MainController {
                                      @PathVariable("id") UUID itemId,
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
-        System.out.println(cartDto);
         BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD);
         addToCart(cartDto, itemId, model, service);
         return "redirect:/snowboard/catalog/" + pageNumber;
@@ -309,8 +314,16 @@ public class MainController {
         return "redirect:/cart";
     }
 
+    @PostMapping("/order/create/new")
+    public String createOrder(OrderRequest orderRequest, Model model) {
+        CartDto cartDto = cartService.findCartById(UUID.fromString(orderRequest.getCartId()));
+        cartService.save(cartDto);
+        OrderResponse order = orderService.save(orderRequest);
+        model.addAttribute("order", order);
+        return "order";
+    }
+
     private void addToCart(CartDto cartDto, UUID itemId, Model model, BaseItemService<? extends Item> service) {
-        System.out.println(cartDto);
         CartDto cartDtoWithItem = cartService.addToCart(service, cartDto, itemId);
         model.addAttribute("cart", cartDtoWithItem);
         Set<ItemResponse> items = cartService.getItems(cartDtoWithItem.getId());
