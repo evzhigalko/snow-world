@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString(exclude = "carts", callSuper = true)
+@ToString(exclude ={"carts", "orders"}, callSuper = true)
 @EqualsAndHashCode(exclude = {"image", "equipmentSize"}, callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,6 +46,6 @@ public class Item extends BaseEntity {
     @ManyToMany(mappedBy = "items")
     private Set<Cart> carts = new HashSet<>();
 
-    @ManyToMany(mappedBy = "orderItems")
+    @ManyToMany(mappedBy = "items")
     private Set<Order> orders = new HashSet<>();
 }

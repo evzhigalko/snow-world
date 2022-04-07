@@ -32,5 +32,5 @@ public class Order extends BaseEntity {
     @JoinTable(name = "order_item",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")})
-    private Set<Item> orderItems = new HashSet<>();
+    private Set<Item> items = new HashSet<>();
 }

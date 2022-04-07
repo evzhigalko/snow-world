@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.dto;
+package by.zhigalko.snow.world.dto.order;
 
 import by.zhigalko.snow.world.entity.Item;
 import lombok.*;
@@ -11,8 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CartDto {
-    private UUID id;
+public class OrderResponse {
+    private UUID orderId;
     private LocalDate startReservationDate;
     private int reservationDayNumber;
     private double totalSum;
