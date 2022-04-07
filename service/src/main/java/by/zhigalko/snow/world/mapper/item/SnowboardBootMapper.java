@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.mapper;
+package by.zhigalko.snow.world.mapper.item;
 
 import by.zhigalko.snow.world.dto.item.request.SnowboardBootRequest;
 import by.zhigalko.snow.world.dto.item.response.SnowboardBootResponse;

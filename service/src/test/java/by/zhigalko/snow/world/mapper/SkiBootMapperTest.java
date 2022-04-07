@@ -7,6 +7,7 @@ import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.ski.SkiBoot;
+import by.zhigalko.snow.world.mapper.item.SkiBootMapper;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.Test;

@@ -5,6 +5,7 @@ import by.zhigalko.snow.world.entity.*;
 import by.zhigalko.snow.world.entity.enums.Gender;
 import by.zhigalko.snow.world.entity.enums.Product;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardHelmet;
+import by.zhigalko.snow.world.mapper.item.CartMapper;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
 import by.zhigalko.snow.world.service.user.UserService;
 import by.zhigalko.snow.world.config.ApplicationConfig;

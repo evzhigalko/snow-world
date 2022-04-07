@@ -6,7 +6,7 @@ import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.clothes.Cap;
-import by.zhigalko.snow.world.mapper.CapMapper;
+import by.zhigalko.snow.world.mapper.item.CapMapper;
 import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.CapRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;

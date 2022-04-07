@@ -6,7 +6,7 @@ import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.clothes.Glove;
-import by.zhigalko.snow.world.mapper.GloveMapper;
+import by.zhigalko.snow.world.mapper.item.GloveMapper;
 import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.item.GloveRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;

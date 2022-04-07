@@ -6,6 +6,7 @@ import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
 import by.zhigalko.snow.world.entity.enums.*;
 import by.zhigalko.snow.world.entity.snowboard.SnowboardBoot;
+import by.zhigalko.snow.world.mapper.item.SnowboardBootMapper;
 import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.Test;
