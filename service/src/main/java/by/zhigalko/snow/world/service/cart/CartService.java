@@ -2,6 +2,7 @@ package by.zhigalko.snow.world.service.cart;
 
 import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.dto.item.response.ItemResponse;
+import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.service.item.BaseItemService;
 import java.util.Set;
@@ -41,4 +42,14 @@ public interface CartService {
      * @return {@link Set<Item>}
      */
      Set<ItemResponse> getItems(UUID cartId);
+
+    /**
+     * Save cart in database
+     *
+     * @param cartDto {@link CartDto} is received from controller,
+     *                then using {@link by.zhigalko.snow.world.mapper.item.CartMapper}
+     *                save {@link Cart},
+     * @return {@link CartDto} using {@link by.zhigalko.snow.world.mapper.item.CartMapper} again.
+     */
+    CartDto save(CartDto cartDto);
 }

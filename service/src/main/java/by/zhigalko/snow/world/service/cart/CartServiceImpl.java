@@ -110,4 +110,10 @@ public class CartServiceImpl<T extends Item> implements CartService {
         Set<Item> items = cartRepository.getItems(cartId);
         return itemMapper.itemSetToItemResponseSet(items);
     }
+
+    @Override
+    public CartDto save(CartDto cartDto) {
+        Cart cart = cartMapper.cartDtoToCart(cartDto);
+        return cartMapper.cartToCartDto(cartRepository.save(cart));
+    }
 }
