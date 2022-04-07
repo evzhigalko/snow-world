@@ -1,5 +1,7 @@
 package by.zhigalko.snow.world.service.order;
 
+import by.zhigalko.snow.world.dto.order.OrderRequest;
+import by.zhigalko.snow.world.dto.order.OrderResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Order;
 import java.util.List;
@@ -12,27 +14,27 @@ public interface OrderService {
     /**
      * Find order by
      * @param id {@link UUID}
-     * @return {@link Order}
+     * @return {@link OrderResponse}
      */
-    Order findById(UUID id);
+    OrderResponse findById(UUID id);
 
     /**
      * Find all user orders by
      * @param userId {@link UUID} is received from {@link Cart} id
      * @return {@link List<Order>}
      */
-    List<Order> findAllByUserId(UUID userId);
+    List<OrderResponse> findAllByUserId(UUID userId);
 
     /**
      * Save order in database
-     * @param order {@link Order}
-     * @return saved {@link Order}
+     * @param orderRequest {@link OrderRequest}
+     * @return saved {@link OrderResponse}
      */
-    Order save(Order order);
+    OrderResponse save(OrderRequest orderRequest);
 
     /**
      * Delete order from database
-     * @param order {@link Order}
+     * @param orderRequest {@link OrderRequest}
      */
-    void delete(Order order);
+    void delete(OrderRequest orderRequest);
 }
