@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(callSuper = true)
+@ToString(exclude = {"items", "user"}, callSuper = true)
 @Table(name = "\"order\"")
 @AttributeOverride(name = "id", column = @Column(name = "order_id"))
 public class Order extends BaseEntity {
@@ -24,11 +24,11 @@ public class Order extends BaseEntity {
     @Column(name = "total_sum")
     private double totalSum;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     @JoinTable(name = "order_item",
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")})

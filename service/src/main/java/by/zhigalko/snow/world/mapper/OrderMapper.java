@@ -8,6 +8,7 @@ import by.zhigalko.snow.world.service.user.UserService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import java.util.UUID;
 
 @Mapper(componentModel = "spring", imports = {UUID.class})
@@ -22,4 +23,6 @@ public abstract class OrderMapper {
     @Mapping(expression = "java(userService.findById(UUID.fromString(orderRequest.getCartId())))", target = "user")
     public abstract Order orderRequestToOrder(OrderRequest orderRequest);
     public abstract OrderResponse orderToOrderResponse(Order order);
+
+    public abstract List<OrderResponse> orderListToOrderResponseList(List<Order> orderList);
 }
