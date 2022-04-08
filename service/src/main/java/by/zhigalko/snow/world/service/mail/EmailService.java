@@ -8,7 +8,7 @@ import by.zhigalko.snow.world.dto.OrderDetailsDto;
 public interface EmailService {
     /**
      * Send message with order details to admin email
-//     * @param from {@link String} the sender of the message. The value is received from order value
+     * @param orderDetailsDto {@link OrderDetailsDto}. The value is received from order and user input details
      */
     void sendMessage(OrderDetailsDto orderDetailsDto);
 }
