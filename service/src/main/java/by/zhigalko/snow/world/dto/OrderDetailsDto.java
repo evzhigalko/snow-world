@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserOrderDataDto {
+public class OrderDetailsDto {
     private String fullName;
     private String email;
     private String phoneNumber;
