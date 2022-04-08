@@ -10,9 +10,10 @@
     <%@ include file="/WEB-INF/jsp/static/navbar.jsp" %>
 </header>
 <div class="container" style="padding-left: 6rem; padding-top: 2rem;}">
-    <form action="#">
+    <form action="<c:url value="/order/send"/>" method="post">
         <h3 style="padding-top: 1rem">Информация по заказу:</h3>
         <h4>Заказ № ${order.orderId}</h4>
+        <input type="hidden" name="orderId" value="${order.orderId}">
         <label for="fname"><i class="fa fa-user"></i>Фамилия Имя</label>
         <p class="fname"><input type="text" id="fname" name="fullName" placeholder="Фамилия Имя"></p>
         <label for="email"><i class="fa fa-envelope"></i>Электронный адрес</label>
