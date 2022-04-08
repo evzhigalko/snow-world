@@ -34,7 +34,7 @@ public class ServiceConfig {
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(env.getProperty("mail.host"));
-        mailSender.setPort(Integer.parseInt(Objects.requireNonNull(env.getProperty("mail.property"))));
+        mailSender.setPort(Integer.parseInt(Objects.requireNonNull(env.getProperty("mail.port"))));
         mailSender.setUsername(env.getProperty("mail.username"));
         mailSender.setPassword(env.getProperty("mail.password"));
         Properties props = mailSender.getJavaMailProperties();
@@ -42,6 +42,7 @@ public class ServiceConfig {
         props.put("mail.smtp.auth", env.getProperty("mail.smtp.auth"));
         props.put("mail.smtp.starttls.enable", env.getProperty("mail.smtp.starttls.enable"));
         props.put("mail.debug", env.getProperty("mail.debug"));
+        log.debug("MailSender initialized");
         return mailSender;
     }
 
@@ -49,6 +50,7 @@ public class ServiceConfig {
     public SimpleMailMessage templateOrderMessage() {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(Objects.requireNonNull(env.getProperty("mail.username")));
+        log.debug("SimpleMailMessage initialized");
         return message;
     }
 }
