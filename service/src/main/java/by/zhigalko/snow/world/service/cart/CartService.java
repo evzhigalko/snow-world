@@ -4,6 +4,7 @@ import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
+import by.zhigalko.snow.world.mapper.CartMapper;
 import by.zhigalko.snow.world.service.item.BaseItemService;
 import java.util.Set;
 import java.util.UUID;
@@ -47,9 +48,16 @@ public interface CartService {
      * Save cart in database
      *
      * @param cartDto {@link CartDto} is received from controller,
-     *                then using {@link by.zhigalko.snow.world.mapper.item.CartMapper}
+     *                then using {@link CartMapper}
      *                save {@link Cart},
-     * @return {@link CartDto} using {@link by.zhigalko.snow.world.mapper.item.CartMapper} again.
+     * @return {@link CartDto} using {@link CartMapper} again.
      */
     CartDto save(CartDto cartDto);
+
+    /**
+     *  Clear items after successfully sending order
+     * @param cartDto {@link CartDto} is received from session
+     * @return {@link CartDto}
+     */
+    CartDto clearItems(CartDto cartDto);
 }

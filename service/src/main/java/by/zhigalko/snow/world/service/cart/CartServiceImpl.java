@@ -5,7 +5,7 @@ import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.entity.enums.Product;
-import by.zhigalko.snow.world.mapper.item.CartMapper;
+import by.zhigalko.snow.world.mapper.CartMapper;
 import by.zhigalko.snow.world.mapper.item.ItemMapper;
 import by.zhigalko.snow.world.repository.CartRepository;
 import by.zhigalko.snow.world.repository.item.ItemRepository;
@@ -115,5 +115,17 @@ public class CartServiceImpl<T extends Item> implements CartService {
     public CartDto save(CartDto cartDto) {
         Cart cart = cartMapper.cartDtoToCart(cartDto);
         return cartMapper.cartToCartDto(cartRepository.save(cart));
+    }
+
+    @Transactional
+    @Override
+    public CartDto clearItems(CartDto cartDto) {
+        Set<ItemResponse> items = getItems(cartDto.getId());
+        items.clear();
+        cartDto.setItems(itemMapper.itemResponseSetToItemSet(items));
+        cartDto.setTotalSum(0.0);
+        cartDto.setReservationDayNumber(0);
+        cartDto.setStartReservationDate(null);
+        return save(cartDto);
     }
 }
