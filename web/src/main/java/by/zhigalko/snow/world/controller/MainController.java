@@ -1,6 +1,7 @@
 package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.dto.CartDto;
+import by.zhigalko.snow.world.dto.OrderDetailsDto;
 import by.zhigalko.snow.world.dto.item.response.ItemResponse;
 import by.zhigalko.snow.world.dto.order.OrderRequest;
 import by.zhigalko.snow.world.dto.order.OrderResponse;
@@ -12,13 +13,13 @@ import by.zhigalko.snow.world.service.cart.CartService;
 import by.zhigalko.snow.world.service.item.BaseItemService;
 import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
 import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
+import by.zhigalko.snow.world.service.mail.EmailService;
 import by.zhigalko.snow.world.service.order.OrderService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -31,12 +32,14 @@ public class MainController {
     private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final CartService cartService;
     private final OrderService orderService;
+    private final EmailService emailService;
 
     @Autowired
-    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, CartService cartService, OrderService orderService) {
+    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, CartService cartService, OrderService orderService, EmailService emailService) {
         this.serviceEquipmentFactory = serviceEquipmentFactory;
         this.cartService = cartService;
         this.orderService = orderService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/snowboard")
@@ -321,6 +324,17 @@ public class MainController {
         OrderResponse order = orderService.save(orderRequest);
         model.addAttribute("order", order);
         return "order";
+    }
+
+    @PostMapping("/order/send")
+    public String sendOrder(OrderDetailsDto orderDetailsDto,
+                            @SessionAttribute("cart") CartDto cartDto,
+                            Model model) {
+        emailService.sendMessage(orderDetailsDto);
+        CartDto cartDtoWithoutItems = cartService.clearItems(cartDto);
+        model.addAttribute("cart", cartDto);
+        model.addAttribute("cartItems", cartDtoWithoutItems.getItems());
+        return "success-order";
     }
 
     private void addToCart(CartDto cartDto, UUID itemId, Model model, BaseItemService<? extends Item> service) {
