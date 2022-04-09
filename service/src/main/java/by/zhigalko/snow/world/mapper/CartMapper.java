@@ -1,4 +1,4 @@
-package by.zhigalko.snow.world.mapper.item;
+package by.zhigalko.snow.world.mapper;
 
 import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.entity.Cart;
