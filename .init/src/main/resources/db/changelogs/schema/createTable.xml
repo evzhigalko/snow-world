@@ -20,7 +20,7 @@
     <changeSet context="legacy" author="zhigalko" id="1648110246">
         <createTable tableName="user" schemaName="rental">
             <column autoIncrement="${autoIncrement}" name="user_id" type="UUID">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="email" type="VARCHAR(255)"/>
             <column name="first_name" type="VARCHAR(255)"/>
@@ -75,7 +75,7 @@
         <createTable tableName="item" schemaName="rental">
             <column name="product_type" type="VARCHAR(31)"/>
             <column autoIncrement="${autoIncrement}" name="id" type="UUID">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="available_to_rental" type="BOOLEAN"/>
             <column name="cost" type="DOUBLE"/>
@@ -105,6 +105,88 @@
         </createTable>
         <rollback>
             <dropTable tableName="item"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1649508479">
+        <createTable tableName="cart" schemaName="rental">
+            <column name="user_id" type="UUID">
+            <constraints primaryKey="true"
+                         foreignKeyName="fk_user"
+                         referencedTableSchemaName="rental"
+                         referencedTableName="user"
+                         referencedColumnNames="user_id"
+                         nullable="false"/></column>
+            <column name="day_number" type="INTEGER"/>
+            <column name="start_reservation_date" type="TIMESTAMP"/>
+            <column name="total_sum" type="DOUBLE"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="cart"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1649508483">
+        <createTable tableName="cart_item" schemaName="rental">
+            <column name="cart_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_cart"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="cart"
+                             referencedColumnNames="user_id"
+                             nullable="false"/></column>
+            <column name="item_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_item"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="item"
+                             referencedColumnNames="id"
+                             nullable="false"/></column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="cart_item"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1649508489">
+        <createTable tableName="order" schemaName="rental">
+            <column name="order_id" type="UUID">
+                <constraints primaryKey="true" unique="true"/></column>
+            <column name="day_number" type="INTEGER"/>
+            <column name="start_reservation_date" type="DATE"/>
+            <column name="total_sum" type="DOUBLE"/>
+            <column name="user_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_user"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="user"
+                             referencedColumnNames="user_id"
+                             nullable="false"/></column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="order"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet context="legacy" author="zhigalko" id="1649508495">
+        <createTable tableName="order_item" schemaName="rental">
+            <column name="order_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_order"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="order"
+                             referencedColumnNames="order_id"
+                             nullable="false"/></column>
+            <column name="item_id" type="UUID">
+                <constraints primaryKey="true"
+                             foreignKeyName="fk_item"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="item"
+                             referencedColumnNames="id"
+                             nullable="false"/></column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="order_item"/>
         </rollback>
     </changeSet>
 </databaseChangeLog>
