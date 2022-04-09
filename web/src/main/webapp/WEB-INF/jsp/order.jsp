@@ -15,13 +15,21 @@
         <h4>Заказ № ${order.orderId}</h4>
         <input type="hidden" name="orderId" value="${order.orderId}">
         <label for="fname"><i class="fa fa-user"></i>Фамилия Имя</label>
-        <p class="fname"><input type="text" id="fname" name="fullName" placeholder="Фамилия Имя"></p>
+        <p class="fname"><input type="text" id="fname" name="fullName" placeholder="Фамилия Имя"
+                                required oninvalid="this.setCustomValidity('Введите фамилию и имя')"
+                                oninput="setCustomValidity('')"></p>
         <label for="email"><i class="fa fa-envelope"></i>Электронный адрес</label>
-        <p><input type="text" id="email" name="email" placeholder="email@email.com"></p>
+        <p><input type="text" id="email" name="email" placeholder="email@email.com"
+                  required oninvalid="this.setCustomValidity('Введите электронный адрес')"
+                  oninput="setCustomValidity('')"></p>
         <label for="phoneNumber">Номер телефона: </label>
-        <p><input type="text" id="phoneNumber" name="phoneNumber" placeholder="+375291234567">
+        <p><input type="text" id="phoneNumber" name="phoneNumber" placeholder="+375291234567"
+                  required oninvalid="this.setCustomValidity('Введите телефонный номер')"
+                  oninput="setCustomValidity('')">
         <div><h4>Общая сумма заказа: ${order.totalSum} бел. рублей</h4></div>
-        <div class="send-order-button"><button class="btn btn-primary">Отправить</button></div>
+        <div class="send-order-button">
+            <button class="btn btn-primary">Отправить</button>
+        </div>
     </form>
 </div>
 </body>
