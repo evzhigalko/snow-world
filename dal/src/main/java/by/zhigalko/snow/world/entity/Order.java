@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString(exclude = {"items", "user"}, callSuper = true)
 @Table(name = "\"order\"")
-@AttributeOverride(name = "id", column = @Column(name = "order_id"))
+@AttributeOverride(name = "id", column = @Column(name = "order_id", updatable = false, insertable = false))
 public class Order extends BaseEntity {
     @Column(name = "start_reservation_date")
     private LocalDate startReservationDate;
@@ -33,4 +33,8 @@ public class Order extends BaseEntity {
             joinColumns = {@JoinColumn(name = "order_id")},
             inverseJoinColumns = {@JoinColumn(name = "item_id")})
     private Set<Item> items = new HashSet<>();
+
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_details_id", nullable = false)
+    private OrderDetails orderDetails;
 }
