@@ -1,5 +1,6 @@
 package by.zhigalko.snow.world.service.order;
 
+import by.zhigalko.snow.world.dto.OrderDetailsDto;
 import by.zhigalko.snow.world.dto.order.OrderRequest;
 import by.zhigalko.snow.world.dto.order.OrderResponse;
 import by.zhigalko.snow.world.entity.Cart;
@@ -37,4 +38,11 @@ public interface OrderService {
      * @param orderRequest {@link OrderRequest}
      */
     void delete(OrderRequest orderRequest);
+
+    /**
+     * Set orderDetails to order
+     * @param orderDetailsDto {@link OrderDetailsDto} is received from presentation layer,
+     * using {@link by.zhigalko.snow.world.mapper.OrderDetailsMapper} set to order {@link Order}
+     */
+    void setOrderDetails(OrderDetailsDto orderDetailsDto);
 }

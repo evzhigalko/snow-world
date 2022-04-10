@@ -330,6 +330,7 @@ public class MainController {
     public String sendOrder(OrderDetailsDto orderDetailsDto,
                             @SessionAttribute("cart") CartDto cartDto,
                             Model model) {
+        orderService.setOrderDetails(orderDetailsDto);
         emailService.sendMessage(orderDetailsDto);
         CartDto cartDtoWithoutItems = cartService.clearItems(cartDto);
         model.addAttribute("cart", cartDto);
