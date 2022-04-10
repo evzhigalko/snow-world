@@ -148,6 +148,21 @@
         </rollback>
     </changeSet>
 
+    <changeSet context="legacy" author="zhigalko" id="1649566469">
+        <createTable tableName="order_details" schemaName="rental">
+            <column name="order_details_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(32)"/>
+            <column name="last_name" type="VARCHAR(32)"/>
+            <column name="email" type="VARCHAR(64)"/>
+            <column name="phone_number" type="VARCHAR(15)"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="order_details"/>
+        </rollback>
+    </changeSet>
+
     <changeSet context="legacy" author="zhigalko" id="1649508489">
         <createTable tableName="order" schemaName="rental">
             <column name="order_id" type="UUID">
@@ -162,6 +177,13 @@
                              referencedTableName="user"
                              referencedColumnNames="user_id"
                              nullable="false"/></column>
+            <column name="order_details_id" type="UUID">
+                <constraints primaryKey="true" foreignKeyName="fk_order_details"
+                             referencedTableSchemaName="rental"
+                             referencedTableName="order_details"
+                             referencedColumnNames="order_details_id"
+                             nullable="false"/>
+            </column>
         </createTable>
         <rollback>
             <dropTable tableName="order"/>
