@@ -34,7 +34,8 @@ public class EmailServiceImpl implements EmailService {
         StringBuilder contacts = new StringBuilder();
                 contacts
                         .append("Контактная информация заказчика: \n")
-                        .append("Фамилия Имя: ").append(orderDetailsDto.getFullName()).append(".\n")
+                        .append("Фамилия: ").append(orderDetailsDto.getLastname()).append(".\n")
+                        .append("Имя: ").append(orderDetailsDto.getFirstname()).append(".\n")
                         .append("Номер телефона: ").append(orderDetailsDto.getPhoneNumber()).append(".\n")
                         .append( "Электронный адрес: ").append(orderDetailsDto.getEmail()).append(".\n");
         String format = String.format("Поступил новый заказ № %s.\nДата начала бронирования: %s.\n" +
