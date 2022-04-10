@@ -3,6 +3,7 @@ package by.zhigalko.snow.world.mapper;
 import by.zhigalko.snow.world.dto.order.OrderRequest;
 import by.zhigalko.snow.world.dto.order.OrderResponse;
 import by.zhigalko.snow.world.entity.Order;
+import by.zhigalko.snow.world.entity.OrderDetails;
 import by.zhigalko.snow.world.service.cart.CartService;
 import by.zhigalko.snow.world.service.user.UserService;
 import org.mapstruct.Mapper;
@@ -11,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.UUID;
 
-@Mapper(componentModel = "spring", imports = {UUID.class})
+@Mapper(componentModel = "spring", imports = {UUID.class, OrderDetails.class})
 public abstract class OrderMapper {
     @Autowired
     protected CartService cartService;
