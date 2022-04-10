@@ -14,11 +14,15 @@
         <h3 style="padding-top: 1rem">Информация по заказу:</h3>
         <h4>Заказ № ${order.orderId}</h4>
         <input type="hidden" name="orderId" value="${order.orderId}">
-        <label for="fname"><i class="fa fa-user"></i>Фамилия Имя</label>
-        <p class="fname"><input type="text" id="fname" name="fullName" placeholder="Фамилия Имя"
-                                required oninvalid="this.setCustomValidity('Введите фамилию и имя')"
+        <label for="lname">Фамилия</label>
+        <p class="lname"><input type="text" id="lname" name="lastname" placeholder="Фамилия"
+                                required oninvalid="this.setCustomValidity('Введите фамилию')"
                                 oninput="setCustomValidity('')"></p>
-        <label for="email"><i class="fa fa-envelope"></i>Электронный адрес</label>
+        <label for="fname">Имя</label>
+        <p class="fname"><input type="text" id="fname" name="firstname" placeholder="Имя"
+                                required oninvalid="this.setCustomValidity('Введите имя')"
+                                oninput="setCustomValidity('')"></p>
+        <label for="email">Электронный адрес</label>
         <p><input type="text" id="email" name="email" placeholder="email@email.com"
                   required oninvalid="this.setCustomValidity('Введите электронный адрес')"
                   oninput="setCustomValidity('')"></p>
