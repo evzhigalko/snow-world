@@ -34,6 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new AuthSuccessHandler();
     }
 
+    @Bean
+    public AuthFailureHandler failureHandler() {
+        return new AuthFailureHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -46,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/cart/**", "/order/**").hasAuthority(RoleName.USER.name())
                 .and()
                 .formLogin()
-                .loginPage("/login").loginProcessingUrl("/login").successHandler(successHandler())
+                .loginPage("/login").loginProcessingUrl("/login").successHandler(successHandler()).failureHandler(failureHandler())
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()

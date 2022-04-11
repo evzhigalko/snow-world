@@ -33,6 +33,12 @@ public class AuthController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String handleLoginFailure(Model model) {
+        model.addAttribute("error", "Пользователь с таким именем и паролем не существует");
+        return "login";
+    }
+
     @GetMapping("/welcome")
     public String showWelcomePage(Authentication authentication, Model model) {
         UserResponse userResponse = userService.findByUsername(authentication.getName());
