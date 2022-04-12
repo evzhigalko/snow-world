@@ -2,20 +2,20 @@ package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.dto.OrderDetailsDto;
-import by.zhigalko.snow.world.dto.item.response.ItemResponse;
-import by.zhigalko.snow.world.dto.order.OrderRequest;
-import by.zhigalko.snow.world.dto.order.OrderResponse;
+import by.zhigalko.snow.world.dto.response.ItemResponse;
+import by.zhigalko.snow.world.dto.request.OrderRequest;
+import by.zhigalko.snow.world.dto.response.OrderResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.enums.Product;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
-import by.zhigalko.snow.world.service.cart.CartService;
-import by.zhigalko.snow.world.service.item.BaseItemService;
-import by.zhigalko.snow.world.service.item.BaseItemServiceImpl;
-import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
-import by.zhigalko.snow.world.service.mail.EmailService;
-import by.zhigalko.snow.world.service.order.OrderService;
-import lombok.extern.log4j.Log4j2;
+import by.zhigalko.snow.world.model.Product;
+import by.zhigalko.snow.world.model.ProductGroup;
+import by.zhigalko.snow.world.service.CartService;
+import by.zhigalko.snow.world.service.BaseItemService;
+import by.zhigalko.snow.world.service.EmailService;
+import by.zhigalko.snow.world.service.impl.BaseItemServiceImpl;
+import by.zhigalko.snow.world.service.util.ServiceEquipmentFactory;
+import by.zhigalko.snow.world.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-@Log4j2
+@Slf4j
 @Controller
 @SessionAttributes({"pageNumber", "cart", "cartItems"})
 public class MainController {

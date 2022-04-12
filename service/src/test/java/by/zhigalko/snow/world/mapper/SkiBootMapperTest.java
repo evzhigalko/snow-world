@@ -1,14 +1,13 @@
 package by.zhigalko.snow.world.mapper;
 
-import by.zhigalko.snow.world.dto.item.request.SkiBootRequest;
-import by.zhigalko.snow.world.dto.item.response.SkiBootResponse;
+import by.zhigalko.snow.world.dto.request.SkiBootRequest;
+import by.zhigalko.snow.world.dto.response.SkiBootResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
-import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.Product;
-import by.zhigalko.snow.world.entity.ski.SkiBoot;
-import by.zhigalko.snow.world.mapper.item.SkiBootMapper;
-import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
+import by.zhigalko.snow.world.model.Gender;
+import by.zhigalko.snow.world.model.Product;
+import by.zhigalko.snow.world.entity.SkiBoot;
+import by.zhigalko.snow.world.service.impl.EquipmentSizeServiceImpl;
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ class SkiBootMapperTest {
     private SkiBootMapper skiBootMapper;
 
     @Autowired
-    private EquipmentSizeService equipmentSizeService;
+    private EquipmentSizeServiceImpl equipmentSizeService;
 
 
     @Test

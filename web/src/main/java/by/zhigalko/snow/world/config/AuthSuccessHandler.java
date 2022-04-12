@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.config;
 
-import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.model.RoleName;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import javax.servlet.http.HttpServletRequest;

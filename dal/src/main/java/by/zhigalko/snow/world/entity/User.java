@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.entity;
 
-import by.zhigalko.snow.world.entity.enums.Gender;
+import by.zhigalko.snow.world.model.Gender;
 import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

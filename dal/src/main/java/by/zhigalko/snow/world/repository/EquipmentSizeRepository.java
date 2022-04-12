@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.repository;
 
 import by.zhigalko.snow.world.entity.EquipmentSize;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
+import by.zhigalko.snow.world.model.ProductGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

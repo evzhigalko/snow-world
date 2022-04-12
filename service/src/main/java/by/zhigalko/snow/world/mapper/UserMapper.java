@@ -1,11 +1,11 @@
 package by.zhigalko.snow.world.mapper;
 
-import by.zhigalko.snow.world.dto.user.UserRequest;
-import by.zhigalko.snow.world.dto.user.UserResponse;
+import by.zhigalko.snow.world.dto.request.UserRequest;
+import by.zhigalko.snow.world.dto.response.UserResponse;
 import by.zhigalko.snow.world.entity.Cart;
 import by.zhigalko.snow.world.entity.User;
-import by.zhigalko.snow.world.entity.enums.RoleName;
-import by.zhigalko.snow.world.service.user.RoleService;
+import by.zhigalko.snow.world.model.RoleName;
+import by.zhigalko.snow.world.service.RoleService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

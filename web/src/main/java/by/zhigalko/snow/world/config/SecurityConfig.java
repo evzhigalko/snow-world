@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.config;
 
-import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.model.RoleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

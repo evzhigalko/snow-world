@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.config;
 
 import io.minio.MinioClient;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.Objects;
 import java.util.Properties;
 
-@Log4j2
+@Slf4j
 @Configuration
 @ComponentScan("by.zhigalko.snow.world")
 @PropertySource("file:/opt/application.properties")

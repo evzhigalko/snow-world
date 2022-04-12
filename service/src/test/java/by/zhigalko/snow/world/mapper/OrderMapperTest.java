@@ -2,11 +2,11 @@ package by.zhigalko.snow.world.mapper;
 
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import by.zhigalko.snow.world.dto.CartDto;
-import by.zhigalko.snow.world.dto.order.OrderRequest;
-import by.zhigalko.snow.world.dto.order.OrderResponse;
+import by.zhigalko.snow.world.dto.request.OrderRequest;
+import by.zhigalko.snow.world.dto.response.OrderResponse;
 import by.zhigalko.snow.world.entity.Order;
-import by.zhigalko.snow.world.service.cart.CartService;
-import by.zhigalko.snow.world.service.user.UserService;
+import by.zhigalko.snow.world.service.CartService;
+import by.zhigalko.snow.world.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

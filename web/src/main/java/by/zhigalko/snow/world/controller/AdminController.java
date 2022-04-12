@@ -1,16 +1,16 @@
 package by.zhigalko.snow.world.controller;
 
-import by.zhigalko.snow.world.dto.item.request.*;
-import by.zhigalko.snow.world.dto.user.UserResponse;
+import by.zhigalko.snow.world.dto.request.*;
+import by.zhigalko.snow.world.dto.response.UserResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Item;
-import by.zhigalko.snow.world.entity.enums.Product;
-import by.zhigalko.snow.world.entity.enums.ProductGroup;
-import by.zhigalko.snow.world.service.admin.AdminItemService;
-import by.zhigalko.snow.world.service.item.BaseItemService;
-import by.zhigalko.snow.world.service.item.ServiceEquipmentFactory;
-import by.zhigalko.snow.world.service.user.UserService;
-import lombok.extern.log4j.Log4j2;
+import by.zhigalko.snow.world.model.Product;
+import by.zhigalko.snow.world.model.ProductGroup;
+import by.zhigalko.snow.world.service.AdminItemService;
+import by.zhigalko.snow.world.service.BaseItemService;
+import by.zhigalko.snow.world.service.util.ServiceEquipmentFactory;
+import by.zhigalko.snow.world.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-@Log4j2
+@Slf4j
 @Controller
 @SessionAttributes({"user", "ROLE"})
 public class AdminController {

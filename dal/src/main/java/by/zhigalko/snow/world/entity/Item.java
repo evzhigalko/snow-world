@@ -1,7 +1,7 @@
 package by.zhigalko.snow.world.entity;
 
-import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.Product;
+import by.zhigalko.snow.world.model.Gender;
+import by.zhigalko.snow.world.model.Product;
 import javax.persistence.*;
 import lombok.*;
 import java.util.HashSet;

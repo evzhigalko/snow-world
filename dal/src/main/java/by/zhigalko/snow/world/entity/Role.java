@@ -1,6 +1,6 @@
 package by.zhigalko.snow.world.entity;
 
-import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.model.RoleName;
 import javax.persistence.*;
 import lombok.*;
 import java.util.HashSet;

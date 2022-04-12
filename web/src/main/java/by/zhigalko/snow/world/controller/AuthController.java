@@ -1,13 +1,13 @@
 package by.zhigalko.snow.world.controller;
 
 import by.zhigalko.snow.world.dto.CartDto;
-import by.zhigalko.snow.world.dto.item.response.ItemResponse;
-import by.zhigalko.snow.world.dto.user.UserRequest;
-import by.zhigalko.snow.world.dto.user.UserResponse;
+import by.zhigalko.snow.world.dto.response.ItemResponse;
+import by.zhigalko.snow.world.dto.request.UserRequest;
+import by.zhigalko.snow.world.dto.response.UserResponse;
 import by.zhigalko.snow.world.exception.ValidationException;
-import by.zhigalko.snow.world.service.cart.CartService;
-import by.zhigalko.snow.world.service.user.UserService;
-import lombok.extern.log4j.Log4j2;
+import by.zhigalko.snow.world.service.CartService;
+import by.zhigalko.snow.world.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
-@Log4j2
+@Slf4j
 @Controller
 @SessionAttributes({"user", "ROLE", "cart", "cartItems", "totalSum"})
 public class AuthController {

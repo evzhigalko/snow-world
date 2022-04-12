@@ -1,7 +1,6 @@
 package by.zhigalko.snow.world.dao;
 
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDao;
-import by.zhigalko.snow.world.dao.item.equipment_size.EquipmentSizeDaoImpl;
+import by.zhigalko.snow.world.dao.impl.EquipmentSizeDaoImpl;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import javax.persistence.Query;

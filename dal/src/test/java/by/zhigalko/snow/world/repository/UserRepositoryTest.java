@@ -2,7 +2,7 @@ package by.zhigalko.snow.world.repository;
 
 import by.zhigalko.snow.world.entity.Role;
 import by.zhigalko.snow.world.entity.User;
-import by.zhigalko.snow.world.entity.enums.RoleName;
+import by.zhigalko.snow.world.model.RoleName;
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

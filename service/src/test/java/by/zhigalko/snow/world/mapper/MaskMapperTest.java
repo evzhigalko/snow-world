@@ -1,14 +1,13 @@
 package by.zhigalko.snow.world.mapper;
 
-import by.zhigalko.snow.world.dto.item.request.MaskRequest;
-import by.zhigalko.snow.world.dto.item.response.MaskResponse;
+import by.zhigalko.snow.world.dto.request.MaskRequest;
+import by.zhigalko.snow.world.dto.response.MaskResponse;
 import by.zhigalko.snow.world.entity.EquipmentSize;
 import by.zhigalko.snow.world.entity.Image;
-import by.zhigalko.snow.world.entity.clothes.Mask;
-import by.zhigalko.snow.world.entity.enums.Gender;
-import by.zhigalko.snow.world.entity.enums.Product;
-import by.zhigalko.snow.world.mapper.item.MaskMapper;
-import by.zhigalko.snow.world.service.common.equipment_size.EquipmentSizeService;
+import by.zhigalko.snow.world.entity.Mask;
+import by.zhigalko.snow.world.model.Gender;
+import by.zhigalko.snow.world.model.Product;
+import by.zhigalko.snow.world.service.impl.EquipmentSizeServiceImpl;
 import by.zhigalko.snow.world.config.ApplicationConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ class MaskMapperTest {
     private MaskMapper maskMapper;
 
     @Autowired
-    private EquipmentSizeService equipmentSizeService;
+    private EquipmentSizeServiceImpl equipmentSizeService;
 
     @Test
     void maskRequestToMaskTest() {

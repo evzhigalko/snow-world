@@ -1,12 +1,12 @@
 package by.zhigalko.snow.world.aspect;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 
-@Log4j2
+@Slf4j
 @Aspect
 public class ServiceAspect {
     @Pointcut("within(by.zhigalko.snow.world.service..*)")
@@ -14,7 +14,7 @@ public class ServiceAspect {
 
     @Before("allMethodsPointcut()")
     public void getAllAdvice(JoinPoint joinPoint) {
-        log.debug("Advice: {}, Pointcut: {}", "`@Before`", "all method `*` by.zhigalko.snow.world.service");
-        log.debug("JoinPoint: {}, Args: {}", joinPoint.getSignature(), joinPoint.getArgs());
+        log.info("Advice: {}, Pointcut: {}", "`@Before`", "all method `*` by.zhigalko.snow.world.service");
+        log.info("JoinPoint: {}, Args: {}", joinPoint.getSignature(), joinPoint.getArgs());
     }
 }
