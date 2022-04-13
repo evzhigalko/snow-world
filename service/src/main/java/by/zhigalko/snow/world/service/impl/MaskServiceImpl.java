@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
-public class MaskService extends BaseItemServiceImpl<Mask> {
+@Service("maskService")
+public class MaskServiceImpl extends BaseItemServiceImpl<Mask> {
     private final MaskMapper maskMapper;
     private final MaskRepository maskRepository;
 
     @Autowired
-    public MaskService(ItemRepository<Mask> itemRepository, EquipmentSizeRepository equipmentSizeRepository, MaskMapper maskMapper, MaskRepository maskRepository) {
+    public MaskServiceImpl(ItemRepository<Mask> itemRepository, EquipmentSizeRepository equipmentSizeRepository, MaskMapper maskMapper, MaskRepository maskRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.maskMapper = maskMapper;
         this.maskRepository = maskRepository;

@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
-public class SkiBootService extends BaseItemServiceImpl<SkiBoot> {
+@Service("skiBootService")
+public class SkiBootServiceImpl extends BaseItemServiceImpl<SkiBoot> {
     private final SkiBootMapper skiBootMapper;
     private final SkiBootRepository skiBootRepository;
 
     @Autowired
-    public SkiBootService(ItemRepository<SkiBoot> itemRepository, EquipmentSizeRepository equipmentSizeRepository, SkiBootMapper skiBootMapper, SkiBootRepository skiBootRepository) {
+    public SkiBootServiceImpl(ItemRepository<SkiBoot> itemRepository, EquipmentSizeRepository equipmentSizeRepository, SkiBootMapper skiBootMapper, SkiBootRepository skiBootRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.skiBootMapper = skiBootMapper;
         this.skiBootRepository = skiBootRepository;

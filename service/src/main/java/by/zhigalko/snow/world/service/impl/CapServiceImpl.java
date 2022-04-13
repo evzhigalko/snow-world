@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
-public class CapService extends BaseItemServiceImpl<Cap> {
+@Service("capService")
+public class CapServiceImpl extends BaseItemServiceImpl<Cap> {
     private final CapMapper capMapper;
     private final CapRepository capRepository;
 
-    public CapService(ItemRepository<Cap> itemRepository, EquipmentSizeRepository equipmentSizeRepository, CapMapper capMapper, CapRepository capRepository) {
+    public CapServiceImpl(ItemRepository<Cap> itemRepository, EquipmentSizeRepository equipmentSizeRepository, CapMapper capMapper, CapRepository capRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.capMapper = capMapper;
         this.capRepository = capRepository;

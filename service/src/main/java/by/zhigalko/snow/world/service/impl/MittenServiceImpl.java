@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
-public class MittenService extends BaseItemServiceImpl<Mitten> {
+@Service("mittenService")
+public class MittenServiceImpl extends BaseItemServiceImpl<Mitten> {
     private final MittenMapper mittenMapper;
     private final MittenRepository mittenRepository;
 
     @Autowired
-    public MittenService(ItemRepository<Mitten> itemRepository, EquipmentSizeRepository equipmentSizeRepository, MittenMapper mittenMapper, MittenRepository mittenRepository) {
+    public MittenServiceImpl(ItemRepository<Mitten> itemRepository, EquipmentSizeRepository equipmentSizeRepository, MittenMapper mittenMapper, MittenRepository mittenRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.mittenMapper = mittenMapper;
         this.mittenRepository = mittenRepository;

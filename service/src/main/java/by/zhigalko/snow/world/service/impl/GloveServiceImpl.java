@@ -19,13 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@Service
-public class GloveService extends BaseItemServiceImpl<Glove> {
+@Service("gloveService")
+public class GloveServiceImpl extends BaseItemServiceImpl<Glove> {
     private final GloveMapper gloveMapper;
     private final GloveRepository gloveRepository;
 
     @Autowired
-    public GloveService(ItemRepository<Glove> itemRepository, EquipmentSizeRepository equipmentSizeRepository, GloveMapper gloveMapper, GloveRepository gloveRepository) {
+    public GloveServiceImpl(ItemRepository<Glove> itemRepository, EquipmentSizeRepository equipmentSizeRepository, GloveMapper gloveMapper, GloveRepository gloveRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.gloveMapper = gloveMapper;
         this.gloveRepository = gloveRepository;

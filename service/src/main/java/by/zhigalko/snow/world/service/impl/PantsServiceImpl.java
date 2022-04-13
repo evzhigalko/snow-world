@@ -10,8 +10,7 @@ import by.zhigalko.snow.world.mapper.PantsMapper;
 import by.zhigalko.snow.world.repository.EquipmentSizeRepository;
 import by.zhigalko.snow.world.repository.ItemRepository;
 import by.zhigalko.snow.world.repository.PantsRepository;
-import by.zhigalko.snow.world.service.impl.BaseItemServiceImpl;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,14 +18,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Log4j2
-@Service
-public class PantsService extends BaseItemServiceImpl<Pants> {
+@Slf4j
+@Service("pantsService")
+public class PantsServiceImpl extends BaseItemServiceImpl<Pants> {
     private final PantsMapper pantsMapper;
     private final PantsRepository pantsRepository;
 
     @Autowired
-    public PantsService(ItemRepository<Pants> itemRepository, EquipmentSizeRepository equipmentSizeRepository, PantsMapper pantsMapper, PantsRepository pantsRepository) {
+    public PantsServiceImpl(ItemRepository<Pants> itemRepository, EquipmentSizeRepository equipmentSizeRepository, PantsMapper pantsMapper, PantsRepository pantsRepository) {
         super(itemRepository, equipmentSizeRepository);
         this.pantsMapper = pantsMapper;
         this.pantsRepository = pantsRepository;

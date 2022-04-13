@@ -4,13 +4,13 @@ import by.zhigalko.snow.world.entity.Item;
 import by.zhigalko.snow.world.model.Product;
 import by.zhigalko.snow.world.service.BaseItemService;
 import by.zhigalko.snow.world.service.impl.*;
-import by.zhigalko.snow.world.service.impl.SkiBootService;
-import by.zhigalko.snow.world.service.impl.SkiHelmetService;
-import by.zhigalko.snow.world.service.impl.SkiPoleService;
-import by.zhigalko.snow.world.service.impl.SkiService;
-import by.zhigalko.snow.world.service.impl.SnowboardBootService;
-import by.zhigalko.snow.world.service.impl.SnowboardHelmetService;
-import by.zhigalko.snow.world.service.impl.SnowboardService;
+import by.zhigalko.snow.world.service.impl.SkiBootServiceImpl;
+import by.zhigalko.snow.world.service.impl.SkiHelmetServiceImpl;
+import by.zhigalko.snow.world.service.impl.SkiPoleServiceImpl;
+import by.zhigalko.snow.world.service.impl.SkiServiceImpl;
+import by.zhigalko.snow.world.service.impl.SnowboardBootServiceImpl;
+import by.zhigalko.snow.world.service.impl.SnowboardHelmetServiceImpl;
+import by.zhigalko.snow.world.service.impl.SnowboardServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -30,43 +30,43 @@ public class ServiceEquipmentFactory {
         BaseItemService<? extends Item> service = null;
         switch (product) {
             case SNOWBOARD:
-                service = context.getBean("snowboardService", SnowboardService.class);
+                service = context.getBean("snowboardService", SnowboardServiceImpl.class);
                 break;
             case SNOWBOARD_BOOT:
-                service = context.getBean("snowboardBootService", SnowboardBootService.class);
+                service = context.getBean("snowboardBootService", SnowboardBootServiceImpl.class);
                 break;
             case SNOWBOARD_HELMET:
-                service = context.getBean("snowboardHelmetService", SnowboardHelmetService.class);
+                service = context.getBean("snowboardHelmetService", SnowboardHelmetServiceImpl.class);
                 break;
             case SKI:
-                service = context.getBean("skiService", SkiService.class);
+                service = context.getBean("skiService", SkiServiceImpl.class);
                 break;
             case SKI_POLE:
-                service = context.getBean("skiPoleService", SkiPoleService.class);
+                service = context.getBean("skiPoleService", SkiPoleServiceImpl.class);
                 break;
             case SKI_BOOT:
-                service = context.getBean("skiBootService", SkiBootService.class);
+                service = context.getBean("skiBootService", SkiBootServiceImpl.class);
                 break;
             case SKI_HELMET:
-                service = context.getBean("skiHelmetService", SkiHelmetService.class);
+                service = context.getBean("skiHelmetService", SkiHelmetServiceImpl.class);
                 break;
             case JACKET:
-                service = context.getBean("jacketService", JacketService.class);
+                service = context.getBean("jacketService", JacketServiceImpl.class);
                 break;
             case PANTS:
-                service = context.getBean("pantsService", PantsService.class);
+                service = context.getBean("pantsService", PantsServiceImpl.class);
                 break;
             case MASK:
-                service = context.getBean("maskService", MaskService.class);
+                service = context.getBean("maskService", MaskServiceImpl.class);
                 break;
             case CAP:
-                service = context.getBean("capService", CapService.class);
+                service = context.getBean("capService", CapServiceImpl.class);
                 break;
             case MITTEN:
-                service = context.getBean("mittenService", MittenService.class);
+                service = context.getBean("mittenService", MittenServiceImpl.class);
                 break;
             case GLOVE:
-                service = context.getBean("gloveService", GloveService.class);
+                service = context.getBean("gloveService", GloveServiceImpl.class);
                 break;
         }
         log.info("Got service " + service.getClass().getName());
