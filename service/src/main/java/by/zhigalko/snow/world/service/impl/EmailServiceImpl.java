@@ -29,14 +29,21 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendMessage(OrderDetailsDto orderDetailsDto) {
         SimpleMailMessage message = createEmail(orderDetailsDto);
+        emailSender.send(message);
+    }
+
+    private SimpleMailMessage createEmail(OrderDetailsDto orderDetailsDto) {
         OrderResponse order = orderService.findById(UUID.fromString(orderDetailsDto.getOrderId()));
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setSubject("НОВЫЙ ЗАКАЗ: №" + orderDetailsDto.getOrderId() + ", дата: " + LocalDateTime.now());
+        message.setTo(Objects.requireNonNull(template.getTo())[0]);
         StringBuilder contacts = new StringBuilder();
-                contacts
-                        .append("Контактная информация заказчика: \n")
-                        .append("Фамилия: ").append(orderDetailsDto.getLastname()).append(".\n")
-                        .append("Имя: ").append(orderDetailsDto.getFirstname()).append(".\n")
-                        .append("Номер телефона: ").append(orderDetailsDto.getPhoneNumber()).append(".\n")
-                        .append( "Электронный адрес: ").append(orderDetailsDto.getEmail()).append(".\n");
+        contacts
+                .append("Контактная информация заказчика: \n")
+                .append("Фамилия: ").append(orderDetailsDto.getLastname()).append(".\n")
+                .append("Имя: ").append(orderDetailsDto.getFirstname()).append(".\n")
+                .append("Номер телефона: ").append(orderDetailsDto.getPhoneNumber()).append(".\n")
+                .append( "Электронный адрес: ").append(orderDetailsDto.getEmail()).append(".\n");
         String format = String.format("Поступил новый заказ № %s.\nДата начала бронирования: %s.\n" +
                         "Дней бронирования: %s.\nОбщая сумма заказа: %s\n",
                 order.getOrderId(), order.getStartReservationDate(), order.getReservationDayNumber(), order.getTotalSum());
@@ -52,13 +59,6 @@ public class EmailServiceImpl implements EmailService {
                     .append("Размер: ").append(item.getEquipmentSize().getEquipmentSizeId()).append(".\n");
         }
         message.setText(contacts + format + itemDetailsHeader + itemDetails);
-        emailSender.send(message);
-    }
-
-    private SimpleMailMessage createEmail(OrderDetailsDto orderDetailsDto) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setSubject("НОВЫЙ ЗАКАЗ: №" + orderDetailsDto.getOrderId() + ", дата: " + LocalDateTime.now());
-        message.setTo(Objects.requireNonNull(template.getTo())[0]);
         return message;
     }
 }
