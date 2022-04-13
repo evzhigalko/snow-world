@@ -317,14 +317,14 @@ public class MainController {
         return "redirect:/cart";
     }
 
-//    @PostMapping("/order/create/new")
-//    public String createOrder(OrderRequest orderRequest, Model model) {
-//        CartDto cartDto = cartService.findCartById(UUID.fromString(orderRequest.getCartId()));
-//        cartService.save(cartDto);
-//        OrderResponse order = orderService.save(orderRequest);
-//        model.addAttribute("order", order);
-//        return "order";
-//    }
+    @PostMapping("/order/create/new")
+    public String createOrder(OrderRequest orderRequest, Model model) {
+        CartDto cartDto = cartService.findCartById(UUID.fromString(orderRequest.getCartId()));
+        cartService.save(cartDto);
+        OrderResponse order = orderService.save(orderRequest);
+        model.addAttribute("order", order);
+        return "order";
+    }
 
     @PostMapping("/order/new/payment")
     public String createPayment(OrderDetailsDto orderDetailsDto, Model model) {
