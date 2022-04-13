@@ -26,7 +26,7 @@ import java.util.UUID;
 
 @Slf4j
 @Controller
-@SessionAttributes({"pageNumber", "cart", "cartItems"})
+@SessionAttributes({"pageNumber", "cart", "cartItems", "order", "orderDetails"})
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
@@ -317,17 +317,28 @@ public class MainController {
         return "redirect:/cart";
     }
 
-    @PostMapping("/order/create/new")
-    public String createOrder(OrderRequest orderRequest, Model model) {
-        CartDto cartDto = cartService.findCartById(UUID.fromString(orderRequest.getCartId()));
-        cartService.save(cartDto);
-        OrderResponse order = orderService.save(orderRequest);
-        model.addAttribute("order", order);
-        return "order";
+//    @PostMapping("/order/create/new")
+//    public String createOrder(OrderRequest orderRequest, Model model) {
+//        CartDto cartDto = cartService.findCartById(UUID.fromString(orderRequest.getCartId()));
+//        cartService.save(cartDto);
+//        OrderResponse order = orderService.save(orderRequest);
+//        model.addAttribute("order", order);
+//        return "order";
+//    }
+
+    @PostMapping("/order/new/payment")
+    public String createPayment(OrderDetailsDto orderDetailsDto, Model model) {
+        model.addAttribute("orderDetails", orderDetailsDto);
+        return "payment";
+    }
+
+    @PostMapping("/order/payment/success")
+    public String successPayment() {
+        return "success-payment";
     }
 
     @PostMapping("/order/send")
-    public String sendOrder(OrderDetailsDto orderDetailsDto,
+    public String sendOrder(@SessionAttribute("orderDetails") OrderDetailsDto orderDetailsDto,
                             @SessionAttribute("cart") CartDto cartDto,
                             Model model) {
         orderService.setOrderDetails(orderDetailsDto);
