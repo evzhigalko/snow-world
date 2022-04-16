@@ -4,10 +4,8 @@ import by.zhigalko.snow.world.dto.request.UserRequest;
 import by.zhigalko.snow.world.dto.response.UserResponse;
 import by.zhigalko.snow.world.entity.User;
 import by.zhigalko.snow.world.model.RoleName;
-import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.mapper.UserMapper;
 import by.zhigalko.snow.world.repository.UserRepository;
-import by.zhigalko.snow.world.service.AccountService;
 import by.zhigalko.snow.world.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +18,11 @@ import java.util.UUID;
 @Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final AccountService accountService;
     private final UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, AccountService accountService, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
-        this.accountService = accountService;
         this.userMapper = userMapper;
     }
 
@@ -36,9 +32,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(UserRequest userRequest) throws ValidationException {
-        User user = accountService.createUser(userRequest);
-        return userRepository.save(user);
+    public User createUser(UserRequest userRequest) {
+        return userRepository.save(userMapper.userRequestToUser(userRequest));
     }
 
     @Override

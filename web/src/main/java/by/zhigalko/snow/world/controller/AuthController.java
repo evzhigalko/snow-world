@@ -4,7 +4,6 @@ import by.zhigalko.snow.world.dto.CartDto;
 import by.zhigalko.snow.world.dto.response.ItemResponse;
 import by.zhigalko.snow.world.dto.request.UserRequest;
 import by.zhigalko.snow.world.dto.response.UserResponse;
-import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.service.CartService;
 import by.zhigalko.snow.world.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.Set;
 
 @Slf4j
@@ -55,19 +56,19 @@ public class AuthController {
     }
 
     @GetMapping("/registration")
-    public String showRegistrationPage() {
+    public String showRegistrationPage(Model model) {
+        model.addAttribute("userRequest", new UserRequest());
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registerNewUser(UserRequest userRequest, Model model){
-        try {
-            userService.createUser(userRequest);
-        } catch (ValidationException e) {
-            model.addAttribute("error", e.getMessage());
-            log.error("Error with attempt to register new user" + e.getMessage());
+    public String registerNewUser(@Valid @ModelAttribute("userRequest") UserRequest userRequest,
+                                  BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            log.info(bindingResult.getAllErrors().toString());
             return "registration";
         }
+        userService.createUser(userRequest);
         return "login";
     }
 }

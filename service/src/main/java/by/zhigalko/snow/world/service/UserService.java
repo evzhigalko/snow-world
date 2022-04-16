@@ -3,7 +3,6 @@ package by.zhigalko.snow.world.service;
 import by.zhigalko.snow.world.dto.request.UserRequest;
 import by.zhigalko.snow.world.dto.response.UserResponse;
 import by.zhigalko.snow.world.entity.User;
-import by.zhigalko.snow.world.exception.ValidationException;
 import by.zhigalko.snow.world.model.RoleName;
 import java.util.List;
 import java.util.UUID;
@@ -16,9 +15,8 @@ public interface UserService {
      * Create user before saving into database
      * @param userRequest {@link UserRequest} dto from {@link User}
      * @return {@link User}
-     * @throws ValidationException {@link ValidationException} throws when user's input parameters don't meet the requirements
      */
-    User createUser(UserRequest userRequest) throws ValidationException;
+    User createUser(UserRequest userRequest);
 
     /**
      * Find user by username

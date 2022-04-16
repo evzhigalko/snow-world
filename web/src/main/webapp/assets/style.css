@@ -210,3 +210,11 @@ a {
 .send-order-button {
     padding-top: 1rem;
 }
+
+.error {
+    color: red;
+}
+
+.reg-form-input {
+    padding-top: 8px;
+}
