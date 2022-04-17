@@ -39,7 +39,7 @@
                     </tr>
                 </c:forEach>
             </table>
-            <form action="<c:url value="/order/create/new"/>" method="post">
+            <form action="<c:url value="/order/new"/>" method="post">
                 <input type="hidden" value="${cartItems}" name="items">
                 <div class="start-reservation">
                     <label for="startReservationDate">Дата начала бронирования: <input type="date"

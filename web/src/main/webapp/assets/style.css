@@ -218,3 +218,7 @@ a {
 .reg-form-input {
     padding-top: 8px;
 }
+
+.order-details {
+    width: 40%;
+}

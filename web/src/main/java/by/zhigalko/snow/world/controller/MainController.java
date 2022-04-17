@@ -19,14 +19,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Slf4j
 @Controller
-@SessionAttributes({"pageNumber", "cart", "cartItems", "order", "orderDetails"})
+@SessionAttributes({"pageNumber", "cart", "cartItems", "order", "orderDetailsDto"})
 public class MainController {
     public static final int PAGE_SIZE = 6;
     private final ServiceEquipmentFactory serviceEquipmentFactory;
@@ -317,18 +319,22 @@ public class MainController {
         return "redirect:/cart";
     }
 
-    @PostMapping("/order/create/new")
+    @PostMapping("/order/new")
     public String createOrder(OrderRequest orderRequest, Model model) {
         CartDto cartDto = cartService.findCartById(UUID.fromString(orderRequest.getCartId()));
         cartService.save(cartDto);
         OrderResponse order = orderService.save(orderRequest);
         model.addAttribute("order", order);
+        model.addAttribute("orderDetailsDto", new OrderDetailsDto());
         return "order";
     }
 
-    @PostMapping("/order/new/payment")
-    public String createPayment(OrderDetailsDto orderDetailsDto, Model model) {
-        model.addAttribute("orderDetails", orderDetailsDto);
+    @PostMapping("/order/payment")
+    public String createPayment(@Valid @ModelAttribute("orderDetailsDto") OrderDetailsDto orderDetailsDto,
+                                BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "order";
+        }
         return "payment";
     }
 
@@ -338,7 +344,7 @@ public class MainController {
     }
 
     @PostMapping("/order/send")
-    public String sendOrder(@SessionAttribute("orderDetails") OrderDetailsDto orderDetailsDto,
+    public String sendOrder(@SessionAttribute("orderDetailsDto") OrderDetailsDto orderDetailsDto,
                             @SessionAttribute("cart") CartDto cartDto,
                             Model model) {
         orderService.setOrderDetails(orderDetailsDto);
