@@ -21,6 +21,6 @@
     </error-page>
     <context-param>
         <param-name>context</param-name>
-        <param-value>by.zhigalko.snow.world.config.ApplicationConfig</param-value>
+        <param-value>by.zhigalko.snowworld.config.ApplicationConfig</param-value>
     </context-param>
 </web-app>
