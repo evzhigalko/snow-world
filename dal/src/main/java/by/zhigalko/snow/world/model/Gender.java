@@ -1,15 +1,17 @@
 package by.zhigalko.snow.world.model;
 
-import lombok.Getter;
 import java.util.Arrays;
 
-@Getter
 public enum Gender {
     MALE("Мужской"),
     FEMALE("Женский"),
     UNISEX("Унисекс");
 
     private final String name;
+
+    public String getName() {
+        return name;
+    }
 
     Gender(String name) {
         this.name = name;

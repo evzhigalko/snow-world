@@ -1,10 +1,5 @@
 package by.zhigalko.snow.world.model;
 
-import lombok.Getter;
-
-import java.util.Arrays;
-
-@Getter
 public enum HardnessLevel {
     ONE("1/10"),
     TWO("2/10"),

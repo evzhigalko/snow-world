@@ -1,10 +1,5 @@
 package by.zhigalko.snow.world.model;
 
-import lombok.Getter;
-
-import java.util.Arrays;
-
-@Getter
 public enum LacingSystem {
     BOA("Кнопка"),
     LACES("Шнурки");

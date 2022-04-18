@@ -1,7 +1,5 @@
 package by.zhigalko.snow.world.model;
 
-import java.util.Arrays;
-
 public enum RidingLevel {
     BEGINNER("Новичок"),
     MEDIUM("Средний"),
