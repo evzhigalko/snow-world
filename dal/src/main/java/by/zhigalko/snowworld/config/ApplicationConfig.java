@@ -19,7 +19,7 @@ import java.util.Properties;
 @Slf4j
 @Configuration
 @ComponentScan("by.zhigalko.snowworld")
-@PropertySource("file:/opt/application.properties")
+@PropertySource("file:${HOME}/application.properties")
 @EnableTransactionManagement
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages = "by.zhigalko.snowworld.repository")

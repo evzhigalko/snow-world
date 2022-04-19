@@ -2,6 +2,21 @@
 
 * link:http://ec2-54-165-213-86.compute-1.amazonaws.com:8080/snow-world/[Snow-World]
 
+==== Instruction for running application on different OS:
+** Unix-systems (Linux, macOS): +
+*** in Home Directory create file *application.properties*
+** Windows: +
+*** add system environment variable with name HOME with variable value C:\Users\your_user_name
+*** create file application.properties +
+*** in ApplicationConfig.java change in `@PropertySource` forward slash to backslash, example: +
+
+[soure, java]
+----
+${HOME}\application.properties
+----
+
+** add in file data source, hibernate settings, minio credentials, spring mail settings.
+
 == Description
 
 *Snow-World* - rental of snowboards, alpine skis, clothes and all necessary equipment.
