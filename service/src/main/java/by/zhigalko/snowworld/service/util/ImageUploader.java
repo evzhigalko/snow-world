@@ -1,5 +1,6 @@
 package by.zhigalko.snowworld.service.util;
 
+import by.zhigalko.snowworld.model.BucketName;
 import io.minio.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +14,18 @@ import java.io.InputStream;
 @Service
 public class ImageUploader {
     private final MinioClient minioClient;
-    private final Environment env;
     private final String minioServiceUrl;
 
     @Autowired
     public ImageUploader(MinioClient minioClient, Environment env) {
         this.minioClient = minioClient;
-        this.env = env;
         minioServiceUrl = env.getProperty("minio.url");
     }
 
     public String uploadImage(MultipartFile partFile, String bucketName, String imageName) throws IOException {
         String objectName = "";
-        if (bucketName.contains("snowboard")) {
-            bucketName = "snowboard";
-        } else if (bucketName.contains("ski")) {
-            bucketName = "ski";
-        } else {
-            bucketName = "clothes";
-        }
+        bucketName = BucketName.of(bucketName).getName();
+        System.out.println(bucketName);
         if (imageName != null) {
             String contentType = partFile.getContentType();
             InputStream inputStream = partFile.getInputStream();
@@ -39,7 +33,12 @@ public class ImageUploader {
             objectName = minioUpload(bucketName, imageName, inputStream, length, contentType);
             log.info(">>> Image is uploaded: " + objectName);
         }
-        return minioServiceUrl + bucketName + "/" + objectName;
+        StringBuilder imageUrl = new StringBuilder();
+        imageUrl.append(minioServiceUrl)
+                .append(bucketName)
+                .append("/")
+                .append(objectName);
+        return imageUrl.toString();
     }
 
     private String minioUpload(String bucketName, String objectName, InputStream inputStream, Long length, String contentType) {
