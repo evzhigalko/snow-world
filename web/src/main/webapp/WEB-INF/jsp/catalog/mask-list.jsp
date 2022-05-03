@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/clothes/mask"/>" role="button">Добавить маску</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/mask"/>" role="button">Добавить маску</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -42,7 +42,7 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/admin/clothes/mask/catalog/${mask.id}"/>"
+                                            <form action="<c:url value="/update/mask/${mask.id}"/>"
                                                   method="post">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
@@ -69,7 +69,7 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/admin/delete/clothes/mask/${mask.id}"/>"
+                                            <form action="<c:url value="/delete/mask/${mask.id}"/>"
                                                   method="post">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
@@ -98,7 +98,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/clothes/mask/catalog/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/catalog/clothes/mask/${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>
