@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski_pole"/>" role="button">Добавить лыжные палки</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/ski-pole"/>" role="button">Добавить лыжные палки</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -42,7 +42,7 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/admin/ski/pole/catalog/${ski_pole.id}"/>"
+                                            <form action="<c:url value="/update/ski-pole/${ski_pole.id}"/>"
                                                   method="post">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
@@ -69,7 +69,7 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/admin/delete/ski/pole/${ski_pole.id}"/>"
+                                            <form action="<c:url value="/delete/ski-pole/${ski_pole.id}"/>"
                                                   method="post">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
@@ -82,7 +82,7 @@
                                             <div style="padding-top: 10px">
                                             </c:when>
                                         </c:choose>
-                                            <a href="<c:url value="/cart/add/ski/pole/${ski_pole.id}"/>" class="btn btn-primary">Добавить в корзину</a>
+                                            <a href="<c:url value="/cart/add/ski-pole/${ski_pole.id}"/>" class="btn btn-primary">Добавить в корзину</a>
                                         </div>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/ski/pole/catalog/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/catalog/ski-pole/${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>

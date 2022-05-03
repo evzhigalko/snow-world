@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/ski"/>" role="button">Добавить лыжи</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/ski"/>" role="button">Добавить лыжи</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -31,7 +31,7 @@
                                         <h5 class="card-title">${ski.maker}</h5>
                                         <p class="card-info">Рост: ${ski.equipmentSize.userMinHeight}
                                             - ${ski.equipmentSize.userMaxHeight}</p>
-                                        <p class="card-info">Уровень катания: ${ski.ridingLevel.name}</p>
+                                        <p class="card-info">Уровень катания: ${ski.itemInformation.ridingLevel}</p>
                                         <p class="card-info">Цена проката: ${ski.cost} руб./сутки</p>
                                         <p class="card-info">Доступен к прокату:
                                             <c:choose>
@@ -42,10 +42,10 @@
                                                     <c:out value="${'Нет'}"/>
                                                 </c:when>
                                             </c:choose></p>
-                                        <a class="btn btn btn-primary btn-sm" href="<c:url value="/ski/pole/catalog/1"/>"
+                                        <a class="btn btn btn-primary btn-sm" href="<c:url value="/catalog/ski-pole/1"/>"
                                            role="button">Выбрать лыжные палки</a>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/admin/ski/catalog/${ski.id}"/>"
+                                            <form action="<c:url value="/update/ski/${ski.id}"/>"
                                                   method="post">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
@@ -72,7 +72,7 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/admin/delete/ski/${ski.id}"/>"
+                                            <form action="<c:url value="/delete/ski/${ski.id}"/>"
                                                   method="post">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
@@ -94,7 +94,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/ski/catalog/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/catalog/ski/${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>
