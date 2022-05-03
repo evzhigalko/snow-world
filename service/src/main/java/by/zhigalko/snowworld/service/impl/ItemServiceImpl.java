@@ -1,6 +1,9 @@
 package by.zhigalko.snowworld.service.impl;
 
+import by.zhigalko.snowworld.dto.request.ItemRequest;
+import by.zhigalko.snowworld.dto.response.ItemResponse;
 import by.zhigalko.snowworld.entity.EquipmentSize;
+import by.zhigalko.snowworld.entity.Image;
 import by.zhigalko.snowworld.entity.Item;
 import by.zhigalko.snowworld.model.ProductGroup;
 import by.zhigalko.snowworld.repository.EquipmentSizeRepository;
@@ -19,7 +22,7 @@ import java.util.UUID;
 @Service
 @Transactional
 @Getter
-public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemService<T> {
+public class BaseItemServiceImpl<T extends Item> implements BaseItemService<T> {
     private final ItemRepository<T> itemRepository;
     private final EquipmentSizeRepository equipmentSizeRepository;
     public static int totalPages;
@@ -31,10 +34,20 @@ public abstract class BaseItemServiceImpl<T extends Item> implements BaseItemSer
     }
 
     @Override
+    public Item getItem(ItemRequest itemRequest, Image image) {
+        return null;
+    }
+
+    @Override
     public T save(T item) {
         T saved = itemRepository.save(item);
         log.info("Saved entity: " + saved);
         return saved;
+    }
+
+    @Override
+    public List<? extends ItemResponse> findAll(int page, int pageSize) {
+        return null;
     }
 
     @Transactional
