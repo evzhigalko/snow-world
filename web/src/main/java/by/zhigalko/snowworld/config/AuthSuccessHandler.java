@@ -11,7 +11,7 @@ public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHa
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         String role = authentication.getAuthorities().stream().findFirst().orElseThrow().getAuthority();
         if(RoleName.ADMIN.name().equals(role)) {
-           return "/admin";
+           return "/administration";
         }
         return "/welcome";
     }
