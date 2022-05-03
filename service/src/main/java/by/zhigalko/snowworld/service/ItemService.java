@@ -5,17 +5,17 @@ import by.zhigalko.snowworld.dto.response.ItemResponse;
 import by.zhigalko.snowworld.entity.EquipmentSize;
 import by.zhigalko.snowworld.entity.Image;
 import by.zhigalko.snowworld.entity.Item;
+import by.zhigalko.snowworld.model.Product;
 import by.zhigalko.snowworld.model.ProductGroup;
 import by.zhigalko.snowworld.service.impl.ImageServiceImpl;
-
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
  * Service for base item
- * @param <T>
  */
-public interface BaseItemService<T extends Item> {
+public interface ItemService {
     /**
      * Get {@link Item} by
      * @param itemRequest {@link ItemRequest} is received from presentation layer.
@@ -29,33 +29,34 @@ public interface BaseItemService<T extends Item> {
      * @param item entity
      * @return saved entity
      */
-    T save(T item);
+    Item save(Item item);
 
     /**
      * Get list of items
+     * @param product is used to define name of product.
      * @param page number of page, is used for pagination.
      * @param pageSize items quantity in ine page, is used for pagination.
      * @return {@link List} of items
      */
-    List<? extends ItemResponse> findAll(int page, int pageSize);
+    Set<ItemResponse> findAll(Product product, int page, int pageSize);
 
     /**
      * Find entity by
      * @param id {@link UUID}
      * @return found entity
      */
-    T findById(UUID id);
+    Item findById(UUID id);
 
     /**
      * Delete entity from database
      * @param item entity
      */
-    void delete(T item);
+    void delete(Item item);
 
     /**
      * Find list of entities by
      * @param productGroup {@link ProductGroup}
-     * @return {@link List< EquipmentSize >}
+     * @return {@link List<EquipmentSize>}
      */
     List<EquipmentSize> findAllByProductGroup(ProductGroup productGroup);
 }
