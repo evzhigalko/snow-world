@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(filter, CsrfFilter.class);
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers("/new/**", "/delete/**", "/update/**").hasAuthority(RoleName.ADMIN.name())
                 .antMatchers("/cart/**", "/order/**").hasAuthority(RoleName.USER.name())
                 .and()
                 .formLogin()
