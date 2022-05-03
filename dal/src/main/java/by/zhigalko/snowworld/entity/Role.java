@@ -11,7 +11,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ToString(exclude = "users",callSuper = true)
 @Table(name = "role")
 @AttributeOverride(name = "id", column = @Column(name = "role_id"))

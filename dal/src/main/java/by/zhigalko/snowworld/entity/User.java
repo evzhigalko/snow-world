@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString(exclude = "cart", callSuper = true)
-@EqualsAndHashCode(exclude = "role", callSuper = false)
+@EqualsAndHashCode(exclude = "role", callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "\"user\"")

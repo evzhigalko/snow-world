@@ -3,8 +3,11 @@ package by.zhigalko.snowworld.entity;
 import by.zhigalko.snowworld.model.Gender;
 import by.zhigalko.snowworld.model.Product;
 import javax.persistence.*;
+import by.zhigalko.snowworld.util.HashMapConverter;
 import lombok.*;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -14,9 +17,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"image", "equipmentSize"}, callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "item")
-@DiscriminatorColumn(name = "product_type", discriminatorType = DiscriminatorType.STRING)
 public class Item extends BaseEntity {
     @Column(name = "product_name")
     @Enumerated(EnumType.STRING)
@@ -48,4 +49,12 @@ public class Item extends BaseEntity {
 
     @ManyToMany(mappedBy = "items")
     private Set<Order> orders = new HashSet<>();
+
+    @Convert(converter = HashMapConverter.class)
+    @Column(name = "item_information")
+    private Map<String, Object> itemInformation = new HashMap<>();
+
+    public void addProperty(String key, String value) {
+        itemInformation.put(key, value);
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@ToString(exclude = "itemSet")
+@ToString(exclude = {"itemSet"})
 @Table(name = "equipment_size")
 public class EquipmentSize {
     @Id
