@@ -3,12 +3,12 @@
     <c:choose>
         <c:when test="${item eq 'cap'}">
         <p>Шапка</p>
-        <form action="<c:url value="/admin/create/new/clothes/cap"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/new/cap"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="CAP">
         </c:when>
         <c:when test="${item eq 'glove'}">
         <p>Перчатки</p>
-        <form action="<c:url value="/admin/create/new/clothes/glove"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/new/glove"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="GLOVE">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
@@ -20,7 +20,7 @@
         </c:when>
         <c:when test="${item eq 'jacket'}">
         <p>Куртка</p>
-        <form action="<c:url value="/admin/create/new/clothes/jacket"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/new/jacket"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="JACKET">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
@@ -32,12 +32,12 @@
         </c:when>
         <c:when test="${item eq 'mask'}">
         <p>Маска</p>
-        <form action="<c:url value="/admin/create/new/clothes/mask"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/new/mask"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="MASK">
         </c:when>
         <c:when test="${item eq 'mitten'}">
         <p>Варежки</p>
-        <form action="<c:url value="/admin/create/new/clothes/mitten"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/new/mitten"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="MITTEN">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
@@ -49,7 +49,7 @@
         </c:when>
         <c:when test="${item eq 'pants'}">
         <p>Штаны</p>
-        <form action="<c:url value="/admin/create/new/clothes/pants"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/new/pants"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="PANTS">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="padding-top: 3rem">
-    <p>Палки лыжные</p>
-    <form action="<c:url value="/admin/create/new/ski-pole"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="productName" value="SKI_POLE">
+    <p>Лыжи</p>
+    <form action="<c:url value="/new/ski"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <input type="hidden" name="productName" value="SKI">
         <div class="form-input">
             <label for="label-maker" class="form-label"> </label>
             <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"
@@ -39,6 +39,17 @@
                             (Рост: ${size.userMinHeight}-${size.userMaxHeight})
                         </option>
                     </c:forEach>
+                </select>
+            </label>
+        </div>
+        <div class="form-input">
+            Уровень катания:
+            <label>
+                <select class="form-select" name="ridingLevel">
+                    <option value="BEGINNER">Новичок</option>
+                    <option value="MEDIUM">Средний</option>
+                    <option value="HIGH">Высокий</option>
+                    <option value="EXPERT">Профессионал</option>
                 </select>
             </label>
         </div>

@@ -1,8 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="padding-top: 3rem">
-    <p>Лыжи</p>
-    <form action="<c:url value="/admin/create/new/ski"/>" method="post" enctype="multipart/form-data" style="width: 60%">
-        <input type="hidden" name="productName" value="SKI">
+    <p>Сноуборд</p>
+    <form action="<c:url value="/new/snowboard"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <div class="form-input">
             <label for="label-maker" class="form-label"> </label>
             <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"
@@ -36,9 +35,28 @@
                 <select class="form-select" name="equipmentSize">
                     <c:forEach items="${requestScope.allSizes}" var="size">
                         <option value="${size.equipmentSizeId}">${size.equipmentSizeId}
-                            (Рост: ${size.userMinHeight}-${size.userMaxHeight})
+                            (Рост: ${size.userMinHeight}-${size.userMaxHeight},
+                            Вес: ${size.userMinWeight}-${size.userMaxWeight})
                         </option>
                     </c:forEach>
+                </select>
+            </label>
+        </div>
+        <input type="hidden" name="productName" value="SNOWBOARD">
+        <div class="form-input">
+            Уровень жесткости:
+            <label>
+                <select class="form-select" name="hardnessLevel">
+                    <option value="ONE">1/10</option>
+                    <option value="TWO">2/10</option>
+                    <option value="THREE">3/10</option>
+                    <option value="FOUR">4/10</option>
+                    <option value="FIVE">5/10</option>
+                    <option value="SIX">6/10</option>
+                    <option value="SEVEN">7/10</option>
+                    <option value="EIGHT">8/10</option>
+                    <option value="NINE">9/10</option>
+                    <option value="TEN">10/10</option>
                 </select>
             </label>
         </div>
