@@ -4,6 +4,7 @@ import by.zhigalko.snowworld.entity.EquipmentSize;
 import by.zhigalko.snowworld.entity.Image;
 import by.zhigalko.snowworld.model.Product;
 import lombok.*;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -20,4 +21,5 @@ public class ItemResponse {
     private String availableToRental;
     private String cost;
     private EquipmentSize equipmentSize;
+    private Map<String, Object> itemInformation;
 }

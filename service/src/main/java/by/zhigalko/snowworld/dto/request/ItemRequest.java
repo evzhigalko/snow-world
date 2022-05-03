@@ -14,4 +14,8 @@ public class ItemRequest {
     private String availableToRental;
     private String cost;
     private String equipmentSize;
+    private String ridingLevel;
+    private String lacingSystem;
+    private String hardnessLevel;
+    private String membrane;
 }
