@@ -15,12 +15,11 @@ import java.util.UUID;
 public interface CartService {
      /**
      * Add item to cart.
-     * @param service {@link BaseItemService} is required for find and save new item
      * @param cartDto {@link CartDto} is received from session
      * @param itemId {@link UUID}  is received from controller
      * @return cartDto {@link CartDto}
      */
-    CartDto addToCart(BaseItemService service, CartDto cartDto, UUID itemId);
+    CartDto addToCart(CartDto cartDto, UUID itemId);
 
     /**
      * Remove item from cart.
@@ -40,7 +39,7 @@ public interface CartService {
     /**
      * Get {@link Set<ItemResponse>}
      * @param cartId {@link UUID} cartId
-     * @return {@link Set< Item >}
+     * @return {@link Set<Item>}
      */
      Set<ItemResponse> getItems(UUID cartId);
 

@@ -4,14 +4,12 @@ import by.zhigalko.snowworld.dto.CartDto;
 import by.zhigalko.snowworld.dto.response.ItemResponse;
 import by.zhigalko.snowworld.entity.Cart;
 import by.zhigalko.snowworld.entity.Item;
-import by.zhigalko.snowworld.model.Product;
 import by.zhigalko.snowworld.mapper.CartMapper;
 import by.zhigalko.snowworld.mapper.ItemMapper;
 import by.zhigalko.snowworld.repository.CartRepository;
 import by.zhigalko.snowworld.repository.ItemRepository;
 import by.zhigalko.snowworld.service.CartService;
-import by.zhigalko.snowworld.service.BaseItemService;
-import by.zhigalko.snowworld.service.util.ServiceEquipmentFactory;
+import by.zhigalko.snowworld.service.ItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,30 +21,30 @@ import java.util.UUID;
 @Service
 @Transactional
 @Slf4j
-public class CartServiceImpl<T extends Item> implements CartService {
+public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
-    private final ItemRepository<T> itemRepository;
-    private final ServiceEquipmentFactory serviceEquipmentFactory;
+    private final ItemRepository itemRepository;
     private final ItemMapper itemMapper;
     private final CartMapper cartMapper;
+    private final ItemService itemService;
 
     @Autowired
-    public CartServiceImpl(CartRepository cartRepository, ItemRepository<T> itemRepository, ServiceEquipmentFactory serviceEquipmentFactory, ItemMapper itemMapper, CartMapper cartMapper) {
+    public CartServiceImpl(CartRepository cartRepository, ItemRepository itemRepository, ItemMapper itemMapper, CartMapper cartMapper, ItemService itemService) {
         this.cartRepository = cartRepository;
         this.itemRepository = itemRepository;
-        this.serviceEquipmentFactory = serviceEquipmentFactory;
         this.itemMapper = itemMapper;
         this.cartMapper = cartMapper;
+        this.itemService = itemService;
     }
 
     @Transactional
     @Override
-    public CartDto addToCart(BaseItemService service, CartDto cartDto, UUID itemId) {
+    public CartDto addToCart(CartDto cartDto, UUID itemId) {
         CartDto savedCartDto = null;
         try {
             Cart cart = cartMapper.cartDtoToCart(cartDto);
-            Item item = service.findById(itemId);
-            Item savedItem = service.save(item);
+            Item item = itemService.findById(itemId);
+            Item savedItem = itemService.save(item);
             log.info("Added to cart " + savedItem);
             Set<Item> items = cartRepository.getItems(cart.getId());
             items.add(savedItem);
@@ -72,13 +70,7 @@ public class CartServiceImpl<T extends Item> implements CartService {
         CartDto savedCartDto = null;
         try {
             Cart cart = cartMapper.cartDtoToCart(cartDto);
-            Product product = cartItems.stream()
-                    .filter(item -> id.equals(item.getId()))
-                    .map(ItemResponse::getProductName)
-                    .findAny()
-                    .orElseThrow();
-            BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(product);
-            Item item = service.findById(id);
+            Item item = itemService.findById(id);
             log.info("Removed to cart " + item);
             Set<Item> items = cartRepository.getItems(cart.getId());
             items.remove(item);
