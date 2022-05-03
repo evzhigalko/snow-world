@@ -35,13 +35,13 @@ public class AdminController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/administration")
     public String showAdminPage(Authentication authentication, Model model) {
         List<UserResponse> userList = userService.findAllUsers();
         model.addAttribute("usersList", userList);
         model.addAttribute("user", userService.findByUsername(authentication.getName()));
         model.addAttribute("ROLE", authentication.getAuthorities().stream().findFirst().orElseThrow());
-        return "administration/admin";
+        return "administration";
     }
 
     @PostMapping("/update/snowboard/{id}")
@@ -166,7 +166,7 @@ public class AdminController {
         List<EquipmentSize> allSizes = itemService.findAllByProductGroup(ProductGroup.getProduct(item));
         model.addAttribute("allSizes", allSizes);
         model.addAttribute("item", item);
-        return "administration/create-new-item";
+        return "create-new-item";
     }
 
     @PostMapping(value = "/new/snowboard")
