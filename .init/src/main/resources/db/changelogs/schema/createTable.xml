@@ -73,7 +73,6 @@
 
     <changeSet context="legacy" author="zhigalko" id="1648110249">
         <createTable tableName="item" schemaName="rental">
-            <column name="product_type" type="VARCHAR(31)"/>
             <column autoIncrement="${autoIncrement}" name="id" type="UUID">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
@@ -82,10 +81,7 @@
             <column name="gender" type="VARCHAR(255)"/>
             <column name="maker" type="VARCHAR(255)"/>
             <column name="product_name" type="VARCHAR(255)"/>
-            <column name="hardness_level" type="VARCHAR(255)"/>
-            <column name="riding_level" type="VARCHAR(255)"/>
-            <column name="lacing_system" type="VARCHAR(255)"/>
-            <column name="membrane" type="INTEGER"/>
+            <column name="item_information" type="VARCHAR(99999)"/>
             <column name="image_id" type="UUID">
                 <constraints primaryKey="true"
                              foreignKeyName="fk_image"
