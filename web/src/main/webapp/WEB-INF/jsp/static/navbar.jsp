@@ -21,7 +21,7 @@
                 <ul class="navbar-nav">
                     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="<c:url value="/admin/"/>">Управление</a>
+                            <a class="nav-link" aria-current="page" href="<c:url value="/administration"/>">Управление</a>
                         </li>
                     </c:if>
                     <li class="nav-item active">
