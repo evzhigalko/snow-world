@@ -6,14 +6,12 @@ import by.zhigalko.snowworld.dto.response.ItemResponse;
 import by.zhigalko.snowworld.dto.request.OrderRequest;
 import by.zhigalko.snowworld.dto.response.OrderResponse;
 import by.zhigalko.snowworld.entity.EquipmentSize;
-import by.zhigalko.snowworld.entity.Item;
 import by.zhigalko.snowworld.model.Product;
 import by.zhigalko.snowworld.model.ProductGroup;
 import by.zhigalko.snowworld.service.CartService;
-import by.zhigalko.snowworld.service.BaseItemService;
+import by.zhigalko.snowworld.service.ItemService;
 import by.zhigalko.snowworld.service.EmailService;
-import by.zhigalko.snowworld.service.impl.BaseItemServiceImpl;
-import by.zhigalko.snowworld.service.util.ServiceEquipmentFactory;
+import by.zhigalko.snowworld.service.impl.ItemServiceImpl;
 import by.zhigalko.snowworld.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +29,17 @@ import java.util.UUID;
 @SessionAttributes({"pageNumber", "cart", "cartItems", "order", "orderDetailsDto"})
 public class MainController {
     public static final int PAGE_SIZE = 6;
-    private final ServiceEquipmentFactory serviceEquipmentFactory;
     private final CartService cartService;
     private final OrderService orderService;
     private final EmailService emailService;
+    private final ItemService itemService;
 
     @Autowired
-    public MainController(ServiceEquipmentFactory serviceEquipmentFactory, CartService cartService, OrderService orderService, EmailService emailService) {
-        this.serviceEquipmentFactory = serviceEquipmentFactory;
+    public MainController(CartService cartService, OrderService orderService, EmailService emailService, ItemService itemService) {
         this.cartService = cartService;
         this.orderService = orderService;
         this.emailService = emailService;
+        this.itemService = itemService;
     }
 
     @GetMapping("/snowboard")
@@ -64,109 +62,96 @@ public class MainController {
         return "static/contacts";
     }
 
-    @GetMapping("/snowboard/catalog/{page}")
+    @GetMapping("/catalog/snowboard/{page}")
     public String handleSnowboardCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.SNOWBOARD);
         return "catalog/snowboard-list";
     }
 
-    @GetMapping("/snowboard/boot/catalog/{page}")
+    @GetMapping("/catalog/snowboard-boot/{page}")
     public String handleSnowboardBootCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_BOOT);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.SNOWBOARD_BOOT);
         return "catalog/snowboard-boot-list";
     }
 
-    @GetMapping("/snowboard/helmet/catalog/{page}")
+    @GetMapping("/catalog/snowboard-helmet/{page}")
     public String handleSnowboardHelmetCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_HELMET);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.SNOWBOARD_HELMET);
         return "catalog/snowboard-helmet-list";
     }
 
-    @GetMapping("/ski/catalog/{page}")
+    @GetMapping("/catalog/ski/{page}")
     public String handleSkiCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.SKI);
         return "catalog/ski-list";
     }
 
-    @GetMapping("/ski/boot/catalog/{page}")
+    @GetMapping("/catalog/ski-boot/{page}")
     public String handleSkiBootCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_BOOT);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.SKI_BOOT);
         return "catalog/ski-boot-list";
     }
 
-    @GetMapping("/ski/helmet/catalog/{page}")
+    @GetMapping("/catalog/ski-helmet/{page}")
     public String handleSkiHelmetCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_HELMET);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.SKI_HELMET);
         return "catalog/ski-helmet-list";
     }
 
-    @GetMapping("/ski/pole/catalog/{page}")
+    @GetMapping("/catalog/ski-pole/{page}")
     public String handleSkiPoleCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_POLE);
-        paginate(model, pageNumber, service);
-        List<EquipmentSize> skiPoleSizeList = service.findAllByProductGroup(ProductGroup.SKI_POLE);
+        paginate(model, pageNumber, Product.SKI_POLE);
+        List<EquipmentSize> skiPoleSizeList = itemService.findAllByProductGroup(ProductGroup.SKI_POLE);
         model.addAttribute("skiPoleSizeList", skiPoleSizeList);
         return "catalog/ski-pole-list";
     }
 
-    @GetMapping("/clothes/jacket/catalog/{page}")
+    @GetMapping("/catalog/clothes/jacket/{page}")
     public String handleJacketCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.JACKET);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.JACKET);
         return "catalog/jacket-list";
     }
 
-    @GetMapping("/clothes/pants/catalog/{page}")
+    @GetMapping("/catalog/clothes/pants/{page}")
     public String handlePantsCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.PANTS);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.PANTS);
         return "catalog/pants-list";
     }
 
-    @GetMapping("/clothes/cap/catalog/{page}")
+    @GetMapping("/catalog/clothes/cap/{page}")
     public String handleCapCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.CAP);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.CAP);
         return "catalog/cap-list";
     }
 
-    @GetMapping("/clothes/mask/catalog/{page}")
+    @GetMapping("/catalog/clothes/mask/{page}")
     public String handleMaskCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MASK);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.MASK);
         return "catalog/mask-list";
     }
 
-    @GetMapping("/clothes/mittens/catalog/{page}")
+    @GetMapping("/catalog/clothes/mittens/{page}")
     public String handleMittensCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MITTEN);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.MITTEN);
         return "catalog/mittens-list";
     }
 
-    @GetMapping("/clothes/gloves/catalog/{page}")
+    @GetMapping("/catalog/clothes/gloves/{page}")
     public String handleGlovesCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.GLOVE);
-        paginate(model, pageNumber, service);
+        paginate(model, pageNumber, Product.GLOVE);
         return "catalog/gloves-list";
     }
 
@@ -183,29 +168,26 @@ public class MainController {
                                      @PathVariable("id") UUID itemId,
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/snowboard/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/snowboard/" + pageNumber;
     }
 
-    @GetMapping("/cart/add/snowboard/boot/{id}")
+    @GetMapping("/cart/add/snowboard-boot/{id}")
     public String addSnowboardBootToCart(@SessionAttribute("cart")  CartDto cartDto,
                                          @PathVariable("id") UUID itemId,
                                          @SessionAttribute("pageNumber") int pageNumber,
                                          Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_BOOT);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/snowboard/boot/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/snowboard-boot/" + pageNumber;
     }
 
-    @GetMapping("/cart/add/snowboard/helmet/{id}")
+    @GetMapping("/cart/add/snowboard-helmet/{id}")
     public String addSnowboardHelmetToCart(@SessionAttribute("cart")  CartDto cartDto,
                                            @PathVariable("id") UUID itemId,
                                            @SessionAttribute("pageNumber") int pageNumber,
                                            Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SNOWBOARD_HELMET);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/snowboard/helmet/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/snowboard-helmet/" + pageNumber;
     }
 
     @GetMapping("/cart/add/ski/{id}")
@@ -213,39 +195,35 @@ public class MainController {
                                @PathVariable("id") UUID itemId,
                                @SessionAttribute("pageNumber") int pageNumber,
                                Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/ski/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/ski/" + pageNumber;
     }
 
-    @GetMapping("/cart/add/ski/pole/{id}")
+    @GetMapping("/cart/add/ski-pole/{id}")
     public String addSkiPoleToCart(@SessionAttribute("cart") CartDto cartDto,
                                    @PathVariable("id") UUID itemId,
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_POLE);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/ski/pole/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/ski-pole/" + pageNumber;
     }
 
-    @GetMapping("/cart/add/ski/boot/{id}")
+    @GetMapping("/cart/add/ski-boot/{id}")
     public String addSkiBootToCart(@SessionAttribute("cart") CartDto cartDto,
                                    @PathVariable("id") UUID itemId,
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_BOOT);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/ski/boot/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/ski-boot/" + pageNumber;
     }
 
-    @GetMapping("/cart/add/ski/helmet/{id}")
+    @GetMapping("/cart/add/ski-helmet/{id}")
     public String addSkiHelmetToCart(@SessionAttribute("cart") CartDto cartDto,
                                      @PathVariable("id") UUID itemId,
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.SKI_HELMET);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/ski/helmet/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/ski-helmet/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/cap/{id}")
@@ -253,9 +231,8 @@ public class MainController {
                                @PathVariable("id") UUID itemId,
                                @SessionAttribute("pageNumber") int pageNumber,
                                Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.CAP);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/clothes/cap/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/clothes/cap/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/gloves/{id}")
@@ -263,9 +240,8 @@ public class MainController {
                                   @PathVariable("id") UUID itemId,
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.GLOVE);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/clothes/gloves/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/clothes/gloves/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/jacket/{id}")
@@ -273,9 +249,8 @@ public class MainController {
                                   @PathVariable("id") UUID itemId,
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.JACKET);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/clothes/jacket/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/clothes/jacket/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/mask/{id}")
@@ -283,9 +258,8 @@ public class MainController {
                                 @PathVariable("id") UUID itemId,
                                 @SessionAttribute("pageNumber") int pageNumber,
                                 Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MASK);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/clothes/mask/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/clothes/mask/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/mittens/{id}")
@@ -293,9 +267,8 @@ public class MainController {
                                    @PathVariable("id") UUID itemId,
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.MITTEN);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/clothes/mittens/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/clothes/mittens/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/pants/{id}")
@@ -303,9 +276,8 @@ public class MainController {
                                  @PathVariable("id") UUID itemId,
                                  @SessionAttribute("pageNumber") int pageNumber,
                                  Model model) {
-        BaseItemService<? extends Item> service = serviceEquipmentFactory.getService(Product.PANTS);
-        addToCart(cartDto, itemId, model, service);
-        return "redirect:/clothes/pants/catalog/" + pageNumber;
+        addToCart(cartDto, itemId, model);
+        return "redirect:/catalog/clothes/pants/" + pageNumber;
     }
 
     @GetMapping("/cart/delete/item/{id}")
@@ -355,17 +327,17 @@ public class MainController {
         return "success-order";
     }
 
-    private void addToCart(CartDto cartDto, UUID itemId, Model model, BaseItemService<? extends Item> service) {
-        CartDto cartDtoWithItem = cartService.addToCart(service, cartDto, itemId);
+    private void addToCart(CartDto cartDto, UUID itemId, Model model) {
+        CartDto cartDtoWithItem = cartService.addToCart(cartDto, itemId);
         model.addAttribute("cart", cartDtoWithItem);
         Set<ItemResponse> items = cartService.getItems(cartDtoWithItem.getId());
         model.addAttribute("cartItems", items);
     }
 
-    private void paginate(Model model, int pageNumber, BaseItemService<? extends Item> service) {
-        List<? extends ItemResponse> list = service.findAll(pageNumber - 1, PAGE_SIZE);
-        int pagesNumber = BaseItemServiceImpl.totalPages;
+    private void paginate(Model model, int pageNumber, Product product) {
+        Set<ItemResponse> items = itemService.findAll(product, pageNumber - 1, PAGE_SIZE);
+        int pagesNumber = ItemServiceImpl.totalPages;
         model.addAttribute("pagesNumber", pagesNumber);
-        model.addAttribute("list", list);
+        model.addAttribute("list", items);
     }
 }
