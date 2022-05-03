@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/admin/create/new/snowboard_boot"/>" role="button">Добавить ботинки</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/snowboard-boot"/>" role="button">Добавить ботинки</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -38,7 +38,7 @@
                                             <h5 class="card-title">${boot.maker}</h5>
                                             <p class="card-info">Размер: ${boot.equipmentSize.equipmentSizeId}</p>
                                             <p class="card-info">Пол: ${boot.gender}</p>
-                                            <p class="card-info">Пол: ${boot.lacingSystem.mechanism}</p>
+                                            <p class="card-info">Шнуровка: ${boot.itemInformation.lacingSystem}</p>
                                             <p class="card-info">Цена проката: ${boot.cost} руб./сутки</p>
                                             <p class="card-info">Доступен к прокату:
                                                 <c:choose>
@@ -50,7 +50,7 @@
                                                     </c:when>
                                                 </c:choose></p>
                                             <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                                <form action="<c:url value="/admin/snowboard/boot/catalog/${boot.id}"/>"
+                                                <form action="<c:url value="/update/snowboard-boot/${boot.id}"/>"
                                                       method="post">
                                                     <div class="form-input">
                                                         <label for="label-update-cost"
@@ -77,13 +77,13 @@
                                                     </fieldset>
                                                     <button class="btn btn btn-warning btn-sm">Изменить</button>
                                                 </form>
-                                                <form action="<c:url value="/admin/delete/snowboard/boot/${boot.id}"/>"
+                                                <form action="<c:url value="/delete/snowboard-boot/${boot.id}"/>"
                                                       method="post">
                                                     <button class="btn btn btn-warning btn-sm">Удалить</button>
                                                 </form>
                                             </c:if>
                                             <div style="padding-top: 9px">
-                                                <a href="<c:url value="/cart/add/snowboard/boot/${boot.id}"/>" class="btn btn-primary">Добавить в корзину</a>
+                                                <a href="<c:url value="/cart/add/snowboard-boot/${boot.id}"/>" class="btn btn-primary">Добавить в корзину</a>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/snowboard/boot/catalog/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/catalog/snowboard-boot/${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>
