@@ -15,15 +15,15 @@ public enum ProductGroup {
             case "cap":
             case "mitten":
             case "glove":
-            case "ski_helmet":
-            case "snowboard_helmet":
+            case "ski-helmet":
+            case "snowboard-helmet":
                 return EQUIPMENT;
-            case "ski_boot":
-            case "snowboard_boot":
+            case "ski-boot":
+            case "snowboard-boot":
                 return BOOTS;
             case "ski":
                 return SKI;
-            case "ski_pole":
+            case "ski-pole":
                 return SKI_POLE;
             case "snowboard":
                 return SNOWBOARD;
