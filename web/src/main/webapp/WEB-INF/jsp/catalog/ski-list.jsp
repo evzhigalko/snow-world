@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/ski"/>" role="button">Добавить лыжи</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/catalog/ski"/>" role="button">Добавить лыжи</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -42,16 +42,17 @@
                                                     <c:out value="${'Нет'}"/>
                                                 </c:when>
                                             </c:choose></p>
-                                        <a class="btn btn btn-primary btn-sm" href="<c:url value="/catalog/ski-pole/1"/>"
+                                        <a class="btn btn btn-primary btn-sm" href="<c:url value="/catalog/ski-poles/1"/>"
                                            role="button">Выбрать лыжные палки</a>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/update/ski/${ski.id}"/>"
+                                            <form action="<c:url value="/catalog/ski/${ski.id}"/>"
                                                   method="post">
+                                                <input type="hidden" name="_method" value="patch">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
                                                            class="form-label"> </label>
                                                     <input id="label-update-cost" type="text" class="form-control"
-                                                           placeholder="Новая цена"
+                                                           placeholder="${ski.cost}"
                                                            name="cost">
                                                 </div>
                                                 <fieldset class="form-group"> Доступность
@@ -72,8 +73,9 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/delete/ski/${ski.id}"/>"
+                                            <form action="<c:url value="/catalog/ski/${ski.id}"/>"
                                                   method="post">
+                                                <input type="hidden" name="_method" value="delete">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
                                         </c:if>

@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="<c:url value="/catalog/ski-boot/1"/>" class="btn btn-primary">Выбрать ботинки</a>
+                        <a href="<c:url value="/catalog/ski-boots/1"/>" class="btn btn-primary">Выбрать ботинки</a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="<c:url value="/catalog/ski-helmet/1"/>" class="btn btn-primary">Выбрать шлем</a>
+                        <a href="<c:url value="/catalog/ski-helmets/1"/>" class="btn btn-primary">Выбрать шлем</a>
                     </div>
                 </div>
             </div>

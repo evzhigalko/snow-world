@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/snowboard-helmet"/>" role="button">Добавить шлем</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/catalog/snowboard-helmets"/>" role="button">Добавить шлем</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -42,13 +42,14 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/update/snowboard-helmet/${helmet.id}"/>"
+                                            <form action="<c:url value="/catalog/snowboard-helmets/${helmet.id}"/>"
                                                   method="post">
+                                                <input type="hidden" name="_method" value="patch">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
                                                            class="form-label"> </label>
                                                     <input id="label-update-cost" type="text" class="form-control"
-                                                           placeholder="Новая цена"
+                                                           placeholder="${helmet.cost}"
                                                            name="cost">
                                                 </div>
                                                 <fieldset class="form-group"> Доступность
@@ -76,8 +77,9 @@
                                                 </c:when>
                                                 <c:when test="${sessionScope.ROLE eq 'ADMIN'}">
                                                     <div style="padding-top: 10px">
-                                                        <form action="<c:url value="/delete/snowboard-helmet/${helmet.id}"/>"
+                                                        <form action="<c:url value="/catalog/snowboard-helmets/${helmet.id}"/>"
                                                               method="post">
+                                                            <input type="hidden" name="_method" value="delete">
                                                             <button class="btn btn btn-warning btn-sm">Удалить</button>
                                                         </form>
                                                 </c:when>
@@ -98,7 +100,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/catalog/snowboard-helmet/${i}">${i}</a>
+                                     href="${pageContext.request.contextPath}/catalog/snowboard-helmets/${i}">${i}</a>
             </li>
         </c:forEach>
     </ul>

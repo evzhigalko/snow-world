@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/snowboard"/>" role="button">Добавить сноуборд</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/catalog/snowboards"/>" role="button">Добавить сноуборд</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -46,13 +46,14 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/update/snowboard/${snowboard.id}"/>"
+                                            <form action="<c:url value="/catalog/snowboards/${snowboard.id}"/>"
                                                   method="post">
+                                                <input type="hidden" name="_method" value="patch">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
                                                            class="form-label"> </label>
                                                     <input id="label-update-cost" type="text" class="form-control"
-                                                           placeholder="Новая цена"
+                                                           placeholder="${snowboard.cost}"
                                                            name="cost">
                                                 </div>
                                                 <fieldset class="form-group"> Доступность
@@ -73,10 +74,11 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/delete/snowboard/${snowboard.id}"/>"
-                                                  method="post">
+                                            <form action="<c:url value="/catalog/snowboards/${snowboard.id}"/>" method="post">
+                                                <input type="hidden" name="_method" value="delete">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
+
                                         </c:if>
                                         <div style="padding-top: 7px">
                                             <a href="<c:url value="/cart/add/snowboard/${snowboard.id}"/>" class="btn btn-primary">Добавить в корзину</a>
@@ -95,7 +97,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/catalog/snowboard/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/catalog/snowboards/${i}">${i}</a></li>
             <input type="hidden" name="page_number" value="${i}"/>
         </c:forEach>
     </ul>

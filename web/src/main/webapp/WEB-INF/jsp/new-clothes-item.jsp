@@ -1,14 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="padding-top: 3rem">
     <c:choose>
-        <c:when test="${item eq 'cap'}">
+        <c:when test="${item eq 'caps'}">
         <p>Шапка</p>
-        <form action="<c:url value="/new/cap"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/catalog/caps"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="CAP">
         </c:when>
-        <c:when test="${item eq 'glove'}">
+        <c:when test="${item eq 'gloves'}">
         <p>Перчатки</p>
-        <form action="<c:url value="/new/glove"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/catalog/gloves"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="GLOVE">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
@@ -18,9 +18,9 @@
                        oninput="setCustomValidity('')">
             </div>
         </c:when>
-        <c:when test="${item eq 'jacket'}">
+        <c:when test="${item eq 'jackets'}">
         <p>Куртка</p>
-        <form action="<c:url value="/new/jacket"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/catalog/jackets"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="JACKET">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
@@ -30,14 +30,14 @@
                        oninput="setCustomValidity('')">
             </div>
         </c:when>
-        <c:when test="${item eq 'mask'}">
+        <c:when test="${item eq 'masks'}">
         <p>Маска</p>
-        <form action="<c:url value="/new/mask"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/catalog/masks"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="MASK">
         </c:when>
-        <c:when test="${item eq 'mitten'}">
+        <c:when test="${item eq 'mittens'}">
         <p>Варежки</p>
-        <form action="<c:url value="/new/mitten"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/catalog/mittens"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="MITTEN">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>
@@ -49,7 +49,7 @@
         </c:when>
         <c:when test="${item eq 'pants'}">
         <p>Штаны</p>
-        <form action="<c:url value="/new/pants"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+        <form action="<c:url value="/catalog/pants"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="PANTS">
             <div class="form-input">
                 <label for="label-membrane" class="form-label"> </label>

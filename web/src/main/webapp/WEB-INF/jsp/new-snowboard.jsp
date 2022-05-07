@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="padding-top: 3rem">
     <p>Сноуборд</p>
-    <form action="<c:url value="/new/snowboard"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+    <form action="<c:url value="/catalog/snowboards"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <div class="form-input">
             <label for="label-maker" class="form-label"> </label>
             <input id="label-maker" style="width: 15rem" type="text" class="form-control" placeholder="Производитель"

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="padding-top: 3rem">
     <p>Ботинки лыжные</p>
-    <form action="<c:url value="/new/ski-boot"/>" method="post" enctype="multipart/form-data" style="width: 60%">
+    <form action="<c:url value="/catalog/ski-boots"/>" method="post" enctype="multipart/form-data" style="width: 60%">
         <input type="hidden" name="productName" value="SKI_BOOT">
         <div class="form-input">
             <label for="label-maker" class="form-label"> </label>

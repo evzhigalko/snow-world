@@ -11,7 +11,7 @@
 </header>
 <div class="container" style="height: 7rem">
     <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/new/ski-helmet"/>" role="button">Добавить шлем</a>
+        <a class="btn btn btn-success btn-sm add-new-item" href="<c:url value="/catalog/ski-helmets"/>" role="button">Добавить шлем</a>
     </c:if>
 </div>
 <ul class="list-group">
@@ -42,8 +42,9 @@
                                                 </c:when>
                                             </c:choose></p>
                                         <c:if test="${sessionScope.ROLE eq 'ADMIN'}">
-                                            <form action="<c:url value="/update/ski-helmet/${helmet.id}"/>"
+                                            <form action="<c:url value="/catalog/ski-helmets/${helmet.id}"/>"
                                                   method="post">
+                                                <input type="hidden" name="_method" value="patch">
                                                 <div class="form-input">
                                                     <label for="label-update-cost"
                                                            class="form-label"> </label>
@@ -69,8 +70,9 @@
                                                 </fieldset>
                                                 <button class="btn btn btn-warning btn-sm">Изменить</button>
                                             </form>
-                                            <form action="<c:url value="/delete/ski-helmet/${helmet.id}"/>"
+                                            <form action="<c:url value="/catalog/ski-helmets/${helmet.id}"/>"
                                                   method="post">
+                                                <input type="hidden" name="_method" value="delete">
                                                 <button class="btn btn btn-warning btn-sm">Удалить</button>
                                             </form>
                                         </c:if>
@@ -98,7 +100,7 @@
     <ul class="pagination justify-content-center pagination-lg">
         <c:forEach begin="1" end="${requestScope.pagesNumber}" var="i">
             <li class="page-item"><a class="page-link"
-                                     href="${pageContext.request.contextPath}/catalog/ski-helmet/${i}">${i}</a></li>
+                                     href="${pageContext.request.contextPath}/catalog/ski-helmets/${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>

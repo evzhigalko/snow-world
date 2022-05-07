@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="<c:url value="/catalog/snowboard/1"/>" class="btn btn-primary">Выбрать сноуборд</a>
+                        <a href="<c:url value="/catalog/snowboards/1"/>" class="btn btn-primary">Выбрать сноуборд</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="<c:url value="/catalog/snowboard-boot/1"/>" class="btn btn-primary">Выбрать ботинки</a>
+                        <a href="<c:url value="/catalog/snowboard-boots/1"/>" class="btn btn-primary">Выбрать ботинки</a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </div>
                     <div class="card-body">
                     <div class="d-flex justify-content-center">
-                        <a href="<c:url value="/catalog/snowboard-helmet/1"/>" class="btn btn-primary">Выбрать шлем</a>
+                        <a href="<c:url value="/catalog/snowboard-helmets/1"/>" class="btn btn-primary">Выбрать шлем</a>
                     </div>
                 </div>
             </div>
