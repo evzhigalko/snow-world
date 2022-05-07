@@ -62,21 +62,21 @@ public class MainController {
         return "static/contacts";
     }
 
-    @GetMapping("/catalog/snowboard/{page}")
+    @GetMapping("/catalog/snowboards/{page}")
     public String handleSnowboardCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.SNOWBOARD);
         return "catalog/snowboard-list";
     }
 
-    @GetMapping("/catalog/snowboard-boot/{page}")
+    @GetMapping("/catalog/snowboard-boots/{page}")
     public String handleSnowboardBootCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.SNOWBOARD_BOOT);
         return "catalog/snowboard-boot-list";
     }
 
-    @GetMapping("/catalog/snowboard-helmet/{page}")
+    @GetMapping("/catalog/snowboard-helmets/{page}")
     public String handleSnowboardHelmetCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.SNOWBOARD_HELMET);
@@ -90,21 +90,21 @@ public class MainController {
         return "catalog/ski-list";
     }
 
-    @GetMapping("/catalog/ski-boot/{page}")
+    @GetMapping("/catalog/ski-boots/{page}")
     public String handleSkiBootCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.SKI_BOOT);
         return "catalog/ski-boot-list";
     }
 
-    @GetMapping("/catalog/ski-helmet/{page}")
+    @GetMapping("/catalog/ski-helmets/{page}")
     public String handleSkiHelmetCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.SKI_HELMET);
         return "catalog/ski-helmet-list";
     }
 
-    @GetMapping("/catalog/ski-pole/{page}")
+    @GetMapping("/catalog/ski-poles/{page}")
     public String handleSkiPoleCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.SKI_POLE);
@@ -113,42 +113,42 @@ public class MainController {
         return "catalog/ski-pole-list";
     }
 
-    @GetMapping("/catalog/clothes/jacket/{page}")
+    @GetMapping("/catalog/jackets/{page}")
     public String handleJacketCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.JACKET);
         return "catalog/jacket-list";
     }
 
-    @GetMapping("/catalog/clothes/pants/{page}")
+    @GetMapping("/catalog/pants/{page}")
     public String handlePantsCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.PANTS);
         return "catalog/pants-list";
     }
 
-    @GetMapping("/catalog/clothes/cap/{page}")
+    @GetMapping("/catalog/caps/{page}")
     public String handleCapCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.CAP);
         return "catalog/cap-list";
     }
 
-    @GetMapping("/catalog/clothes/mask/{page}")
+    @GetMapping("/catalog/masks/{page}")
     public String handleMaskCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.MASK);
         return "catalog/mask-list";
     }
 
-    @GetMapping("/catalog/clothes/mittens/{page}")
+    @GetMapping("/catalog/mittens/{page}")
     public String handleMittensCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.MITTEN);
         return "catalog/mittens-list";
     }
 
-    @GetMapping("/catalog/clothes/gloves/{page}")
+    @GetMapping("/catalog/gloves/{page}")
     public String handleGlovesCatalog(Model model, @PathVariable("page") int pageNumber) {
         model.addAttribute("pageNumber", pageNumber);
         paginate(model, pageNumber, Product.GLOVE);
