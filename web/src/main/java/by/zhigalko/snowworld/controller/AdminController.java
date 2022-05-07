@@ -44,34 +44,34 @@ public class AdminController {
         return "administration";
     }
 
-    @PostMapping("/update/snowboard/{id}")
+    @PatchMapping("/catalog/snowboards/{id}")
     public String changeSnowboardOnAdminPage(@RequestParam(value = "cost") String cost,
                                              @RequestParam("availability") String availableToRental,
                                              @PathVariable("id") UUID id,
                                              @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/snowboard/" + pageNumber;
+        return "redirect:/catalog/snowboards/" + pageNumber;
     }
 
-    @PostMapping("/update/snowboard-boot/{id}")
+    @PatchMapping("/catalog/snowboard-boots/{id}")
     public String changeSnowboardBootOnAdminPage(@RequestParam("cost") String cost,
                                                  @RequestParam("availability") String availableToRental,
                                                  @PathVariable("id") UUID id,
                                                  @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/snowboard-boot/" + pageNumber;
+        return "redirect:/catalog/snowboard-boots/" + pageNumber;
     }
 
-    @PostMapping("/update/snowboard-helmet/{id}")
+    @PatchMapping("/catalog/snowboard-helmets/{id}")
     public String changeSnowboardHelmetOnAdminPage(@RequestParam("cost") String cost,
                                                    @RequestParam("availability") String availableToRental,
                                                    @PathVariable("id") UUID id,
                                                    @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/snowboard-helmet/" + pageNumber;
+        return "redirect:/catalog/snowboard-helmets/" + pageNumber;
     }
 
-    @PostMapping("/update/ski/{id}")
+    @PatchMapping("/catalog/ski/{id}")
     public String changeSkiOnAdminPage(@RequestParam("cost") String cost,
                                        @RequestParam("availability") String availableToRental,
                                        @PathVariable("id") UUID id,
@@ -80,88 +80,88 @@ public class AdminController {
         return "redirect:/catalog/ski/" + pageNumber;
     }
 
-    @PostMapping("/update/ski-helmet/{id}")
+    @PatchMapping("/catalog/ski-helmets/{id}")
     public String changeSkiHelmetOnAdminPage(@RequestParam("cost") String cost,
                                              @RequestParam("availability") String availableToRental,
                                              @PathVariable("id") UUID id,
                                              @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/ski-helmet/" + pageNumber;
+        return "redirect:/catalog/ski-helmets/" + pageNumber;
     }
 
-    @PostMapping("/update/ski-boot/{id}")
+    @PatchMapping("/catalog/ski-boots/{id}")
     public String changeSkiBootOnAdminPage(@RequestParam("cost") String cost,
                                            @RequestParam("availability") String availableToRental,
                                            @PathVariable("id") UUID id,
                                            @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/ski-boot/" + pageNumber;
+        return "redirect:/catalog/ski-boots/" + pageNumber;
     }
 
-    @PostMapping("/update/ski-pole/{id}")
+    @PatchMapping("/catalog/ski-poles/{id}")
     public String changeSkiPoleOnAdminPage(@RequestParam("cost") String cost,
                                            @RequestParam("availability") String availableToRental,
                                            @PathVariable("id") UUID id,
                                            @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/ski-pole/" + pageNumber;
+        return "redirect:/catalog/ski-poles/" + pageNumber;
     }
 
-    @PostMapping("/update/cap/{id}")
+    @PatchMapping("/catalog/caps/{id}")
     public String changeCapOnAdminPage(@RequestParam("cost") String cost,
                                        @RequestParam("availability") String availableToRental,
                                        @PathVariable("id") UUID id,
                                        @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/clothes/cap/" + pageNumber;
+        return "redirect:/catalog/caps/" + pageNumber;
     }
 
-    @PostMapping("/update/gloves/{id}")
+    @PatchMapping("/catalog/gloves/{id}")
     public String changeGlovesOnAdminPage(@RequestParam("cost") String cost,
                                           @RequestParam("availability") String availableToRental,
                                           @PathVariable("id") UUID id,
                                           @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/clothes/gloves/" + pageNumber;
+        return "redirect:/catalog/gloves/" + pageNumber;
     }
 
-    @PostMapping("/update/jacket/{id}")
+    @PatchMapping("/catalog/jackets/{id}")
     public String changeJacketOnAdminPage(@RequestParam("cost") String cost,
                                           @RequestParam("availability") String availableToRental,
                                           @PathVariable("id") UUID id,
                                           @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/clothes/jacket/" + pageNumber;
+        return "redirect:/catalog/jackets/" + pageNumber;
     }
 
-    @PostMapping("/update/mask/{id}")
+    @PatchMapping("/catalog/masks/{id}")
     public String changeMaskOnAdminPage(@RequestParam("cost") String cost,
                                         @RequestParam("availability") String availableToRental,
                                         @PathVariable("id") UUID id,
                                         @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/clothes/mask/" + pageNumber;
+        return "redirect:/catalog/masks/" + pageNumber;
     }
 
-    @PostMapping("/update/mittens/{id}")
+    @PatchMapping("/catalog/mittens/{id}")
     public String changeMittensOnAdminPage(@RequestParam("cost") String cost,
                                            @RequestParam("availability") String availableToRental,
                                            @PathVariable("id") UUID id,
                                            @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/clothes/mittens/" + pageNumber;
+        return "redirect:/catalog/mittens/" + pageNumber;
     }
 
-    @PostMapping("/update/pants/{id}")
+    @PatchMapping("/catalog/pants/{id}")
     public String changePantsOnAdminPage(@RequestParam("cost") String cost,
                                          @RequestParam("availability") String availableToRental,
                                          @PathVariable("id") UUID id,
                                          @SessionAttribute("pageNumber") int pageNumber) {
         adminItemService.updateItem(cost, availableToRental, id);
-        return "redirect:/catalog/clothes/pants/" + pageNumber;
+        return "redirect:/catalog/pants/" + pageNumber;
     }
 
-    @GetMapping("/new/{item}")
+    @GetMapping("/catalog/{item}")
     public String showAdminCreateItemPage(Model model, @PathVariable("item") String item) {
         List<EquipmentSize> allSizes = itemService.findAllByProductGroup(ProductGroup.getProduct(item));
         model.addAttribute("allSizes", allSizes);
@@ -169,16 +169,16 @@ public class AdminController {
         return "create-new-item";
     }
 
-    @PostMapping(value = "/new/snowboard")
+    @PostMapping(value = "/catalog/snowboards")
     public ModelAndView createNewSnowboard(@RequestParam("file") MultipartFile filePart,
                                            ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.SNOWBOARD.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/snowboard/1");
+                mav.setViewName("redirect:/catalog/snowboards/1");
             } else {
-                mav.setViewName("redirect:/new/snowboard");
+                mav.setViewName("redirect:/catalog/snowboards");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -187,16 +187,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/snowboard-boot")
+    @PostMapping(value = "/catalog/snowboard-boots")
     public ModelAndView createNewSnowboardBoot(@RequestParam("file") MultipartFile filePart,
                                                ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.SNOWBOARD_BOOT.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/snowboard-boot/1");
+                mav.setViewName("redirect:/catalog/snowboard-boots/1");
             } else {
-                mav.setViewName("redirect:/new/snowboard-boot");
+                mav.setViewName("redirect:/catalog/snowboard-boots");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -205,16 +205,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/snowboard-helmet")
+    @PostMapping(value = "/catalog/snowboard-helmets")
     public ModelAndView createNewSnowboardHelmet(@RequestParam("file") MultipartFile filePart,
                                                  ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.SNOWBOARD_HELMET.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/snowboard-helmet/1");
+                mav.setViewName("redirect:/catalog/snowboard-helmets/1");
             } else {
-                mav.setViewName("redirect:/new/snowboard-helmet");
+                mav.setViewName("redirect:/catalog/snowboard-helmets");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -223,7 +223,7 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/ski")
+    @PostMapping(value = "/catalog/ski")
     public ModelAndView createNewSki(@RequestParam("file") MultipartFile filePart,
                                      ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
@@ -232,7 +232,7 @@ public class AdminController {
             if (isSaved) {
                 mav.setViewName("redirect:/catalog/ski/1");
             } else {
-                mav.setViewName("redirect:/new/ski");
+                mav.setViewName("redirect:/catalog/ski");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -241,16 +241,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/ski-boot")
+    @PostMapping(value = "/catalog/ski-boots")
     public ModelAndView createNewSkiBoot(@RequestParam("file") MultipartFile filePart,
                                                ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.SKI_BOOT.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/ski-boot/1");
+                mav.setViewName("redirect:/catalog/ski-boots/1");
             } else {
-                mav.setViewName("redirect:/new/ski-boot");
+                mav.setViewName("redirect:/catalog/ski-boots");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -259,16 +259,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/ski-helmet")
+    @PostMapping(value = "/catalog/ski-helmets")
     public ModelAndView createNewSkiHelmet(@RequestParam("file") MultipartFile filePart,
                                                  ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
-            boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, "ski_helmet");
+            boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.SKI_HELMET.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/ski-helmet/1");
+                mav.setViewName("redirect:/catalog/ski-helmets/1");
             } else {
-                mav.setViewName("redirect:/new/ski-helmet");
+                mav.setViewName("redirect:/catalog/ski-helmets");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -277,16 +277,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/ski-pole")
+    @PostMapping(value = "/catalog/ski-poles")
     public ModelAndView createNewSkiPole(@RequestParam("file") MultipartFile filePart,
                                          ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.SKI_POLE.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/ski-pole/1");
+                mav.setViewName("redirect:/catalog/ski-poles/1");
             } else {
-                mav.setViewName("redirect:/new/ski-pole");
+                mav.setViewName("redirect:/catalog/ski-poles");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -295,16 +295,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/jacket")
+    @PostMapping(value = "/catalog/jackets")
     public ModelAndView createNewJacket(@RequestParam("file") MultipartFile filePart,
                                         ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.JACKET.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/clothes/jacket/1");
+                mav.setViewName("redirect:/catalog/jackets/1");
             } else {
-                mav.setViewName("redirect:/new/jacket");
+                mav.setViewName("redirect:/catalog/jackets");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -313,16 +313,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/cap")
+    @PostMapping(value = "/catalog/caps")
     public ModelAndView createNewCap(@RequestParam("file") MultipartFile filePart,
                                         ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.CAP.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/clothes/cap/1");
+                mav.setViewName("redirect:/catalog/caps/1");
             } else {
-                mav.setViewName("redirect:/new/cap");
+                mav.setViewName("redirect:/catalog/caps");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -331,16 +331,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/glove")
+    @PostMapping(value = "/catalog/gloves")
     public ModelAndView createNewGlove(@RequestParam("file") MultipartFile filePart,
                                      ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.GLOVE.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/clothes/gloves/1");
+                mav.setViewName("redirect:/catalog/gloves/1");
             } else {
-                mav.setViewName("redirect:/new/glove");
+                mav.setViewName("redirect:/catalog/gloves");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -349,16 +349,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/mitten")
+    @PostMapping(value = "/catalog/mittens")
     public ModelAndView createNewMitten(@RequestParam("file") MultipartFile filePart,
                                        ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.MITTEN.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/clothes/mittens/1");
+                mav.setViewName("redirect:/catalog/mittens/1");
             } else {
-                mav.setViewName("redirect:/new/mitten");
+                mav.setViewName("redirect:/catalog/mittens");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -367,16 +367,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/mask")
+    @PostMapping(value = "/catalog/masks")
     public ModelAndView createNewMask(@RequestParam("file") MultipartFile filePart,
                                         ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.MASK.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/clothes/mask/1");
+                mav.setViewName("redirect:/catalog/masks/1");
             } else {
-                mav.setViewName("redirect:/new/mask");
+                mav.setViewName("redirect:/catalog/masks");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -385,16 +385,16 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/new/pants")
+    @PostMapping(value = "/catalog/pants")
     public ModelAndView createNewPants(@RequestParam("file") MultipartFile filePart,
                                       ItemRequest itemRequest) {
         ModelAndView mav = new ModelAndView();
         try {
             boolean isSaved = adminItemService.addNewItem(itemRequest, filePart, Product.PANTS.toString().toLowerCase());
             if (isSaved) {
-                mav.setViewName("redirect:/catalog/clothes/pants/1");
+                mav.setViewName("redirect:/catalog/pants/1");
             } else {
-                mav.setViewName("redirect:/new/pants");
+                mav.setViewName("redirect:/catalog/pants");
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -403,81 +403,81 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping("/delete/snowboard/{id}")
+    @DeleteMapping("/catalog/snowboards/{id}")
     public String deleteSnowboard(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SNOWBOARD.toString().toLowerCase(), id);
-        return "redirect:/catalog/snowboard/1";
+        return "redirect:/catalog/snowboards/1";
     }
 
-    @PostMapping("/delete/snowboard-helmet/{id}")
+    @DeleteMapping("/catalog/snowboard-helmets/{id}")
     public String deleteSnowboardHelmet(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SNOWBOARD_HELMET.toString().toLowerCase(), id);
-        return "redirect:/catalog/snowboard-helmet/1";
+        return "redirect:/catalog/snowboard-helmets/1";
     }
 
-    @PostMapping("/delete/snowboard-boot/{id}")
+    @DeleteMapping("/catalog/snowboard-boots/{id}")
     public String deleteSnowboardBoot(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SNOWBOARD_BOOT.toString().toLowerCase(), id);
-        return "redirect:/catalog/snowboard-boot/1";
+        return "redirect:/catalog/snowboard-boots/1";
     }
 
-    @PostMapping("/delete/ski/{id}")
+    @DeleteMapping("/catalog/ski/{id}")
     public String deleteSki(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SKI.toString().toLowerCase(), id);
         return "redirect:/catalog/ski/1";
     }
 
-    @PostMapping("/delete/ski-boot/{id}")
+    @DeleteMapping("/catalog/ski-boots/{id}")
     public String deleteSkiBoot(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SKI_BOOT.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski-boot/1";
+        return "redirect:/catalog/ski-boots/1";
     }
 
-    @PostMapping("/delete/ski-helmet/{id}")
+    @DeleteMapping("/catalog/ski-helmets/{id}")
     public String deleteSkiHelmet(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SKI_HELMET.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski-helmet/1";
+        return "redirect:/catalog/ski-helmets/1";
     }
 
-    @PostMapping("/delete/ski-pole/{id}")
+    @DeleteMapping("/catalog/ski-poles/{id}")
     public String deleteSkiPole(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.SKI_POLE.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski-pole/1";
+        return "redirect:/catalog/ski-poles/1";
     }
 
-    @PostMapping("/delete/cap/{id}")
+    @DeleteMapping("/catalog/caps/{id}")
     public String deleteCap(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.CAP.toString().toLowerCase(), id);
-        return "redirect:/catalog/clothes/cap/1";
+        return "redirect:/catalog/caps/1";
     }
 
-    @PostMapping("/delete/gloves/{id}")
+    @DeleteMapping("/catalog/gloves/{id}")
     public String deleteGlove(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.GLOVE.toString().toLowerCase(), id);
-        return "redirect:/catalog/clothes/gloves/1";
+        return "redirect:/catalog/gloves/1";
     }
 
-    @PostMapping("/delete/mask/{id}")
+    @DeleteMapping("/catalog/masks/{id}")
     public String deleteMask(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.MASK.toString().toLowerCase(), id);
-        return "redirect:/catalog/clothes/mask/1";
+        return "redirect:/catalog/masks/1";
     }
 
-    @PostMapping("/delete/mittens/{id}")
+    @DeleteMapping("/catalog/mittens/{id}")
     public String deleteMitten(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.MITTEN.toString().toLowerCase(), id);
-        return "redirect:/catalog/clothes/mittens/1";
+        return "redirect:/catalog/mittens/1";
     }
 
-    @PostMapping("/delete/jacket/{id}")
+    @DeleteMapping("/catalog/jackets/{id}")
     public String deleteJacket(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.JACKET.toString().toLowerCase(), id);
-        return "redirect:/catalog/clothes/jacket/1";
+        return "redirect:/catalog/jackets/1";
     }
 
-    @PostMapping("/delete/pants/{id}")
+    @DeleteMapping("/catalog/pants/{id}")
     public String deletePants(@PathVariable("id") UUID id) {
         adminItemService.deleteItem(Product.PANTS.toString().toLowerCase(), id);
-        return "redirect:/catalog/clothes/pants/1";
+        return "redirect:/catalog/pants/1";
     }
 }
