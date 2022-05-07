@@ -4,6 +4,7 @@ import by.zhigalko.snowworld.model.RoleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -47,7 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(filter, CsrfFilter.class);
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/new/**", "/delete/**", "/update/**").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.POST, "/catalog/**").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.DELETE, "/catalog/**").hasAuthority(RoleName.ADMIN.name())
+                .antMatchers(HttpMethod.PATCH, "/catalog/**").hasAuthority(RoleName.ADMIN.name())
                 .antMatchers("/cart/**", "/order/**").hasAuthority(RoleName.USER.name())
                 .and()
                 .formLogin()
