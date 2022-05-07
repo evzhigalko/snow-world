@@ -9,23 +9,23 @@ public enum ProductGroup {
 
     public static ProductGroup getProduct(String item) {
         switch (item) {
-            case "jacket":
+            case "jackets":
             case "pants":
-            case "mask":
-            case "cap":
-            case "mitten":
-            case "glove":
-            case "ski-helmet":
-            case "snowboard-helmet":
+            case "masks":
+            case "caps":
+            case "mittens":
+            case "gloves":
+            case "ski-helmets":
+            case "snowboard-helmets":
                 return EQUIPMENT;
-            case "ski-boot":
-            case "snowboard-boot":
+            case "ski-boots":
+            case "snowboard-boots":
                 return BOOTS;
             case "ski":
                 return SKI;
-            case "ski-pole":
+            case "ski-poles":
                 return SKI_POLE;
-            case "snowboard":
+            case "snowboards":
                 return SNOWBOARD;
         }
         return null;
