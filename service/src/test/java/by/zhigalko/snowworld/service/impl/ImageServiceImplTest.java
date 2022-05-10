@@ -105,8 +105,8 @@ class ImageServiceImplTest {
     }
 
     @ParameterizedTest
-    @MethodSource("getUploadImageParams")
-    void uploadImageParameterized(MultipartFile partFile, String bucketName, String imageName) {
+    @MethodSource("getUploadImageParamsTest")
+    void uploadImageParameterizedTest(MultipartFile partFile, String bucketName, String imageName) {
         String actual = "";
         try {
             doReturn(imageName).when(imageUploader).uploadImage(partFile, bucketName, imageName);
@@ -117,7 +117,7 @@ class ImageServiceImplTest {
         assertThat(actual).isEqualTo(imageName);
     }
 
-    static Stream<Arguments> getUploadImageParams() {
+    static Stream<Arguments> getUploadImageParamsTest() {
         MultipartFile multipartFile = mock(MultipartFile.class);
         return Stream.of(
                 of(multipartFile, BucketName.CLOTHES.getName(), "test.img"),
