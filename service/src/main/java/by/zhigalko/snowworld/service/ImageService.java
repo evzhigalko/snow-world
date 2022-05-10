@@ -18,8 +18,9 @@ public interface ImageService {
     /**
      * Save image into database
      * @param image {@link Image}
+     * @return saved {@link Image}
      */
-    void save(Image image);
+    Image save(Image image);
 
     /**
      * Delete image from database
