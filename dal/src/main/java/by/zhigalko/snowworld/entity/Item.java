@@ -23,7 +23,7 @@ public class Item extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Product productName;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name = "image_id", nullable = false)
     private Image image;
 

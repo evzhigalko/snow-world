@@ -10,6 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@EqualsAndHashCode
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(generator = "UUID")

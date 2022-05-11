@@ -169,7 +169,7 @@ public class MainController {
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/snowboard/" + pageNumber;
+        return "redirect:/catalog/snowboards/" + pageNumber;
     }
 
     @GetMapping("/cart/add/snowboard-boot/{id}")
@@ -178,7 +178,7 @@ public class MainController {
                                          @SessionAttribute("pageNumber") int pageNumber,
                                          Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/snowboard-boot/" + pageNumber;
+        return "redirect:/catalog/snowboard-boots/" + pageNumber;
     }
 
     @GetMapping("/cart/add/snowboard-helmet/{id}")
@@ -187,7 +187,7 @@ public class MainController {
                                            @SessionAttribute("pageNumber") int pageNumber,
                                            Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/snowboard-helmet/" + pageNumber;
+        return "redirect:/catalog/snowboard-helmets/" + pageNumber;
     }
 
     @GetMapping("/cart/add/ski/{id}")
@@ -205,7 +205,7 @@ public class MainController {
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/ski-pole/" + pageNumber;
+        return "redirect:/catalog/ski-poles/" + pageNumber;
     }
 
     @GetMapping("/cart/add/ski-boot/{id}")
@@ -214,7 +214,7 @@ public class MainController {
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/ski-boot/" + pageNumber;
+        return "redirect:/catalog/ski-boots/" + pageNumber;
     }
 
     @GetMapping("/cart/add/ski-helmet/{id}")
@@ -223,7 +223,7 @@ public class MainController {
                                      @SessionAttribute("pageNumber") int pageNumber,
                                      Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/ski-helmet/" + pageNumber;
+        return "redirect:/catalog/ski-helmets/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/cap/{id}")
@@ -232,7 +232,7 @@ public class MainController {
                                @SessionAttribute("pageNumber") int pageNumber,
                                Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/cap/" + pageNumber;
+        return "redirect:/catalog/clothes/caps/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/gloves/{id}")
@@ -250,7 +250,7 @@ public class MainController {
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/jacket/" + pageNumber;
+        return "redirect:/catalog/clothes/jackets/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/mask/{id}")
@@ -259,7 +259,7 @@ public class MainController {
                                 @SessionAttribute("pageNumber") int pageNumber,
                                 Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/mask/" + pageNumber;
+        return "redirect:/catalog/clothes/masks/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/mittens/{id}")
