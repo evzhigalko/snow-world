@@ -6,6 +6,7 @@ import by.zhigalko.snowworld.repository.EquipmentSizeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -38,7 +39,10 @@ class EquipmentSizeServiceImplTest {
 
         EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById(this.equipmentSize.getEquipmentSizeId());
 
-        assertThat(this.equipmentSize).isEqualTo(equipmentSize);
+        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+        verify(equipmentSizeRepository).getById(argumentCaptor.capture());
+
+        assertThat(argumentCaptor.getValue()).isEqualTo(equipmentSize.getEquipmentSizeId());
     }
 
     @Test
