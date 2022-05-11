@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -18,6 +19,9 @@ import static org.mockito.Mockito.*;
 class EquipmentSizeServiceImplTest {
     @InjectMocks
     private EquipmentSizeServiceImpl equipmentSizeService;
+
+    @Captor
+    private ArgumentCaptor<String> argumentCaptor;
 
     @Mock
     private EquipmentSizeRepository equipmentSizeRepository;
@@ -39,7 +43,6 @@ class EquipmentSizeServiceImplTest {
 
         EquipmentSize equipmentSize = equipmentSizeService.findEquipmentSizeById(this.equipmentSize.getEquipmentSizeId());
 
-        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
         verify(equipmentSizeRepository).getById(argumentCaptor.capture());
 
         assertThat(argumentCaptor.getValue()).isEqualTo(equipmentSize.getEquipmentSizeId());
