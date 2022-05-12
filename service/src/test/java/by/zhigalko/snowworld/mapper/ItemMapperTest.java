@@ -70,7 +70,6 @@ class ItemMapperTest {
         //THEN
         assertNotNull(actual);
         assertEquals(expected.size(), actual.size());
-        assertEquals(expected.iterator().next().getId(), actual.iterator().next().getId());
         expected.forEach(System.out::println);
         actual.forEach(System.out::println);
     }

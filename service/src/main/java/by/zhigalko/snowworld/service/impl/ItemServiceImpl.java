@@ -17,7 +17,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -81,7 +80,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     @Override
     public Item findById(UUID id) {
-        Item item = itemRepository.findById(id).orElseThrow(NoResultException::new);
+        Item item = itemRepository.getById(id);
         log.info("Found entity " + item);
         return item;
     }
