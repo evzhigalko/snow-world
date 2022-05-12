@@ -5,7 +5,6 @@ import by.zhigalko.snowworld.dto.request.OrderRequest;
 import by.zhigalko.snowworld.dto.response.OrderResponse;
 import by.zhigalko.snowworld.entity.Order;
 import by.zhigalko.snowworld.entity.OrderDetails;
-import by.zhigalko.snowworld.mapper.OrderDetailsMapper;
 import by.zhigalko.snowworld.mapper.OrderMapper;
 import by.zhigalko.snowworld.repository.OrderRepository;
 import by.zhigalko.snowworld.service.OrderDetailsService;
@@ -24,20 +23,18 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
-    private final OrderDetailsMapper orderDetailsMapper;
     private final OrderDetailsService orderDetailsService;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, OrderDetailsMapper orderDetailsMapper, OrderDetailsService orderDetailsService) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, OrderDetailsService orderDetailsService) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
-        this.orderDetailsMapper = orderDetailsMapper;
         this.orderDetailsService = orderDetailsService;
     }
 
     @Override
     public OrderResponse findById(UUID id) {
-        Order order = orderRepository.findById(id).orElseThrow(NoResultException::new);
+        Order order = orderRepository.getById(id);
         log.info("Found order: " + order);
         return orderMapper.orderToOrderResponse(order);
     }
@@ -69,9 +66,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void setOrderDetails(OrderDetailsDto orderDetailsDto) {
         Order order = orderRepository.findById(UUID.fromString(orderDetailsDto.getOrderId())).orElseThrow(NoResultException::new);
-        OrderDetails orderDetails = orderDetailsMapper.orderDetailsDtoToOrderDetails(orderDetailsDto);
-        orderDetails.addOrder(order);
-        OrderDetails savedOrderDetails = orderDetailsService.save(orderDetails);
+        OrderDetails details = orderDetailsService.findById(order.getOrderDetails().getId());
+        details.setPhoneNumber(orderDetailsDto.getPhoneNumber());
+        details.setFirstname(orderDetailsDto.getFirstname());
+        details.setLastname(orderDetailsDto.getLastname());
+        details.setEmail(orderDetailsDto.getEmail());
+        details.addOrder(order);
+        OrderDetails savedOrderDetails = orderDetailsService.save(details);
         order.setOrderDetails(savedOrderDetails);
     }
 }

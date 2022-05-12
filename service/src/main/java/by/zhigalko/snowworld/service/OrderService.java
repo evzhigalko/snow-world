@@ -4,9 +4,6 @@ import by.zhigalko.snowworld.dto.OrderDetailsDto;
 import by.zhigalko.snowworld.dto.request.OrderRequest;
 import by.zhigalko.snowworld.dto.response.OrderResponse;
 import by.zhigalko.snowworld.entity.Cart;
-import by.zhigalko.snowworld.entity.Order;
-import by.zhigalko.snowworld.mapper.OrderDetailsMapper;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +21,7 @@ public interface OrderService {
     /**
      * Find all user orders by
      * @param userId {@link UUID} is received from {@link Cart} id
-     * @return {@link List< Order >}
+     * @return {@link List<OrderResponse>}
      */
     List<OrderResponse> findAllByUserId(UUID userId);
 
@@ -44,7 +41,6 @@ public interface OrderService {
     /**
      * Set orderDetails to order
      * @param orderDetailsDto {@link OrderDetailsDto} is received from presentation layer,
-     * using {@link OrderDetailsMapper} set to order {@link Order}
      */
     void setOrderDetails(OrderDetailsDto orderDetailsDto);
 }
