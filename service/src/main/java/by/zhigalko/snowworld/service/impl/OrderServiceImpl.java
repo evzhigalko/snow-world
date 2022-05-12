@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.UUID;
 
@@ -65,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void setOrderDetails(OrderDetailsDto orderDetailsDto) {
-        Order order = orderRepository.findById(UUID.fromString(orderDetailsDto.getOrderId())).orElseThrow(NoResultException::new);
+        Order order = orderRepository.getById(UUID.fromString(orderDetailsDto.getOrderId()));
         OrderDetails details = orderDetailsService.findById(order.getOrderDetails().getId());
         details.setPhoneNumber(orderDetailsDto.getPhoneNumber());
         details.setFirstname(orderDetailsDto.getFirstname());
