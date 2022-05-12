@@ -232,7 +232,7 @@ public class MainController {
                                @SessionAttribute("pageNumber") int pageNumber,
                                Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/caps/" + pageNumber;
+        return "redirect:/catalog/caps/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/gloves/{id}")
@@ -241,7 +241,7 @@ public class MainController {
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/gloves/" + pageNumber;
+        return "redirect:/catalog/gloves/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/jacket/{id}")
@@ -250,7 +250,7 @@ public class MainController {
                                   @SessionAttribute("pageNumber") int pageNumber,
                                   Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/jackets/" + pageNumber;
+        return "redirect:/catalog/jackets/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/mask/{id}")
@@ -259,7 +259,7 @@ public class MainController {
                                 @SessionAttribute("pageNumber") int pageNumber,
                                 Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/masks/" + pageNumber;
+        return "redirect:/catalog/masks/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/mittens/{id}")
@@ -268,7 +268,7 @@ public class MainController {
                                    @SessionAttribute("pageNumber") int pageNumber,
                                    Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/mittens/" + pageNumber;
+        return "redirect:/catalog/mittens/" + pageNumber;
     }
 
     @GetMapping("/cart/add/clothes/pants/{id}")
@@ -277,7 +277,7 @@ public class MainController {
                                  @SessionAttribute("pageNumber") int pageNumber,
                                  Model model) {
         addToCart(cartDto, itemId, model);
-        return "redirect:/catalog/clothes/pants/" + pageNumber;
+        return "redirect:/catalog/pants/" + pageNumber;
     }
 
     @GetMapping("/cart/delete/item/{id}")
