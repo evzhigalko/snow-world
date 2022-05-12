@@ -10,7 +10,6 @@ import by.zhigalko.snowworld.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,6 +42,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(UUID id) {
-        return userRepository.findById(id).orElseThrow(NoResultException::new);
+        return userRepository.getById(id);
     }
 }
