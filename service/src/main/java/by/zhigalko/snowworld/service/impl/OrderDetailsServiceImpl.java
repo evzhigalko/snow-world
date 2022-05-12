@@ -5,6 +5,7 @@ import by.zhigalko.snowworld.repository.OrderDetailsRepository;
 import by.zhigalko.snowworld.service.OrderDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.UUID;
 
 @Service
 public class OrderDetailsServiceImpl implements OrderDetailsService {
@@ -18,5 +19,10 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     @Override
     public OrderDetails save(OrderDetails orderDetails) {
         return orderDetailsRepository.save(orderDetails);
+    }
+
+    @Override
+    public OrderDetails findById(UUID orderDetailsId) {
+        return orderDetailsRepository.getById(orderDetailsId);
     }
 }

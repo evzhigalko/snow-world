@@ -1,6 +1,7 @@
 package by.zhigalko.snowworld.service;
 
 import by.zhigalko.snowworld.entity.OrderDetails;
+import java.util.UUID;
 
 /**
  * Service for OrderDetails
@@ -12,4 +13,11 @@ public interface OrderDetailsService {
      * @return {@link OrderDetails}
      */
     OrderDetails save(OrderDetails orderDetails);
+
+    /**
+     * Find order details by id
+     * @param orderDetailsId {@link UUID}
+     * @return entity {@link OrderDetails}
+     */
+    OrderDetails findById(UUID orderDetailsId);
 }
