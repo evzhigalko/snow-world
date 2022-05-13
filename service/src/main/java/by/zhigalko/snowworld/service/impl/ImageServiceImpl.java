@@ -38,7 +38,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public String uploadImage(MultipartFile partFile, String bucketName, String imageName) throws IOException {
-       return imageUploader.uploadImage(partFile, bucketName, imageName);
+    public String uploadImage(MultipartFile partFile, String bucketName) throws IOException {
+       return imageUploader.uploadImage(partFile, bucketName);
     }
 }

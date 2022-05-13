@@ -32,9 +32,8 @@ public interface ImageService {
      * Upload image from presentation layer to service layer.
      * @param partFile {@link MultipartFile} image uploaded from presentation layer
      * @param bucketName name of bucket in MinIO object storage.
-     * @param imageName name of image
      * @return saved image name
      * @throws IOException
      */
-    String uploadImage(MultipartFile partFile, String bucketName, String imageName) throws IOException;
+    String uploadImage(MultipartFile partFile, String bucketName) throws IOException;
 }

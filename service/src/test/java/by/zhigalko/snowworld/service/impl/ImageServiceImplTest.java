@@ -106,36 +106,36 @@ class ImageServiceImplTest {
 
     @ParameterizedTest
     @MethodSource("getUploadImageParamsTest")
-    void uploadImageParameterizedTest(MultipartFile partFile, String bucketName, String imageName) {
+    void uploadImageParameterizedTest(MultipartFile partFile, String bucketName) {
         String actual = "";
         try {
-            doReturn(imageName).when(imageUploader).uploadImage(partFile, bucketName, imageName);
-            actual = imageService.uploadImage(partFile, bucketName, imageName);
+            doReturn(partFile.getOriginalFilename()).when(imageUploader).uploadImage(partFile, bucketName);
+            actual = imageService.uploadImage(partFile, bucketName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        assertThat(actual).isEqualTo(imageName);
+        assertThat(actual).isEqualTo(partFile.getOriginalFilename());
+        System.out.println(partFile.getOriginalFilename());
     }
 
     static Stream<Arguments> getUploadImageParamsTest() {
         MultipartFile multipartFile = mock(MultipartFile.class);
+        when(multipartFile.getOriginalFilename()).thenReturn("image.test");
         return Stream.of(
-                of(multipartFile, BucketName.CLOTHES.getName(), "test.img"),
-                of(multipartFile, null, "test.img"),
-                of(multipartFile, BucketName.CLOTHES.getName(), null),
-                of(multipartFile, null, null),
-                of(multipartFile, "", "")
+                of(multipartFile, BucketName.CLOTHES.getName()),
+                of(multipartFile, null),
+                of(multipartFile, "")
         );
     }
 
     @Test
     void uploadImageIfMultipartIsNull() {
         try {
-            doThrow(IOException.class).when(imageUploader).uploadImage(null, BucketName.CLOTHES.getName(), "test.img");
+            doThrow(IOException.class).when(imageUploader).uploadImage(null, BucketName.CLOTHES.getName());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         assertThatExceptionOfType(IOException.class)
-                .isThrownBy(() -> imageService.uploadImage(null, BucketName.CLOTHES.getName(), "test.img"));
+                .isThrownBy(() -> imageService.uploadImage(null, BucketName.CLOTHES.getName()));
     }
 }
