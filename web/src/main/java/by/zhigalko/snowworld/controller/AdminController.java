@@ -403,81 +403,10 @@ public class AdminController {
         return mav;
     }
 
-    @DeleteMapping("/catalog/snowboards/{id}")
-    public String deleteSnowboard(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SNOWBOARD.toString().toLowerCase(), id);
-        return "redirect:/catalog/snowboards/1";
-    }
-
-    @DeleteMapping("/catalog/snowboard-helmets/{id}")
-    public String deleteSnowboardHelmet(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SNOWBOARD_HELMET.toString().toLowerCase(), id);
-        return "redirect:/catalog/snowboard-helmets/1";
-    }
-
-    @DeleteMapping("/catalog/snowboard-boots/{id}")
-    public String deleteSnowboardBoot(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SNOWBOARD_BOOT.toString().toLowerCase(), id);
-        return "redirect:/catalog/snowboard-boots/1";
-    }
-
-    @DeleteMapping("/catalog/ski/{id}")
-    public String deleteSki(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SKI.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski/1";
-    }
-
-    @DeleteMapping("/catalog/ski-boots/{id}")
-    public String deleteSkiBoot(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SKI_BOOT.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski-boots/1";
-    }
-
-    @DeleteMapping("/catalog/ski-helmets/{id}")
-    public String deleteSkiHelmet(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SKI_HELMET.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski-helmets/1";
-    }
-
-    @DeleteMapping("/catalog/ski-poles/{id}")
-    public String deleteSkiPole(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.SKI_POLE.toString().toLowerCase(), id);
-        return "redirect:/catalog/ski-poles/1";
-    }
-
-    @DeleteMapping("/catalog/caps/{id}")
-    public String deleteCap(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.CAP.toString().toLowerCase(), id);
-        return "redirect:/catalog/caps/1";
-    }
-
-    @DeleteMapping("/catalog/gloves/{id}")
-    public String deleteGlove(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.GLOVE.toString().toLowerCase(), id);
-        return "redirect:/catalog/gloves/1";
-    }
-
-    @DeleteMapping("/catalog/masks/{id}")
-    public String deleteMask(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.MASK.toString().toLowerCase(), id);
-        return "redirect:/catalog/masks/1";
-    }
-
-    @DeleteMapping("/catalog/mittens/{id}")
-    public String deleteMitten(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.MITTEN.toString().toLowerCase(), id);
-        return "redirect:/catalog/mittens/1";
-    }
-
-    @DeleteMapping("/catalog/jackets/{id}")
-    public String deleteJacket(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.JACKET.toString().toLowerCase(), id);
-        return "redirect:/catalog/jackets/1";
-    }
-
-    @DeleteMapping("/catalog/pants/{id}")
-    public String deletePants(@PathVariable("id") UUID id) {
-        adminItemService.deleteItem(Product.PANTS.toString().toLowerCase(), id);
-        return "redirect:/catalog/pants/1";
+    @DeleteMapping("/catalog/{item}/{id}")
+    public String deleteItem(@PathVariable("id") UUID id,
+                             @PathVariable("item") String item) {
+        adminItemService.deleteItem(id);
+        return "redirect:/catalog/" + item + "/1";
     }
 }
