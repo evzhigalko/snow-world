@@ -24,10 +24,9 @@ public interface AdminItemService {
 
     /**
      * Delete item from admin credentials
-     * @param product     name of product
      * @param id {@link UUID} is used to define item to delete
      */
-    void deleteItem(String product, UUID id);
+    void deleteItem(UUID id);
 
     /**
      * Update item from admin credentials with

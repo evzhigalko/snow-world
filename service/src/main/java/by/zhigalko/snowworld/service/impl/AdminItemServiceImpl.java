@@ -16,6 +16,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@Transactional
 public class AdminItemServiceImpl implements AdminItemService {
     private final ImageService imageService;
     private final ItemService itemService;
@@ -26,12 +27,10 @@ public class AdminItemServiceImpl implements AdminItemService {
         this.itemService = itemService;
     }
 
-    @Transactional
     @Override
     public boolean addNewItem(ItemRequest itemRequest, MultipartFile filePart, String product) throws IOException {
         log.info("ItemRequest: " + itemRequest);
-        String fileName = filePart.getOriginalFilename();
-        String imageName = imageService.uploadImage(filePart, product, fileName);
+        String imageName = imageService.uploadImage(filePart, product);
         Image image = imageService.getImage(imageName);
         Item item = itemService.getItem(itemRequest, image);
         image.addItem(item);
@@ -41,19 +40,17 @@ public class AdminItemServiceImpl implements AdminItemService {
         return savedItem!=null;
     }
 
-    @Transactional
     @Override
-    public void deleteItem(String product, UUID id) {
+    public void deleteItem(UUID id) {
         Item item = itemService.findById(id);
         log.info("Deleted ---> " + item);
         Image image = item.getImage();
         log.info("Deleted image---> " + image);
         image.removeItem(item);
         itemService.delete(item);
-        imageService.delete(item.getImage());
+        imageService.delete(image);
     }
 
-    @Transactional
     @Override
     public boolean updateItem(String cost, String availableToRental, UUID id) {
         Item item = itemService.findById(id);
