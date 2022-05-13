@@ -22,8 +22,9 @@ public class ImageUploader {
         minioServiceUrl = env.getProperty("minio.url");
     }
 
-    public String uploadImage(MultipartFile partFile, String bucketName, String imageName) throws IOException {
+    public String uploadImage(MultipartFile partFile, String bucketName) throws IOException {
         String objectName = "";
+        String imageName = partFile.getOriginalFilename();
         bucketName = BucketName.of(bucketName).getName();
         System.out.println(bucketName);
         if (imageName != null) {
