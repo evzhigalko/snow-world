@@ -32,8 +32,10 @@
                         </td>
                         <td>
                             <div>
-                                <a href="<c:url value="/cart/delete/item/${cartItem.id}"/>"
-                                   class="btn btn btn-danger btn-sm">Удалить</a>
+                                <form action="<c:url value="/cart/item/${cartItem.id}"/>" method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <button class="btn btn btn-danger btn-sm">Удалить</button>
+                                </form>
                             </div>
                         </td>
                     </tr>

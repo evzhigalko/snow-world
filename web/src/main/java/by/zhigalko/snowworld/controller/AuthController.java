@@ -47,7 +47,7 @@ public class AuthController {
         CartDto foundCart = cartService.findCartById(userResponse.getId());
         model.addAttribute("cart", foundCart);
         if(foundCart!=null) {
-            Set<ItemResponse> cartItems = cartService.getItems(foundCart.getId());
+            Set<ItemResponse> cartItems = cartService.getItemsFromCart(foundCart.getId());
             model.addAttribute("cartItems", cartItems);
             model.addAttribute("totalSum", foundCart.getTotalSum());
         }

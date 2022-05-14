@@ -159,7 +159,7 @@ public class MainController {
     public String showCart(@SessionAttribute("cart") CartDto cartDto,
                            Model model) {
         model.addAttribute("cart", cartDto);
-        model.addAttribute("cartItems", cartService.getItems(cartDto.getId()));
+        model.addAttribute("cartItems", cartService.getItemsFromCart(cartDto.getId()));
         return "cart";
     }
 
@@ -280,14 +280,13 @@ public class MainController {
         return "redirect:/catalog/pants/" + pageNumber;
     }
 
-    @GetMapping("/cart/delete/item/{id}")
+    @DeleteMapping("/cart/item/{id}")
     public String deleteFromCart(@PathVariable("id") UUID id,
                                  @SessionAttribute("cart") CartDto cartDto,
-                                 @SessionAttribute("cartItems") Set<ItemResponse> cartItems,
                                  Model model) {
-        CartDto cartDtoAfterRemoving = cartService.removeFromCart(cartDto, id, cartItems);
+        CartDto cartDtoAfterRemoving = cartService.removeFromCart(cartDto, id);
         model.addAttribute("cart", cartDtoAfterRemoving);
-        model.addAttribute("cartItems", cartService.getItems(cartDtoAfterRemoving.getId()));
+        model.addAttribute("cartItems", cartService.getItemsFromCart(cartDtoAfterRemoving.getId()));
         return "redirect:/cart";
     }
 
@@ -321,7 +320,7 @@ public class MainController {
                             Model model) {
         orderService.setOrderDetails(orderDetailsDto);
         emailService.sendMessage(orderDetailsDto);
-        CartDto cartDtoWithoutItems = cartService.clearItems(cartDto);
+        CartDto cartDtoWithoutItems = cartService.clearCart(cartDto);
         model.addAttribute("cart", cartDto);
         model.addAttribute("cartItems", cartDtoWithoutItems.getItems());
         return "success-order";
@@ -330,7 +329,7 @@ public class MainController {
     private void addToCart(CartDto cartDto, UUID itemId, Model model) {
         CartDto cartDtoWithItem = cartService.addToCart(cartDto, itemId);
         model.addAttribute("cart", cartDtoWithItem);
-        Set<ItemResponse> items = cartService.getItems(cartDtoWithItem.getId());
+        Set<ItemResponse> items = cartService.getItemsFromCart(cartDtoWithItem.getId());
         model.addAttribute("cartItems", items);
     }
 
