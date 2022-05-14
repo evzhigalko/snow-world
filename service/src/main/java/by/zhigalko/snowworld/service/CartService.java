@@ -5,7 +5,6 @@ import by.zhigalko.snowworld.dto.response.ItemResponse;
 import by.zhigalko.snowworld.entity.Cart;
 import by.zhigalko.snowworld.entity.Item;
 import by.zhigalko.snowworld.mapper.CartMapper;
-
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,9 +24,8 @@ public interface CartService {
      * Remove item from cart.
      * @param cartDto {@link CartDto} is received from session
      * @param id {@link UUID}  is received from query path
-     * @param cartItems {@link Set<ItemResponse>} is received from session
      */
-     CartDto removeFromCart(CartDto cartDto, UUID id, Set<ItemResponse> cartItems);
+     CartDto removeFromCart(CartDto cartDto, UUID id);
 
     /**
      * Find cart by id
@@ -41,7 +39,7 @@ public interface CartService {
      * @param cartId {@link UUID} cartId
      * @return {@link Set<Item>}
      */
-     Set<ItemResponse> getItems(UUID cartId);
+     Set<ItemResponse> getItemsFromCart(UUID cartId);
 
     /**
      * Save cart in database
@@ -58,5 +56,5 @@ public interface CartService {
      * @param cartDto {@link CartDto} is received from session
      * @return {@link CartDto}
      */
-    CartDto clearItems(CartDto cartDto);
+    CartDto clearCart(CartDto cartDto);
 }

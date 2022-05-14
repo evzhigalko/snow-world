@@ -40,54 +40,41 @@ public class CartServiceImpl implements CartService {
     @Transactional
     @Override
     public CartDto addToCart(CartDto cartDto, UUID itemId) {
-        CartDto savedCartDto = null;
-        try {
-            Cart cart = cartMapper.cartDtoToCart(cartDto);
-            Item item = itemService.findById(itemId);
-            Item savedItem = itemService.save(item);
-            log.info("Added to cart " + savedItem);
-            Set<Item> items = cartRepository.getItems(cart.getId());
-            items.add(savedItem);
-            cart.setItems(items);
-            cart.setStartReservationDate(LocalDate.now());
-            cart.setReservationDayNumber(1);
-            cart.setTotalSum(items.stream()
-                    .map(Item::getCost)
-                    .reduce(0.0, Double::sum));
-            Set<Cart> carts = itemRepository.getCarts(savedItem.getId());
-            carts.add(cart);
-            Cart savedCart = cartRepository.save(cart);
-            savedCartDto = cartMapper.cartToCartDto(savedCart);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-        }
-        return savedCartDto;
+        Item item = itemService.findById(itemId);
+        Cart cart = cartMapper.cartDtoToCart(cartDto);
+        Set<Item> items = cartRepository.getItems(cart.getId());
+        items.add(item);
+        log.info("Added to cart " + item);
+        cart.setItems(items);
+        cart.setStartReservationDate(LocalDate.now());
+        cart.setReservationDayNumber(1);
+        cart.setTotalSum(items.stream()
+                .map(Item::getCost)
+                .reduce(0.0, Double::sum));
+        Set<Cart> carts = itemRepository.getCarts(item.getId());
+        carts.add(cart);
+        Cart savedCart = cartRepository.save(cart);
+        return cartMapper.cartToCartDto(savedCart);
     }
 
     @Transactional
     @Override
-    public CartDto removeFromCart(CartDto cartDto, UUID id, Set<ItemResponse> cartItems) {
-        CartDto savedCartDto = null;
-        try {
-            Cart cart = cartMapper.cartDtoToCart(cartDto);
-            Item item = itemService.findById(id);
-            log.info("Removed to cart " + item);
-            Set<Item> items = cartRepository.getItems(cart.getId());
-            items.remove(item);
-            cart.setItems(items);
-            cart.setTotalSum(cart.getTotalSum() - item.getCost());
-            if (items.size() == 0) {
-                cart.setReservationDayNumber(0);
-                cart.setStartReservationDate(null);
-            }
-            Set<Cart> carts = itemRepository.getCarts(item.getId());
-            carts.remove(cart);
-            Cart savedCart = cartRepository.save(cart);
-            savedCartDto = cartMapper.cartToCartDto(savedCart);
-        } catch (Exception e) {
-            log.error(e.getMessage());
+    public CartDto removeFromCart(CartDto cartDto, UUID itemId) {
+        Cart cart = cartMapper.cartDtoToCart(cartDto);
+        Item item = itemService.findById(itemId);
+        Set<Item> items = cartRepository.getItems(cart.getId());
+        log.info("Removed to cart " + item);
+        items.remove(item);
+        cart.setItems(items);
+        cart.setTotalSum(cart.getTotalSum() - item.getCost());
+        if (items.size() == 0) {
+            cart.setReservationDayNumber(0);
+            cart.setStartReservationDate(null);
         }
-        return savedCartDto;
+        Set<Cart> carts = itemRepository.getCarts(item.getId());
+        carts.remove(cart);
+        Cart savedCart = cartRepository.save(cart);
+        return cartMapper.cartToCartDto(savedCart);
     }
 
     @Override
@@ -99,7 +86,7 @@ public class CartServiceImpl implements CartService {
 
     @Transactional
     @Override
-    public Set<ItemResponse> getItems(UUID cartId) {
+    public Set<ItemResponse> getItemsFromCart(UUID cartId) {
         Set<Item> items = cartRepository.getItems(cartId);
         return itemMapper.itemSetToItemResponseSet(items);
     }
@@ -112,10 +99,10 @@ public class CartServiceImpl implements CartService {
 
     @Transactional
     @Override
-    public CartDto clearItems(CartDto cartDto) {
-        Set<ItemResponse> items = getItems(cartDto.getId());
+    public CartDto clearCart(CartDto cartDto) {
+        Set<Item> items = cartDto.getItems();
         items.clear();
-        cartDto.setItems(itemMapper.itemResponseSetToItemSet(items));
+        cartDto.setItems(items);
         cartDto.setTotalSum(0.0);
         cartDto.setReservationDayNumber(0);
         cartDto.setStartReservationDate(null);
