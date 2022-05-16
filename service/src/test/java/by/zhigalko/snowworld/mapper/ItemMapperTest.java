@@ -7,22 +7,18 @@ import by.zhigalko.snowworld.entity.Item;
 import by.zhigalko.snowworld.model.HardnessLevel;
 import by.zhigalko.snowworld.model.Product;
 import by.zhigalko.snowworld.model.RidingLevel;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.factory.Mappers;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ItemMapperTest {
+    @Mock
     private ItemMapper itemMapper;
-
-    @BeforeEach
-    void init() {
-        itemMapper = Mappers.getMapper(ItemMapper.class);
-    }
 
     @Test
     void itemSetToItemResponseSet() {
@@ -64,13 +60,13 @@ class ItemMapperTest {
 
         Set<Item> expected = Set.of(item, item2);
 
+        doReturn(expected).when(itemMapper).itemSetToItemResponseSet(expected);
+
         //WHEN
         Set<ItemResponse> actual = itemMapper.itemSetToItemResponseSet(expected);
 
         //THEN
         assertNotNull(actual);
         assertEquals(expected.size(), actual.size());
-        expected.forEach(System.out::println);
-        actual.forEach(System.out::println);
     }
 }
